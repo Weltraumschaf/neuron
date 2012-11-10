@@ -27,6 +27,12 @@
             <version>13.0.1</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>de.weltraumschaf</groupId>
+            <artifactId>commons</artifactId>
+            <version>0.2.5</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
