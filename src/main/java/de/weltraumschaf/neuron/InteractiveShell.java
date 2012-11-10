@@ -39,9 +39,13 @@ class InteractiveShell {
             if ("exit".equals(inputLine)) {
                 out.println("bye bye!");
                 break;
-            }
+            } else if ("reset".equals(inputLine)) {
 
-            out.println(inputLine);
+            } else if ("help".equals(inputLine)) {
+
+            } else {
+                out.println("Unknown comand: " + inputLine);
+            }
         }
     }
 
