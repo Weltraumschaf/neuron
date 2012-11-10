@@ -1,15 +1,41 @@
 package de.weltraumschaf.neuron;
 
 import de.weltraumschaf.commons.IOStreams;
-import java.io.IOException;
+import de.weltraumschaf.commons.InvokableAdapter;
 
 /**
  *
  */
-public class App {
+public class App extends InvokableAdapter {
 
-    public static void main(final  String[] args ) throws IOException {
-        final InteractiveShell shell = new InteractiveShell(IOStreams.newDefault());
+    public App(final String[] args) {
+        super(args);
+    }
+
+    public static void main(final String[] args) {
+        final App app = new App(args);
+
+        try {
+            InvokableAdapter.main(app);
+            app.exit(0);
+        } catch (Exception ex) {
+            app.getIoStreams().errorln(ex.getMessage());
+            app.exit(-1);
+        }
+    }
+
+    @Override
+    public void execute() throws Exception {
+        final InteractiveShell shell = new InteractiveShell(getIoStreams());
+
+        registerShutdownHook(new Runnable() {
+
+            public void run() {
+                shell.exit();
+            }
+        });
+        
         shell.start();
     }
+
 }

@@ -41,7 +41,11 @@ class InteractiveShell {
                 break;
             }
 
-            out.println(input);
+            out.println(inputLine);
         }
+    }
+
+    void exit() {
+
     }
 }
