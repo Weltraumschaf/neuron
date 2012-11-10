@@ -12,7 +12,7 @@ import java.util.List;
  * @author sxs
  */
 public class NodeImpl implements Node {
-    
+
     private final List<Node> neighbours = Lists.newArrayList();
     private final int id;
 
@@ -30,5 +30,9 @@ public class NodeImpl implements Node {
 
     public int getId() {
         return id;
+    }
+
+    public void send(Message msg) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
