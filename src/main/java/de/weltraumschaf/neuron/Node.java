@@ -24,6 +24,10 @@ public interface Node {
      */
     void disconnect(Node n);
 
+    boolean knows(Node n);
+
+    boolean knows(int id);
+
     int getId();
 
     void send(Message msg);
