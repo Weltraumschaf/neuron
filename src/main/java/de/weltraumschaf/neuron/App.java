@@ -1,10 +1,11 @@
 package de.weltraumschaf.neuron;
 
-import de.weltraumschaf.commons.IOStreams;
 import de.weltraumschaf.commons.InvokableAdapter;
+import de.weltraumschaf.neuron.shell.InteractiveShell;
 
 /**
  *
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class App extends InvokableAdapter {
 
@@ -34,7 +35,7 @@ public class App extends InvokableAdapter {
                 shell.exit();
             }
         });
-        
+
         shell.start();
     }
 

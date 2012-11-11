@@ -9,9 +9,10 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
+package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Environment;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,24 +22,25 @@ import java.io.PrintStream;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class InteractiveShell {
+public class InteractiveShell {
 
     private final IO io;
     private final Environment env;
+    private boolean doExit;
 
     public InteractiveShell(final IO io) {
         this.io = io;
         env = new Environment();
     }
 
-    void start() throws IOException {
+    public void start() throws IOException {
         final BufferedReader input = new BufferedReader(new InputStreamReader(io.getStdin()));
         final PrintStream out = io.getStdout();
 
         while (true) {
             final String inputLine = input.readLine();
 
-            if ("exit".equals(inputLine)) {
+            if ("exit".equals(inputLine) || doExit) {
                 out.println("bye bye!");
                 break;
             } else if ("reset".equals(inputLine)) {
@@ -51,7 +53,8 @@ class InteractiveShell {
         }
     }
 
-    void exit() {
-
+    public void exit() {
+        doExit = true;
     }
+
 }

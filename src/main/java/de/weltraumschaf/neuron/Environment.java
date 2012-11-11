@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class Environment {
+public class Environment {
 
     private final Map<Integer, Node> nodes = Maps.newHashMap();
     private int nextId = 0;
