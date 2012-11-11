@@ -80,4 +80,9 @@ public class NodeImpl implements Node {
         return neighbours.containsKey(Integer.valueOf(id));
     }
 
+    @Override
+    public String toString() {
+        return String.format("Node ID: %d Neigbors: %d", id, neighbours.size());
+    }
+
 }

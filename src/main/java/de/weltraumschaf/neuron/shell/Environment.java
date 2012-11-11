@@ -9,9 +9,13 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
+package de.weltraumschaf.neuron.shell;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import de.weltraumschaf.neuron.Node;
+import de.weltraumschaf.neuron.NodeImpl;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,7 +60,7 @@ public class Environment {
         nodes.remove(Integer.valueOf(n.getId()));
     }
 
-    public void reset() {
+    void reset() {
         nodes.clear();
         nextId = 0;
     }
@@ -67,6 +71,10 @@ public class Environment {
 
     int getNextId() {
         return nextId;
+    }
+
+    List<Node> getNodes() {
+        return Lists.newArrayList(nodes.values());
     }
 
 }

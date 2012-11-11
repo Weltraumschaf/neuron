@@ -13,10 +13,11 @@ package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
-import de.weltraumschaf.neuron.Environment;
+import de.weltraumschaf.neuron.Node;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  *
@@ -34,7 +35,7 @@ public class InteractiveShell {
         + "  node del ID                 Disconnect and deletes the node with ID.%n"
         + "  node connect FROM_ID TO_ID  Connect two nodes.%n"
         + "  node list                   List all nodes.%n"
-        + "  node info ID                Print info of a node.%n";
+        + "  node info ID                Print info of a node.%n%n";
     private final IO io;
     private final Environment env;
     private final Parser parser = new Parser(new Scanner());
@@ -96,8 +97,57 @@ public class InteractiveShell {
         io.print(String.format(HELP, version.getVersion()));
     }
 
-    private void executeNode(Command cmd) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    private void executeNode(final Command cmd) {
+        switch (cmd.getSubCommand()) {
+            case ADD:
+                addNode(cmd);
+                break;
+            case LIST:
+                listNodes(cmd);
+                break;
+            default:
+                io.println("Unknown subcommand: " + cmd.getSubCommand());
+        }
+    }
+
+    private void addNode(final Command cmd) {
+        int amount = 1;
+
+        if (cmd.getArguments().size() == 1) {
+            final Token<Integer> t = cmd.getArguments().get(0);
+            amount = t.getValue();
+        }
+
+        if (amount < 1) {
+            io.println("Parameter AMOUNT must not be less than 1!");
+            return;
+        }
+
+        final StringBuilder summary = new StringBuilder();
+
+        for (int i = 0; i < amount; ++i) {
+            final Node n = env.add();
+            summary.append(String.format("Node with id %d added%n", n.getId()));
+        }
+
+        io.println(summary.toString());
+    }
+
+    private void listNodes(final Command cmd) {
+        final StringBuilder summary = new StringBuilder();
+        final List<Node> nodes = env.getNodes();
+
+        if (nodes.isEmpty()) {
+            summary.append(String.format("No nodes created.%n"));
+        } else {
+            summary.append(String.format("%d nodes created.%n%n", nodes.size()));
+            summary.append(String.format("Existing nodes:%n"));
+            for (final Node n : nodes) {
+                summary.append(String.format("  %s%n", n));
+            }
+        }
+
+        io.println(summary.toString());
     }
 
 }

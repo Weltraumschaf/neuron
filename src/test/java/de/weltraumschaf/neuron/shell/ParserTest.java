@@ -85,7 +85,7 @@ public class ParserTest {
         assertThat(t.getValue(), is(5678));
     }
 
-    @Test
+    @Test @Ignore
     public void parse_throwExceptionOnMissingArgOnNodeAdd() throws SyntaxException {
         thrown.expect(SyntaxException.class);
         thrown.expectMessage("");

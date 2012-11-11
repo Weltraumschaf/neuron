@@ -85,21 +85,26 @@ class Parser {
     }
 
     private void verifyNodeCommand(final Command cmd) throws SyntaxException {
+        final int argumentCount = cmd.getArguments().size();
         switch (cmd.getSubCommand()) {
             case LIST:
-                if (cmd.getArguments().size() != 0) {
+                if (argumentCount != 0) {
                     throw new SyntaxException(String.format("Command %s does support no arguments!", cmd.getCommand()));
                 }
                 break;
             case ADD:
+                if (argumentCount != 0 && argumentCount != 1) {
+                    throw new SyntaxException(String.format("Command %s one or zero arguments!", cmd.getCommand()));
+                }
+                break;
             case DEL:
             case INFO:
-                if (cmd.getArguments().size() != 1) {
+                if (argumentCount != 1) {
                     throw new SyntaxException(String.format("Command %s require one argument!", cmd.getCommand()));
                 }
                 break;
             case CONNECT:
-                if (cmd.getArguments().size() != 2) {
+                if (argumentCount != 2) {
                     throw new SyntaxException(String.format("Command %s require two argument!", cmd.getCommand()));
                 }
                 break;
