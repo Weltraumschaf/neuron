@@ -15,12 +15,13 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
+ * Scans the input line from an interactive shell.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class Scanner {
 
-    List<Token> scan(final String line) {
+    List<Token> scan(final String line) throws SyntaxException {
         if (null == line) {
             throw new IllegalArgumentException("Line must not be null!");
         }
@@ -34,7 +35,7 @@ class Scanner {
         return tokens;
     }
 
-    private void scan(final List<Token> tokens, final CharacterStream characterStream) {
+    private void scan(final List<Token> tokens, final CharacterStream characterStream) throws SyntaxException {
         while (characterStream.hasNext()) {
             final char currentChar = characterStream.next();
 
@@ -63,8 +64,26 @@ class Scanner {
         return Token.newToken(value.toString());
     }
 
-    private Token scanNumber(final CharacterStream characterStream) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    private Token scanNumber(final CharacterStream characterStream) throws SyntaxException {
+        final StringBuilder value = new StringBuilder();
+
+        value.append(characterStream.current());
+
+        while (characterStream.hasNext()) {
+            final char currentChar = characterStream.next();
+
+            if (CharacterHelper.isWhiteSpace(currentChar)) {
+                break;
+            }
+
+            if ( ! CharacterHelper.isNum(currentChar)) {
+                throw new SyntaxException(String.format("Bad character '%s' in number starting with '%s'!", currentChar, value.toString()));
+            }
+
+            value.append(currentChar);
+        }
+
+        return Token.newToken(Integer.valueOf(value.toString()));
     }
 
 }
