@@ -19,14 +19,16 @@ import java.io.PrintStream;
 
 /**
  *
- * @author sxs
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class InteractiveShell {
 
     private final IO io;
+    private final Environment env;
 
     public InteractiveShell(final IO io) {
         this.io = io;
+        env = new Environment();
     }
 
     void start() throws IOException {
