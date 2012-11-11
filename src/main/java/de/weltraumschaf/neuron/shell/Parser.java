@@ -42,18 +42,74 @@ class Parser {
 
         final MainType command = Command.getCommand(commandtoken);
         SubType subCommand = SubType.NONE;
+        int argumentBegin = 1;
 
         if (tokens.size() > 1) {
             final Token secondToken = tokens.get(1);
 
             if (secondToken.getType() == TokenType.STRING && Command.isSubCommand(secondToken)) {
+                ++argumentBegin;
                 subCommand = Command.getSubCommand(secondToken);
             }
         }
 
-        final List<Token> arguments = Lists.newArrayList();
+        List<Token> arguments;
 
-        return new Command(command, subCommand, arguments);
+        if (tokens.size() > argumentBegin) {
+            arguments = tokens.subList(argumentBegin, tokens.size());
+        } else {
+            arguments = Lists.newArrayList();
+        }
+
+        final Command cmd = new Command(command, subCommand, arguments);
+        verifyCommand(cmd);
+        return cmd;
+    }
+
+    private void verifyCommand(final Command cmd) throws SyntaxException {
+        switch (cmd.getCommand()) {
+            case EXIT:
+            case HELP:
+            case RESET:
+                if ( cmd.getSubCommand() != SubType.NONE) {
+                    throw new SyntaxException(String.format("Command %s does not support subcommands!", cmd.getCommand()));
+                }
+                if ( ! cmd.getArguments().isEmpty()) {
+                    throw new SyntaxException(String.format("Command %s does not support arguments!", cmd.getCommand()));
+                }
+                break;
+            case NODE:{
+                verifyNodeCommand(cmd);
+            }
+        }
+    }
+
+    private void verifyNodeCommand(final Command cmd) throws SyntaxException {
+        switch (cmd.getSubCommand()) {
+            case LIST:
+                if (cmd.getArguments().size() != 0) {
+                    throw new SyntaxException(String.format("Command %s does support no arguments!", cmd.getCommand()));
+                }
+                break;
+            case ADD:
+            case DEL:
+            case INFO:
+                if (cmd.getArguments().size() != 1) {
+                    throw new SyntaxException(String.format("Command %s require one argument!", cmd.getCommand()));
+                }
+                break;
+            case CONNECT:
+                if (cmd.getArguments().size() != 2) {
+                    throw new SyntaxException(String.format("Command %s require two argument!", cmd.getCommand()));
+                }
+                break;
+            default:
+                throw new SyntaxException(String.format("Command %s does not support subcommand %s!",
+                                                        cmd.getCommand(),
+                                                        cmd.getSubCommand()));
+
+        }
+
     }
 
 }

@@ -17,12 +17,17 @@ import org.junit.Ignore;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 /**
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class ParserTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     private final Parser sut = new Parser(new Scanner());
 
@@ -53,24 +58,60 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_comandWithSubcommand() throws SyntaxException {
-        Command c = sut.parse("node add");
-        assertThat(c.getCommand(), is(MainType.NODE));
-        assertThat(c.getSubCommand(), is(SubType.ADD));
-        assertThat(c.getArguments().size(), is(0));
-
-        c = sut.parse("node list");
-        assertThat(c.getCommand(), is(MainType.NODE));
-        assertThat(c.getSubCommand(), is(SubType.LIST));
-        assertThat(c.getArguments().size(), is(0));
-    }
-
-    @Test @Ignore
     public void parse_comandWithSubcommandAndOneArgument() throws SyntaxException {
         Command c = sut.parse("node add 1234");
-        c = sut.parse("node del 1234");
+        c = sut.parse("node add 1234");
+        assertThat(c.getCommand(), is(MainType.NODE));
+        assertThat(c.getSubCommand(), is(SubType.ADD));
+        assertThat(c.getArguments().size(), is(1));
+        Token<Integer> t = c.getArguments().get(0);
+        assertThat(t.getType(), is(TokenType.INTEGER));
+        assertThat(t.getValue(), is(1234));
+
+        c = sut.parse("node del 5678");
+        assertThat(c.getCommand(), is(MainType.NODE));
+        assertThat(c.getSubCommand(), is(SubType.DEL));
+        assertThat(c.getArguments().size(), is(1));
+        t = c.getArguments().get(0);
+        assertThat(t.getType(), is(TokenType.INTEGER));
+        assertThat(t.getValue(), is(5678));
 
         c = sut.parse("node info 5678");
+        assertThat(c.getCommand(), is(MainType.NODE));
+        assertThat(c.getSubCommand(), is(SubType.INFO));
+        assertThat(c.getArguments().size(), is(1));
+        t = c.getArguments().get(0);
+        assertThat(t.getType(), is(TokenType.INTEGER));
+        assertThat(t.getValue(), is(5678));
+    }
+
+    @Test
+    public void parse_throwExceptionOnMissingArgOnNodeAdd() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("");
+        sut.parse("node add");
+    }
+
+    @Test
+    public void parse_throwExceptionOnMissingArgOnNodeDel() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("");
+        sut.parse("node del");
+    }
+
+    @Test
+    public void parse_throwExceptionOnMissingArgOnNodeInfol() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("");
+        sut.parse("node info");
+    }
+
+    @Ignore
+    @Test
+    public void parse_throwExceptionOnSubcommandRequiresTwoArguments() {
+        // http://weblogs.java.net/blog/johnsmart/archive/2009/09/27/testing-exceptions-junit-47
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("");
     }
 
     @Test @Ignore
