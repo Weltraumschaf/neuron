@@ -4,12 +4,13 @@
  */
 package de.weltraumschaf.neuron;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
  *
- * @author sxs
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class NodeImpl implements Node {
 

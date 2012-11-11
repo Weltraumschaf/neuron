@@ -6,7 +6,7 @@ package de.weltraumschaf.neuron;
 
 /**
  *
- * @author sxs
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface Node {
 
