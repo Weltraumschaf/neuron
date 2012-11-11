@@ -21,6 +21,14 @@ import java.util.List;
  */
 class Scanner {
 
+    /**
+     * Scans give line and returns list of recognized tokens.
+     *
+     * @param line line to scan.
+     * @return List of recognized, never null
+     * @throws SyntaxException if, syntax error occurred
+     * @throws IllegalArgumentException, if line is null
+     */
     List<Token> scan(final String line) throws SyntaxException {
         if (null == line) {
             throw new IllegalArgumentException("Line must not be null!");
@@ -35,6 +43,13 @@ class Scanner {
         return tokens;
     }
 
+    /**
+     * Loops over all characters of stream.
+     *
+     * @param tokens list to which recognized tokens will be add
+     * @param characterStream input line to scan
+     * @throws SyntaxException if, syntax error occurred
+     */
     private void scan(final List<Token> tokens, final CharacterStream characterStream) throws SyntaxException {
         while (characterStream.hasNext()) {
             final char currentChar = characterStream.next();
@@ -47,6 +62,12 @@ class Scanner {
         }
     }
 
+    /**
+     * Recognize alpha numeric string tokens until next white space character.
+     *
+     * @param characterStream input line to scan
+     * @return Return string type token
+     */
     private Token scanAlphaNum(final CharacterStream characterStream) {
         final StringBuilder value = new StringBuilder();
         value.append(characterStream.current());
@@ -64,6 +85,13 @@ class Scanner {
         return Token.newToken(value.toString());
     }
 
+    /**
+     * Recognize numeric integer tokens until next white space character.
+     *
+     * @param characterStream input line to scan
+     * @return Return integer type token
+     * @throws SyntaxException if, non numeric character occurred
+     */
     private Token scanNumber(final CharacterStream characterStream) throws SyntaxException {
         final StringBuilder value = new StringBuilder();
 
