@@ -56,7 +56,7 @@ public class Environment {
         nodes.remove(Integer.valueOf(n.getId()));
     }
 
-    void reset() {
+    public void reset() {
         nodes.clear();
         nextId = 0;
     }
