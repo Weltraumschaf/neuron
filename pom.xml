@@ -42,7 +42,7 @@
         <license>
             <name>THE BEER-WARE LICENSE</name>
             <url>http://www.weltraumschaf.de/the-beer-ware-license.txt</url>
-            <distribution>>repo</distribution>
+            <distribution>repo</distribution>
             <comments>
                 LICENSE
 
@@ -63,7 +63,7 @@
     <scm>
         <connection>scm:git:git://github.com/Weltraumschaf/neuron.git</connection>
         <developerConnection>scm:git:git@github.com:Weltraumschaf/neuron.git</developerConnection>
-        <url>https://github.com/Weltraumschaf/neuron</url>
+        <url>https://github.com/Weltraumschaf/neuron.git</url>
     </scm>
 
     <distributionManagement>
@@ -112,6 +112,24 @@
     </dependencies>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm-provider-gitexe</artifactId>
+                <version>1.7</version>
+            </extension>
+            <extension>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm-manager-plexus</artifactId>
+                <version>1.7</version>
+            </extension>
+            <extension>
+                <groupId>org.kathrynhuxtable.maven.wagon</groupId>
+                <artifactId>wagon-gitsite</artifactId>
+                <version>0.3.1</version>
+            </extension>
+        </extensions>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -221,6 +239,10 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.12.4</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jxr-plugin</artifactId>
+                    <version>2.3</version>
                 </plugin>
             </plugins>
         </pluginManagement>
