@@ -28,14 +28,6 @@ public class App extends InvokableAdapter {
     @Override
     public void execute() throws Exception {
         final InteractiveShell shell = new InteractiveShell(getIoStreams());
-
-        registerShutdownHook(new Runnable() {
-
-            public void run() {
-                shell.exit();
-            }
-        });
-
         shell.start();
     }
 
