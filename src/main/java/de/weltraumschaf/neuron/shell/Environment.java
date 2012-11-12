@@ -77,4 +77,12 @@ public class Environment {
         return Lists.newArrayList(nodes.values());
     }
 
+    boolean hasNode(final int id) {
+        return nodes.containsKey(Integer.valueOf(id));
+    }
+
+    Node getNode(final int id) {
+        return nodes.get(Integer.valueOf(id));
+    }
+
 }

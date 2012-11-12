@@ -4,6 +4,8 @@
  */
 package de.weltraumschaf.neuron;
 
+import java.util.List;
+
 /**
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
@@ -31,5 +33,8 @@ public interface Node {
     int getId();
 
     void send(Message msg);
+
+    boolean hasNeighbors();
+    List<Node> getNeighbors();
 
 }

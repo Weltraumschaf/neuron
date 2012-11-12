@@ -103,7 +103,16 @@ public class InteractiveShell {
                 addNode(cmd);
                 break;
             case LIST:
-                listNodes(cmd);
+                listNodes();
+                break;
+            case INFO:
+                nodeInfo(cmd);
+                break;
+            case DEL:
+                deleteNode(cmd);
+                break;
+            case CONNECT:
+                connectNodes(cmd);
                 break;
             default:
                 io.println("Unknown subcommand: " + cmd.getSubCommand());
@@ -133,7 +142,7 @@ public class InteractiveShell {
         io.println(summary.toString());
     }
 
-    private void listNodes(final Command cmd) {
+    private void listNodes() {
         final StringBuilder summary = new StringBuilder();
         final List<Node> nodes = env.getNodes();
 
@@ -148,6 +157,36 @@ public class InteractiveShell {
         }
 
         io.println(summary.toString());
+    }
+
+    private void nodeInfo(final Command cmd) {
+        final Token<Integer> arg = cmd.getArguments().get(0);
+
+        if (env.hasNode(arg.getValue())) {
+            final Node inspectedNode = env.getNode(arg.getValue());
+            final StringBuilder info = new StringBuilder();
+            info.append(String.format("%s%n", inspectedNode.toString()));
+
+            if (inspectedNode.hasNeighbors()) {
+                info.append(String.format("Knows has neighbors:%n"));
+                for (final Node neighbor : inspectedNode.getNeighbors()) {
+                    info.append(String.format("  %s%n", neighbor));
+                }
+            } else {
+                info.append(String.format("Knows has no neighbors!%n"));
+            }
+            io.println(info.toString());
+        } else {
+            io.println(String.format("Node with id %d does not exist!", arg.getValue()));
+        }
+    }
+
+    private void deleteNode(final Command cmd) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void connectNodes(final Command cmd) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }

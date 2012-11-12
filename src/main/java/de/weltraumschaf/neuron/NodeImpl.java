@@ -5,7 +5,9 @@
 package de.weltraumschaf.neuron;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,6 +85,16 @@ public class NodeImpl implements Node {
     @Override
     public String toString() {
         return String.format("Node ID: %d Neigbors: %d", id, neighbours.size());
+    }
+
+    @Override
+    public boolean hasNeighbors() {
+        return ! neighbours.isEmpty();
+    }
+
+    @Override
+    public List<Node> getNeighbors() {
+        return Lists.newArrayList(neighbours.values());
     }
 
 }
