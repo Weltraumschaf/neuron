@@ -60,7 +60,6 @@ public class ParserTest {
     @Test
     public void parse_comandWithSubcommandAndOneArgument() throws SyntaxException {
         Command c = sut.parse("node add 1234");
-        c = sut.parse("node add 1234");
         assertThat(c.getCommand(), is(MainType.NODE));
         assertThat(c.getSubCommand(), is(SubType.ADD));
         assertThat(c.getArguments().size(), is(1));
