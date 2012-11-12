@@ -316,15 +316,6 @@
             </plugin>
 
             <plugin>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <configuration>
-                    <configLocation>checkstyle-configuration.xml</configLocation>
-                    <logViolationsToConsole>true</logViolationsToConsole>
-                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <configuration>
@@ -448,6 +439,14 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <configuration>
                     <reportPlugins>
+                        <plugin>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <configuration>
+                                <configLocation>checkstyle-configuration.xml</configLocation>
+                                <logViolationsToConsole>true</logViolationsToConsole>
+                                <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                            </configuration>
+                        </plugin>
                         <plugin>
                             <artifactId>maven-jxr-plugin</artifactId>
                             <configuration>
