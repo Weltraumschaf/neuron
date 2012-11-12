@@ -28,14 +28,14 @@ public class InteractiveShell {
     private static final String HELP =
           "This is the Neuron Interactive shell version %s.%n%n"
         + "Available commands:%n"
-        + "  help                        Show all available commands.%n"
-        + "  reset                       Reset the whole environment.%n"
-        + "  exit                        Exit the interactive shell.%n"
-        + "  node add [AMOUNT]           Creates one new node or AMOUNT nodes.%n"
-        + "  node del ID                 Disconnect and deletes the node with ID.%n"
-        + "  node connect FROM_ID TO_ID  Connect two nodes.%n"
-        + "  node list                   List all nodes.%n"
-        + "  node info ID                Print info of a node.%n%n";
+        + "  help                         Show all available commands.%n"
+        + "  reset                        Reset the whole environment.%n"
+        + "  exit                         Exit the interactive shell.%n"
+        + "  node add [AMOUNT]            Creates one new node or AMOUNT nodes.%n"
+        + "  node del ID                  Disconnect and deletes the node with ID.%n"
+        + "  node connect ID NEIGHBOR_ID  Connect two nodes.%n"
+        + "  node list                    List all nodes.%n"
+        + "  node info ID                 Print info of a node.%n%n";
     private final IO io;
     private final Environment env;
     private final Parser parser = new Parser(new Scanner());
@@ -166,14 +166,14 @@ public class InteractiveShell {
             final Node inspectedNode = env.getNode(arg.getValue());
             final StringBuilder info = new StringBuilder();
             info.append(String.format("%s%n", inspectedNode.toString()));
+            info.append(String.format("Neighbors:%n"));
 
             if (inspectedNode.hasNeighbors()) {
-                info.append(String.format("Knows has neighbors:%n"));
                 for (final Node neighbor : inspectedNode.getNeighbors()) {
                     info.append(String.format("  %s%n", neighbor));
                 }
             } else {
-                info.append(String.format("Knows has no neighbors!%n"));
+                info.append(String.format("  Has no neighbors!%n"));
             }
             io.println(info.toString());
         } else {
@@ -186,7 +186,23 @@ public class InteractiveShell {
     }
 
     private void connectNodes(final Command cmd) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        final Token<Integer> argId = cmd.getArguments().get(0);
+        final Token<Integer> argNeighborId = cmd.getArguments().get(1);
+
+        if ( ! env.hasNode(argId.getValue())) {
+            io.println(String.format("Node with id %d does not exist!", argId.getValue()));
+            return;
+        }
+
+        if ( ! env.hasNode(argNeighborId.getValue())) {
+            io.println(String.format("Node with id %d does not exist!", argNeighborId.getValue()));
+            return;
+        }
+
+        final Node connector  = env.getNode(argId.getValue());
+        final Node connected = env.getNode(argNeighborId.getValue());
+        connector.connect(connected);
+        io.println(String.format("Conected nodes: %d -> %d.", argId.getValue(), argNeighborId.getValue()));
     }
 
 }
