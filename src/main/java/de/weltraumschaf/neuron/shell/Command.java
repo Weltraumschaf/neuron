@@ -101,7 +101,7 @@ class Command {
         return COMMANDS.containsKey(t.getValue());
     }
 
-    static MainType getCommand(Token<String> t) {
+    static MainType determineCommand(Token<String> t) {
         return COMMANDS.get(t.getValue());
     }
 
@@ -109,7 +109,7 @@ class Command {
         return SUB_COMMANDS.containsKey(t.getValue());
     }
 
-    static SubType getSubCommand(Token<String> t) {
+    static SubType determineSubCommand(Token<String> t) {
         return SUB_COMMANDS.get(t.getValue());
     }
 

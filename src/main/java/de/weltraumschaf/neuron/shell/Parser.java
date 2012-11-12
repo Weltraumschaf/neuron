@@ -40,7 +40,7 @@ class Parser {
             throw new SyntaxException("Command expected as first word!");
         }
 
-        final MainType command = Command.getCommand(commandtoken);
+        final MainType command = Command.determineCommand(commandtoken);
         SubType subCommand = SubType.NONE;
         int argumentBegin = 1;
 
@@ -49,7 +49,7 @@ class Parser {
 
             if (secondToken.getType() == TokenType.STRING && Command.isSubCommand(secondToken)) {
                 ++argumentBegin;
-                subCommand = Command.getSubCommand(secondToken);
+                subCommand = Command.determineSubCommand(secondToken);
             }
         }
 

@@ -36,10 +36,10 @@ public class CommandTest {
 
     @Test
     public void getCommand() {
-        assertThat(Command.getCommand(Token.newToken("help")), is(MainType.HELP));
-        assertThat(Command.getCommand(Token.newToken("reset")), is(MainType.RESET));
-        assertThat(Command.getCommand(Token.newToken("exit")), is(MainType.EXIT));
-        assertThat(Command.getCommand(Token.newToken("node")), is(MainType.NODE));
+        assertThat(Command.determineCommand(Token.newToken("help")), is(MainType.HELP));
+        assertThat(Command.determineCommand(Token.newToken("reset")), is(MainType.RESET));
+        assertThat(Command.determineCommand(Token.newToken("exit")), is(MainType.EXIT));
+        assertThat(Command.determineCommand(Token.newToken("node")), is(MainType.NODE));
     }
 
     @Test
@@ -55,11 +55,11 @@ public class CommandTest {
 
     @Test
     public void getSubCommand() {
-        assertThat(Command.getSubCommand(Token.newToken("add")), is(SubType.ADD));
-        assertThat(Command.getSubCommand(Token.newToken("del")), is(SubType.DEL));
-        assertThat(Command.getSubCommand(Token.newToken("connect")), is(SubType.CONNECT));
-        assertThat(Command.getSubCommand(Token.newToken("list")), is(SubType.LIST));
-        assertThat(Command.getSubCommand(Token.newToken("info")), is(SubType.INFO));
+        assertThat(Command.determineSubCommand(Token.newToken("add")), is(SubType.ADD));
+        assertThat(Command.determineSubCommand(Token.newToken("del")), is(SubType.DEL));
+        assertThat(Command.determineSubCommand(Token.newToken("connect")), is(SubType.CONNECT));
+        assertThat(Command.determineSubCommand(Token.newToken("list")), is(SubType.LIST));
+        assertThat(Command.determineSubCommand(Token.newToken("info")), is(SubType.INFO));
     }
 
 }
