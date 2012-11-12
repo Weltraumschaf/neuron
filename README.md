@@ -1,13 +1,30 @@
-# neuron
+# Neuron
 
+Interactive shell to play around with nodes.
 
-## Interactive shell commands
+## Installation and usage
 
-    help                        Show all available commands.
-    reset                       Reset the whole environment.
-    exit                        Exit the interactive shell.
-    node add [AMOUNT]           Creates one new node or AMOUNT nodes.
-    node del ID                 Disconnect and deletes the node with ID.
-    node connect FROM_ID TO_ID  Connect two nodes.
-    node list                   List all nodes.
-    node info ID                Print info of a node.
+You need [Maven][1] to build Neuron from source. To build Neuron clone this
+repository and invoke Maven in the repositories base directory.
+
+    $ git clone https://github.com/Weltraumschaf/neuron.git
+    $ mvn clean install
+
+After successful build you can run the shell.
+
+    $ ./bin/neuron.sh
+
+In the shell you can get all available commands with the `help` command.
+
+    Welcome to Neuro Interactive Shell!
+
+    > help
+    This is the Neuron Interactive shell version 0.1.0-SNAPSHOT.
+
+    Available commands:
+    help                         Show all available commands.
+    ...
+
+    >
+
+[1]: http://maven.apache.org/
