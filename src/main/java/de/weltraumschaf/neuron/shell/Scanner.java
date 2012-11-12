@@ -36,7 +36,7 @@ class Scanner {
 
         final List<Token> tokens = Lists.newArrayList();
 
-        if ( ! line.isEmpty()) {
+        if (! line.isEmpty()) {
             scan(tokens, new CharacterStream(line));
         }
 
@@ -104,8 +104,9 @@ class Scanner {
                 break;
             }
 
-            if ( ! CharacterHelper.isNum(currentChar)) {
-                throw new SyntaxException(String.format("Bad character '%s' in number starting with '%s'!", currentChar, value.toString()));
+            if (! CharacterHelper.isNum(currentChar)) {
+                throw new SyntaxException(String.format("Bad character '%s' in number starting with '%s'!",
+                                                        currentChar, value.toString()));
             }
 
             value.append(currentChar);

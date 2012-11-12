@@ -89,7 +89,7 @@
         </module>
         <module name="MethodParamPad" />
         <module name="NoWhitespaceAfter">
-            <property name="tokens" value="BNOT,DEC,DOT,INC,LNOT,UNARY_MINUS,UNARY_PLUS" />
+            <property name="tokens" value="BNOT,DEC,DOT,INC,UNARY_MINUS,UNARY_PLUS" />
         </module>
         <module name="NoWhitespaceBefore" />
         <module name="OperatorWrap" />

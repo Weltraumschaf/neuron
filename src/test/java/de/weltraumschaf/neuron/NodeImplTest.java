@@ -11,9 +11,9 @@
  */
 package de.weltraumschaf.neuron;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -43,8 +43,10 @@ public class NodeImplTest {
         final Node sut2 = new NodeImpl(23);
         final Node sut3 = new NodeImpl(42);
 
+        // CHECKSTYLE:OFF
         assertThat(sut1.equals(null), is(false));
         assertThat(sut1.equals("foo"), is(false));
+        // CHECKSTYLE:ON
 
         assertThat(sut1.equals(sut1), is(true));
         assertThat(sut1.equals(sut2), is(true));
@@ -103,7 +105,7 @@ public class NodeImplTest {
         assertThat(sut.hasNeighbor(2), is(false));
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void conectSameNodeTwice() {
         final Node sut = new NodeImpl(0);
         final Node n1 = new NodeImpl(1);
@@ -111,7 +113,7 @@ public class NodeImplTest {
         sut.connect(n1);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void disconnectUnConnectedNode() {
         final Node sut = new NodeImpl(0);
         final Node n1 = new NodeImpl(1);

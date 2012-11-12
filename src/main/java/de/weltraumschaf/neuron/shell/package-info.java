@@ -9,20 +9,10 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
-
-import org.junit.Ignore;
-import org.junit.Test;
-
 
 /**
+ * This package contains everything needed for the interactive shell.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class AppTest {
-
-    @Test @Ignore
-    public void testApp() {
-
-    }
-}
+package de.weltraumschaf.neuron.shell;

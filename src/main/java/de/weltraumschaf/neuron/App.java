@@ -8,7 +8,7 @@ import de.weltraumschaf.neuron.shell.InteractiveShell;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class App extends InvokableAdapter {
+public final class App extends InvokableAdapter {
 
     /**
      * Hide constructor because it is not intended to create objects of this type

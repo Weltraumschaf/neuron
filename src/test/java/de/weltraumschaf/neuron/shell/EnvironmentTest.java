@@ -38,7 +38,7 @@ public class EnvironmentTest {
         assertThat(sut.size(), is(3));
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void throwExceptionOnDuplicateIds() {
         sut.add(factory.newNode(1));
         sut.add(factory.newNode(1));

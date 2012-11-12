@@ -26,9 +26,10 @@ import org.junit.rules.ExpectedException;
  */
 public class ParserTest {
 
+    // CHECKSTYLE:OFF
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
+    // CHECKSTYLE:ON
     private final Parser sut = new Parser(new Scanner());
 
     @Test
@@ -115,7 +116,7 @@ public class ParserTest {
 
     @Test @Ignore
     public void parse_comandWithSubcommandAndTwoArgument() throws SyntaxException {
-        Command c = sut.parse("node connect 1234 5678");
+        final Command c = sut.parse("node connect 1234 5678");
     }
 
 }

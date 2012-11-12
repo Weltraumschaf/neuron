@@ -88,13 +88,13 @@ class NodeImpl implements Node {
     }
 
     @Override
-    public boolean hasNeighbor(final Node n) {
-        return hasNeighbor(n.getId());
+    public boolean hasNeighbor(final Node neighbor) {
+        return hasNeighbor(neighbor.getId());
     }
 
     @Override
-    public boolean hasNeighbor(final int id) {
-        return neighbours.containsKey(Integer.valueOf(id));
+    public boolean hasNeighbor(final int neighborsId) {
+        return neighbours.containsKey(Integer.valueOf(neighborsId));
     }
 
     @Override

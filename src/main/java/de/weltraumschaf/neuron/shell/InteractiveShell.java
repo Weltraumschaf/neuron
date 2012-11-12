@@ -185,7 +185,7 @@ public class InteractiveShell {
     private void deleteNode(final Command cmd) {
         final Token<Integer> argId = cmd.getArguments().get(0);
 
-        if ( ! env.hasNode(argId.getValue())) {
+        if (! env.hasNode(argId.getValue())) {
             io.println(String.format("Node with id %d does not exist!", argId.getValue()));
             return;
         }
@@ -197,12 +197,12 @@ public class InteractiveShell {
         final Token<Integer> argId = cmd.getArguments().get(0);
         final Token<Integer> argNeighborId = cmd.getArguments().get(1);
 
-        if ( ! env.hasNode(argId.getValue())) {
+        if (! env.hasNode(argId.getValue())) {
             io.println(String.format("Node with id %d does not exist!", argId.getValue()));
             return;
         }
 
-        if ( ! env.hasNode(argNeighborId.getValue())) {
+        if (! env.hasNode(argNeighborId.getValue())) {
             io.println(String.format("Node with id %d does not exist!", argNeighborId.getValue()));
             return;
         }

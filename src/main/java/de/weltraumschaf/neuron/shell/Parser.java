@@ -36,7 +36,7 @@ class Parser {
             throw new SyntaxException("Command expected as first word!");
         }
 
-        if ( ! Command.isCommand(commandtoken)) {
+        if (! Command.isCommand(commandtoken)) {
             throw new SyntaxException("Command expected as first word!");
         }
 
@@ -71,16 +71,20 @@ class Parser {
             case EXIT:
             case HELP:
             case RESET:
-                if ( cmd.getSubCommand() != SubType.NONE) {
-                    throw new SyntaxException(String.format("Command %s does not support subcommands!", cmd.getCommand()));
+                if (cmd.getSubCommand() != SubType.NONE) {
+                    throw new SyntaxException(String.format("Command %s does not support subcommands!",
+                                                            cmd.getCommand()));
                 }
-                if ( ! cmd.getArguments().isEmpty()) {
-                    throw new SyntaxException(String.format("Command %s does not support arguments!", cmd.getCommand()));
+                if (! cmd.getArguments().isEmpty()) {
+                    throw new SyntaxException(String.format("Command %s does not support arguments!",
+                                                            cmd.getCommand()));
                 }
                 break;
-            case NODE:{
+            case NODE:
                 verifyNodeCommand(cmd);
-            }
+                break;
+            default:
+                // Nothing to do here.
         }
     }
 

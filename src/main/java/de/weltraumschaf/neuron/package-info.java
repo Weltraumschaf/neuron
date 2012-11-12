@@ -9,20 +9,10 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
-
-import org.junit.Ignore;
-import org.junit.Test;
-
 
 /**
+ * Main package.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class AppTest {
-
-    @Test @Ignore
-    public void testApp() {
-
-    }
-}
+package de.weltraumschaf.neuron;

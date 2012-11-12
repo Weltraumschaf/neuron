@@ -12,10 +12,9 @@
 package de.weltraumschaf.neuron.shell;
 
 import java.util.List;
-import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
@@ -26,14 +25,14 @@ public class ScannerTest {
 
     private final Scanner sut = new Scanner();
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void scan_nullArgument() throws SyntaxException {
         sut.scan(null);
     }
 
     @Test
     public void scan_emptyLine() throws SyntaxException {
-        List<Token> tokens = sut.scan("");
+        final List<Token> tokens = sut.scan("");
         assertThat(tokens.size(), is(0));
     }
 
@@ -136,7 +135,7 @@ public class ScannerTest {
 
     }
 
-    @Test(expected=SyntaxException.class)
+    @Test(expected = SyntaxException.class)
     public void scan_lineWithMaliciousNumber() throws SyntaxException {
         sut.scan("1234foo");
     }

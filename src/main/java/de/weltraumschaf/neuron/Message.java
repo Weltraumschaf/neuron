@@ -31,5 +31,5 @@ public class Message {
     public int getTo() {
         return to;
     }
-    
+
 }

@@ -11,8 +11,8 @@
  */
 package de.weltraumschaf.neuron.shell;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -21,11 +21,11 @@ import static org.junit.Assert.*;
 public class CharacterHelperTest {
 
     private static final char[] LOW_ALPHA = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', };
     private static final char[] UP_ALPHA = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    private static final char[] NUMS = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
-    private static final char[] WHITE_SPACES = {' ', '\n', '\r', '\t'};
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', };
+    private static final char[] NUMS = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', };
+    private static final char[] WHITE_SPACES = {' ', '\n', '\r', '\t', };
 
     @Test
     public void isAlpha() {
