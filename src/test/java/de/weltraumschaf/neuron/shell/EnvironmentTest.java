@@ -12,11 +12,10 @@
 package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.neuron.Node;
-import de.weltraumschaf.neuron.NodeImpl;
-import de.weltraumschaf.neuron.shell.Environment;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import de.weltraumschaf.neuron.NodeFactory;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 /**
@@ -25,23 +24,24 @@ import static org.mockito.Mockito.*;
  */
 public class EnvironmentTest {
 
+    private final NodeFactory factory = new NodeFactory();
     private final Environment sut = new Environment();
 
     @Test
     public void addNodes() {
         assertThat(sut.size(), is(0));
-        sut.add(new NodeImpl(0));
+        sut.add(factory.newNode(0));
         assertThat(sut.size(), is(1));
-        sut.add(new NodeImpl(1));
+        sut.add(factory.newNode(1));
         assertThat(sut.size(), is(2));
-        sut.add(new NodeImpl(2));
+        sut.add(factory.newNode(2));
         assertThat(sut.size(), is(3));
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void throwExceptionOnDuplicateIds() {
-        sut.add(new NodeImpl(1));
-        sut.add(new NodeImpl(1));
+        sut.add(factory.newNode(1));
+        sut.add(factory.newNode(1));
     }
 
     @Test
@@ -58,37 +58,39 @@ public class EnvironmentTest {
     @Test
     public void reset() {
         assertThat(sut.size(), is(0));
-        assertThat(sut.getNextId(), is(0));
+        assertThat(sut.getNodes().isEmpty(), is(true));
         sut.add();
         sut.add();
         sut.add();
         assertThat(sut.size(), is(3));
-        assertThat(sut.getNextId(), is(3));
+        assertThat(sut.getNodes().get(2).getId(), is(2));
         sut.reset();
         assertThat(sut.size(), is(0));
-        assertThat(sut.getNextId(), is(0));
+        assertThat(sut.getNodes().isEmpty(), is(true));
+        sut.add();
+        assertThat(sut.size(), is(1));
+        assertThat(sut.getNodes().get(0).getId(), is(0));
     }
 
     @Test
     public void removeNode() {
-        final Node n1 = mock(Node.class);
-        when(n1.getId()).thenReturn(1);
+        final Node n1 = spy(factory.newNode(1));
         sut.add(n1);
-        final Node n2 = mock(Node.class);
-        when(n2.getId()).thenReturn(2);
+        final Node n2 = spy(factory.newNode(2));
+        n2.connect(n1);
         sut.add(n2);
-        final Node n3 = mock(Node.class);
-        when(n3.getId()).thenReturn(3);
+        final Node n3 = spy(factory.newNode(3));
         sut.add(n3);
 
         assertThat(sut.size(), is(3));
         sut.remove(n1);
         assertThat(sut.size(), is(2));
-
         sut.remove(n1);
         assertThat(sut.size(), is(2));
 
+        verify(n2, times(1)).hasNeighbor(n1);
         verify(n2, times(1)).disconnect(n1);
-        verify(n3, times(1)).disconnect(n1);
+        verify(n3, times(1)).hasNeighbor(n1);
+        verify(n3, never()).disconnect(n1);
     }
 }

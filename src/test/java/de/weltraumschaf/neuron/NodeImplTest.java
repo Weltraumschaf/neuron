@@ -63,44 +63,44 @@ public class NodeImplTest {
         final Node n1 = new NodeImpl(1);
         final Node n2 = new NodeImpl(2);
 
-        assertThat(sut.knows(sut), is(true));
-        assertThat(sut.knows(0), is(true));
-        assertThat(sut.knows(n1), is(false));
-        assertThat(sut.knows(1), is(false));
-        assertThat(sut.knows(n2), is(false));
-        assertThat(sut.knows(2), is(false));
+        assertThat(sut.hasNeighbor(sut), is(false));
+        assertThat(sut.hasNeighbor(0), is(false));
+        assertThat(sut.hasNeighbor(n1), is(false));
+        assertThat(sut.hasNeighbor(1), is(false));
+        assertThat(sut.hasNeighbor(n2), is(false));
+        assertThat(sut.hasNeighbor(2), is(false));
 
         sut.connect(n1);
-        assertThat(sut.knows(sut), is(true));
-        assertThat(sut.knows(0), is(true));
-        assertThat(sut.knows(n1), is(true));
-        assertThat(sut.knows(1), is(true));
-        assertThat(sut.knows(n2), is(false));
-        assertThat(sut.knows(2), is(false));
+        assertThat(sut.hasNeighbor(sut), is(false));
+        assertThat(sut.hasNeighbor(0), is(false));
+        assertThat(sut.hasNeighbor(n1), is(true));
+        assertThat(sut.hasNeighbor(1), is(true));
+        assertThat(sut.hasNeighbor(n2), is(false));
+        assertThat(sut.hasNeighbor(2), is(false));
 
         sut.connect(n2);
-        assertThat(sut.knows(sut), is(true));
-        assertThat(sut.knows(0), is(true));
-        assertThat(sut.knows(n1), is(true));
-        assertThat(sut.knows(1), is(true));
-        assertThat(sut.knows(n2), is(true));
-        assertThat(sut.knows(2), is(true));
+        assertThat(sut.hasNeighbor(sut), is(false));
+        assertThat(sut.hasNeighbor(0), is(false));
+        assertThat(sut.hasNeighbor(n1), is(true));
+        assertThat(sut.hasNeighbor(1), is(true));
+        assertThat(sut.hasNeighbor(n2), is(true));
+        assertThat(sut.hasNeighbor(2), is(true));
 
         sut.disconnect(n1);
-        assertThat(sut.knows(sut), is(true));
-        assertThat(sut.knows(0), is(true));
-        assertThat(sut.knows(n1), is(false));
-        assertThat(sut.knows(1), is(false));
-        assertThat(sut.knows(n2), is(true));
-        assertThat(sut.knows(2), is(true));
+        assertThat(sut.hasNeighbor(sut), is(false));
+        assertThat(sut.hasNeighbor(0), is(false));
+        assertThat(sut.hasNeighbor(n1), is(false));
+        assertThat(sut.hasNeighbor(1), is(false));
+        assertThat(sut.hasNeighbor(n2), is(true));
+        assertThat(sut.hasNeighbor(2), is(true));
 
         sut.disconnect(n2);
-        assertThat(sut.knows(sut), is(true));
-        assertThat(sut.knows(0), is(true));
-        assertThat(sut.knows(n1), is(false));
-        assertThat(sut.knows(1), is(false));
-        assertThat(sut.knows(n2), is(false));
-        assertThat(sut.knows(2), is(false));
+        assertThat(sut.hasNeighbor(sut), is(false));
+        assertThat(sut.hasNeighbor(0), is(false));
+        assertThat(sut.hasNeighbor(n1), is(false));
+        assertThat(sut.hasNeighbor(1), is(false));
+        assertThat(sut.hasNeighbor(n2), is(false));
+        assertThat(sut.hasNeighbor(2), is(false));
     }
 
     @Test(expected=IllegalArgumentException.class)

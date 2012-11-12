@@ -1,6 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  LICENSE
+ *
+ * "THE BEER-WARE LICENSE" (Revision 43):
+ * "Sven Strittmatter" <weltraumschaf@googlemail.com> wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 package de.weltraumschaf.neuron;
 
@@ -11,15 +18,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Implementation of {@link Node}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class NodeImpl implements Node {
+class NodeImpl implements Node {
 
+    /**
+     * Holds all known neighbors.
+     */
     private final Map<Integer, Node> neighbours = Maps.newHashMap();
+
+    /**
+     * System wide unique identity.
+     */
     private final int id;
 
+    /**
+     * Default constructor.
+     *
+     * @param id system wide unique identity
+     */
     public NodeImpl(final int id) {
+        super();
         this.id = id;
     }
 
@@ -67,18 +88,12 @@ public class NodeImpl implements Node {
     }
 
     @Override
-    public boolean knows(final Node n) {
-        return knows(n.getId());
+    public boolean hasNeighbor(final Node n) {
+        return hasNeighbor(n.getId());
     }
 
     @Override
-    public boolean knows(final int id) {
-        return getId() == id
-               ? true
-               : hasNeighbor(id);
-    }
-
-    private boolean hasNeighbor(final int id) {
+    public boolean hasNeighbor(final int id) {
         return neighbours.containsKey(Integer.valueOf(id));
     }
 

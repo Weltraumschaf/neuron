@@ -14,7 +14,7 @@ package de.weltraumschaf.neuron.shell;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import de.weltraumschaf.neuron.Node;
-import de.weltraumschaf.neuron.NodeImpl;
+import de.weltraumschaf.neuron.NodeFactory;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +25,11 @@ import java.util.Map;
 public class Environment {
 
     private final Map<Integer, Node> nodes = Maps.newHashMap();
-    private int nextId = 0;
+    private NodeFactory factory = new NodeFactory();
 
     Node add() {
-        final Node n = new NodeImpl(getNextId());
+        final Node n = factory.newNode();
         add(n);
-        ++nextId;
         return n;
     }
 
@@ -54,23 +53,27 @@ public class Environment {
 
         for (final Integer key : nodes.keySet()) {
             final Node node = nodes.get(key);
-            node.disconnect(n);
+            if (node.hasNeighbor(n)) {
+                node.disconnect(n);
+            }
         }
 
         nodes.remove(Integer.valueOf(n.getId()));
     }
 
+    void remove(final int id) {
+        if (hasNode(id)) {
+            remove(getNode(id));
+        }
+    }
+
     void reset() {
         nodes.clear();
-        nextId = 0;
+        factory = new NodeFactory();
     }
 
     int size() {
         return nodes.size();
-    }
-
-    int getNextId() {
-        return nextId;
     }
 
     List<Node> getNodes() {
