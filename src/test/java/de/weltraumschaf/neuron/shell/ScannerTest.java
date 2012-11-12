@@ -41,13 +41,13 @@ public class ScannerTest {
         List<Token> tokens = sut.scan("help");
         assertThat(tokens.size(), is(1));
         Token<String> token = tokens.get(0);
-        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getType(), is(TokenType.LITERAL));
         assertThat(token.getValue(), is("help"));
 
         tokens = sut.scan("exit");
         assertThat(tokens.size(), is(1));
         token = tokens.get(0);
-        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getType(), is(TokenType.LITERAL));
         assertThat(token.getValue(), is("exit"));
     }
 
@@ -58,15 +58,15 @@ public class ScannerTest {
         assertThat(tokens.size(), is(3));
 
         Token<String> token = tokens.get(0);
-        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getType(), is(TokenType.LITERAL));
         assertThat(token.getValue(), is("foo"));
 
         token = tokens.get(1);
-        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getType(), is(TokenType.LITERAL));
         assertThat(token.getValue(), is("bar"));
 
         token = tokens.get(2);
-        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getType(), is(TokenType.LITERAL));
         assertThat(token.getValue(), is("baz1"));
     }
 
@@ -106,7 +106,7 @@ public class ScannerTest {
 
         assertThat(tokens.size(), is(4));
         strToken = tokens.get(0);
-        assertThat(strToken.getType(), is(TokenType.STRING));
+        assertThat(strToken.getType(), is(TokenType.LITERAL));
         assertThat(strToken.getValue(), is("foo"));
         intToken = tokens.get(1);
         assertThat(intToken.getType(), is(TokenType.INTEGER));
@@ -115,7 +115,7 @@ public class ScannerTest {
         assertThat(intToken.getType(), is(TokenType.INTEGER));
         assertThat(intToken.getValue(), is(5678));
         strToken = tokens.get(3);
-        assertThat(strToken.getType(), is(TokenType.STRING));
+        assertThat(strToken.getType(), is(TokenType.LITERAL));
         assertThat(strToken.getValue(), is("bar"));
 
         tokens = sut.scan("1234 foo bar 5678");
@@ -124,10 +124,10 @@ public class ScannerTest {
         assertThat(intToken.getType(), is(TokenType.INTEGER));
         assertThat(intToken.getValue(), is(1234));
         strToken = tokens.get(1);
-        assertThat(strToken.getType(), is(TokenType.STRING));
+        assertThat(strToken.getType(), is(TokenType.LITERAL));
         assertThat(strToken.getValue(), is("foo"));
         strToken = tokens.get(2);
-        assertThat(strToken.getType(), is(TokenType.STRING));
+        assertThat(strToken.getType(), is(TokenType.LITERAL));
         assertThat(strToken.getValue(), is("bar"));
         intToken = tokens.get(3);
         assertThat(intToken.getType(), is(TokenType.INTEGER));

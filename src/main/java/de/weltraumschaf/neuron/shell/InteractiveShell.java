@@ -20,11 +20,15 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 /**
+ * Implements a simple REPL shell.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class InteractiveShell {
 
+    /**
+     * Help message for shell users.
+     */
     private static final String HELP =
           "This is the Neuron Interactive shell version %s.%n%n"
         + "Available commands:%n"
@@ -37,12 +41,33 @@ public class InteractiveShell {
         + "  node list                      List all nodes.%n"
         + "  node info ID                   Print info of a node.%n"
         + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n%n";
+    /**
+     * Command line I/O.
+     */
     private final IO io;
+    /**
+     * The shell environment.
+     */
     private final Environment env;
+    /**
+     * Shell user input parser.
+     */
     private final Parser parser = new Parser(new Scanner());
+    /**
+     * Version info.
+     */
     private final Version version;
+    /**
+     * Indicates if the REPL loop is running.
+     */
     private boolean run = true;
 
+    /**
+     * Default constructor.
+     *
+     * @param io injection point for I/o
+     * @throws IOException if, version properties could not be loaded for {@link Version}
+     */
     public InteractiveShell(final IO io) throws IOException {
         this.io = io;
         env = new Environment();
@@ -50,6 +75,11 @@ public class InteractiveShell {
         version.load();
     }
 
+    /**
+     * Start the REPL.
+     *
+     * @throws IOException if I/O error occurs
+     */
     public void start() throws IOException {
         final BufferedReader input = new BufferedReader(new InputStreamReader(io.getStdin()));
         io.println(String.format("Welcome to Neuro Interactive Shell!%n"));
@@ -68,10 +98,18 @@ public class InteractiveShell {
         input.close();
     }
 
+    /**
+     * Stops the REPL.
+     */
     public void exit() {
         run = false;
     }
 
+    /**
+     * Executes a parsed command.
+     *
+     * @param cmd command to execute
+     */
     private void execute(final Command cmd) {
         switch (cmd.getCommand()) {
             case EXIT:
@@ -94,11 +132,24 @@ public class InteractiveShell {
         }
     }
 
+    /**
+     * Prints {@link #HELP} into the shell.
+     */
     private void echoHelp() {
         io.print(String.format(HELP, version.getVersion()));
     }
 
+    /**
+     * Executes {@link Command.MainType#NODE node} command.
+     *
+     * @param cmd node command
+     * @throw IllegalArgumentException if, cmd's main type is not Command.MainType.NODE
+     */
     private void executeNode(final Command cmd) {
+        if (cmd.getCommand() != Command.MainType.NODE) {
+            throw new IllegalArgumentException("Method must be invoked with Command.MainType.NODE!");
+        }
+
         switch (cmd.getSubCommand()) {
             case ADD:
                 addNode(cmd);
@@ -120,6 +171,11 @@ public class InteractiveShell {
         }
     }
 
+    /**
+     * Executes NODE ADD command.
+     *
+     * @param cmd parsed command
+     */
     private void addNode(final Command cmd) {
         int amount = 1;
 
@@ -143,6 +199,9 @@ public class InteractiveShell {
         io.println(summary.toString());
     }
 
+    /**
+     * Executes NODE LIST command.
+     */
     private void listNodes() {
         final StringBuilder summary = new StringBuilder();
         final List<Node> nodes = env.getNodes();
@@ -160,6 +219,11 @@ public class InteractiveShell {
         io.println(summary.toString());
     }
 
+    /**
+     * Executes NODE INFO id command.
+     *
+     * @param cmd parsed command
+     */
     private void nodeInfo(final Command cmd) {
         final Token<Integer> arg = cmd.getArguments().get(0);
 
@@ -182,6 +246,11 @@ public class InteractiveShell {
         }
     }
 
+    /**
+     * Executes NODE DEL id command.
+     *
+     * @param cmd parsed command
+     */
     private void deleteNode(final Command cmd) {
         final Token<Integer> argId = cmd.getArguments().get(0);
 
@@ -193,6 +262,11 @@ public class InteractiveShell {
         env.remove(argId.getValue());
     }
 
+    /**
+     * Executes NODE CONNECT id1 id2 command.
+     *
+     * @param cmd parsed command
+     */
     private void connectNodes(final Command cmd) {
         final Token<Integer> argId = cmd.getArguments().get(0);
         final Token<Integer> argNeighborId = cmd.getArguments().get(1);

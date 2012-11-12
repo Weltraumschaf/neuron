@@ -32,7 +32,7 @@ class Parser {
         final List<Token> tokens = scanner.scan(input);
         final Token commandtoken = tokens.get(0);
 
-        if (TokenType.STRING != commandtoken.getType()) {
+        if (TokenType.LITERAL != commandtoken.getType()) {
             throw new SyntaxException("Command expected as first word!");
         }
 
@@ -47,7 +47,7 @@ class Parser {
         if (tokens.size() > 1) {
             final Token secondToken = tokens.get(1);
 
-            if (secondToken.getType() == TokenType.STRING && Command.isSubCommand(secondToken)) {
+            if (secondToken.getType() == TokenType.LITERAL && Command.isSubCommand(secondToken)) {
                 ++argumentBegin;
                 subCommand = Command.determineSubCommand(secondToken);
             }

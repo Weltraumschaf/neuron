@@ -18,11 +18,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Describes a parsed command of the interactive shell.
+ *
+ * Commands consist always of a command and may have a subcommand.
+ * This type is immutable.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class Command {
 
+    /**
+     * Enumerates the available commands.
+     */
     enum MainType {
 
         HELP("help"), RESET("reset"), EXIT("exit"), NODE("node");
@@ -40,6 +47,9 @@ class Command {
 
     }
 
+    /**
+     * Enumerates the optional subcommands.
+     */
     enum SubType {
         NONE(""), ADD("add"), DEL("del"), CONNECT("connect"), LIST("list"), INFO("info");
 
@@ -56,7 +66,14 @@ class Command {
 
     }
 
+    /**
+     * Map the literal command string to corresponding type enum.
+     */
     private static final Map<String, MainType> COMMANDS = Maps.newHashMap();
+
+    /**
+     * Map the literal sub command string to corresponding type enum.
+     */
     private static final Map<String, SubType> SUB_COMMANDS = Maps.newHashMap();
 
     static {
@@ -71,45 +88,131 @@ class Command {
         }
     }
 
+    /**
+     * Obligatory main command.
+     */
     private final MainType command;
+
+    /**
+     * Optional sub command.
+     *
+     * If the main type does not support sub commands this will be {@link SubType#NONE}.
+     */
     private final SubType subCommand;
+
+    /**
+     * Optional arguments.
+     *
+     * If the command has no arguments this will be an empty list.
+     */
     private final List<Token> arguments;
 
+    /**
+     * Constructor for commands with no supported sub commands.
+     *
+     * @param command main command
+     * @param arguments command arguments, may be an empty list
+     */
     public Command(final MainType mainCommand, final List<Token> arguments) {
         this(mainCommand, SubType.NONE, arguments);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param command main command
+     * @param subCommand sub command
+     * @param arguments command arguments, may be an empty list
+     */
     public Command(final MainType command, final SubType subCommand, final List<Token> arguments) {
-        this.command = command;
+        super();
+        this.command    = command;
         this.subCommand = subCommand;
-        this.arguments = Lists.newArrayList(arguments);
+        this.arguments  = Lists.newArrayList(arguments); // Defense copy
     }
 
+    /**
+     * Get command main type.
+     *
+     * @return main type of command
+     */
     public MainType getCommand() {
         return command;
     }
 
+    /**
+     * Get optional command sub type.
+     *
+     * If the main type does not support any sub type {@link SubType#NONE} will be returned.
+     *
+     * @return sub type of command
+     */
     public SubType getSubCommand() {
         return subCommand;
     }
 
+    /**
+     * Get arguments.
+     *
+     * This method will always return a list. If no arguments are present an empty list will be returned.
+     *
+     * @return Returns a defense copy.
+     */
     public List<Token> getArguments() {
-        return Lists.newArrayList(arguments);
+        return Lists.newArrayList(arguments); // Defense copy
     }
 
-    static boolean isCommand(Token<String> t) {
+    /**
+     * Determines if the string literal value of the token is a main command.
+     *
+     * @param t token to check
+     * @return true if the token is a command else false
+     */
+    static boolean isCommand(final Token<String> t) {
         return COMMANDS.containsKey(t.getValue());
     }
 
-    static MainType determineCommand(Token<String> t) {
+    /**
+     * Determines the appropriate main command type for given string token.
+     *
+     * You should check with {@link #isCommand(de.weltraumschaf.neuron.shell.Token)} before invocation.
+     * Determining a non command token string will result in an exception.
+     *
+     * @param t token to check
+     * @return command main type
+     * @throws IllegalArgumentException if, token is not a main command
+     */
+    static MainType determineCommand(final Token<String> t) {
+        if (! isCommand(t)) {
+            throw new IllegalArgumentException(String.format("'%s' is not a command!", t.getValue()));
+        }
         return COMMANDS.get(t.getValue());
     }
 
-    static boolean isSubCommand(Token<String> t) {
+    /**
+     * Determines if the string literal value of the token is a sub command.
+     *
+     * @param t token to check
+     * @return true if the token is a sub command else false
+     */
+    static boolean isSubCommand(final Token<String> t) {
         return SUB_COMMANDS.containsKey(t.getValue());
     }
 
-    static SubType determineSubCommand(Token<String> t) {
+    /**
+     * Determines the appropriate sub command type for given string token.
+     *
+     * You should check with {@link #isSubCommand(de.weltraumschaf.neuron.shell.Token)} before invocation.
+     * Determining a non sub command token string will result in an exception.
+     *
+     * @param t token to check
+     * @return command sub type
+     * @throws IllegalArgumentException if, token is not a sub command
+     */
+    static SubType determineSubCommand(final Token<String> t) {
+        if (! isSubCommand(t)) {
+            throw new IllegalArgumentException(String.format("'%s' is not a sub command!", t.getValue()));
+        }
         return SUB_COMMANDS.get(t.getValue());
     }
 

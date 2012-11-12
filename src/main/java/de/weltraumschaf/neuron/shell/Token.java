@@ -19,7 +19,7 @@ import com.google.common.base.Objects;
  * @param <T> Type of the token value.
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-final class Token<T> {
+public final class Token<T> {
 
     /**
      * Type of token.
@@ -49,7 +49,7 @@ final class Token<T> {
      * @return new instance
      */
     static Token<String> newToken(final String value) {
-        return new Token<String>(TokenType.STRING, value);
+        return new Token<String>(TokenType.LITERAL, value);
     }
 
     /**

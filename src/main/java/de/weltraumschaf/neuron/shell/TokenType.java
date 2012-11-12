@@ -19,10 +19,20 @@ package de.weltraumschaf.neuron.shell;
 enum TokenType {
 
     /**
-     * [a-zA-Z][a-zA-Z0-9]+
+     * Defines a quote delimited string.
+     *
+     * '...' or "..."
      */
     STRING,
     /**
+     * Defines literal string token type.
+     *
+     * [a-zA-Z][a-zA-Z0-9]+
+     */
+    LITERAL,
+    /**
+     * Defines integer token type.
+     *
      * [0-9]+
      */
     INTEGER;

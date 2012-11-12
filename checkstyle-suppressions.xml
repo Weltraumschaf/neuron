@@ -22,5 +22,6 @@
     <suppress checks="JavadocVariable" files=".*Test\.java"/>
     <suppress checks="JavadocType" files=".*Test\.java"/>
     <suppress checks="IllegalThrows" files=".*Test\.java"/>
-    <suppress checks="ImportControl" files=".*Test\.java"/> 
+    <suppress checks="ImportControl" files=".*Test\.java"/>
+    <suppress checks="JavadocPackage" files=".*Test\.java"/>
 </suppressions>
