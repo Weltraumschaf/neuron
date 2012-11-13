@@ -181,11 +181,6 @@
                     <version>2.0-beta-2</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
                     <artifactId>maven-changelog-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
@@ -255,13 +250,6 @@
 
         <plugins>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <!-- Fork mode does not work on windows. -->
-                    <forkMode>never</forkMode>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
@@ -321,6 +309,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+
                 </executions>
             </plugin>
 
@@ -523,20 +512,6 @@
                                     </reports>
                                 </reportSet>
                             </reportSets>
-                        </plugin>
-
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>cobertura-maven-plugin</artifactId>
-                            <configuration>
-                                <formats>
-                                    <format>html</format>
-                                    <format>xml</format>
-                                </formats>
-                                <instrumentation>
-                                    <excludes/>
-                                </instrumentation>
-                            </configuration>
                         </plugin>
 
                         <plugin>
