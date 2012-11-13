@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     LICENSE
@@ -11,7 +12,6 @@
     Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf(at)googlemail(dot)com>
 
 -->
-<!-- see http://www.smartics.eu/pom-java/pom-documentation.html -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -22,7 +22,7 @@
     <packaging>jar</packaging>
 
     <name>Neuron</name>
-    <description>TBD</description>
+    <description>Interactive shell to play around with nodes.</description>
     <url>http://weltraumschaf.github.com/neuron/</url>
 
     <organization>
@@ -35,6 +35,9 @@
             <id>Weltraumschaf</id>
             <name>Sven Strittmatter</name>
             <email>weltraumschaf@googlemail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
         </developer>
     </developers>
 
