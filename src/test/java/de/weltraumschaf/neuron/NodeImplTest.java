@@ -11,6 +11,7 @@
  */
 package de.weltraumschaf.neuron;
 
+import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -44,8 +45,8 @@ public class NodeImplTest {
         final Node sut3 = new NodeImpl(42);
 
         // CHECKSTYLE:OFF
-        assertThat(sut1.equals(null), is(false));
-        assertThat(sut1.equals("foo"), is(false));
+        assertThat(sut1.equals(null), is(false)); //NOPMD
+        assertThat(sut1.equals("foo"), is(false));//NOPMD
         // CHECKSTYLE:ON
 
         assertThat(sut1.equals(sut1), is(true));
@@ -118,6 +119,45 @@ public class NodeImplTest {
         final Node sut = new NodeImpl(0);
         final Node n1 = new NodeImpl(1);
         sut.disconnect(n1);
+    }
+
+    @Test
+    public void testToString() {
+        final Node sut = new NodeImpl(23);
+        assertThat(sut.toString(), is("Node ID: 23 Neigbors: 0"));
+        sut.connect(new NodeImpl(1));
+        sut.connect(new NodeImpl(2));
+        assertThat(sut.toString(), is("Node ID: 23 Neigbors: 2"));
+    }
+
+    @Test
+    public void hasNeighbors() {
+        final Node sut = new NodeImpl(23);
+        assertThat(sut.hasNeighbors(), is(false));
+        sut.connect(new NodeImpl(1));
+        assertThat(sut.hasNeighbors(), is(true));
+    }
+
+    @Test
+    public void hasNeighbor() {
+        final Node sut = new NodeImpl(23);
+        final NodeImpl n = new NodeImpl(1);
+        assertThat(sut.hasNeighbor(n), is(false));
+        sut.connect(n);
+        assertThat(sut.hasNeighbor(n), is(true));
+    }
+
+    @Test
+    public void getNeighbors() {
+        final Node sut = new NodeImpl(23);
+        final NodeImpl n1 = new NodeImpl(1);
+        final NodeImpl n2 = new NodeImpl(2);
+        sut.connect(n1);
+        sut.connect(n2);
+        List<Node> neighbors = sut.getNeighbors();
+        assertThat(neighbors.size(), is(2));
+        assertThat(neighbors.contains(n1), is(true));
+        assertThat(neighbors.contains(n2), is(true));
     }
 
 }
