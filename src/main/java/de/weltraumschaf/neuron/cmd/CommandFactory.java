@@ -20,6 +20,7 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Factory to create command objects depending on the parsed {@link ShellCommand}.
  *
  * @author @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -29,21 +30,40 @@ public final class CommandFactory {
      * Shell environment.
      */
     private final Environment env;
+
     /**
      * Shell I/O.
      */
     private final IO io;
+
     /**
      * Version of the shell.
      */
     private final Version version;
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment used by commands
+     * @param io shell I/O used by commands
+     * @param version version info used by some commands
+     */
     public CommandFactory(final Environment env, final IO io, final Version version) {
+        super();
         this.env = env;
         this.io = io;
         this.version = version;
     }
 
+    /**
+     * Create command instances according to the parsed shell command.
+     *
+     * @param shellCmd used to determine appropriate command
+     * @return command object
+     * // CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, can't create command of bad main or sub command type
+     * // CHECKSTYLE:ON
+     */
     public Command newCommand(final ShellCommand shellCmd) {
         Command cmd;
         switch (shellCmd.getCommand()) {
@@ -71,6 +91,16 @@ public final class CommandFactory {
         return cmd;
     }
 
+    /**
+     * Helper to create sub commands for node command.
+     *
+     * @param subCommand used to determine appropriate command
+     * @param arguments command line arguments
+     * @return command object
+     * // CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, can't create command of bad sub command type
+     * // CHECKSTYLE:ON
+     */
     private Command newNodeCommand(final SubType subCommand, final List<Token> arguments) {
         switch (subCommand) {
             case ADD:
@@ -84,8 +114,8 @@ public final class CommandFactory {
             case LIST:
                 return new NodeListCommand(env, io, arguments);
             default:
-                throw new IllegalArgumentException(String.format("Main command type NODE does not support sub type '%s'!",
-                                                                 subCommand));
+                throw new IllegalArgumentException(
+                            String.format("Main command type NODE does not support sub type '%s'!", subCommand));
         }
     }
 }

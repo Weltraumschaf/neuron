@@ -41,7 +41,9 @@ class CharacterStream {
      * Returns next character.
      *
      * @return next character
+     * // CHECKSTYLE:OFF
      * @throws IndexOutOfBoundsException if, there are no more characters.
+     * // CHECKSTYLE:ON
      */
     char next() {
         if (!hasNext()) {

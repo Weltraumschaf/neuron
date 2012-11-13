@@ -14,7 +14,6 @@ package de.weltraumschaf.neuron.cmd;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,16 +24,21 @@ import java.util.List;
  */
 abstract class BaseCommand implements Command {
 
-    final static List<Token> DEFAULT_ARGUMETS = Collections.emptyList();
+    /**
+     * Empty list as default arguments for commands w/o arguments.
+     */
+    static final List<Token> DEFAULT_ARGUMETS = Collections.emptyList();
 
     /**
      * Arguments for the command.
      */
     private final List<Token> arguments;
+
     /**
      * Shell environment.
      */
     private final Environment env;
+
     /**
      * Shell I/O.
      */

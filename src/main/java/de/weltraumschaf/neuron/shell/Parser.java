@@ -17,17 +17,34 @@ import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
 import java.util.List;
 
 /**
+ * Parses input line from interactive shell.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class Parser {
 
+    /**
+     * Tokenize the input line.
+     */
     private final Scanner scanner;
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param scanner to scann input line
+     */
     public Parser(final Scanner scanner) {
+        super();
         this.scanner = scanner;
     }
 
+    /**
+     * Parses given input line.
+     *
+     * @param input line to parse
+     * @return recognized shell command
+     * @throws SyntaxException if, the parsed line has syntax errors
+     */
     ShellCommand parse(final String input) throws SyntaxException {
         final List<Token> tokens = scanner.scan(input);
         final Token commandtoken = tokens.get(0);
@@ -66,6 +83,16 @@ class Parser {
         return cmd;
     }
 
+    /**
+     * Verifies parsed command of consistency.
+     *
+     * Consistency checks are:
+     * - correct sub command type
+     * - correct number of arguments
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, verification has failed
+     */
     private void verifyCommand(final ShellCommand cmd) throws SyntaxException {
         switch (cmd.getCommand()) {
             case EXIT:
@@ -88,6 +115,15 @@ class Parser {
         }
     }
 
+    /**
+     * Verify commands of main command type {@link MainType#NODE}.
+     *
+     * Consistency checks are:
+     * - correct number of arguments for sub command type
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, wrong number of arguments or unsupported subcommand was parsed
+     */
     private void verifyNodeCommand(final ShellCommand cmd) throws SyntaxException {
         final int argumentCount = cmd.getArguments().size();
         switch (cmd.getSubCommand()) {

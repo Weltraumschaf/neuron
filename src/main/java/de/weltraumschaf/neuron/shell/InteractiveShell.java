@@ -42,6 +42,9 @@ public class InteractiveShell {
      * Version info.
      */
     private final Version version;
+    /**
+     * Factory to create commands.
+     */
     private final CommandFactory factory;
     /**
      * Indicates if the REPL loop is running.

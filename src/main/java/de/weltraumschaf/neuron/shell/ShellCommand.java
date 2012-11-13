@@ -32,10 +32,25 @@ public class ShellCommand {
      */
     public enum MainType {
 
-        HELP("help"), RESET("reset"), EXIT("exit"), NODE("node");
+        /** Help command. */
+        HELP("help"),
+        /** Reset command. */
+        RESET("reset"),
+        /** Exit command. */
+        EXIT("exit"),
+        /** Node command. */
+        NODE("node");
 
+        /**
+         * Literal command string used in shell.
+         */
         private final String name;
 
+        /**
+         * Initialize name.
+         *
+         * @param name literal shell command string
+         */
         private MainType(final String name) {
             this.name = name;
         }
@@ -51,10 +66,29 @@ public class ShellCommand {
      * Enumerates the optional subcommands.
      */
     public enum SubType {
-        NONE(""), ADD("add"), DEL("del"), CONNECT("connect"), LIST("list"), INFO("info");
+        /** No sub command. */
+        NONE(""),
+        /** Add sub command for node command. */
+        ADD("add"),
+        /** Del sub command for node command. */
+        DEL("del"),
+        /** Connect sub command for node command. */
+        CONNECT("connect"),
+        /** List sub command for node command. */
+        LIST("list"),
+        /** Info sub command for node command. */
+        INFO("info");
 
+        /**
+         * Literal command string used in shell.
+         */
         private final String name;
 
+        /**
+         * Initialize name.
+         *
+         * @param name literal shell command string
+         */
         private SubType(final String name) {
             this.name = name;
         }
@@ -113,8 +147,8 @@ public class ShellCommand {
      * @param command main command
      * @param arguments command arguments, may be an empty list
      */
-    public ShellCommand(final MainType mainCommand, final List<Token> arguments) {
-        this(mainCommand, SubType.NONE, arguments);
+    public ShellCommand(final MainType command, final List<Token> arguments) {
+        this(command, SubType.NONE, arguments);
     }
 
     /**
@@ -180,7 +214,9 @@ public class ShellCommand {
      *
      * @param t token to check
      * @return command main type
+     * // CHECKSTYLE:OFF
      * @throws IllegalArgumentException if, token is not a main command
+     * // CHECKSTYLE:ON
      */
     static MainType determineCommand(final Token<String> t) {
         if (! isCommand(t)) {
@@ -207,7 +243,9 @@ public class ShellCommand {
      *
      * @param t token to check
      * @return command sub type
+     * // CHECKSTYLE:OFF
      * @throws IllegalArgumentException if, token is not a sub command
+     * // CHECKSTYLE:ON
      */
     static SubType determineSubCommand(final Token<String> t) {
         if (! isSubCommand(t)) {

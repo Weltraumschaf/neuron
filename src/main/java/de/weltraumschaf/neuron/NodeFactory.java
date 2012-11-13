@@ -12,22 +12,45 @@
 package de.weltraumschaf.neuron;
 
 /**
+ * Create nodes with distinct id.
+ *
+ * The used ids wil start at 0 up to {@link Integer#MAX_VALUE}. If you want to restart creating nodes
+ * with ids from 0 you must use a new Factory instance.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public final class NodeFactory {
 
+    /**
+     * Next id to use.
+     */
     private int nextId = -1;
 
+    /**
+     * Increments {@link #nextId} and returns it.
+     *
+     * @return distinct value from 0 to {@link Integer#MAX_VALUE}
+     */
     private int getNextId() {
         ++nextId;
         return nextId;
     }
 
+    /**
+     * Create node with {@link #nextId} as id.
+     *
+     * @return new instance
+     */
     public Node newNode() {
         return newNode(getNextId());
     }
 
+    /**
+     * Creates node with given id.
+     *
+     * @param id nodes id
+     * @return new instance
+     */
     public Node newNode(final int id) {
         return new NodeImpl(id);
     }

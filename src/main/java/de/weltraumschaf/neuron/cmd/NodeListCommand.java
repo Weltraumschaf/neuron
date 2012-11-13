@@ -24,10 +24,23 @@ import java.util.List;
  */
 class NodeListCommand extends BaseCommand {
 
+    /**
+     * Constructor for no argument command.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     */
     public NodeListCommand(final Environment env, final IO io) {
         this(env, io, DEFAULT_ARGUMETS);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     * @param arguments command arguments
+     */
     public NodeListCommand(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }

@@ -14,11 +14,17 @@ package de.weltraumschaf.neuron.cmd;
 import de.weltraumschaf.commons.Version;
 
 /**
+ * Classes implementing this interface may use a {@link Version}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface UseVersion {
 
+    /**
+     * Injection point for version.
+     *
+     * @param v version t use.
+     */
     void setVersion(Version v);
 
 }

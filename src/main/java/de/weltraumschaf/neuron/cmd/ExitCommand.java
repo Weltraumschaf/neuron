@@ -17,15 +17,29 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Executes `exit` command.
  *
  * @author @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class ExitCommand extends BaseCommand {
 
+    /**
+     * Constructor for no argument command.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     */
     public ExitCommand(final Environment env, final IO io) {
         this(env, io, DEFAULT_ARGUMETS);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     * @param arguments command arguments
+     */
     public ExitCommand(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }

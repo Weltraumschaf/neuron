@@ -39,12 +39,28 @@ class HelpCommand extends BaseCommand implements UseVersion {
         + "  node list                      List all nodes.%n"
         + "  node info ID                   Print info of a node.%n"
         + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n%n";
+    /**
+     * Program version info.
+     */
     private Version version;
 
+    /**
+     * Constructor for no argument command.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     */
     public HelpCommand(final Environment env, final IO io) {
         this(env, io, DEFAULT_ARGUMETS);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     * @param arguments command arguments
+     */
     public HelpCommand(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
