@@ -83,6 +83,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <compileTarget.version>1.6</compileTarget.version>
         <source.version>1.6</source.version>
+        <finalName>neuron</finalName>
+        <binDir>bin</binDir>
     </properties>
 
     <dependencies>
@@ -248,10 +250,21 @@
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>2.9.1</version>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.7</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Fork mode does not work on windows. -->
+                    <forkMode>never</forkMode>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
@@ -281,7 +294,7 @@
                     <descriptorRefs>
                         <descriptorRefs>jar-with-dependencies</descriptorRefs>
                     </descriptorRefs>
-                    <finalName>neuron</finalName>
+                    <finalName>${finalName}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <attach>false</attach>
                 </configuration>
@@ -580,6 +593,23 @@
                     </reportPlugins>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>install </phase>
+                        <configuration>
+                        <target>
+                            <copy file="${project.build.directory}/${finalName}.jar" tofile="${binDir}/${finalName}.jar"/>
+                        </target>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    </execution>
+                </executions>
+      </plugin>
         </plugins>
 
         <resources>
