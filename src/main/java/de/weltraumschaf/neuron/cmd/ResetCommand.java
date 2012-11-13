@@ -32,7 +32,8 @@ class ResetCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        getIo().println("Resetting...");
+        getEnv().reset();
     }
 
 }

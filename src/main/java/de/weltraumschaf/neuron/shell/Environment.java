@@ -27,7 +27,7 @@ public class Environment {
     private final Map<Integer, Node> nodes = Maps.newHashMap();
     private NodeFactory factory = new NodeFactory();
 
-    Node add() {
+    public Node add() {
         final Node n = factory.newNode();
         add(n);
         return n;
@@ -61,13 +61,13 @@ public class Environment {
         nodes.remove(Integer.valueOf(n.getId()));
     }
 
-    void remove(final int id) {
+    public void remove(final int id) {
         if (hasNode(id)) {
             remove(getNode(id));
         }
     }
 
-    void reset() {
+    public void reset() {
         nodes.clear();
         factory = new NodeFactory();
     }
@@ -76,15 +76,15 @@ public class Environment {
         return nodes.size();
     }
 
-    List<Node> getNodes() {
+    public List<Node> getNodes() {
         return Lists.newArrayList(nodes.values());
     }
 
-    boolean hasNode(final int id) {
+    public boolean hasNode(final int id) {
         return nodes.containsKey(Integer.valueOf(id));
     }
 
-    Node getNode(final int id) {
+    public Node getNode(final int id) {
         return nodes.get(Integer.valueOf(id));
     }
 

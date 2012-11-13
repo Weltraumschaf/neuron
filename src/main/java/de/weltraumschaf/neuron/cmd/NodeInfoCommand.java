@@ -12,11 +12,13 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Executes `node info ID` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -32,7 +34,26 @@ class NodeInfoCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    } 
+        final Token<Integer> arg = getArguments().get(0);
+
+        if (getEnv().hasNode(arg.getValue())) {
+            final Node inspectedNode = getEnv().getNode(arg.getValue());
+            final StringBuilder info = new StringBuilder();
+            info.append(String.format("%s%n", inspectedNode.toString()));
+            info.append(String.format("Neighbors:%n"));
+
+            if (inspectedNode.hasNeighbors()) {
+                for (final Node neighbor : inspectedNode.getNeighbors()) {
+                    info.append(String.format("  %s%n", neighbor));
+                }
+            } else {
+                info.append(String.format("  Has no neighbors!%n"));
+            }
+
+            getIo().println(info.toString());
+        } else {
+            getIo().println(String.format("Node with id %d does not exist!", arg.getValue()));
+        }
+    }
 
 }

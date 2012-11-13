@@ -12,11 +12,13 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Executes `node add` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -32,7 +34,26 @@ class NodeAddCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        int amount = 1;
+
+        if (getArguments().size() == 1) {
+            final Token<Integer> t = getArguments().get(0);
+            amount = t.getValue();
+        }
+
+        if (amount < 1) {
+            getIo().println("Parameter AMOUNT must not be less than 1!");
+            return;
+        }
+
+        final StringBuilder summary = new StringBuilder();
+
+        for (int i = 0; i < amount; ++i) {
+            final Node n = getEnv().add();
+            summary.append(String.format("Node with id %d added%n", n.getId()));
+        }
+
+        getIo().println(summary.toString());
     }
 
 }

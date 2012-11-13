@@ -12,11 +12,13 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Executes `node connect FROM TO` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -32,7 +34,23 @@ class NodeConnectCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        final Token<Integer> argId = getArguments().get(0);
+        final Token<Integer> argNeighborId = getArguments().get(1);
+
+        if (! getEnv().hasNode(argId.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", argId.getValue()));
+            return;
+        }
+
+        if (! getEnv().hasNode(argNeighborId.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", argNeighborId.getValue()));
+            return;
+        }
+
+        final Node connector = getEnv().getNode(argId.getValue());
+        final Node connected = getEnv().getNode(argNeighborId.getValue());
+        connector.connect(connected);
+        getIo().println(String.format("Conected nodes: %d -> %d.", argId.getValue(), argNeighborId.getValue()));
     }
 
 }

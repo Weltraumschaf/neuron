@@ -76,7 +76,7 @@ public final class Token<T> {
      *
      * @return token value.
      */
-    T getValue() {
+    public T getValue() {
         return value;
     }
 

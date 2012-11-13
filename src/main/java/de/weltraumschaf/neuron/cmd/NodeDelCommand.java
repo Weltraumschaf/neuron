@@ -17,6 +17,7 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Executes `node del ID` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -33,7 +34,14 @@ class NodeDelCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        final Token<Integer> argId = getArguments().get(0);
+
+        if (! getEnv().hasNode(argId.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", argId.getValue()));
+            return;
+        }
+
+        getEnv().remove(argId.getValue());
     }
 
 }

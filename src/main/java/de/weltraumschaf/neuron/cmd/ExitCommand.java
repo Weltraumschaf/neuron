@@ -14,8 +14,6 @@ package de.weltraumschaf.neuron.cmd;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ class ExitCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        getIo().println("bye bye!");
     }
 
 

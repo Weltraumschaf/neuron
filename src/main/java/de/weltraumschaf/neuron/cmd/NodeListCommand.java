@@ -12,11 +12,13 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
+ * Executes `node list` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -32,7 +34,20 @@ class NodeListCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        final StringBuilder summary = new StringBuilder();
+        final List<Node> nodes = getEnv().getNodes();
+
+        if (nodes.isEmpty()) {
+            summary.append(String.format("No nodes created.%n"));
+        } else {
+            summary.append(String.format("%d nodes created.%n%n", nodes.size()));
+            summary.append(String.format("Existing nodes:%n"));
+            for (final Node n : nodes) {
+                summary.append(String.format("  %s%n", n));
+            }
+        }
+
+        getIo().println(summary.toString());
     }
 
 }

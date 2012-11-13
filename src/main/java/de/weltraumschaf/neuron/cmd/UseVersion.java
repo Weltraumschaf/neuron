@@ -9,25 +9,16 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron.shell;
+package de.weltraumschaf.neuron.cmd;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import de.weltraumschaf.commons.Version;
 
 /**
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class TokenTest {
+public interface UseVersion {
 
-    @Test
-    public void testToString() {
-        Token t = Token.newToken("foo");
-        assertThat(t.toString(), is("Token{type=LITERAL, value=foo}"));
-
-        t = Token.newToken(123);
-        assertThat(t.toString(), is("Token{type=INTEGER, value=123}"));
-    }
+    void setVersion(Version v);
 
 }
