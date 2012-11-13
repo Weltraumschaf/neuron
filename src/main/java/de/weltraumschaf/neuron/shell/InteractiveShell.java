@@ -30,22 +30,17 @@ public class InteractiveShell {
      * ShellCommand line I/O.
      */
     private final IO io;
-    /**
-     * The shell environment.
-     */
-    private final Environment env;
+
     /**
      * Shell user input parser.
      */
     private final Parser parser = new Parser(new Scanner());
-    /**
-     * Version info.
-     */
-    private final Version version;
+
     /**
      * Factory to create commands.
      */
     private final CommandFactory factory;
+
     /**
      * Indicates if the REPL loop is running.
      */
@@ -58,11 +53,11 @@ public class InteractiveShell {
      * @throws IOException if, version properties could not be loaded for {@link Version}
      */
     public InteractiveShell(final IO io) throws IOException {
+        super();
         this.io = io;
-        env = new Environment();
-        version = new Version("/de/weltraumschaf/neuron/version.properties");
+        final Version version = new Version("/de/weltraumschaf/neuron/version.properties");
         version.load();
-        factory = new CommandFactory(env, io, version);
+        factory = new CommandFactory(new Environment(), io, version);
     }
 
     /**
