@@ -11,8 +11,8 @@
  */
 package de.weltraumschaf.neuron.shell;
 
-import de.weltraumschaf.neuron.shell.Command.MainType;
-import de.weltraumschaf.neuron.shell.Command.SubType;
+import de.weltraumschaf.neuron.shell.ShellCommand.MainType;
+import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
@@ -34,7 +34,7 @@ public class ParserTest {
 
     @Test
     public void parse_comand() throws SyntaxException {
-        Command c = sut.parse("help");
+        ShellCommand c = sut.parse("help");
         assertThat(c.getCommand(), is(MainType.HELP));
         assertThat(c.getSubCommand(), is(SubType.NONE));
         assertThat(c.getArguments().size(), is(0));
@@ -60,7 +60,7 @@ public class ParserTest {
 
     @Test
     public void parse_comandWithSubcommandAndOneArgument() throws SyntaxException {
-        Command c = sut.parse("node add 1234");
+        ShellCommand c = sut.parse("node add 1234");
         assertThat(c.getCommand(), is(MainType.NODE));
         assertThat(c.getSubCommand(), is(SubType.ADD));
         assertThat(c.getArguments().size(), is(1));
@@ -116,7 +116,7 @@ public class ParserTest {
 
     @Test @Ignore
     public void parse_comandWithSubcommandAndTwoArgument() throws SyntaxException {
-        final Command c = sut.parse("node connect 1234 5678");
+        final ShellCommand c = sut.parse("node connect 1234 5678");
     }
 
 }

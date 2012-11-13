@@ -12,8 +12,8 @@
 package de.weltraumschaf.neuron.shell;
 
 import com.google.common.collect.Lists;
-import de.weltraumschaf.neuron.shell.Command.MainType;
-import de.weltraumschaf.neuron.shell.Command.SubType;
+import de.weltraumschaf.neuron.shell.ShellCommand.MainType;
+import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
 import java.util.List;
 
 /**
@@ -28,7 +28,7 @@ class Parser {
         this.scanner = scanner;
     }
 
-    Command parse(final String input) throws SyntaxException {
+    ShellCommand parse(final String input) throws SyntaxException {
         final List<Token> tokens = scanner.scan(input);
         final Token commandtoken = tokens.get(0);
 
@@ -36,20 +36,20 @@ class Parser {
             throw new SyntaxException("Command expected as first word!");
         }
 
-        if (! Command.isCommand(commandtoken)) {
+        if (! ShellCommand.isCommand(commandtoken)) {
             throw new SyntaxException("Command expected as first word!");
         }
 
-        final MainType command = Command.determineCommand(commandtoken);
+        final MainType command = ShellCommand.determineCommand(commandtoken);
         SubType subCommand = SubType.NONE;
         int argumentBegin = 1;
 
         if (tokens.size() > 1) {
             final Token secondToken = tokens.get(1);
 
-            if (secondToken.getType() == TokenType.LITERAL && Command.isSubCommand(secondToken)) {
+            if (secondToken.getType() == TokenType.LITERAL && ShellCommand.isSubCommand(secondToken)) {
                 ++argumentBegin;
-                subCommand = Command.determineSubCommand(secondToken);
+                subCommand = ShellCommand.determineSubCommand(secondToken);
             }
         }
 
@@ -61,12 +61,12 @@ class Parser {
             arguments = Lists.newArrayList();
         }
 
-        final Command cmd = new Command(command, subCommand, arguments);
+        final ShellCommand cmd = new ShellCommand(command, subCommand, arguments);
         verifyCommand(cmd);
         return cmd;
     }
 
-    private void verifyCommand(final Command cmd) throws SyntaxException {
+    private void verifyCommand(final ShellCommand cmd) throws SyntaxException {
         switch (cmd.getCommand()) {
             case EXIT:
             case HELP:
@@ -88,7 +88,7 @@ class Parser {
         }
     }
 
-    private void verifyNodeCommand(final Command cmd) throws SyntaxException {
+    private void verifyNodeCommand(final ShellCommand cmd) throws SyntaxException {
         final int argumentCount = cmd.getArguments().size();
         switch (cmd.getSubCommand()) {
             case LIST:

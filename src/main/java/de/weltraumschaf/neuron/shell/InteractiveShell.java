@@ -42,7 +42,7 @@ public class InteractiveShell {
         + "  node info ID                   Print info of a node.%n"
         + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n%n";
     /**
-     * Command line I/O.
+     * ShellCommand line I/O.
      */
     private final IO io;
     /**
@@ -88,7 +88,7 @@ public class InteractiveShell {
             io.print("> ");
             final String inputLine = input.readLine();
             try {
-                final Command cmd = parser.parse(inputLine);
+                final ShellCommand cmd = parser.parse(inputLine);
                 execute(cmd);
             } catch (SyntaxException ex) {
                 io.println("Error: " + ex.getMessage());
@@ -110,7 +110,7 @@ public class InteractiveShell {
      *
      * @param cmd command to execute
      */
-    private void execute(final Command cmd) {
+    private void execute(final ShellCommand cmd) {
         switch (cmd.getCommand()) {
             case EXIT:
                 exit();
@@ -140,13 +140,13 @@ public class InteractiveShell {
     }
 
     /**
-     * Executes {@link Command.MainType#NODE node} command.
+     * Executes {@link ShellCommand.MainType#NODE node} command.
      *
      * @param cmd node command
-     * @throw IllegalArgumentException if, cmd's main type is not Command.MainType.NODE
+     * @throw IllegalArgumentException if, cmd's main type is not ShellCommand.MainType.NODE
      */
-    private void executeNode(final Command cmd) {
-        if (cmd.getCommand() != Command.MainType.NODE) {
+    private void executeNode(final ShellCommand cmd) {
+        if (cmd.getCommand() != ShellCommand.MainType.NODE) {
             throw new IllegalArgumentException("Method must be invoked with Command.MainType.NODE!");
         }
 
@@ -176,7 +176,7 @@ public class InteractiveShell {
      *
      * @param cmd parsed command
      */
-    private void addNode(final Command cmd) {
+    private void addNode(final ShellCommand cmd) {
         int amount = 1;
 
         if (cmd.getArguments().size() == 1) {
@@ -224,7 +224,7 @@ public class InteractiveShell {
      *
      * @param cmd parsed command
      */
-    private void nodeInfo(final Command cmd) {
+    private void nodeInfo(final ShellCommand cmd) {
         final Token<Integer> arg = cmd.getArguments().get(0);
 
         if (env.hasNode(arg.getValue())) {
@@ -251,7 +251,7 @@ public class InteractiveShell {
      *
      * @param cmd parsed command
      */
-    private void deleteNode(final Command cmd) {
+    private void deleteNode(final ShellCommand cmd) {
         final Token<Integer> argId = cmd.getArguments().get(0);
 
         if (! env.hasNode(argId.getValue())) {
@@ -267,7 +267,7 @@ public class InteractiveShell {
      *
      * @param cmd parsed command
      */
-    private void connectNodes(final Command cmd) {
+    private void connectNodes(final ShellCommand cmd) {
         final Token<Integer> argId = cmd.getArguments().get(0);
         final Token<Integer> argNeighborId = cmd.getArguments().get(1);
 

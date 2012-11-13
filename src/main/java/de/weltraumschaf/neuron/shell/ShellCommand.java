@@ -25,12 +25,12 @@ import java.util.Map;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class Command {
+public class ShellCommand {
 
     /**
      * Enumerates the available commands.
      */
-    enum MainType {
+    public enum MainType {
 
         HELP("help"), RESET("reset"), EXIT("exit"), NODE("node");
 
@@ -50,7 +50,7 @@ class Command {
     /**
      * Enumerates the optional subcommands.
      */
-    enum SubType {
+    public enum SubType {
         NONE(""), ADD("add"), DEL("del"), CONNECT("connect"), LIST("list"), INFO("info");
 
         private final String name;
@@ -113,7 +113,7 @@ class Command {
      * @param command main command
      * @param arguments command arguments, may be an empty list
      */
-    public Command(final MainType mainCommand, final List<Token> arguments) {
+    public ShellCommand(final MainType mainCommand, final List<Token> arguments) {
         this(mainCommand, SubType.NONE, arguments);
     }
 
@@ -124,7 +124,7 @@ class Command {
      * @param subCommand sub command
      * @param arguments command arguments, may be an empty list
      */
-    public Command(final MainType command, final SubType subCommand, final List<Token> arguments) {
+    public ShellCommand(final MainType command, final SubType subCommand, final List<Token> arguments) {
         super();
         this.command    = command;
         this.subCommand = subCommand;
