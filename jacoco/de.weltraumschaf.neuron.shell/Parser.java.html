@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.shell;
+
+import com.google.common.collect.Lists;
+import de.weltraumschaf.neuron.shell.ShellCommand.MainType;
+import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
+import java.util.List;
+
+/**
+ * Parses input line from interactive shell.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+class Parser {
+
+    /**
+     * Tokenize the input line.
+     */
+    private final Scanner scanner;
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param scanner to scann input line
+     */
+    public Parser(final Scanner scanner) {
+<span class="fc" id="L37">        super();</span>
+<span class="fc" id="L38">        this.scanner = scanner;</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Parses given input line.
+     *
+     * @param input line to parse
+     * @return recognized shell command
+     * @throws SyntaxException if, the parsed line has syntax errors
+     */
+    ShellCommand parse(final String input) throws SyntaxException {
+<span class="fc" id="L49">        final List&lt;Token&gt; tokens = scanner.scan(input);</span>
+<span class="fc" id="L50">        final Token commandtoken = tokens.get(0);</span>
+
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (TokenType.LITERAL != commandtoken.getType()) {</span>
+<span class="nc" id="L53">            throw new SyntaxException(&quot;Command expected as first word!&quot;);</span>
+        }
+
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (! ShellCommand.isCommand(commandtoken)) {</span>
+<span class="nc" id="L57">            throw new SyntaxException(&quot;Command expected as first word!&quot;);</span>
+        }
+
+<span class="fc" id="L60">        final MainType command = ShellCommand.determineCommand(commandtoken);</span>
+<span class="fc" id="L61">        SubType subCommand = SubType.NONE;</span>
+<span class="fc" id="L62">        int argumentBegin = 1;</span>
+
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (tokens.size() &gt; 1) {</span>
+<span class="fc" id="L65">            final Token secondToken = tokens.get(1);</span>
+
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">            if (secondToken.getType() == TokenType.LITERAL &amp;&amp; ShellCommand.isSubCommand(secondToken)) {</span>
+<span class="fc" id="L68">                ++argumentBegin;</span>
+<span class="fc" id="L69">                subCommand = ShellCommand.determineSubCommand(secondToken);</span>
+            }
+        }
+
+        List&lt;Token&gt; arguments;
+
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (tokens.size() &gt; argumentBegin) {</span>
+<span class="fc" id="L76">            arguments = tokens.subList(argumentBegin, tokens.size());</span>
+        } else {
+<span class="fc" id="L78">            arguments = Lists.newArrayList();</span>
+        }
+
+<span class="fc" id="L81">        final ShellCommand cmd = new ShellCommand(command, subCommand, arguments);</span>
+<span class="fc" id="L82">        verifyCommand(cmd);</span>
+<span class="fc" id="L83">        return cmd;</span>
+    }
+
+    /**
+     * Verifies parsed command of consistency.
+     *
+     * Consistency checks are:
+     * - correct sub command type
+     * - correct number of arguments
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, verification has failed
+     */
+    private void verifyCommand(final ShellCommand cmd) throws SyntaxException {
+<span class="pc bpc" id="L97" title="1 of 3 branches missed.">        switch (cmd.getCommand()) {</span>
+            case EXIT:
+            case HELP:
+            case RESET:
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">                if (cmd.getSubCommand() != SubType.NONE) {</span>
+<span class="nc" id="L102">                    throw new SyntaxException(String.format(&quot;Command %s does not support subcommands!&quot;,</span>
+                                                            cmd.getCommand()));
+                }
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">                if (! cmd.getArguments().isEmpty()) {</span>
+<span class="nc" id="L106">                    throw new SyntaxException(String.format(&quot;Command %s does not support arguments!&quot;,</span>
+                                                            cmd.getCommand()));
+                }
+                break;
+            case NODE:
+<span class="fc" id="L111">                verifyNodeCommand(cmd);</span>
+<span class="fc" id="L112">                break;</span>
+            default:
+                // Nothing to do here.
+        }
+<span class="fc" id="L116">    }</span>
+
+    /**
+     * Verify commands of main command type {@link MainType#NODE}.
+     *
+     * Consistency checks are:
+     * - correct number of arguments for sub command type
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, wrong number of arguments or unsupported subcommand was parsed
+     */
+    private void verifyNodeCommand(final ShellCommand cmd) throws SyntaxException {
+<span class="fc" id="L128">        final int argumentCount = cmd.getArguments().size();</span>
+<span class="pc bpc" id="L129" title="3 of 5 branches missed.">        switch (cmd.getSubCommand()) {</span>
+            case LIST:
+<span class="nc bnc" id="L131" title="All 2 branches missed.">                if (argumentCount != 0) {</span>
+<span class="nc" id="L132">                    throw new SyntaxException(String.format(&quot;Command %s does support no arguments!&quot;, cmd.getCommand()));</span>
+                }
+                break;
+            case ADD:
+<span class="pc bpc" id="L136" title="2 of 4 branches missed.">                if (argumentCount != 0 &amp;&amp; argumentCount != 1) {</span>
+<span class="nc" id="L137">                    throw new SyntaxException(String.format(&quot;Command %s one or zero arguments!&quot;, cmd.getCommand()));</span>
+                }
+                break;
+            case DEL:
+            case INFO:
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                if (argumentCount != 1) {</span>
+<span class="fc" id="L143">                    throw new SyntaxException(String.format(&quot;Command %s require one argument!&quot;, cmd.getCommand()));</span>
+                }
+                break;
+            case CONNECT:
+<span class="nc bnc" id="L147" title="All 2 branches missed.">                if (argumentCount != 2) {</span>
+<span class="nc" id="L148">                    throw new SyntaxException(String.format(&quot;Command %s require two argument!&quot;, cmd.getCommand()));</span>
+                }
+                break;
+            default:
+<span class="nc" id="L152">                throw new SyntaxException(String.format(&quot;Command %s does not support subcommand %s!&quot;,</span>
+                                                        cmd.getCommand(),
+                                                        cmd.getSubCommand()));
+
+        }
+
+<span class="fc" id="L158">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

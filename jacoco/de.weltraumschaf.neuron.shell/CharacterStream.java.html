@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CharacterStream.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">CharacterStream.java</span></div><h1>CharacterStream.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.shell;
+
+/**
+ * Access a string as stream of characters.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+class CharacterStream {
+
+    /**
+     * Accessed string.
+     */
+    private final String input;
+
+    /**
+     * Current character position.
+     */
+<span class="fc" id="L29">    private int index = -1;</span>
+
+    /**
+     * Initializes stream with string.
+     *
+     * @param input Streamed string.
+     */
+<span class="fc" id="L36">    public CharacterStream(final String input) {</span>
+<span class="fc" id="L37">        this.input = input;</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+     * Returns next character.
+     *
+     * @return next character
+     * // CHECKSTYLE:OFF
+     * @throws IndexOutOfBoundsException if, there are no more characters.
+     * // CHECKSTYLE:ON
+     */
+    char next() {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (!hasNext()) {</span>
+<span class="fc" id="L50">            throw new IndexOutOfBoundsException(&quot;No more next characters!&quot;);</span>
+        }
+
+<span class="fc" id="L53">        ++index;</span>
+<span class="fc" id="L54">        return current();</span>
+    }
+
+    /**
+     * True if there are more characters.
+     *
+     * @return True if there are no more characters.
+     */
+    boolean hasNext() {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        return index &lt; input.length() - 1;</span>
+    }
+
+    /**
+     * Returns the current character.
+     *
+     * If {@link #next()} not yet called, it is called implicitly.
+     *
+     * @return The current character.
+     */
+    char current() {
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (-1 == index) {</span>
+<span class="fc" id="L75">            next();</span>
+        }
+
+<span class="fc" id="L78">        return input.charAt(index);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

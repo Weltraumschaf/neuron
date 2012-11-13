@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeListCommand.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">NodeListCommand.java</span></div><h1>NodeListCommand.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.cmd;
+
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Node;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
+
+/**
+ * Executes `node list` command.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+class NodeListCommand extends BaseCommand {
+
+    /**
+     * Constructor for no argument command.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     */
+    public NodeListCommand(final Environment env, final IO io) {
+<span class="nc" id="L34">        this(env, io, DEFAULT_ARGUMETS);</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     * @param arguments command arguments
+     */
+    public NodeListCommand(final Environment env, final IO io, final List&lt;Token&gt; arguments) {
+<span class="nc" id="L45">        super(env, io, arguments);</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    public void execute() {
+<span class="nc" id="L50">        final StringBuilder summary = new StringBuilder();</span>
+<span class="nc" id="L51">        final List&lt;Node&gt; nodes = getEnv().getNodes();</span>
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (nodes.isEmpty()) {</span>
+<span class="nc" id="L54">            summary.append(String.format(&quot;No nodes created.%n&quot;));</span>
+        } else {
+<span class="nc" id="L56">            summary.append(String.format(&quot;%d nodes created.%n%n&quot;, nodes.size()));</span>
+<span class="nc" id="L57">            summary.append(String.format(&quot;Existing nodes:%n&quot;));</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            for (final Node n : nodes) {</span>
+<span class="nc" id="L59">                summary.append(String.format(&quot;  %s%n&quot;, n));</span>
+            }
+        }
+
+<span class="nc" id="L63">        getIo().println(summary.toString());</span>
+<span class="nc" id="L64">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

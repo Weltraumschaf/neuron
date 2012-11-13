@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeDelCommand.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">NodeDelCommand.java</span></div><h1>NodeDelCommand.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.cmd;
+
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
+
+/**
+ * Executes `node del ID` command.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+class NodeDelCommand extends BaseCommand {
+
+    /**
+     * Constructor for no argument command.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     */
+    public NodeDelCommand(final Environment env, final IO io) {
+<span class="nc" id="L33">        this(env, io, DEFAULT_ARGUMETS);</span>
+
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     * @param arguments command arguments
+     */
+    public NodeDelCommand(final Environment env, final IO io, final List&lt;Token&gt; arguments) {
+<span class="nc" id="L45">        super(env, io, arguments);</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    public void execute() {
+<span class="nc" id="L50">        final Token&lt;Integer&gt; argId = getArguments().get(0);</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (! getEnv().hasNode(argId.getValue())) {</span>
+<span class="nc" id="L53">            getIo().println(String.format(&quot;Node with id %d does not exist!&quot;, argId.getValue()));</span>
+<span class="nc" id="L54">            return;</span>
+        }
+
+<span class="nc" id="L57">        getEnv().remove(argId.getValue());</span>
+<span class="nc" id="L58">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

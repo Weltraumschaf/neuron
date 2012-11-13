@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron</a> &gt; <span class="el_source">NodeFactory.java</span></div><h1>NodeFactory.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron;
+
+/**
+ * Create nodes with distinct id.
+ *
+ * The used ids wil start at 0 up to {@link Integer#MAX_VALUE}. If you want to restart creating nodes
+ * with ids from 0 you must use a new Factory instance.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+<span class="fc" id="L22">public final class NodeFactory {</span>
+
+    /**
+     * Next id to use.
+     */
+<span class="fc" id="L27">    private int nextId = -1;</span>
+
+    /**
+     * Increments {@link #nextId} and returns it.
+     *
+     * @return distinct value from 0 to {@link Integer#MAX_VALUE}
+     */
+    private int getNextId() {
+<span class="fc" id="L35">        ++nextId;</span>
+<span class="fc" id="L36">        return nextId;</span>
+    }
+
+    /**
+     * Create node with {@link #nextId} as id.
+     *
+     * @return new instance
+     */
+    public Node newNode() {
+<span class="fc" id="L45">        return newNode(getNextId());</span>
+    }
+
+    /**
+     * Creates node with given id.
+     *
+     * @param id nodes id
+     * @return new instance
+     */
+    public Node newNode(final int id) {
+<span class="fc" id="L55">        return new NodeImpl(id);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

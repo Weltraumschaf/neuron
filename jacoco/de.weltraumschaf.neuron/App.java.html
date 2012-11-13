@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package de.weltraumschaf.neuron;
+
+import de.weltraumschaf.commons.InvokableAdapter;
+import de.weltraumschaf.neuron.shell.InteractiveShell;
+
+/**
+ * The main neuron application.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+public final class App extends InvokableAdapter {
+
+    /**
+     * Hide constructor because it is not intended to create objects of this type
+     * outside of {@link App#main(de.weltraumschaf.commons.Invokable)}.
+     *
+     * @param args command line arguments
+     */
+    private App(final String[] args) {
+<span class="nc" id="L20">        super(args);</span>
+<span class="nc" id="L21">    }</span>
+
+    /**
+     * Main entry point for JVM.
+     *
+     * Catches all {@link Exception exception} and print their message to STDERR
+     * and exits with -1.
+     *
+     * @param args command line arguments
+     */
+    public static void main(final String[] args) {
+<span class="nc" id="L32">        final App app = new App(args);</span>
+
+        try {
+<span class="nc" id="L35">            InvokableAdapter.main(app);</span>
+<span class="nc" id="L36">            app.exit(0);</span>
+<span class="nc" id="L37">        } catch (Exception ex) {</span>
+<span class="nc" id="L38">            app.getIoStreams().errorln(&quot;Exception: &quot; + ex.getMessage());</span>
+<span class="nc" id="L39">            app.exit(-1);</span>
+<span class="nc" id="L40">        }</span>
+<span class="nc" id="L41">    }</span>
+
+    /**
+     * Starts interactive shell.
+     *
+     * @throws Exception if, something bad happens at runtime.
+     */
+    @Override
+    public void execute() throws Exception {
+<span class="nc" id="L50">        final InteractiveShell shell = new InteractiveShell(getIoStreams());</span>
+<span class="nc" id="L51">        shell.start();</span>
+<span class="nc" id="L52">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

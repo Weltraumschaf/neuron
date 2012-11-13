@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CommandFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">CommandFactory.java</span></div><h1>CommandFactory.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.cmd;
+
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.ShellCommand;
+import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
+
+/**
+ * Factory to create command objects depending on the parsed {@link ShellCommand}.
+ *
+ * @author @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+public final class CommandFactory {
+
+    /**
+     * Shell environment.
+     */
+    private final Environment env;
+
+    /**
+     * Shell I/O.
+     */
+    private final IO io;
+
+    /**
+     * Version of the shell.
+     */
+    private final Version version;
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment used by commands
+     * @param io shell I/O used by commands
+     * @param version version info used by some commands
+     */
+    public CommandFactory(final Environment env, final IO io, final Version version) {
+<span class="nc" id="L52">        super();</span>
+<span class="nc" id="L53">        this.env = env;</span>
+<span class="nc" id="L54">        this.io = io;</span>
+<span class="nc" id="L55">        this.version = version;</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Create command instances according to the parsed shell command.
+     *
+     * @param shellCmd used to determine appropriate command
+     * @return command object
+     * // CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, can't create command of bad main or sub command type
+     * // CHECKSTYLE:ON
+     */
+    public Command newCommand(final ShellCommand shellCmd) {
+        Command cmd;
+<span class="nc bnc" id="L69" title="All 5 branches missed.">        switch (shellCmd.getCommand()) {</span>
+            case EXIT:
+<span class="nc" id="L71">                cmd = new ExitCommand(env, io, shellCmd.getArguments());</span>
+<span class="nc" id="L72">                break;</span>
+            case HELP:
+<span class="nc" id="L74">                cmd = new HelpCommand(env, io, shellCmd.getArguments());</span>
+<span class="nc" id="L75">                break;</span>
+            case NODE:
+<span class="nc" id="L77">                cmd = newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
+<span class="nc" id="L78">                break;</span>
+            case RESET:
+<span class="nc" id="L80">                cmd = new ResetCommand(env, io, shellCmd.getArguments());</span>
+<span class="nc" id="L81">                break;</span>
+            default:
+<span class="nc" id="L83">                throw new IllegalArgumentException(String.format(&quot;Unsupported main command type '%s'!&quot;,</span>
+                                                                 shellCmd.getCommand()));
+        }
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (cmd instanceof UseVersion) {</span>
+<span class="nc" id="L88">            ((UseVersion) cmd).setVersion(version);</span>
+        }
+
+<span class="nc" id="L91">        return cmd;</span>
+    }
+
+    /**
+     * Helper to create sub commands for node command.
+     *
+     * @param subCommand used to determine appropriate command
+     * @param arguments command line arguments
+     * @return command object
+     * // CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, can't create command of bad sub command type
+     * // CHECKSTYLE:ON
+     */
+    private Command newNodeCommand(final SubType subCommand, final List&lt;Token&gt; arguments) {
+<span class="nc bnc" id="L105" title="All 6 branches missed.">        switch (subCommand) {</span>
+            case ADD:
+<span class="nc" id="L107">                return new NodeAddCommand(env, io, arguments);</span>
+            case CONNECT:
+<span class="nc" id="L109">                return new NodeConnectCommand(env, io, arguments);</span>
+            case DEL:
+<span class="nc" id="L111">                return new NodeDelCommand(env, io, arguments);</span>
+            case INFO:
+<span class="nc" id="L113">                return new NodeInfoCommand(env, io, arguments);</span>
+            case LIST:
+<span class="nc" id="L115">                return new NodeListCommand(env, io, arguments);</span>
+            default:
+<span class="nc" id="L117">                throw new IllegalArgumentException(</span>
+                            String.format(&quot;Main command type NODE does not support sub type '%s'!&quot;, subCommand));
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

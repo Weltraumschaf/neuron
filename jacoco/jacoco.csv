@@ -1,0 +1,29 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Neuron,de.weltraumschaf.neuron.shell,CharacterStream,0,51,0,6,0,12,0,7,0,4
+Neuron,de.weltraumschaf.neuron.shell,TokenType,9,39,0,0,0,4,2,2,2,2
+Neuron,de.weltraumschaf.neuron.shell,CharacterHelper,3,63,0,22,2,7,1,16,1,5
+Neuron,de.weltraumschaf.neuron.shell,InteractiveShell,105,0,4,0,28,0,6,0,4,0
+Neuron,de.weltraumschaf.neuron.shell,ShellCommand,48,104,2,8,5,23,4,12,2,9
+Neuron,de.weltraumschaf.neuron.shell,ShellCommand.MainType,5,63,0,0,0,9,1,4,1,4
+Neuron,de.weltraumschaf.neuron.shell,Parser,98,126,16,18,10,33,14,9,0,4
+Neuron,de.weltraumschaf.neuron.shell,SyntaxException,9,10,0,0,4,4,2,2,2,2
+Neuron,de.weltraumschaf.neuron.shell,Environment,40,106,4,8,7,24,5,11,3,7
+Neuron,de.weltraumschaf.neuron.shell,ShellCommand.SubType,5,85,0,0,0,11,1,4,1,4
+Neuron,de.weltraumschaf.neuron.shell,Token,0,39,0,0,0,9,0,6,0,6
+Neuron,de.weltraumschaf.neuron.shell,Parser.new Object() {...},9,63,0,0,0,2,0,1,0,1
+Neuron,de.weltraumschaf.neuron.shell,Scanner,0,130,1,19,0,35,1,14,0,5
+Neuron,de.weltraumschaf.neuron.cmd,NodeInfoCommand,110,0,6,0,18,0,6,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,NodeAddCommand,72,0,6,0,17,0,6,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,NodeConnectCommand,103,0,4,0,17,0,5,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,ResetCommand,20,0,0,0,7,0,3,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,NodeDelCommand,47,0,2,0,10,0,4,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,CommandFactory.new Object() {...},72,0,0,0,2,0,1,0,1,0
+Neuron,de.weltraumschaf.neuron.cmd,ExitCommand,17,0,0,0,6,0,3,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,CommandFactory,144,0,13,0,25,0,13,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,BaseCommand,24,0,0,0,9,0,5,0,5,0
+Neuron,de.weltraumschaf.neuron.cmd,NodeListCommand,79,0,4,0,14,0,5,0,3,0
+Neuron,de.weltraumschaf.neuron.cmd,HelpCommand,30,0,0,0,8,0,4,0,4,0
+Neuron,de.weltraumschaf.neuron,NodeFactory,0,25,0,0,0,6,0,4,0,4
+Neuron,de.weltraumschaf.neuron,Message,37,0,0,0,9,0,5,0,5,0
+Neuron,de.weltraumschaf.neuron,NodeImpl,36,105,2,8,4,20,5,12,4,8
+Neuron,de.weltraumschaf.neuron,App,41,0,0,0,13,0,3,0,3,0

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeAddCommand.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">NodeAddCommand.java</span></div><h1>NodeAddCommand.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.cmd;
+
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Node;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
+
+/**
+ * Executes `node add` command.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+class NodeAddCommand extends BaseCommand {
+
+    /**
+     * Constructor for no argument command.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     */
+    public NodeAddCommand(final Environment env, final IO io) {
+<span class="nc" id="L34">        this(env, io, DEFAULT_ARGUMETS);</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment
+     * @param io shell I/O
+     * @param arguments command arguments
+     */
+    public NodeAddCommand(final Environment env, final IO io, final List&lt;Token&gt; arguments) {
+<span class="nc" id="L45">        super(env, io, arguments);</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    public void execute() {
+<span class="nc" id="L50">        int amount = 1;</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (getArguments().size() == 1) {</span>
+<span class="nc" id="L53">            final Token&lt;Integer&gt; t = getArguments().get(0);</span>
+<span class="nc" id="L54">            amount = t.getValue();</span>
+        }
+
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (amount &lt; 1) {</span>
+<span class="nc" id="L58">            getIo().println(&quot;Parameter AMOUNT must not be less than 1!&quot;);</span>
+<span class="nc" id="L59">            return;</span>
+        }
+
+<span class="nc" id="L62">        final StringBuilder summary = new StringBuilder();</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for (int i = 0; i &lt; amount; ++i) {</span>
+<span class="nc" id="L65">            final Node n = getEnv().add();</span>
+<span class="nc" id="L66">            summary.append(String.format(&quot;Node with id %d added%n&quot;, n.getId()));</span>
+        }
+
+<span class="nc" id="L69">        getIo().println(summary.toString());</span>
+<span class="nc" id="L70">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>
