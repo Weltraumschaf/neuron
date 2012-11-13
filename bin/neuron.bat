@@ -12,4 +12,4 @@
 
 @echo off
 
-java -jar "..\target\neuron.jar"
+java -jar ".\neuron.jar"

@@ -12,6 +12,4 @@
 # Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf(at)googlemail(dot)com>
 #
 
-BASE_DIR="$(dirname $0)/.."
-
-java -jar "${BASE_DIR}/target/neuron.jar" $*
+java -jar "./neuron.jar" $*
