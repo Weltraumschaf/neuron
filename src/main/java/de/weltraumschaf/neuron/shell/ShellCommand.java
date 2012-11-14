@@ -77,7 +77,11 @@ public class ShellCommand {
         /** List sub command for node command. */
         LIST("list"),
         /** Info sub command for node command. */
-        INFO("info");
+        INFO("info"),
+        /** Listen sub command for node command. */
+        LISTEN("listen"),
+        /** Unlisten sub command for node command. */
+        UNLISTEN("unlisten");
 
         /**
          * Literal command string used in shell.

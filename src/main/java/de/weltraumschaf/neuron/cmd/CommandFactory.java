@@ -113,6 +113,10 @@ public final class CommandFactory {
                 return new NodeInfo(env, io, arguments);
             case LIST:
                 return new NodeList(env, io, arguments);
+            case LISTEN:
+                return new NodeListen(env, io, arguments);
+            case UNLISTEN:
+                return new NodeUnlisten(env, io, arguments);
             default:
                 throw new IllegalArgumentException(
                             String.format("Main command type NODE does not support sub type '%s'!", subCommand));
