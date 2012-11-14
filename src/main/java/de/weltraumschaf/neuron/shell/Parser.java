@@ -54,7 +54,7 @@ class Parser {
         }
 
         if (! ShellCommand.isCommand(commandtoken)) {
-            throw new SyntaxException("Command expected as first word!");
+            throw new SyntaxException(String.format("Unrecognized token '%s'!", commandtoken.getValue()));
         }
 
         final MainType command = ShellCommand.determineCommand(commandtoken);
