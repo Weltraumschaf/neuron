@@ -107,6 +107,8 @@ public final class CommandFactory {
                 return new NodeAdd(env, io, arguments);
             case CONNECT:
                 return new NodeConnect(env, io, arguments);
+            case DISCONNECT:
+                return new NodeDisconnect(env, io, arguments);
             case DEL:
                 return new NodeDel(env, io, arguments);
             case INFO:
@@ -119,7 +121,7 @@ public final class CommandFactory {
                 return new NodeUnlisten(env, io, arguments);
             default:
                 throw new IllegalArgumentException(
-                            String.format("Main command type NODE does not support sub type '%s'!", subCommand));
+                            String.format("Main command type 'node' does not support sub type '%s'!", subCommand));
         }
     }
 }

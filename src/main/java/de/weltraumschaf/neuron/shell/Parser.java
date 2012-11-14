@@ -126,6 +126,11 @@ class Parser {
      */
     private void verifyNodeCommand(final ShellCommand cmd) throws SyntaxException {
         final int argumentCount = cmd.getArguments().size();
+
+        if (cmd.getSubCommand() == SubType.NONE) {
+            throw new SyntaxException(String.format("Command %s must have sub command!", cmd.getCommand()));
+        }
+
         switch (cmd.getSubCommand()) {
             case LIST:
                 if (argumentCount != 0) {
