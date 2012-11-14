@@ -9,8 +9,10 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
+package de.weltraumschaf.neuron.node;
 
+import de.weltraumschaf.neuron.node.Node;
+import de.weltraumschaf.neuron.node.NodeImpl;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
