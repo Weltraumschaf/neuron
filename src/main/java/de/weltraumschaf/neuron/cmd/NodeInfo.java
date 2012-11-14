@@ -22,17 +22,7 @@ import java.util.List;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class NodeInfoCommand extends BaseCommand {
-
-    /**
-     * Constructor for no argument command.
-     *
-     * @param env shell environment
-     * @param io shell I/O
-     */
-    public NodeInfoCommand(final Environment env, final IO io) {
-        this(env, io, DEFAULT_ARGUMETS);
-    }
+class NodeInfo extends BaseCommand {
 
     /**
      * Dedicated constructor.
@@ -41,7 +31,7 @@ class NodeInfoCommand extends BaseCommand {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public NodeInfoCommand(final Environment env, final IO io, final List<Token> arguments) {
+    public NodeInfo(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 

@@ -17,21 +17,11 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
- * Executes `reset` command.
+ * Executes `exit` command.
  *
  * @author @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class ResetCommand extends BaseCommand {
-
-    /**
-     * Constructor for no argument command.
-     *
-     * @param env shell environment
-     * @param io shell I/O
-     */
-    public ResetCommand(final Environment env, final IO io) {
-        this(env, io, DEFAULT_ARGUMETS);
-    }
+class Exit extends BaseCommand {
 
     /**
      * Dedicated constructor.
@@ -40,14 +30,14 @@ class ResetCommand extends BaseCommand {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public ResetCommand(final Environment env, final IO io, final List<Token> arguments) {
+    public Exit(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 
     @Override
     public void execute() {
-        getIo().println("Resetting...");
-        getEnv().reset();
+        getIo().println("bye bye!");
     }
+
 
 }

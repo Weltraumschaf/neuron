@@ -68,16 +68,16 @@ public final class CommandFactory {
         Command cmd;
         switch (shellCmd.getCommand()) {
             case EXIT:
-                cmd = new ExitCommand(env, io, shellCmd.getArguments());
+                cmd = new Exit(env, io, shellCmd.getArguments());
                 break;
             case HELP:
-                cmd = new HelpCommand(env, io, shellCmd.getArguments());
+                cmd = new Help(env, io, shellCmd.getArguments());
                 break;
             case NODE:
                 cmd = newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
                 break;
             case RESET:
-                cmd = new ResetCommand(env, io, shellCmd.getArguments());
+                cmd = new Reset(env, io, shellCmd.getArguments());
                 break;
             default:
                 throw new IllegalArgumentException(String.format("Unsupported main command type '%s'!",
@@ -104,15 +104,15 @@ public final class CommandFactory {
     private Command newNodeCommand(final SubType subCommand, final List<Token> arguments) {
         switch (subCommand) {
             case ADD:
-                return new NodeAddCommand(env, io, arguments);
+                return new NodeAdd(env, io, arguments);
             case CONNECT:
-                return new NodeConnectCommand(env, io, arguments);
+                return new NodeConnect(env, io, arguments);
             case DEL:
-                return new NodeDelCommand(env, io, arguments);
+                return new NodeDel(env, io, arguments);
             case INFO:
-                return new NodeInfoCommand(env, io, arguments);
+                return new NodeInfo(env, io, arguments);
             case LIST:
-                return new NodeListCommand(env, io, arguments);
+                return new NodeList(env, io, arguments);
             default:
                 throw new IllegalArgumentException(
                             String.format("Main command type NODE does not support sub type '%s'!", subCommand));

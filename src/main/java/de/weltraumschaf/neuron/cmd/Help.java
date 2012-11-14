@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class HelpCommand extends BaseCommand implements UseVersion {
+class Help extends BaseCommand implements UseVersion {
 
     /**
      * Help message for shell users.
@@ -38,21 +38,13 @@ class HelpCommand extends BaseCommand implements UseVersion {
         + "  node connect ID NEIGHBOR_ID    Connect two nodes.%n"
         + "  node list                      List all nodes.%n"
         + "  node info ID                   Print info of a node.%n"
+        + "  node listen ID                 Listening for events of specified node."
+        + "  node unlisten ID               Stop listening for events of specified node."
         + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n%n";
     /**
      * Program version info.
      */
     private Version version;
-
-    /**
-     * Constructor for no argument command.
-     *
-     * @param env shell environment
-     * @param io shell I/O
-     */
-    public HelpCommand(final Environment env, final IO io) {
-        this(env, io, DEFAULT_ARGUMETS);
-    }
 
     /**
      * Dedicated constructor.
@@ -61,7 +53,7 @@ class HelpCommand extends BaseCommand implements UseVersion {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public HelpCommand(final Environment env, final IO io, final List<Token> arguments) {
+    public Help(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 

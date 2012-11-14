@@ -18,21 +18,11 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
- * Executes `node connect FROM TO` command.
+ * Executes `node del ID` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class NodeConnectCommand extends BaseCommand {
-
-    /**
-     * Constructor for no argument command.
-     *
-     * @param env shell environment
-     * @param io shell I/O
-     */
-    public NodeConnectCommand(final Environment env, final IO io) {
-        this(env, io, DEFAULT_ARGUMETS);
-    }
+class NodeDel extends BaseCommand {
 
     /**
      * Dedicated constructor.
@@ -41,29 +31,22 @@ class NodeConnectCommand extends BaseCommand {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public NodeConnectCommand(final Environment env, final IO io, final List<Token> arguments) {
+    public NodeDel(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 
     @Override
     public void execute() {
         final Token<Integer> argId = getArguments().get(0);
-        final Token<Integer> argNeighborId = getArguments().get(1);
 
         if (! getEnv().hasNode(argId.getValue())) {
             getIo().println(String.format("Node with id %d does not exist!", argId.getValue()));
             return;
         }
 
-        if (! getEnv().hasNode(argNeighborId.getValue())) {
-            getIo().println(String.format("Node with id %d does not exist!", argNeighborId.getValue()));
-            return;
-        }
 
-        final Node connector = getEnv().getNode(argId.getValue());
-        final Node connected = getEnv().getNode(argNeighborId.getValue());
-        connector.connect(connected);
-        getIo().println(String.format("Conected nodes: %d -> %d.", argId.getValue(), argNeighborId.getValue()));
+        final Node n = getEnv().remove(argId.getValue());
+        n.deleteObserver(getEnv().getHandler());
     }
 
 }

@@ -18,21 +18,11 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
- * Executes `node list` command.
+ * Executes `node connect FROM TO` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class NodeListCommand extends BaseCommand {
-
-    /**
-     * Constructor for no argument command.
-     *
-     * @param env shell environment
-     * @param io shell I/O
-     */
-    public NodeListCommand(final Environment env, final IO io) {
-        this(env, io, DEFAULT_ARGUMETS);
-    }
+class NodeConnect extends BaseCommand {
 
     /**
      * Dedicated constructor.
@@ -41,26 +31,29 @@ class NodeListCommand extends BaseCommand {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public NodeListCommand(final Environment env, final IO io, final List<Token> arguments) {
+    public NodeConnect(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 
     @Override
     public void execute() {
-        final StringBuilder summary = new StringBuilder();
-        final List<Node> nodes = getEnv().getNodes();
+        final Token<Integer> argId = getArguments().get(0);
+        final Token<Integer> argNeighborId = getArguments().get(1);
 
-        if (nodes.isEmpty()) {
-            summary.append(String.format("No nodes created.%n"));
-        } else {
-            summary.append(String.format("%d nodes created.%n%n", nodes.size()));
-            summary.append(String.format("Existing nodes:%n"));
-            for (final Node n : nodes) {
-                summary.append(String.format("  %s%n", n));
-            }
+        if (! getEnv().hasNode(argId.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", argId.getValue()));
+            return;
         }
 
-        getIo().println(summary.toString());
+        if (! getEnv().hasNode(argNeighborId.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", argNeighborId.getValue()));
+            return;
+        }
+
+        final Node connector = getEnv().getNode(argId.getValue());
+        final Node connected = getEnv().getNode(argNeighborId.getValue());
+        connector.connect(connected);
+        getIo().println(String.format("Conected nodes: %d -> %d.", argId.getValue(), argNeighborId.getValue()));
     }
 
 }

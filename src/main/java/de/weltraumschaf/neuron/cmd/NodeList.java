@@ -12,26 +12,17 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
- * Executes `exit` command.
+ * Executes `node list` command.
  *
- * @author @author Sven Strittmatter <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class ExitCommand extends BaseCommand {
-
-    /**
-     * Constructor for no argument command.
-     *
-     * @param env shell environment
-     * @param io shell I/O
-     */
-    public ExitCommand(final Environment env, final IO io) {
-        this(env, io, DEFAULT_ARGUMETS);
-    }
+class NodeList extends BaseCommand {
 
     /**
      * Dedicated constructor.
@@ -40,14 +31,26 @@ class ExitCommand extends BaseCommand {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public ExitCommand(final Environment env, final IO io, final List<Token> arguments) {
+    public NodeList(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 
     @Override
     public void execute() {
-        getIo().println("bye bye!");
-    }
+        final StringBuilder summary = new StringBuilder();
+        final List<Node> nodes = getEnv().getNodes();
 
+        if (nodes.isEmpty()) {
+            summary.append(String.format("No nodes created.%n"));
+        } else {
+            summary.append(String.format("%d nodes created.%n%n", nodes.size()));
+            summary.append(String.format("Existing nodes:%n"));
+            for (final Node n : nodes) {
+                summary.append(String.format("  %s%n", n));
+            }
+        }
+
+        getIo().println(summary.toString());
+    }
 
 }
