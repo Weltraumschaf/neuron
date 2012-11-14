@@ -27,4 +27,8 @@ In the shell you can get all available commands with the `help` command.
 
     >
 
+## TODO
+
+- Possibility to add costs/latency to nodes.
+
 [1]: http://maven.apache.org/
