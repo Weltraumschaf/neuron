@@ -148,6 +148,7 @@ class Parser {
                 }
                 break;
             case CONNECT:
+            case DISCONNECT:
                 if (argumentCount != 2) {
                     throw new SyntaxException(String.format("Command %s require two argument!", cmd.getCommand()));
                 }

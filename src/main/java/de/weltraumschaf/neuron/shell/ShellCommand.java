@@ -74,6 +74,8 @@ public class ShellCommand {
         DEL("del"),
         /** Connect sub command for node command. */
         CONNECT("connect"),
+        /** Disconnect sub command for node command. */
+        DISCONNECT("disconnect"),
         /** List sub command for node command. */
         LIST("list"),
         /** Info sub command for node command. */
