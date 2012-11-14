@@ -43,8 +43,9 @@ class NodeListen extends BaseCommand {
         if (getEnv().hasNode(id)) {
             final Node n = getEnv().getNode(id);
             n.addObserver(getEnv().getHandler());
+            getIo().println(String.format("Listening for events emmitted by node %d.", id));
         } else {
-            getIo().println(String.format("There is no node with id '%d'!", id));
+            getIo().println(String.format("There is no node with id %d!", id));
         }
     }
 

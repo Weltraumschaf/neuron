@@ -38,8 +38,8 @@ class Help extends BaseCommand implements UseVersion {
         + "  node connect ID NEIGHBOR_ID    Connect two nodes.%n"
         + "  node list                      List all nodes.%n"
         + "  node info ID                   Print info of a node.%n"
-        + "  node listen ID                 Listening for events of specified node.%n"
-        + "  node unlisten ID               Stop listening for events of specified node.%n%n"
+        + "  node listen ID|all             Listening for events of specified node.%n"
+        + "  node unlisten ID|all           Stop listening for events of specified node.%n%n"
         + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n%n";
     /**
      * Program version info.

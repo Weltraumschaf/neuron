@@ -139,8 +139,12 @@ class Parser {
                 break;
             case DEL:
             case INFO:
+            case LISTEN:
+            case UNLISTEN:
                 if (argumentCount != 1) {
-                    throw new SyntaxException(String.format("Command %s require one argument!", cmd.getCommand()));
+                    throw new SyntaxException(String.format("Command %s %s require one argument!",
+                                                            cmd.getCommand(),
+                                                            cmd.getSubCommand()));
                 }
                 break;
             case CONNECT:
