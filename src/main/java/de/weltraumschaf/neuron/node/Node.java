@@ -13,6 +13,7 @@ package de.weltraumschaf.neuron.node;
 
 import de.weltraumschaf.neuron.Message;
 import java.util.List;
+import java.util.Observer;
 
 /**
  * This type defines a node.
@@ -83,4 +84,17 @@ public interface Node {
      */
     List<Node> getNeighbors();
 
+    /**
+     * Method to register an event handler.
+     *
+     * @param o event handler
+     */
+    void addObserver(Observer o);
+
+    /**
+     * Method to unregister an event handler.
+     *
+     * @param o event handler
+     */
+    void deleteObserver(Observer o);
 }

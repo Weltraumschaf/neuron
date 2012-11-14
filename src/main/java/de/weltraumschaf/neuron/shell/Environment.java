@@ -17,6 +17,7 @@ import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
 import java.util.List;
 import java.util.Map;
+import java.util.Observer;
 
 /**
  * Environment for interactive shell.
@@ -33,9 +34,24 @@ public class Environment {
     private final Map<Integer, Node> nodes = Maps.newHashMap();
 
     /**
+     * Handle events of {@link Node nodes} it is registered for.
+     */
+    private final Observer handler;
+
+    /**
      * Factory to create nodes.
      */
     private NodeFactory factory = new NodeFactory();
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param eventHandler handles node events
+     */
+    Environment(final Observer eventHandler) {
+        super();
+        handler = eventHandler;
+    }
 
     /**
      * Create and add a new node to the environment.
@@ -71,10 +87,14 @@ public class Environment {
      * Disconnect from all nodes and remove from environment nodes.
      *
      * @param n node to remove
+     * @return removed node
+     * CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, node does not exist
+     * CHECKSTYLE:ON
      */
-    void remove(final Node n) {
+    Node remove(final Node n) {
         if (!nodes.containsValue(n)) {
-            return;
+            throw new IllegalArgumentException("Does not have node " + n.toString());
         }
 
         for (final Integer key : nodes.keySet()) {
@@ -84,18 +104,20 @@ public class Environment {
             }
         }
 
-        nodes.remove(Integer.valueOf(n.getId()));
+        return nodes.remove(Integer.valueOf(n.getId()));
     }
 
     /**
      * Disconnect from all nodes and remove from environment nodes.
      *
      * @param id id of node to remove
+     * @return removed node
+     * CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, node does not exist
+     * CHECKSTYLE:ON
      */
-    public void remove(final int id) {
-        if (hasNode(id)) {
-            remove(getNode(id));
-        }
+    public Node remove(final int id) {
+        return remove(getNode(id));
     }
 
     /**
@@ -151,6 +173,15 @@ public class Environment {
             throw new IllegalArgumentException(String.format("Does not have node with id '%d'!", id));
         }
         return nodes.get(Integer.valueOf(id));
+    }
+
+    /**
+     * Getter for the event handler.
+     *
+     * @return event handler
+     */
+    public Observer getHandler() {
+        return handler;
     }
 
 }

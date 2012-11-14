@@ -13,6 +13,7 @@ package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
+import java.util.Observer;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.*;
 public class EnvironmentTest {
 
     private final NodeFactory factory = new NodeFactory();
-    private final Environment sut = new Environment();
+    private final Environment sut = new Environment(mock(Observer.class));
 
     @Test
     public void addNodes() {
@@ -74,6 +75,12 @@ public class EnvironmentTest {
         assertThat(sut.getNodes().get(0).getId(), is(0));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void removeNode_throwExceptionIfNotexists() {
+        final Node n1 = factory.newNode(1);
+        sut.remove(n1);
+    }
+
     @Test
     public void removeNode_byNode() {
         final Node n1 = spy(factory.newNode(1));
@@ -93,9 +100,6 @@ public class EnvironmentTest {
         assertThat(sut.hasNode(n1.getId()), is(false));
         assertThat(sut.hasNode(n2.getId()), is(true));
         assertThat(sut.hasNode(n3.getId()), is(true));
-        assertThat(sut.size(), is(2));
-        sut.remove(n1);
-        assertThat(sut.size(), is(2));
         assertThat(sut.size(), is(2));
 
         verify(n2, times(1)).hasNeighbor(n1);

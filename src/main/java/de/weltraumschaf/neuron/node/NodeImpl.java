@@ -17,13 +17,14 @@ import com.google.common.collect.Maps;
 import de.weltraumschaf.neuron.Message;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
 /**
  * Implementation of {@link Node}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class NodeImpl implements Node {
+class NodeImpl extends Observable implements Node {
 
     /**
      * Holds all known neighbors.
@@ -52,6 +53,7 @@ class NodeImpl implements Node {
         }
 
         neighbours.put(Integer.valueOf(n.getId()), n);
+        emmitEvent(Event.Type.CONNECTION, String.format("Connect node %d -> %d.", getId(), n.getId()));
     }
 
     @Override
@@ -61,6 +63,7 @@ class NodeImpl implements Node {
         }
 
         neighbours.remove(Integer.valueOf(n.getId()));
+        emmitEvent(Event.Type.CONNECTION, String.format("Disconnect node %d -> %d.", getId(), n.getId()));
     }
 
     @Override
@@ -70,7 +73,7 @@ class NodeImpl implements Node {
 
     @Override
     public void send(final Message msg) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        emmitEvent(Event.Type.MESSAGING, "Send message");
     }
 
     @Override
@@ -111,6 +114,17 @@ class NodeImpl implements Node {
     @Override
     public List<Node> getNeighbors() {
         return Lists.newArrayList(neighbours.values());
+    }
+
+    /**
+     * Set the observable in changed state and notify all observers with an {@link Event}.
+     *
+     * @param type event type
+     * @param description event description
+     */
+    private void emmitEvent(Event.Type type, String description) {
+        setChanged();
+        notifyObservers(new Event(type, description));
     }
 
 }

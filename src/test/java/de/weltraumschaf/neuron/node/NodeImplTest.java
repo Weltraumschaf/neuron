@@ -11,8 +11,6 @@
  */
 package de.weltraumschaf.neuron.node;
 
-import de.weltraumschaf.neuron.node.Node;
-import de.weltraumschaf.neuron.node.NodeImpl;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -156,7 +154,7 @@ public class NodeImplTest {
         final NodeImpl n2 = new NodeImpl(2);
         sut.connect(n1);
         sut.connect(n2);
-        List<Node> neighbors = sut.getNeighbors();
+        final List<Node> neighbors = sut.getNeighbors();
         assertThat(neighbors.size(), is(2));
         assertThat(neighbors.contains(n1), is(true));
         assertThat(neighbors.contains(n2), is(true));

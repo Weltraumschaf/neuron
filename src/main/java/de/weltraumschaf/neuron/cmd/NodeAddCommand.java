@@ -63,6 +63,7 @@ class NodeAddCommand extends BaseCommand {
 
         for (int i = 0; i < amount; ++i) {
             final Node n = getEnv().add();
+            n.addObserver(getEnv().getHandler());
             summary.append(String.format("Node with id %d added%n", n.getId()));
         }
 
