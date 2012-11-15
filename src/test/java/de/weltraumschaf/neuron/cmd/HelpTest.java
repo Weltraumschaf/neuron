@@ -11,9 +11,14 @@
  */
 package de.weltraumschaf.neuron.cmd;
 
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -21,7 +26,31 @@ import org.junit.Ignore;
  */
 public class HelpTest {
 
-    @Test @Ignore
+    private final Version version = new Version("/de/weltraumschaf/neuron/version.properties");
+    private final List<Token> args = Collections.emptyList();
+    private final IO io = mock(IO.class);
+    private final Help sut = new Help(mock(Environment.class), io, args);
+
+    @Test
     public void execute() {
+        sut.setVersion(version);
+        sut.execute();
+        final String expectedHelpMessage = String.format(
+              "This is the Neuron Interactive shell version n/a.%n%n"
+            + "Available commands:%n%n"
+            + "  help                           Show all available commands.%n"
+            + "  reset                          Reset the whole environment.%n"
+            + "  exit                           Exit the interactive shell.%n%n"
+            + "  node add [AMOUNT]              Creates one new node or AMOUNT nodes.%n"
+            + "  node del ID                    Disconnect and deletes the node with ID.%n"
+            + "  node connect ID NEIGHBOR_ID    Connect two nodes.%n"
+            + "  node disconnect ID NEIGHBOR_ID    Connect two nodes.%n"
+            + "  node list                      List all nodes.%n"
+            + "  node info ID                   Print info of a node.%n"
+            + "  node listen ID|all             Listening for events of specified node.%n"
+            + "  node unlisten ID|all           Stop listening for events of specified node.%n%n"
+            + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n"
+        );
+        verify(io, times(1)).println(expectedHelpMessage);
     }
 }
