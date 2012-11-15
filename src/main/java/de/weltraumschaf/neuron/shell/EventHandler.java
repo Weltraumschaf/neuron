@@ -11,14 +11,14 @@
  */
 package de.weltraumschaf.neuron.shell;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.node.Event;
 import de.weltraumschaf.neuron.node.Event.Type;
 import de.weltraumschaf.neuron.node.Node;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 
 /**
  * Handles events emitted by {@link Observable}.
@@ -35,12 +35,12 @@ public class EventHandler implements Observer {
     /**
      * Contains filtered node ids.
      */
-    private final List<Integer> filteredNodes = Lists.newArrayList();
+    private final Set<Integer> filteredNodes = Sets.newHashSet();
 
     /**
      * Contains filtered event types.
      */
-    private final List<Event.Type> filteredTypes = Lists.newArrayList();
+    private final Set<Event.Type> filteredTypes = Sets.newHashSet();
 
     /**
      * Dedicated constructor.

@@ -122,9 +122,14 @@ public class NodeImplTest {
     }
 
     @Test
-    public void testToString() {
+    public void toString_NoNeighbors() {
         final Node sut = new NodeImpl(23);
         assertThat(sut.toString(), is("Node ID: 23 Neigbors: 0"));
+    }
+
+    @Test
+    public void toString_twoNeighbors() {
+        final Node sut = new NodeImpl(23);
         sut.connect(new NodeImpl(1));
         sut.connect(new NodeImpl(2));
         assertThat(sut.toString(), is("Node ID: 23 Neigbors: 2"));
