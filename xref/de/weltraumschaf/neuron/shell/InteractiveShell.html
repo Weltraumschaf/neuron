@@ -67,7 +67,7 @@
 <a class="jxr_linenumber" name="57" href="#57">57</a>          <strong class="jxr_keyword">this</strong>.io = io;
 <a class="jxr_linenumber" name="58" href="#58">58</a>          <strong class="jxr_keyword">final</strong> Version version = <strong class="jxr_keyword">new</strong> Version(<span class="jxr_string">"/de/weltraumschaf/neuron/version.properties"</span>);
 <a class="jxr_linenumber" name="59" href="#59">59</a>          version.load();
-<a class="jxr_linenumber" name="60" href="#60">60</a>          factory = <strong class="jxr_keyword">new</strong> <a href="../../../../de/weltraumschaf/neuron/cmd/CommandFactory.html">CommandFactory</a>(<strong class="jxr_keyword">new</strong> <a href="../../../../de/weltraumschaf/neuron/shell/Environment.html">Environment</a>(), io, version);
+<a class="jxr_linenumber" name="60" href="#60">60</a>          factory = <strong class="jxr_keyword">new</strong> <a href="../../../../de/weltraumschaf/neuron/cmd/CommandFactory.html">CommandFactory</a>(<strong class="jxr_keyword">new</strong> <a href="../../../../de/weltraumschaf/neuron/shell/Environment.html">Environment</a>(<strong class="jxr_keyword">new</strong> <a href="../../../../de/weltraumschaf/neuron/shell/EventHandler.html">EventHandler</a>(<strong class="jxr_keyword">this</strong>.io)), <strong class="jxr_keyword">this</strong>.io, version);
 <a class="jxr_linenumber" name="61" href="#61">61</a>      }
 <a class="jxr_linenumber" name="62" href="#62">62</a>  
 <a class="jxr_linenumber" name="63" href="#63">63</a>      <em class="jxr_javadoccomment">/**</em>
