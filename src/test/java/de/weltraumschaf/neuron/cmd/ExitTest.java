@@ -11,9 +11,13 @@
  */
 package de.weltraumschaf.neuron.cmd;
 
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -21,7 +25,14 @@ import org.junit.Ignore;
  */
 public class ExitTest {
 
-    @Test @Ignore
+    private final List<Token> args = Collections.emptyList();
+    private final IO io = mock(IO.class);
+    private final Exit sut = new Exit(mock(Environment.class), io, args);
+
+    @Test
     public void execute() {
+        sut.execute();
+        verify(io, times(1)).println("Bye bye & HAND!");
     }
+
 }

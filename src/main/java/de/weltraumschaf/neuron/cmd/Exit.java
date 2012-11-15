@@ -36,7 +36,7 @@ class Exit extends BaseCommand {
 
     @Override
     public void execute() {
-        getIo().println("bye bye!");
+        getIo().println("Bye bye & HAND!");
     }
 
 
