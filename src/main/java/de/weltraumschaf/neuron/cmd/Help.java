@@ -70,4 +70,9 @@ class Help extends BaseCommand implements UseVersion {
         version = v;
     }
 
+    @Override
+    public Version getVersion() {
+        return version;
+    }
+
 }

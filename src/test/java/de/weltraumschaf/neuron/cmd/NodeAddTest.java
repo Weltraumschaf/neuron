@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 /**
  *
- * @author "Sven Strittmatter" <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class NodeAddTest {
 

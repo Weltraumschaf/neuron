@@ -27,4 +27,11 @@ public interface UseVersion {
      */
     void setVersion(Version v);
 
+    /**
+     * Get the version.
+     *
+     * @return version object
+     */
+    Version getVersion();
+
 }
