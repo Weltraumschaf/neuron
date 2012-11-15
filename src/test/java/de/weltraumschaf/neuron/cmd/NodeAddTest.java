@@ -11,9 +11,14 @@
  */
 package de.weltraumschaf.neuron.cmd;
 
+import com.google.common.collect.Lists;
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.EventHandler;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -21,7 +26,35 @@ import org.junit.Ignore;
  */
 public class NodeAddTest {
 
-    @Test @Ignore
-    public void execute() {
+    private final IO io = mock(IO.class);
+    private final Environment env = spy(new Environment(new EventHandler(io)));
+    private final List<Token> args = Lists.newArrayList();
+
+    @Test
+    public void execute_amountIsLessThanOne() {
+        args.add(Token.newToken(-3));
+        final NodeAdd sut = new NodeAdd(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println("Parameter AMOUNT must not be less than 1!");
+        verify(env, never()).add();
     }
+
+    @Test
+    public void execute_withDefaultAmount() {
+        final NodeAdd sut = new NodeAdd(env, io, args);
+        sut.execute();
+        verify(env, times(1)).add();
+        verify(io, times(1)).println(String.format("Node with id 0 added%n"));
+    }
+
+    @Test
+    public void execute_withAmountOfthree() {
+        args.add(Token.newToken(3));
+        final NodeAdd sut = new NodeAdd(env, io, args);
+        sut.execute();
+        verify(env, times(3)).add();
+        verify(io, times(1)).println(String.format(
+                "Node with id 0 added%nNode with id 1 added%nNode with id 2 added%n"));
+    }
+
 }

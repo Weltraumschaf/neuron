@@ -48,7 +48,7 @@ public class Environment {
      *
      * @param eventHandler handles node events
      */
-    Environment(final Observer eventHandler) {
+    public Environment(final Observer eventHandler) {
         super();
         handler = eventHandler;
     }

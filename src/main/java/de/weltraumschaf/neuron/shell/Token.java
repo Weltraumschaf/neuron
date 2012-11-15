@@ -48,7 +48,7 @@ public final class Token<T> {
      * @param value token value
      * @return new instance
      */
-    static Token<String> newToken(final String value) {
+    public static Token<String> newToken(final String value) {
         return new Token<String>(TokenType.LITERAL, value);
     }
 
@@ -58,7 +58,7 @@ public final class Token<T> {
      * @param value token value
      * @return new instance
      */
-    static Token<Integer> newToken(final Integer value) {
+    public static Token<Integer> newToken(final Integer value) {
         return new Token<Integer>(TokenType.INTEGER, value);
     }
 
