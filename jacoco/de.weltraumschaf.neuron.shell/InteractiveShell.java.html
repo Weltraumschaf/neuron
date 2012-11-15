@@ -57,7 +57,7 @@ public class InteractiveShell {
 <span class="nc" id="L57">        this.io = io;</span>
 <span class="nc" id="L58">        final Version version = new Version(&quot;/de/weltraumschaf/neuron/version.properties&quot;);</span>
 <span class="nc" id="L59">        version.load();</span>
-<span class="nc" id="L60">        factory = new CommandFactory(new Environment(), io, version);</span>
+<span class="nc" id="L60">        factory = new CommandFactory(new Environment(new EventHandler(this.io)), this.io, version);</span>
 <span class="nc" id="L61">    }</span>
 
     /**

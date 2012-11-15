@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Event.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.node</a> &gt; <span class="el_source">Event.java</span></div><h1>Event.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.node;
+
+/**
+ * Events emitted by {@link Observable}.
+ *
+ * @author &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+public class Event {
+
+    /**
+     * Type of event.
+     */
+<span class="pc" id="L24">    public enum Type {</span>
+        /** Events occurring by dis/conecting nodes. */
+<span class="fc" id="L26">        CONNECTION,</span>
+        /** Events occurring by send/receive messages between nodes. */
+<span class="fc" id="L28">        MESSAGING;</span>
+    }
+
+    /**
+     * Type of event.
+     */
+    private final Type type;
+
+    /**
+     * Description of event.
+     */
+    private final String description;
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param type type of event
+     * @param description description of event
+     */
+    public Event(final Type type, final String description) {
+<span class="fc" id="L48">        super();</span>
+<span class="fc" id="L49">        this.type = type;</span>
+<span class="fc" id="L50">        this.description = description;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Getter for type.
+     *
+     * @return type of event, never null
+     */
+    public Type getType() {
+<span class="nc" id="L59">        return type;</span>
+    }
+
+    /**
+     * Getter for description.
+     *
+     * @return  description of event, never null
+     */
+    public String getDescription() {
+<span class="nc" id="L68">        return description;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L73">        return String.format(&quot;[%s] %s&quot;, type, description);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

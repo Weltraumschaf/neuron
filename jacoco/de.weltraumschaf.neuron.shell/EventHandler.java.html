@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EventHandler.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">EventHandler.java</span></div><h1>EventHandler.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.shell;
+
+import com.google.common.collect.Sets;
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.node.Event;
+import de.weltraumschaf.neuron.node.Event.Type;
+import de.weltraumschaf.neuron.node.Node;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Set;
+
+/**
+ * Handles events emitted by {@link Observable}.
+ *
+ * @author &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+public class EventHandler implements Observer {
+
+    /**
+     * Used to print event to output.
+     */
+    private final IO io;
+
+    /**
+     * Contains filtered node ids.
+     */
+<span class="fc" id="L38">    private final Set&lt;Integer&gt; filteredNodes = Sets.newHashSet();</span>
+
+    /**
+     * Contains filtered event types.
+     */
+<span class="fc" id="L43">    private final Set&lt;Event.Type&gt; filteredTypes = Sets.newHashSet();</span>
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param io used for output
+     */
+    public EventHandler(final IO io) {
+<span class="fc" id="L51">        super();</span>
+<span class="fc" id="L52">        this.io = io;</span>
+<span class="fc" id="L53">    }</span>
+
+    @Override
+    public void update(final Observable o, final Object arg) {
+<span class="nc" id="L57">        final Event event = (Event) arg;</span>
+<span class="nc" id="L58">        final Node source = (Node) o;</span>
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (shouldPrint(source, event)) {</span>
+<span class="nc" id="L61">            io.println(String .format(&quot;Event from %d: %s&quot;, source.getId(), event.toString()));</span>
+        }
+<span class="nc" id="L63">    }</span>
+
+    /**
+     * Determines if an event should be printed or not.
+     *
+     * Filters may be:
+     * - by event source
+     * - by event type
+     *
+     * @param source used to filter by
+     * @param event event to check
+     * @return true if filter does not match, else true
+     */
+    private boolean shouldPrint(final Node source, final Event event) {
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (filterNode(source)) {</span>
+<span class="nc" id="L78">            return false;</span>
+        }
+
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (filterType(event.getType())) {</span>
+<span class="nc" id="L82">            return false;</span>
+        }
+
+<span class="nc" id="L85">        return true;</span>
+    }
+
+    /**
+     * Checks if a node is filtered by its id.
+     *
+     * @param source node to check
+     * @return true if node is filtered else false
+     */
+    private boolean filterNode(final Node source) {
+<span class="nc" id="L95">        return filteredNodes.contains(Integer.valueOf(source.getId()));</span>
+    }
+
+    /**
+     * Checks if event type is filtered.
+     *
+     * @param type type to check
+     * @return true if type is filtered else false
+     */
+    private boolean filterType(Type type) {
+<span class="nc" id="L105">        return filteredTypes.contains(type);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

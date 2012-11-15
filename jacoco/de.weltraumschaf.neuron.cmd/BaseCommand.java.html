@@ -14,7 +14,6 @@ package de.weltraumschaf.neuron.cmd;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,11 +22,6 @@ import java.util.List;
  * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
  */
 abstract class BaseCommand implements Command {
-
-    /**
-     * Empty list as default arguments for commands w/o arguments.
-     */
-<span class="nc" id="L30">    static final List&lt;Token&gt; DEFAULT_ARGUMETS = Collections.emptyList();</span>
 
     /**
      * Arguments for the command.
@@ -52,11 +46,11 @@ abstract class BaseCommand implements Command {
      * @param arguments parsed shell arguments
      */
     public BaseCommand(final Environment env, final IO io, final List&lt;Token&gt; arguments) {
-<span class="nc" id="L55">        super();</span>
-<span class="nc" id="L56">        this.env = env;</span>
-<span class="nc" id="L57">        this.io = io;</span>
-<span class="nc" id="L58">        this.arguments = arguments;</span>
-<span class="nc" id="L59">    }</span>
+<span class="fc" id="L49">        super();</span>
+<span class="fc" id="L50">        this.env = env;</span>
+<span class="fc" id="L51">        this.io = io;</span>
+<span class="fc" id="L52">        this.arguments = arguments;</span>
+<span class="fc" id="L53">    }</span>
 
     /**
      * Getter for sub classes.
@@ -64,7 +58,7 @@ abstract class BaseCommand implements Command {
      * @return shell environment
      */
     Environment getEnv() {
-<span class="nc" id="L67">        return env;</span>
+<span class="fc" id="L61">        return env;</span>
     }
 
     /**
@@ -73,7 +67,7 @@ abstract class BaseCommand implements Command {
      * @return shellI/O
      */
     IO getIo() {
-<span class="nc" id="L76">        return io;</span>
+<span class="fc" id="L70">        return io;</span>
     }
 
     /**
@@ -82,7 +76,7 @@ abstract class BaseCommand implements Command {
      * @return parsed shell arguments, may return empty list
      */
     List&lt;Token&gt; getArguments() {
-<span class="nc" id="L85">        return arguments;</span>
+<span class="fc" id="L79">        return arguments;</span>
     }
 
 }

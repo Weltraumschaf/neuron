@@ -48,7 +48,7 @@ public final class Token&lt;T&gt; {
      * @param value token value
      * @return new instance
      */
-    static Token&lt;String&gt; newToken(final String value) {
+    public static Token&lt;String&gt; newToken(final String value) {
 <span class="fc" id="L52">        return new Token&lt;String&gt;(TokenType.LITERAL, value);</span>
     }
 
@@ -58,7 +58,7 @@ public final class Token&lt;T&gt; {
      * @param value token value
      * @return new instance
      */
-    static Token&lt;Integer&gt; newToken(final Integer value) {
+    public static Token&lt;Integer&gt; newToken(final Integer value) {
 <span class="fc" id="L62">        return new Token&lt;Integer&gt;(TokenType.INTEGER, value);</span>
     }
 

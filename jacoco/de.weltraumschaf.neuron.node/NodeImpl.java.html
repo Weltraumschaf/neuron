@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.node</a> &gt; <span class="el_source">NodeImpl.java</span></div><h1>NodeImpl.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.node;
+
+import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import de.weltraumschaf.neuron.Message;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+
+/**
+ * Implementation of {@link Node}.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+class NodeImpl extends Observable implements Node {
+
+    /**
+     * Holds all known neighbors.
+     */
+<span class="fc" id="L32">    private final Map&lt;Integer, Node&gt; neighbours = Maps.newHashMap();</span>
+
+    /**
+     * System wide unique identity.
+     */
+    private final int id;
+
+    /**
+     * Default constructor.
+     *
+     * @param id system wide unique identity
+     */
+    public NodeImpl(final int id) {
+<span class="fc" id="L45">        super();</span>
+<span class="fc" id="L46">        this.id = id;</span>
+<span class="fc" id="L47">    }</span>
+
+    @Override
+    public void connect(final Node n) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (hasNeighbor(n.getId())) {</span>
+<span class="fc" id="L52">            throw new IllegalArgumentException(String.format(&quot;Already connected to node with address %d!&quot;, n.getId()));</span>
+        }
+
+<span class="fc" id="L55">        neighbours.put(Integer.valueOf(n.getId()), n);</span>
+<span class="fc" id="L56">        emmitEvent(Event.Type.CONNECTION, String.format(&quot;Connect node %d -&gt; %d.&quot;, getId(), n.getId()));</span>
+<span class="fc" id="L57">    }</span>
+
+    @Override
+    public void disconnect(final Node n) {
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (!hasNeighbor(n.getId())) {</span>
+<span class="fc" id="L62">            throw new IllegalArgumentException(String.format(&quot;Not connected to node with address %d!&quot;, n.getId()));</span>
+        }
+
+<span class="fc" id="L65">        neighbours.remove(Integer.valueOf(n.getId()));</span>
+<span class="fc" id="L66">        emmitEvent(Event.Type.CONNECTION, String.format(&quot;Disconnect node %d -&gt; %d.&quot;, getId(), n.getId()));</span>
+<span class="fc" id="L67">    }</span>
+
+    @Override
+    public int getId() {
+<span class="fc" id="L71">        return id;</span>
+    }
+
+    @Override
+    public void send(final Message msg) {
+<span class="nc" id="L76">        emmitEvent(Event.Type.MESSAGING, &quot;Send message&quot;);</span>
+<span class="nc" id="L77">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L81">        return Objects.hashCode(id);</span>
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (! (obj instanceof Node)) {</span>
+<span class="fc" id="L87">            return false;</span>
+        }
+
+<span class="fc" id="L90">        final Node other = (Node) obj;</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        return id == other.getId();</span>
+    }
+
+    @Override
+    public boolean hasNeighbor(final Node neighbor) {
+<span class="fc" id="L96">        return hasNeighbor(neighbor.getId());</span>
+    }
+
+    @Override
+    public boolean hasNeighbor(final int neighborsId) {
+<span class="fc" id="L101">        return neighbours.containsKey(Integer.valueOf(neighborsId));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L106">        return String.format(&quot;Node ID: %d Neigbors: %d&quot;, id, neighbours.size());</span>
+    }
+
+    @Override
+    public boolean hasNeighbors() {
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        return ! neighbours.isEmpty();</span>
+    }
+
+    @Override
+    public List&lt;Node&gt; getNeighbors() {
+<span class="fc" id="L116">        return Lists.newArrayList(neighbours.values());</span>
+    }
+
+    /**
+     * Set the observable in changed state and notify all observers with an {@link Event}.
+     *
+     * @param type event type
+     * @param description event description
+     */
+    private void emmitEvent(Event.Type type, String description) {
+<span class="fc" id="L126">        setChanged();</span>
+<span class="fc" id="L127">        notifyObservers(new Event(type, description));</span>
+<span class="fc" id="L128">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>
