@@ -12,7 +12,6 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
-import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
@@ -45,8 +44,7 @@ class NodeDel extends BaseCommand {
         }
 
 
-        final Node n = getEnv().remove(argId.getValue());
-        n.deleteObserver(getEnv().getHandler());
+        getEnv().remove(argId.getValue());
     }
 
 }
