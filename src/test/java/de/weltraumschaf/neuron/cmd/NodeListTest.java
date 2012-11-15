@@ -11,9 +11,14 @@
  */
 package de.weltraumschaf.neuron.cmd;
 
+import com.google.common.collect.Lists;
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.EventHandler;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -21,7 +26,41 @@ import org.junit.Ignore;
  */
 public class NodeListTest {
 
-    @Test @Ignore
-    public void execute() {
+    private final IO io = mock(IO.class);
+    private final Environment env = new Environment(new EventHandler(io));
+    private final List<Token> args = Lists.newArrayList();
+
+    @Test
+    public void execute_noNodes() {
+        final NodeList sut = new NodeList(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format("No nodes created.%n"));
     }
+
+    @Test
+    public void execute_oneNodes() {
+        env.add();
+        final NodeList sut = new NodeList(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format(
+                "1 node created.%n%n"
+                + "Existing nodes:%n"
+                + "  Node ID: 0 Neigbors: 0%n"));
+    }
+
+    @Test
+    public void execute_threeNodes() {
+        env.add();
+        env.add();
+        env.add();
+        final NodeList sut = new NodeList(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format(
+                "3 nodes created.%n%n"
+                + "Existing nodes:%n"
+                + "  Node ID: 0 Neigbors: 0%n"
+                + "  Node ID: 1 Neigbors: 0%n"
+                + "  Node ID: 2 Neigbors: 0%n"));
+    }
+
 }

@@ -43,7 +43,12 @@ class NodeList extends BaseCommand {
         if (nodes.isEmpty()) {
             summary.append(String.format("No nodes created.%n"));
         } else {
-            summary.append(String.format("%d nodes created.%n%n", nodes.size()));
+            if (nodes.size() == 1) {
+                summary.append(String.format("%d node created.%n%n", nodes.size()));
+            } else {
+                summary.append(String.format("%d nodes created.%n%n", nodes.size()));
+            }
+
             summary.append(String.format("Existing nodes:%n"));
             for (final Node n : nodes) {
                 summary.append(String.format("  %s%n", n));
