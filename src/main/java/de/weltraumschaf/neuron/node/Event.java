@@ -70,7 +70,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", type, description);
+        return String.format("[%s] %s", getType(), getDescription());
     }
 
 }
