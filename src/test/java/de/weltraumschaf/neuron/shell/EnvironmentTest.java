@@ -26,7 +26,8 @@ import static org.mockito.Mockito.*;
 public class EnvironmentTest {
 
     private final NodeFactory factory = new NodeFactory();
-    private final Environment sut = new Environment(mock(Observer.class));
+    private final Observer handler = mock(Observer.class);
+    private final Environment sut = new Environment(handler);
 
     @Test
     public void addNodes() {
@@ -157,6 +158,11 @@ public class EnvironmentTest {
         assertThat(sut.getNode(0), is(n1));
         assertThat(sut.getNode(1), is(n2));
         assertThat(sut.getNode(2), is(n3));
+    }
+
+    @Test
+    public void getHandler() {
+        assertThat(sut.getHandler(), is(handler));
     }
 
 }

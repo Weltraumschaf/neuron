@@ -69,6 +69,7 @@ public class Environment {
      * Add given node to environment.
      *
      * @param n node to add
+     * @return the some node passed in as parameter
      * // CHECKSTYLE:OFF
      * @throws IllegalArgumentException if, same node already added
      * // CHECKSTYLE:ON
