@@ -37,23 +37,23 @@ class NodeConnect extends BaseCommand {
 
     @Override
     public void execute() {
-        final Token<Integer> argId = getArguments().get(0);
-        final Token<Integer> argNeighborId = getArguments().get(1);
+        final Token<Integer> sourceNode = getArguments().get(0);
+        final Token<Integer> destinationNodeId = getArguments().get(1);
 
-        if (! getEnv().hasNode(argId.getValue())) {
-            getIo().println(String.format("Node with id %d does not exist!", argId.getValue()));
+        if (! getEnv().hasNode(sourceNode.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", sourceNode.getValue()));
             return;
         }
 
-        if (! getEnv().hasNode(argNeighborId.getValue())) {
-            getIo().println(String.format("Node with id %d does not exist!", argNeighborId.getValue()));
+        if (! getEnv().hasNode(destinationNodeId.getValue())) {
+            getIo().println(String.format("Node with id %d does not exist!", destinationNodeId.getValue()));
             return;
         }
 
-        final Node connector = getEnv().getNode(argId.getValue());
-        final Node connected = getEnv().getNode(argNeighborId.getValue());
-        connector.connect(connected);
-        getIo().println(String.format("Conected nodes: %d -> %d.", argId.getValue(), argNeighborId.getValue()));
+        final Node source = getEnv().getNode(sourceNode.getValue());
+        final Node destination = getEnv().getNode(destinationNodeId.getValue());
+        source.connect(destination);
+        getIo().println(String.format("Conected nodes: %d -> %d.", sourceNode.getValue(), destinationNodeId.getValue()));
     }
 
 }

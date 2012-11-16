@@ -62,9 +62,7 @@ public class Environment {
      * // CHECKSTYLE:ON
      */
     public Node add() {
-        final Node n = factory.newNode();
-        add(n);
-        return n;
+        return add(factory.newNode());
     }
 
     /**
@@ -75,12 +73,13 @@ public class Environment {
      * @throws IllegalArgumentException if, same node already added
      * // CHECKSTYLE:ON
      */
-    void add(final Node n) {
+    public Node add(final Node n) {
         if (nodes.containsValue(n)) {
             throw new IllegalArgumentException(String.format("Node with id %d already added!", n.getId()));
         }
 
         nodes.put(Integer.valueOf(n.getId()), n);
+        return n;
     }
 
     /**
