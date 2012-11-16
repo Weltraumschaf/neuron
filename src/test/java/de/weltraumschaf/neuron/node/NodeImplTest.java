@@ -11,10 +11,16 @@
  */
 package de.weltraumschaf.neuron.node;
 
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Message;
+import de.weltraumschaf.neuron.shell.EventHandler;
 import java.util.List;
+import java.util.Observable;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -165,4 +171,12 @@ public class NodeImplTest {
         assertThat(neighbors.contains(n2), is(true));
     }
 
+    @Test @Ignore
+    public void sendMessage() {
+        final EventHandler handler = spy(new EventHandler(mock(IO.class)));
+        final Node sut = new NodeImpl(23);
+        sut.addObserver(handler);
+        sut.send(new Message("foo", 1, 2));
+//        verify(handler, times(1)).update(any(), any());
+    }
 }
