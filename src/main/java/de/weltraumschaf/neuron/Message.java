@@ -82,9 +82,9 @@ public class Message {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                      .add("from", from)
-                      .add("to", to)
-                      .add("msg", msg)
+                      .add("from", getFrom())
+                      .add("to", getTo())
+                      .add("msg", getMsg())
                       .toString();
     }
 
