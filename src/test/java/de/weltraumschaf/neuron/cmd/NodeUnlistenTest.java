@@ -11,17 +11,41 @@
  */
 package de.weltraumschaf.neuron.cmd;
 
+import com.google.common.collect.Lists;
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.node.Node;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.EventHandler;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import static org.mockito.Mockito.*;
 
 /**
  *
- * @author "Sven Strittmatter" <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class NodeUnlistenTest {
 
-    @Test @Ignore
-    public void execute() {
+    private final IO io = mock(IO.class);
+    private final Environment env = new Environment(new EventHandler(io));
+    private final List<Token> args = Lists.newArrayList();
+
+    @Test
+    public void execute_nodeDoesNotExist() {
+        args.add(Token.newToken(23));
+        final Command sut = new NodeUnlisten(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println("There is no node with id '23'!");
     }
+
+    @Test
+    public void execute_nodeDoesExist() {
+        final Node node = env.add();
+        args.add(Token.newToken(node.getId()));
+        final Command sut = new NodeUnlisten(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format("Stop listening for events emmitted by node '%d'.", node.getId()));
+    }
+
 }

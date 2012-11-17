@@ -43,7 +43,7 @@ class NodeUnlisten extends BaseCommand {
         if (getEnv().hasNode(id)) {
             final Node n = getEnv().getNode(id);
             n.deleteObserver(getEnv().getHandler());
-            getIo().println(String.format("Stop listening for events emmitted by node %d.", id));
+            getIo().println(String.format("Stop listening for events emmitted by node '%d'.", id));
         } else {
             getIo().println(String.format("There is no node with id '%d'!", id));
         }
