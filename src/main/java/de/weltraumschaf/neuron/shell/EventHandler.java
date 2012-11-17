@@ -74,11 +74,11 @@ public class EventHandler implements Observer {
      * @return true if filter does not match, else true
      */
     private boolean shouldPrint(final Node source, final Event event) {
-        if (filterNode(source)) {
+        if (isNodeFiltered(source)) {
             return false;
         }
 
-        if (filterType(event.getType())) {
+        if (isTypeFiltered(event.getType())) {
             return false;
         }
 
@@ -91,7 +91,7 @@ public class EventHandler implements Observer {
      * @param source node to check
      * @return true if node is filtered else false
      */
-    private boolean filterNode(final Node source) {
+    private boolean isNodeFiltered(final Node source) {
         return filteredNodes.contains(Integer.valueOf(source.getId()));
     }
 
@@ -101,7 +101,7 @@ public class EventHandler implements Observer {
      * @param type type to check
      * @return true if type is filtered else false
      */
-    private boolean filterType(Type type) {
+    private boolean isTypeFiltered(Type type) {
         return filteredTypes.contains(type);
     }
 
