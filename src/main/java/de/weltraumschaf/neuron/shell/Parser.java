@@ -50,11 +50,11 @@ class Parser {
         final Token commandtoken = tokens.get(0);
 
         if (TokenType.LITERAL != commandtoken.getType()) {
-            throw new SyntaxException("Command expected as first word!");
+            throw new SyntaxException("Command expected as first input!");
         }
 
         if (! ShellCommand.isCommand(commandtoken)) {
-            throw new SyntaxException(String.format("Unrecognized token '%s'!", commandtoken.getValue()));
+            throw new SyntaxException(String.format("Unrecognized command '%s'!", commandtoken.getValue()));
         }
 
         final MainType command = ShellCommand.determineCommand(commandtoken);
@@ -99,11 +99,11 @@ class Parser {
             case HELP:
             case RESET:
                 if (cmd.getSubCommand() != SubType.NONE) {
-                    throw new SyntaxException(String.format("Command %s does not support subcommands!",
-                                                            cmd.getCommand()));
+                    throw new SyntaxException(String.format("Command '%s' does not support subcommand '%s'!",
+                                                            cmd.getCommand(), cmd.getSubCommand()));
                 }
                 if (! cmd.getArguments().isEmpty()) {
-                    throw new SyntaxException(String.format("Command %s does not support arguments!",
+                    throw new SyntaxException(String.format("Command '%s' does not support arguments!",
                                                             cmd.getCommand()));
                 }
                 break;
@@ -128,18 +128,22 @@ class Parser {
         final int argumentCount = cmd.getArguments().size();
 
         if (cmd.getSubCommand() == SubType.NONE) {
-            throw new SyntaxException(String.format("Command %s must have sub command!", cmd.getCommand()));
+            throw new SyntaxException(String.format("Command '%s' must have sub command!", cmd.getCommand()));
         }
 
         switch (cmd.getSubCommand()) {
             case LIST:
                 if (argumentCount != 0) {
-                    throw new SyntaxException(String.format("Command %s does support no arguments!", cmd.getCommand()));
+                    throw new SyntaxException(String.format("Command '%s %s' support no arguments!",
+                                                            cmd.getCommand(),
+                                                            cmd.getSubCommand()));
                 }
                 break;
             case ADD:
-                if (argumentCount != 0 && argumentCount != 1) {
-                    throw new SyntaxException(String.format("Command %s one or zero arguments!", cmd.getCommand()));
+                if (argumentCount > 1) {
+                    throw new SyntaxException(String.format("Command '%s %s' wants one or zero arguments!",
+                                                            cmd.getCommand(),
+                                                            cmd.getSubCommand()));
                 }
                 break;
             case DEL:
@@ -147,7 +151,7 @@ class Parser {
             case LISTEN:
             case UNLISTEN:
                 if (argumentCount != 1) {
-                    throw new SyntaxException(String.format("Command %s %s require one argument!",
+                    throw new SyntaxException(String.format("Command '%s %s' require one argument!",
                                                             cmd.getCommand(),
                                                             cmd.getSubCommand()));
                 }
@@ -155,7 +159,9 @@ class Parser {
             case CONNECT:
             case DISCONNECT:
                 if (argumentCount != 2) {
-                    throw new SyntaxException(String.format("Command %s require two argument!", cmd.getCommand()));
+                    throw new SyntaxException(String.format("Command '%s %s' require two arguments!",
+                                                            cmd.getCommand(),
+                                                            cmd.getSubCommand()));
                 }
                 break;
             default:

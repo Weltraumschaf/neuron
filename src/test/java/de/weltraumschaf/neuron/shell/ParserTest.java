@@ -27,8 +27,7 @@ import org.junit.rules.ExpectedException;
 public class ParserTest {
 
     // CHECKSTYLE:OFF
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    @Rule public ExpectedException thrown = ExpectedException.none();
     // CHECKSTYLE:ON
     private final Parser sut = new Parser(new Scanner());
 
@@ -48,6 +47,20 @@ public class ParserTest {
         assertThat(c.getCommand(), is(MainType.EXIT));
         assertThat(c.getSubCommand(), is(SubType.NONE));
         assertThat(c.getArguments().size(), is(0));
+    }
+
+    @Test
+    public void parse_exceptionIfFirstTokenIsNotLiteral() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command expected as first input!");
+        sut.parse("1234");
+    }
+
+    @Test
+    public void parse_exceptionIfFirstLiteralIsNotACommand() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Unrecognized command 'foobar'!");
+        sut.parse("foobar");
     }
 
     @Test @Ignore("Not used yet!")
@@ -85,38 +98,165 @@ public class ParserTest {
         assertThat(t.getValue(), is(5678));
     }
 
-    @Test @Ignore
-    public void parse_throwExceptionOnMissingArgOnNodeAdd() throws SyntaxException {
+    @Test
+    public void parse_throwExceptionIfExitHasSubcommand() throws SyntaxException {
         thrown.expect(SyntaxException.class);
-        thrown.expectMessage("");
-        sut.parse("node add");
+        thrown.expectMessage("Command 'exit' does not support subcommand 'add'!");
+        sut.parse("exit add");
     }
 
     @Test
-    public void parse_throwExceptionOnMissingArgOnNodeDel() throws SyntaxException {
+    public void parse_throwExceptionIfExitHasArguments() throws SyntaxException {
         thrown.expect(SyntaxException.class);
-        thrown.expectMessage("");
+        thrown.expectMessage("Command 'exit' does not support arguments!");
+        sut.parse("exit 123");
+    }
+
+    @Test
+    public void parse_throwExceptionIfHelpHasSubcommand() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'help' does not support subcommand 'add'!");
+        sut.parse("help add");
+    }
+
+    @Test
+    public void parse_throwExceptionIfHelpHasArguments() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'help' does not support arguments!");
+        sut.parse("help 123");
+    }
+
+    @Test
+    public void parse_throwExceptionIfResetHasSubcommand() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'reset' does not support subcommand 'add'!");
+        sut.parse("reset add");
+    }
+
+    @Test
+    public void parse_throwExceptionIfResetHasArguments() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'reset' does not support arguments!");
+        sut.parse("reset 123");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeListHasArguments() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node list' support no arguments!");
+        sut.parse("node list 123");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeAddHasMoreThan1Argumnet() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node add' wants one or zero arguments!");
+        sut.parse("node add 1 2 3");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeDelHasNoArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node del' require one argument!");
         sut.parse("node del");
     }
 
     @Test
-    public void parse_throwExceptionOnMissingArgOnNodeInfol() throws SyntaxException {
+    public void parse_throwExceptionIfNodeDelHasMoreThanOneArgument() throws SyntaxException {
         thrown.expect(SyntaxException.class);
-        thrown.expectMessage("");
+        thrown.expectMessage("Command 'node del' require one argument!");
+        sut.parse("node del 123 456");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeInfoHasNoArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node info' require one argument!");
         sut.parse("node info");
     }
 
-    @Ignore
     @Test
-    public void parse_throwExceptionOnSubcommandRequiresTwoArguments() {
-        // http://weblogs.java.net/blog/johnsmart/archive/2009/09/27/testing-exceptions-junit-47
+    public void parse_throwExceptionIfNodeInfoHasMoreThanOneArgument() throws SyntaxException {
         thrown.expect(SyntaxException.class);
-        thrown.expectMessage("");
+        thrown.expectMessage("Command 'node info' require one argument!");
+        sut.parse("node info 123 456");
     }
 
-    @Test @Ignore
-    public void parse_comandWithSubcommandAndTwoArgument() throws SyntaxException {
-        final ShellCommand c = sut.parse("node connect 1234 5678");
+    @Test
+    public void parse_throwExceptionIfNodeListenHasNoArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node listen' require one argument!");
+        sut.parse("node listen");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeListenHasMoreThanOneArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node listen' require one argument!");
+        sut.parse("node listen 123 456");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeUnlistenHasNoArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node unlisten' require one argument!");
+        sut.parse("node unlisten");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeUnlistenHasMoreThanOneArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node unlisten' require one argument!");
+        sut.parse("node unlisten 123 456");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeConnectHasNoArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node connect' require two arguments!");
+        sut.parse("node connect");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeConnectHasOneArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node connect' require two arguments!");
+        sut.parse("node connect 123");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeConnectHasMoreThanTwoArguments() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node connect' require two arguments!");
+        sut.parse("node connect 123 456 789");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeDisconnectHasNoArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node disconnect' require two arguments!");
+        sut.parse("node disconnect");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeDisconnectHasOneArgument() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node disconnect' require two arguments!");
+        sut.parse("node disconnect 123");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeDisconnectHasMoreThanTwoArguments() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node disconnect' require two arguments!");
+        sut.parse("node disconnect 123 456 789");
+    }
+
+    @Test
+    public void parse_throwExceptionIfNodeHasNoSubcommand() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Command 'node' must have sub command!");
+        sut.parse("node");
     }
 
 }
