@@ -37,12 +37,12 @@ class NodeInfo extends BaseCommand {
 
     @Override
     public void execute() {
-        final Token<Integer> arg = getArguments().get(0);
+        final Token<Integer> nodeId = getArguments().get(0);
 
-        if (getEnv().hasNode(arg.getValue())) {
-            final Node inspectedNode = getEnv().getNode(arg.getValue());
+        if (getEnv().hasNode(nodeId.getValue())) {
+            final Node inspectedNode = getEnv().getNode(nodeId.getValue());
             final StringBuilder info = new StringBuilder();
-            info.append(String.format("%s%n", inspectedNode.toString()));
+            info.append(String.format("%s%n", inspectedNode));
             info.append(String.format("Neighbors:%n"));
 
             if (inspectedNode.hasNeighbors()) {
@@ -55,7 +55,7 @@ class NodeInfo extends BaseCommand {
 
             getIo().println(info.toString());
         } else {
-            getIo().println(String.format("Node with id %d does not exist!", arg.getValue()));
+            getIo().println(String.format("Node with id %d does not exist!", nodeId.getValue()));
         }
     }
 

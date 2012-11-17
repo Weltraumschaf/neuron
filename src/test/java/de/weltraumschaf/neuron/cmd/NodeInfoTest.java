@@ -11,9 +11,16 @@
  */
 package de.weltraumschaf.neuron.cmd;
 
+import com.google.common.collect.Lists;
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.node.Node;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.EventHandler;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -21,7 +28,60 @@ import org.junit.Ignore;
  */
 public class NodeInfoTest {
 
-    @Test @Ignore
-    public void execute() {
+    private final IO io = mock(IO.class);
+    private final Environment env = new Environment(new EventHandler(io));
+
+    @Test
+    public void execute_nodeDoesNotExists() {
+        final List<Token> args = Lists.newArrayList();
+        args.add(Token.newToken(23));
+        final Command sut = new NodeInfo(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println("Node with id 23 does not exist!");
     }
+
+    @Test
+    public void execute_nodeHasNoNeighbots() {
+        final Node inspectedNode = env.add();
+        final List<Token> args = Lists.newArrayList();
+        args.add(Token.newToken(inspectedNode.getId()));
+        final Command sut = new NodeInfo(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 0%n"
+                + "Neighbors:%n"
+                + "  Has no neighbors!%n", inspectedNode.getId()));
+    }
+
+    @Test
+    public void execute_nodeHasOneNeighbors() {
+        final Node inspectedNode = env.add();
+        final Node neighborNode = env.add();
+        inspectedNode.connect(neighborNode);
+        final List<Token> args = Lists.newArrayList();
+        args.add(Token.newToken(inspectedNode.getId()));
+        final Command sut = new NodeInfo(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 1%n"
+                + "Neighbors:%n"
+                + "  %s%n", inspectedNode.getId(), neighborNode));
+    }
+
+    @Test
+    public void execute_nodeHasThreeNeighbors() {
+        final Node inspectedNode = env.add();
+        final Node neighborNode1 = env.add();
+        final Node neighborNode2 = env.add();
+        final Node neighborNode3 = env.add();
+        inspectedNode.connect(neighborNode1);
+        inspectedNode.connect(neighborNode2);
+        inspectedNode.connect(neighborNode3);
+        final List<Token> args = Lists.newArrayList();
+        args.add(Token.newToken(inspectedNode.getId()));
+        final Command sut = new NodeInfo(env, io, args);
+        sut.execute();
+        verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 3%n"
+                + "Neighbors:%n"
+                + "  %s%n  %s%n  %s%n", inspectedNode.getId(), neighborNode1, neighborNode2, neighborNode3));
+    }
+
 }
