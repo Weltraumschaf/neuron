@@ -25,12 +25,11 @@ import static org.mockito.Mockito.*;
  */
 public class ExitTest {
 
-    private final List<Token> args = Collections.emptyList();
-    private final IO io = mock(IO.class);
-    private final Exit sut = new Exit(mock(Environment.class), io, args);
-
     @Test
     public void execute() {
+        final List<Token> args = Collections.emptyList();
+        final IO io = mock(IO.class);
+        final Exit sut = new Exit(mock(Environment.class), io, args);
         sut.execute();
         verify(io, times(1)).println("Bye bye & HAND!");
     }

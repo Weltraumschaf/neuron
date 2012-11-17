@@ -15,7 +15,6 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.Message;
 import de.weltraumschaf.neuron.shell.EventHandler;
 import java.util.List;
-import java.util.Observable;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Ignore;

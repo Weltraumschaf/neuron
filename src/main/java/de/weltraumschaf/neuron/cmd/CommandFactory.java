@@ -15,14 +15,11 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.ShellCommand;
-import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
-import de.weltraumschaf.neuron.shell.Token;
-import java.util.List;
 
 /**
  * Factory to create command objects depending on the parsed {@link ShellCommand}.
  *
- * @author @author Sven Strittmatter <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public final class CommandFactory {
 
@@ -42,6 +39,11 @@ public final class CommandFactory {
     private final Version version;
 
     /**
+     * Sub factory for node commands.
+     */
+    private final NodeCommandFactory nodeCommandFactory;
+
+    /**
      * Dedicated constructor.
      *
      * @param env shell environment used by commands
@@ -53,6 +55,7 @@ public final class CommandFactory {
         this.env = env;
         this.io = io;
         this.version = version;
+        nodeCommandFactory = new NodeCommandFactory(this.env, this.io);
     }
 
     /**
@@ -74,7 +77,7 @@ public final class CommandFactory {
                 cmd = new Help(env, io, shellCmd.getArguments());
                 break;
             case NODE:
-                cmd = newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
+                cmd = nodeCommandFactory.newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
                 break;
             case RESET:
                 cmd = new Reset(env, io, shellCmd.getArguments());
@@ -91,37 +94,4 @@ public final class CommandFactory {
         return cmd;
     }
 
-    /**
-     * Helper to create sub commands for node command.
-     *
-     * @param subCommand used to determine appropriate command
-     * @param arguments command line arguments
-     * @return command object
-     * // CHECKSTYLE:OFF
-     * @throws IllegalArgumentException if, can't create command of bad sub command type
-     * // CHECKSTYLE:ON
-     */
-    private Command newNodeCommand(final SubType subCommand, final List<Token> arguments) {
-        switch (subCommand) {
-            case ADD:
-                return new NodeAdd(env, io, arguments);
-            case CONNECT:
-                return new NodeConnect(env, io, arguments);
-            case DISCONNECT:
-                return new NodeDisconnect(env, io, arguments);
-            case DEL:
-                return new NodeDel(env, io, arguments);
-            case INFO:
-                return new NodeInfo(env, io, arguments);
-            case LIST:
-                return new NodeList(env, io, arguments);
-            case LISTEN:
-                return new NodeListen(env, io, arguments);
-            case UNLISTEN:
-                return new NodeUnlisten(env, io, arguments);
-            default:
-                throw new IllegalArgumentException(
-                            String.format("Main command type 'node' does not support sub type '%s'!", subCommand));
-        }
-    }
 }

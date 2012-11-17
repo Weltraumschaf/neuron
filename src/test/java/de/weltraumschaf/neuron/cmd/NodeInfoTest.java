@@ -19,7 +19,6 @@ import de.weltraumschaf.neuron.shell.EventHandler;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 import org.junit.Test;
-import org.junit.Ignore;
 import static org.mockito.Mockito.*;
 
 /**

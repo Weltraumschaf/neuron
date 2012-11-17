@@ -53,7 +53,9 @@ class NodeConnect extends BaseCommand {
         final Node source = getEnv().getNode(sourceNode.getValue());
         final Node destination = getEnv().getNode(destinationNodeId.getValue());
         source.connect(destination);
-        getIo().println(String.format("Conected nodes: %d -> %d.", sourceNode.getValue(), destinationNodeId.getValue()));
+        getIo().println(String.format("Conected nodes: %d -> %d.",
+                                      sourceNode.getValue(),
+                                      destinationNodeId.getValue()));
     }
 
 }

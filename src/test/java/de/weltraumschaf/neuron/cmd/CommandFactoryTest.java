@@ -19,10 +19,10 @@ import de.weltraumschaf.neuron.shell.ShellCommand;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.Collections;
 import java.util.List;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 /**
  *

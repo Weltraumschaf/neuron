@@ -26,13 +26,13 @@ import static org.mockito.Mockito.*;
  */
 public class ResetTest {
 
-    private final IO io = mock(IO.class);
-    private final Environment env = spy(new Environment(new EventHandler(io)));
-    private final List<Token> args = Lists.newArrayList();
-    private final Reset sut = new Reset(env, io, args);
-
     @Test
     public void execute() {
+        final IO io = mock(IO.class);
+        final Environment env = spy(new Environment(new EventHandler(io)));
+        final List<Token> args = Lists.newArrayList();
+        final Reset sut = new Reset(env, io, args);
+
         sut.execute();
         verify(io, times(1)).println("Resetting...");
         verify(env, times(1)).reset();
