@@ -12,8 +12,8 @@
 package de.weltraumschaf.neuron.node;
 
 import de.weltraumschaf.neuron.Message;
+import de.weltraumschaf.neuron.Observer;
 import java.util.List;
-import java.util.Observer;
 
 /**
  * This type defines a node.
@@ -97,4 +97,5 @@ public interface Node {
      * @param o event handler
      */
     void deleteObserver(Observer o);
+
 }

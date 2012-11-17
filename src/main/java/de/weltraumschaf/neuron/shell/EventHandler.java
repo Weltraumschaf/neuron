@@ -13,11 +13,11 @@ package de.weltraumschaf.neuron.shell;
 
 import com.google.common.collect.Sets;
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Observable;
+import de.weltraumschaf.neuron.Observer;
 import de.weltraumschaf.neuron.node.Event;
 import de.weltraumschaf.neuron.node.Event.Type;
 import de.weltraumschaf.neuron.node.Node;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Set;
 
 /**

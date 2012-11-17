@@ -15,9 +15,9 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import de.weltraumschaf.neuron.Message;
+import de.weltraumschaf.neuron.Observable;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 
 /**
  * Implementation of {@link Node}.

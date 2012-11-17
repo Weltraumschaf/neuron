@@ -11,9 +11,9 @@
  */
 package de.weltraumschaf.neuron.shell;
 
+import de.weltraumschaf.neuron.Observer;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
-import java.util.Observer;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;

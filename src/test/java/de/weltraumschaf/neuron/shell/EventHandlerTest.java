@@ -12,10 +12,10 @@
 package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.Observable;
 import de.weltraumschaf.neuron.node.Event;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
-import java.util.Observable;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
