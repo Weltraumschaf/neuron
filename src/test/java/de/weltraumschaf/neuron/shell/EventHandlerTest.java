@@ -34,7 +34,7 @@ public class EventHandlerTest {
     public void update() {
         final Node source = nodeFactory.newNode();
         final Event event = new Event(Event.Type.MESSAGING, "foo");
-        sut.update((Observable) source, event);
+        sut.update(source, event);
         verify(io, times(1)).println(String.format("Event from %d: %s", source.getId(), event.toString()));
     }
 

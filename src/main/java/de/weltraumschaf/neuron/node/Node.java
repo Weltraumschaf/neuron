@@ -12,6 +12,7 @@
 package de.weltraumschaf.neuron.node;
 
 import de.weltraumschaf.neuron.Message;
+import de.weltraumschaf.neuron.Observable;
 import de.weltraumschaf.neuron.Observer;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public interface Node {
+public interface Node extends Observable {
 
     /**
      * Connects this node to an other node.

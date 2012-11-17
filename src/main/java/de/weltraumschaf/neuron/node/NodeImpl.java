@@ -15,7 +15,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import de.weltraumschaf.neuron.Message;
-import de.weltraumschaf.neuron.Observable;
+import de.weltraumschaf.neuron.DefaultObservable;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ import java.util.Map;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class NodeImpl extends Observable implements Node {
+class NodeImpl extends DefaultObservable implements Node {
 
     /**
      * Holds all known neighbors.
