@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Executes `node unlisten ID`.
  *
- * @author "Sven Strittmatter" <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class NodeListen extends BaseCommand {
 
@@ -43,9 +43,9 @@ class NodeListen extends BaseCommand {
         if (getEnv().hasNode(id)) {
             final Node n = getEnv().getNode(id);
             n.addObserver(getEnv().getHandler());
-            getIo().println(String.format("Listening for events emmitted by node %d.", id));
+            getIo().println(String.format("Listening for events emmitted by node '%d'.", id));
         } else {
-            getIo().println(String.format("There is no node with id %d!", id));
+            getIo().println(String.format("There is no node with id '%d'!", id));
         }
     }
 
