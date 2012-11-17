@@ -47,12 +47,12 @@
 <a class="jxr_linenumber" name="37" href="#37">37</a>  
 <a class="jxr_linenumber" name="38" href="#38">38</a>      @Override
 <a class="jxr_linenumber" name="39" href="#39">39</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> execute() {
-<a class="jxr_linenumber" name="40" href="#40">40</a>          <strong class="jxr_keyword">final</strong> Token&lt;Integer&gt; arg = getArguments().get(0);
+<a class="jxr_linenumber" name="40" href="#40">40</a>          <strong class="jxr_keyword">final</strong> Token&lt;Integer&gt; nodeId = getArguments().get(0);
 <a class="jxr_linenumber" name="41" href="#41">41</a>  
-<a class="jxr_linenumber" name="42" href="#42">42</a>          <strong class="jxr_keyword">if</strong> (getEnv().hasNode(arg.getValue())) {
-<a class="jxr_linenumber" name="43" href="#43">43</a>              <strong class="jxr_keyword">final</strong> <a href="../../../../de/weltraumschaf/neuron/node/Node.html">Node</a> inspectedNode = getEnv().getNode(arg.getValue());
+<a class="jxr_linenumber" name="42" href="#42">42</a>          <strong class="jxr_keyword">if</strong> (getEnv().hasNode(nodeId.getValue())) {
+<a class="jxr_linenumber" name="43" href="#43">43</a>              <strong class="jxr_keyword">final</strong> <a href="../../../../de/weltraumschaf/neuron/node/Node.html">Node</a> inspectedNode = getEnv().getNode(nodeId.getValue());
 <a class="jxr_linenumber" name="44" href="#44">44</a>              <strong class="jxr_keyword">final</strong> StringBuilder info = <strong class="jxr_keyword">new</strong> StringBuilder();
-<a class="jxr_linenumber" name="45" href="#45">45</a>              info.append(String.format(<span class="jxr_string">"%s%n"</span>, inspectedNode.toString()));
+<a class="jxr_linenumber" name="45" href="#45">45</a>              info.append(String.format(<span class="jxr_string">"%s%n"</span>, inspectedNode));
 <a class="jxr_linenumber" name="46" href="#46">46</a>              info.append(String.format(<span class="jxr_string">"Neighbors:%n"</span>));
 <a class="jxr_linenumber" name="47" href="#47">47</a>  
 <a class="jxr_linenumber" name="48" href="#48">48</a>              <strong class="jxr_keyword">if</strong> (inspectedNode.hasNeighbors()) {
@@ -65,7 +65,7 @@
 <a class="jxr_linenumber" name="55" href="#55">55</a>  
 <a class="jxr_linenumber" name="56" href="#56">56</a>              getIo().println(info.toString());
 <a class="jxr_linenumber" name="57" href="#57">57</a>          } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="58" href="#58">58</a>              getIo().println(String.format(<span class="jxr_string">"Node with id %d does not exist!"</span>, arg.getValue()));
+<a class="jxr_linenumber" name="58" href="#58">58</a>              getIo().println(String.format(<span class="jxr_string">"Node with id %d does not exist!"</span>, nodeId.getValue()));
 <a class="jxr_linenumber" name="59" href="#59">59</a>          }
 <a class="jxr_linenumber" name="60" href="#60">60</a>      }
 <a class="jxr_linenumber" name="61" href="#61">61</a>  

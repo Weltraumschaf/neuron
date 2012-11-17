@@ -53,7 +53,7 @@
 <a class="jxr_linenumber" name="43" href="#43">43</a>          <strong class="jxr_keyword">if</strong> (getEnv().hasNode(id)) {
 <a class="jxr_linenumber" name="44" href="#44">44</a>              <strong class="jxr_keyword">final</strong> <a href="../../../../de/weltraumschaf/neuron/node/Node.html">Node</a> n = getEnv().getNode(id);
 <a class="jxr_linenumber" name="45" href="#45">45</a>              n.deleteObserver(getEnv().getHandler());
-<a class="jxr_linenumber" name="46" href="#46">46</a>              getIo().println(String.format(<span class="jxr_string">"Stop listening for events emmitted by node %d."</span>, id));
+<a class="jxr_linenumber" name="46" href="#46">46</a>              getIo().println(String.format(<span class="jxr_string">"Stop listening for events emmitted by node '%d'."</span>, id));
 <a class="jxr_linenumber" name="47" href="#47">47</a>          } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="48" href="#48">48</a>              getIo().println(String.format(<span class="jxr_string">"There is no node with id '%d'!"</span>, id));
 <a class="jxr_linenumber" name="49" href="#49">49</a>          }
