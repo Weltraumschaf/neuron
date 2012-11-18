@@ -28,9 +28,16 @@ import java.util.Map;
 public class ShellCommand {
 
     /**
+     * Marker interface for shell command types.
+     */
+    public interface Type {
+
+    }
+
+    /**
      * Enumerates the available commands.
      */
-    public enum MainType {
+    public enum MainType implements Type {
 
         /** Help command. */
         HELP("help"),
@@ -67,7 +74,7 @@ public class ShellCommand {
     /**
      * Enumerates the optional subcommands.
      */
-    public enum SubType {
+    public enum SubType implements Type {
         /** No sub command. */
         NONE(""),
         /** Add sub command for node command. */

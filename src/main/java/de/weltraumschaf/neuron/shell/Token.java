@@ -12,6 +12,8 @@
 package de.weltraumschaf.neuron.shell;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
+import java.util.Set;
 
 /**
  * Represent a token scanned from interactive shell input.
@@ -20,6 +22,26 @@ import com.google.common.base.Objects;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public final class Token<T> {
+
+    /**
+     * Holds all keyword strings.
+     */
+    private static final Set<String> KEYWORDS = Sets.newHashSet();
+
+    static {
+        // Initialize keywords with command strings.
+        for (final ShellCommand.MainType t : ShellCommand.MainType.values()) {
+            KEYWORDS.add(t.toString());
+        }
+        // Initialize keywords with sub command strings.
+        for (final ShellCommand.SubType t : ShellCommand.SubType.values()) {
+            if (t == ShellCommand.SubType.NONE) {
+                // Has an empty string literal, so ignore.
+                continue;
+            }
+            KEYWORDS.add(t.toString());
+        }
+    }
 
     /**
      * Type of token.
@@ -106,6 +128,16 @@ public final class Token<T> {
                       .add("type", type)
                       .add("value", value)
                       .toString();
+    }
+
+    /**
+     * Determines if a string is a reserved keyword.
+     *
+     * @param value string to check
+     * @return true if the string is a reserved keyword, else false
+     */
+    public static boolean isKeyword(final String value) {
+        return KEYWORDS.contains(value);
     }
 
 }
