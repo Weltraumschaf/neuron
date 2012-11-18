@@ -32,7 +32,7 @@ public class NodeAddTest {
 
     @Test
     public void execute_amountIsLessThanOne() {
-        args.add(Token.newToken(-3));
+        args.add(Token.newNumberToken(-3));
         final NodeAdd sut = new NodeAdd(env, io, args);
         sut.execute();
         verify(io, times(1)).println("Parameter AMOUNT must not be less than 1!");
@@ -49,7 +49,7 @@ public class NodeAddTest {
 
     @Test
     public void execute_withAmountOfthree() {
-        args.add(Token.newToken(3));
+        args.add(Token.newNumberToken(3));
         final NodeAdd sut = new NodeAdd(env, io, args);
         sut.execute();
         verify(env, times(3)).add();

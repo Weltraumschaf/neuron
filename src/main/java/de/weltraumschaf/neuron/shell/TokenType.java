@@ -19,6 +19,10 @@ package de.weltraumschaf.neuron.shell;
 enum TokenType {
 
     /**
+     * A command or subcommand literal.
+     */
+    KEYWORD,
+    /**
      * Defines a quote delimited string.
      *
      * '...' or "..."
@@ -35,6 +39,6 @@ enum TokenType {
      *
      * [0-9]+
      */
-    INTEGER;
+    NUMBER;
 
 }

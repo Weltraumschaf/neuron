@@ -33,7 +33,7 @@ public class NodeInfoTest {
     @Test
     public void execute_nodeDoesNotExists() {
         final List<Token> args = Lists.newArrayList();
-        args.add(Token.newToken(23));
+        args.add(Token.newNumberToken(23));
         final Command sut = new NodeInfo(env, io, args);
         sut.execute();
         verify(io, times(1)).println("Node with id 23 does not exist!");
@@ -43,7 +43,7 @@ public class NodeInfoTest {
     public void execute_nodeHasNoNeighbots() {
         final Node inspectedNode = env.add();
         final List<Token> args = Lists.newArrayList();
-        args.add(Token.newToken(inspectedNode.getId()));
+        args.add(Token.newNumberToken(inspectedNode.getId()));
         final Command sut = new NodeInfo(env, io, args);
         sut.execute();
         verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 0%n"
@@ -57,7 +57,7 @@ public class NodeInfoTest {
         final Node neighborNode = env.add();
         inspectedNode.connect(neighborNode);
         final List<Token> args = Lists.newArrayList();
-        args.add(Token.newToken(inspectedNode.getId()));
+        args.add(Token.newNumberToken(inspectedNode.getId()));
         final Command sut = new NodeInfo(env, io, args);
         sut.execute();
         verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 1%n"
@@ -75,7 +75,7 @@ public class NodeInfoTest {
         inspectedNode.connect(neighborNode2);
         inspectedNode.connect(neighborNode3);
         final List<Token> args = Lists.newArrayList();
-        args.add(Token.newToken(inspectedNode.getId()));
+        args.add(Token.newNumberToken(inspectedNode.getId()));
         final Command sut = new NodeInfo(env, io, args);
         sut.execute();
         verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 3%n"

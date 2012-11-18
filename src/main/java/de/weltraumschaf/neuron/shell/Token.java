@@ -43,23 +43,43 @@ public final class Token<T> {
     }
 
     /**
+     * Creates a command keyword token.
+     *
+     * @param value token value
+     * @return new instance
+     */
+    public static Token<String> newKeywordToken(final String value) {
+        return new Token<String>(TokenType.KEYWORD, value);
+    }
+
+    /**
      * Creates a string token.
      *
      * @param value token value
      * @return new instance
      */
-    public static Token<String> newToken(final String value) {
-        return new Token<String>(TokenType.LITERAL, value);
+    public static Token<String> newStringToken(final String value) {
+        return new Token<String>(TokenType.STRING, value);
     }
 
     /**
-     * Creates a integer token.
+     * Creates a literal token.
      *
      * @param value token value
      * @return new instance
      */
-    public static Token<Integer> newToken(final Integer value) {
-        return new Token<Integer>(TokenType.INTEGER, value);
+    public static Token<String> newLiteralToken(final String value) {
+        return new Token<String>(TokenType.LITERAL, value);
+    }
+
+    /**
+     * Creates a number token.
+     *
+     * @param value token value
+     * @return new instance
+     */
+    public static Token<Integer> newNumberToken(final Integer value) {
+        return new Token<Integer>(TokenType.NUMBER, value);
     }
 
     /**

@@ -84,7 +84,7 @@ class Scanner {
             value.append(currentChar);
         }
 
-        return Token.newToken(value.toString());
+        return Token.newLiteralToken(value.toString());
     }
 
     /**
@@ -114,7 +114,7 @@ class Scanner {
             value.append(currentChar);
         }
 
-        return Token.newToken(Integer.valueOf(value.toString()));
+        return Token.newNumberToken(Integer.valueOf(value.toString()));
     }
 
 }

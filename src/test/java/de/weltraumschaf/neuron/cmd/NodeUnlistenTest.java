@@ -33,7 +33,7 @@ public class NodeUnlistenTest {
 
     @Test
     public void execute_nodeDoesNotExist() {
-        args.add(Token.newToken(23));
+        args.add(Token.newNumberToken(23));
         final Command sut = new NodeUnlisten(env, io, args);
         sut.execute();
         verify(io, times(1)).println("There is no node with id '23'!");
@@ -42,7 +42,7 @@ public class NodeUnlistenTest {
     @Test
     public void execute_nodeDoesExist() {
         final Node node = env.add();
-        args.add(Token.newToken(node.getId()));
+        args.add(Token.newNumberToken(node.getId()));
         final Command sut = new NodeUnlisten(env, io, args);
         sut.execute();
         verify(io, times(1)).println(String.format("Stop listening for events emmitted by node '%d'.", node.getId()));

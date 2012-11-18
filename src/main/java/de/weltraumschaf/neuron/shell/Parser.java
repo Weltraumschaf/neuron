@@ -128,6 +128,8 @@ class Parser {
             case NODE:
                 verifyNodeCommand(cmd);
                 break;
+            case MESSAGE:
+                throw new UnsupportedOperationException("Not supported yet.");
             default:
                 // Nothing to do here.
         }

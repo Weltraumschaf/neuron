@@ -46,64 +46,64 @@ public class ShellCommandTest {
 
     @Test
     public void isCommand() {
-        assertThat(ShellCommand.isCommand(Token.newToken("help")), is(true));
-        assertThat(ShellCommand.isCommand(Token.newToken("reset")), is(true));
-        assertThat(ShellCommand.isCommand(Token.newToken("exit")), is(true));
-        assertThat(ShellCommand.isCommand(Token.newToken("node")), is(true));
+        assertThat(ShellCommand.isCommand(Token.newLiteralToken("help")), is(true));
+        assertThat(ShellCommand.isCommand(Token.newLiteralToken("reset")), is(true));
+        assertThat(ShellCommand.isCommand(Token.newLiteralToken("exit")), is(true));
+        assertThat(ShellCommand.isCommand(Token.newLiteralToken("node")), is(true));
 
-        assertThat(ShellCommand.isCommand(Token.newToken("foo")), is(false));
+        assertThat(ShellCommand.isCommand(Token.newLiteralToken("foo")), is(false));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void determineBadCommand() {
-        ShellCommand.determineCommand(Token.newToken("foo"));
+        ShellCommand.determineCommand(Token.newLiteralToken("foo"));
     }
 
     @Test
     public void determineCommand() {
-        assertThat(ShellCommand.determineCommand(Token.newToken("help")), is(MainType.HELP));
-        assertThat(ShellCommand.determineCommand(Token.newToken("reset")), is(MainType.RESET));
-        assertThat(ShellCommand.determineCommand(Token.newToken("exit")), is(MainType.EXIT));
-        assertThat(ShellCommand.determineCommand(Token.newToken("node")), is(MainType.NODE));
+        assertThat(ShellCommand.determineCommand(Token.newLiteralToken("help")), is(MainType.HELP));
+        assertThat(ShellCommand.determineCommand(Token.newLiteralToken("reset")), is(MainType.RESET));
+        assertThat(ShellCommand.determineCommand(Token.newLiteralToken("exit")), is(MainType.EXIT));
+        assertThat(ShellCommand.determineCommand(Token.newLiteralToken("node")), is(MainType.NODE));
     }
 
     @Test
     public void isSubCommand() {
-        assertThat(ShellCommand.isSubCommand(Token.newToken("add")), is(true));
-        assertThat(ShellCommand.isSubCommand(Token.newToken("del")), is(true));
-        assertThat(ShellCommand.isSubCommand(Token.newToken("connect")), is(true));
-        assertThat(ShellCommand.isSubCommand(Token.newToken("list")), is(true));
-        assertThat(ShellCommand.isSubCommand(Token.newToken("info")), is(true));
+        assertThat(ShellCommand.isSubCommand(Token.newLiteralToken("add")), is(true));
+        assertThat(ShellCommand.isSubCommand(Token.newLiteralToken("del")), is(true));
+        assertThat(ShellCommand.isSubCommand(Token.newLiteralToken("connect")), is(true));
+        assertThat(ShellCommand.isSubCommand(Token.newLiteralToken("list")), is(true));
+        assertThat(ShellCommand.isSubCommand(Token.newLiteralToken("info")), is(true));
 
-        assertThat(ShellCommand.isCommand(Token.newToken("foo")), is(false));
+        assertThat(ShellCommand.isCommand(Token.newLiteralToken("foo")), is(false));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void determineBadSubCommand() {
-        ShellCommand.determineSubCommand(Token.newToken("foo"));
+        ShellCommand.determineSubCommand(Token.newLiteralToken("foo"));
     }
 
     @Test
     public void determineSubCommand() {
-        assertThat(ShellCommand.determineSubCommand(Token.newToken("add")), is(SubType.ADD));
-        assertThat(ShellCommand.determineSubCommand(Token.newToken("del")), is(SubType.DEL));
-        assertThat(ShellCommand.determineSubCommand(Token.newToken("connect")), is(SubType.CONNECT));
-        assertThat(ShellCommand.determineSubCommand(Token.newToken("list")), is(SubType.LIST));
-        assertThat(ShellCommand.determineSubCommand(Token.newToken("info")), is(SubType.INFO));
+        assertThat(ShellCommand.determineSubCommand(Token.newLiteralToken("add")), is(SubType.ADD));
+        assertThat(ShellCommand.determineSubCommand(Token.newLiteralToken("del")), is(SubType.DEL));
+        assertThat(ShellCommand.determineSubCommand(Token.newLiteralToken("connect")), is(SubType.CONNECT));
+        assertThat(ShellCommand.determineSubCommand(Token.newLiteralToken("list")), is(SubType.LIST));
+        assertThat(ShellCommand.determineSubCommand(Token.newLiteralToken("info")), is(SubType.INFO));
     }
 
     @Test
     public void testToString() {
         final List<Token> args = Lists.newArrayList();
-        args.add(Token.newToken("foo"));
-        args.add(Token.newToken(23));
+        args.add(Token.newLiteralToken("foo"));
+        args.add(Token.newNumberToken(23));
 
         ShellCommand sut = new ShellCommand(MainType.HELP, args);
         assertThat(sut.toString(), is("ShellCommand{mainCommand=help, subCommand=, arguments=[Token{type=LITERAL, "
-                + "value=foo}, Token{type=INTEGER, value=23}]}"));
+                + "value=foo}, Token{type=NUMBER, value=23}]}"));
         sut = new ShellCommand(MainType.NODE, SubType.ADD, args);
         assertThat(sut.toString(), is("ShellCommand{mainCommand=node, subCommand=add, arguments=[Token{type=LITERAL, "
-                + "value=foo}, Token{type=INTEGER, value=23}]}"));
+                + "value=foo}, Token{type=NUMBER, value=23}]}"));
     }
 
 }

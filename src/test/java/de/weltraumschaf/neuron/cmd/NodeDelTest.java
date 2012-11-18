@@ -33,7 +33,7 @@ public class NodeDelTest {
 
     @Test
     public void execute_deleteNotExistingNode() {
-        args.add(Token.newToken(3));
+        args.add(Token.newNumberToken(3));
         final NodeDel sut = new NodeDel(env, io, args);
         sut.execute();
         verify(io, times(1)).println("Node with id 3 does not exist!");
@@ -42,7 +42,7 @@ public class NodeDelTest {
     @Test
     public void execute() {
         final Node n = env.add();
-        args.add(Token.newToken(n.getId()));
+        args.add(Token.newNumberToken(n.getId()));
         final NodeDel sut = new NodeDel(env, io, args);
         sut.execute();
         verify(io, never()).println(anyString());

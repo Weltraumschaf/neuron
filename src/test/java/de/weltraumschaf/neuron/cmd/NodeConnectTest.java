@@ -41,15 +41,15 @@ public class NodeConnectTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void execute_oneArguments() {
-        args.add(Token.newToken(23));
+        args.add(Token.newNumberToken(23));
         final NodeConnect sut = new NodeConnect(env, io, args);
         sut.execute();
     }
 
     @Test
     public void execute_sourceIdDoesNotExist() {
-        args.add(Token.newToken(23));
-        args.add(Token.newToken(42));
+        args.add(Token.newNumberToken(23));
+        args.add(Token.newNumberToken(42));
         final NodeConnect sut = new NodeConnect(env, io, args);
         sut.execute();
         verify(io, times(1)).println("Node with id 23 does not exist!");
@@ -58,8 +58,8 @@ public class NodeConnectTest {
     @Test
     public void execute_destiationIdDoesNotExist() {
         final Node source = env.add();
-        args.add(Token.newToken(source.getId()));
-        args.add(Token.newToken(42));
+        args.add(Token.newNumberToken(source.getId()));
+        args.add(Token.newNumberToken(42));
         final NodeConnect sut = new NodeConnect(env, io, args);
         sut.execute();
         verify(io, times(1)).println("Node with id 42 does not exist!");
@@ -69,11 +69,11 @@ public class NodeConnectTest {
     public void execute() {
         final Node source = spy(factory.newNode());
         env.add(source);
-        args.add(Token.newToken(source.getId()));
+        args.add(Token.newNumberToken(source.getId()));
 
         final Node destination = spy(factory.newNode());
         env.add(destination);
-        args.add(Token.newToken(destination.getId()));
+        args.add(Token.newNumberToken(destination.getId()));
 
         final NodeConnect sut = new NodeConnect(env, io, args);
         sut.execute();

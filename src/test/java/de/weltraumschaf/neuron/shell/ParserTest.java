@@ -78,7 +78,7 @@ public class ParserTest {
         assertThat(c.getSubCommand(), is(SubType.ADD));
         assertThat(c.getArguments().size(), is(1));
         Token<Integer> t = c.getArguments().get(0);
-        assertThat(t.getType(), is(TokenType.INTEGER));
+        assertThat(t.getType(), is(TokenType.NUMBER));
         assertThat(t.getValue(), is(1234));
 
         c = sut.parse("node del 5678");
@@ -86,7 +86,7 @@ public class ParserTest {
         assertThat(c.getSubCommand(), is(SubType.DEL));
         assertThat(c.getArguments().size(), is(1));
         t = c.getArguments().get(0);
-        assertThat(t.getType(), is(TokenType.INTEGER));
+        assertThat(t.getType(), is(TokenType.NUMBER));
         assertThat(t.getValue(), is(5678));
 
         c = sut.parse("node info 5678");
@@ -94,7 +94,7 @@ public class ParserTest {
         assertThat(c.getSubCommand(), is(SubType.INFO));
         assertThat(c.getArguments().size(), is(1));
         t = c.getArguments().get(0);
-        assertThat(t.getType(), is(TokenType.INTEGER));
+        assertThat(t.getType(), is(TokenType.NUMBER));
         assertThat(t.getValue(), is(5678));
     }
 

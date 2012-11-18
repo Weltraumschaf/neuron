@@ -23,11 +23,20 @@ public class TokenTest {
 
     @Test
     public void testToString() {
-        Token t = Token.newToken("foo");
+        Token t = Token.newLiteralToken("foo");
         assertThat(t.toString(), is("Token{type=LITERAL, value=foo}"));
 
-        t = Token.newToken(123);
-        assertThat(t.toString(), is("Token{type=INTEGER, value=123}"));
+        t = Token.newStringToken("foo");
+        assertThat(t.toString(), is("Token{type=STRING, value=foo}"));
+
+        t = Token.newKeywordToken("foo");
+        assertThat(t.toString(), is("Token{type=KEYWORD, value=foo}"));
+
+        t = Token.newNumberToken(123);
+        assertThat(t.toString(), is("Token{type=NUMBER, value=123}"));
+
+        t = Token.newNumberToken(123);
+        assertThat(t.toString(), is("Token{type=NUMBER, value=123}"));
     }
 
 }
