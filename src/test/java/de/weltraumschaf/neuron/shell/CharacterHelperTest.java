@@ -118,4 +118,26 @@ public class CharacterHelperTest {
         }
     }
 
+    @Test
+    public void isQuote() {
+        assertTrue(CharacterHelper.isQuote('"'));
+        assertTrue(CharacterHelper.isQuote('\''));
+
+        for (int i = 0; i < WHITE_SPACES.length; ++i) {
+            assertFalse(CharacterHelper.isQuote(WHITE_SPACES[i]));
+        }
+
+        for (int i = 0; i < NUMS.length; ++i) {
+            assertFalse(CharacterHelper.isQuote(NUMS[i]));
+        }
+
+        for (int i = 0; i < LOW_ALPHA.length; ++i) {
+            assertFalse(CharacterHelper.isQuote(LOW_ALPHA[i]));
+        }
+
+        for (int i = 0; i < UP_ALPHA.length; ++i) {
+            assertFalse(CharacterHelper.isQuote(UP_ALPHA[i]));
+        }
+    }
+
 }
