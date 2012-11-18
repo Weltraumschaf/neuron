@@ -19,6 +19,24 @@ import java.util.List;
 /**
  * Parses input line from interactive shell.
  *
+ * Parsed grammar:
+ * <pre>
+ * imputline  = command { argument } .
+ * command    = keyword [ keyword ] .
+ * keyword    = character { character } .
+ * argument   = literal | number | string .
+ * literal    = alphanum { alphanum } .
+ * number     = digit { digit } .
+ * string     = '\'' alphanum { whitespace | alphanum } '\''
+              | '"' alphanum { whitespace | alphanum } '"' .
+ * alphanum   = character
+ *            | digit .
+ * character  = 'a' .. 'z'
+ *            | 'A' .. 'Z' .
+ * digit      = '0' .. '9' .
+ * whitespace = ' ' .
+ * </pre>
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class Parser {
