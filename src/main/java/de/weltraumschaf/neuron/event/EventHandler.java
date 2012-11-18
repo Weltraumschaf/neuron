@@ -54,7 +54,7 @@ public class EventHandler implements Observer {
         final Node source = (Node) event.getSource();
 
         if (shouldPrint(source, event)) {
-            io.println(String .format("Event from %d: %s", source.getId(), event.toString()));
+            io.println(String .format("Event: %s", event.toString()));
         }
     }
 
