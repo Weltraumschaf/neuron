@@ -35,8 +35,8 @@ import java.util.Set;
  * Note that this notification mechanism is has nothing to do with threads and is completely separate
  * from the {@link java.lang.Object#wait()} and {@link java.lang.Object#notify()} mechanism of class {@link Object}.
  *
- * When an observable object is newly created, its set of observers is empty. Two observers are
- * considered the same if and only if the {@link java.lang.Object#equals(java.lang.Object)} method returns true for them.
+ * When an observable object is newly created, its set of observers is empty. Two observers are considered the same
+ * if and only if the {@link java.lang.Object#equals(java.lang.Object)} method returns true for them.
  *
  * This is a copy of java.util.Observable with customizations.
  *
