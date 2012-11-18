@@ -26,9 +26,9 @@ class Scanner {
      *
      * @param line line to scan.
      * @return List of recognized, never null
-     * @throws SyntaxException if, syntax error occurred
+     * @throws SyntaxException if, syntax error occurred.
      * // CHECKSTYLE:OFF
-     * @throws IllegalArgumentException, if line is null
+     * @throws IllegalArgumentException, if line is null.
      * // CHECKSTYLE:ON
      */
     List<Token> scan(final String line) throws SyntaxException {

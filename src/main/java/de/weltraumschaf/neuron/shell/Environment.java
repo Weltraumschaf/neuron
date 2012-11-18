@@ -13,7 +13,7 @@ package de.weltraumschaf.neuron.shell;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import de.weltraumschaf.neuron.Observer;
+import de.weltraumschaf.neuron.event.Observer;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
 import java.util.List;

@@ -16,7 +16,7 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.EventHandler;
+import de.weltraumschaf.neuron.event.EventHandler;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 import org.junit.Test;

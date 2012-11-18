@@ -11,6 +11,7 @@
  */
 package de.weltraumschaf.neuron.shell;
 
+import de.weltraumschaf.neuron.event.EventHandler;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.neuron.cmd.Command;

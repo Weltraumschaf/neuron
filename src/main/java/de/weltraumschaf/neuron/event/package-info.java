@@ -9,22 +9,10 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron.node;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 /**
+ * Everything needed to observe objects and send notification events.
  *
- * @author "Sven Strittmatter" <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class EventTest {
-
-    @Test
-    public void testToString() {
-        final Event sut = new Event(Event.Type.MESSAGING, "foo");
-        assertThat(sut.toString(), is("[MESSAGING] foo"));
-    }
-
-}
+package de.weltraumschaf.neuron.event;

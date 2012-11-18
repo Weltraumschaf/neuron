@@ -9,11 +9,9 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron.shell;
+package de.weltraumschaf.neuron.event;
 
 import de.weltraumschaf.commons.IO;
-import de.weltraumschaf.neuron.Observable;
-import de.weltraumschaf.neuron.node.Event;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
 import org.junit.Ignore;

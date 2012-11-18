@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
+package de.weltraumschaf.neuron.event;
 
 /**
  * A class can implement the <code>Observer</code> interface when it

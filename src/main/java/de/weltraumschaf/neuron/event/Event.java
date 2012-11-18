@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron.node;
+package de.weltraumschaf.neuron.event;
 
 /**
  * Events emitted by {@link Observable}.

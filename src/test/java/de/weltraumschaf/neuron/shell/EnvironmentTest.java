@@ -11,7 +11,7 @@
  */
 package de.weltraumschaf.neuron.shell;
 
-import de.weltraumschaf.neuron.Observer;
+import de.weltraumschaf.neuron.event.Observer;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
 import static org.hamcrest.CoreMatchers.*;

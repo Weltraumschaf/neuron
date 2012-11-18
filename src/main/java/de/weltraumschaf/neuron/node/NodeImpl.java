@@ -11,11 +11,12 @@
  */
 package de.weltraumschaf.neuron.node;
 
+import de.weltraumschaf.neuron.event.Event;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import de.weltraumschaf.neuron.Message;
-import de.weltraumschaf.neuron.DefaultObservable;
+import de.weltraumschaf.neuron.event.DefaultObservable;
 import java.util.List;
 import java.util.Map;
 

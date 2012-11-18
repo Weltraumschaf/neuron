@@ -13,7 +13,7 @@ package de.weltraumschaf.neuron.node;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.Message;
-import de.weltraumschaf.neuron.shell.EventHandler;
+import de.weltraumschaf.neuron.event.EventHandler;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
