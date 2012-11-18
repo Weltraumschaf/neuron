@@ -83,7 +83,7 @@ public final class CommandFactory {
                 cmd = new Reset(env, io, shellCmd.getArguments());
                 break;
             case MESSAGE:
-                cmd = new Message(env, io, shellCmd.getArguments());
+                cmd = new SendMessage(env, io, shellCmd.getArguments());
                 break;
             default:
                 throw new IllegalArgumentException(String.format("Unsupported main command type '%s'!",

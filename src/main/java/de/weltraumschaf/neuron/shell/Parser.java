@@ -40,6 +40,7 @@ import java.util.List;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class Parser {
+    private static final int MESSAGE_ARGS_COUNT = 3;
 
     /**
      * Tokenize the input line.
@@ -130,7 +131,7 @@ class Parser {
                 verifyNodeCommand(cmd);
                 break;
             case MESSAGE:
-                throw new UnsupportedOperationException("Not supported yet.");
+                verifyMessageCommand(cmd);
             default:
                 // Nothing to do here.
         }
@@ -192,6 +193,38 @@ class Parser {
 
         }
 
+    }
+
+    /**
+     * Verify commands of main command type {@link MainType#MESSAGE}.
+     *
+     * Consistency checks are:
+     * - correct number and type of arguments
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, wrong number or type of arguments
+     */
+    private void verifyMessageCommand(final ShellCommand cmd) throws SyntaxException {
+        final List<Token> args = cmd.getArguments();
+
+        if (args.size() != MESSAGE_ARGS_COUNT) {
+            throw new SyntaxException(String.format("Command '%s' requires 3 arguments!", cmd.getCommand()));
+        }
+
+        if (args.get(0).getType() != TokenType.NUMBER) {
+            throw new SyntaxException(String.format("First argument of command '%s' must be a number!",
+                                                    cmd.getCommand()));
+        }
+
+        if (args.get(1).getType() != TokenType.NUMBER) {
+            throw new SyntaxException(String.format("Second argument of command '%s' must be a number!",
+                                                    cmd.getCommand()));
+        }
+
+        if (args.get(2).getType() != TokenType.STRING) {
+            throw new SyntaxException(String.format("Third argument of command '%s' must be a string!",
+                                                    cmd.getCommand()));
+        }
     }
 
 }
