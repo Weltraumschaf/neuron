@@ -47,8 +47,8 @@ class SendMessage extends BaseCommand {
             return;
         }
 
-        getEnv().getNode(msg.getFrom()).send(msg);
         getIo().println(String.format("Send message %d -> %d.", from.getValue(), to.getValue()));
+        getEnv().getNode(msg.getFrom()).send(msg);
     }
 
 }

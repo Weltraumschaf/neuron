@@ -165,12 +165,23 @@ class NodeImpl extends DefaultObservable implements Node {
      */
     private void forward(final Message msg) {
         emmitEvent(Event.Type.MESSAGING, "Forward message: " + msg);
-        throw new UnsupportedOperationException("Not yet implemented");
+
+        if (hasNeighbor(msg.getTo())) {
+            getNeighbor(msg.getTo()).send(msg);
+        } else {
+            for (final Node neighbor : getNeighbors()) {
+                neighbor.send(msg);
+            }
+        }
     }
 
     @Override
     public MessageBox getInbox() {
         return inbox;
+    }
+
+    private Node getNeighbor(final int neighborsId) {
+        return neighbours.get(Integer.valueOf(neighborsId));
     }
 
 }
