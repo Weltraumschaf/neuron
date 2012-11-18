@@ -28,94 +28,6 @@ import java.util.Map;
 public class ShellCommand {
 
     /**
-     * Marker interface for shell command types.
-     */
-    public interface Type {
-
-    }
-
-    /**
-     * Enumerates the available commands.
-     */
-    public enum MainType implements Type {
-
-        /** Help command. */
-        HELP("help"),
-        /** Reset command. */
-        RESET("reset"),
-        /** Exit command. */
-        EXIT("exit"),
-        /** Node command. */
-        NODE("node"),
-        /** Message command. */
-        MESSAGE("message");
-
-        /**
-         * Literal command string used in shell.
-         */
-        private final String name;
-
-        /**
-         * Initialize name.
-         *
-         * @param name literal shell command string
-         */
-        private MainType(final String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-
-    }
-
-    /**
-     * Enumerates the optional subcommands.
-     */
-    public enum SubType implements Type {
-        /** No sub command. */
-        NONE(""),
-        /** Add sub command for node command. */
-        ADD("add"),
-        /** Del sub command for node command. */
-        DEL("del"),
-        /** Connect sub command for node command. */
-        CONNECT("connect"),
-        /** Disconnect sub command for node command. */
-        DISCONNECT("disconnect"),
-        /** List sub command for node command. */
-        LIST("list"),
-        /** Info sub command for node command. */
-        INFO("info"),
-        /** Listen sub command for node command. */
-        LISTEN("listen"),
-        /** Unlisten sub command for node command. */
-        UNLISTEN("unlisten");
-
-        /**
-         * Literal command string used in shell.
-         */
-        private final String name;
-
-        /**
-         * Initialize name.
-         *
-         * @param name literal shell command string
-         */
-        private SubType(final String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-
-    }
-
-    /**
      * Map the literal command string to corresponding type enum.
      */
     private static final Map<String, MainType> COMMANDS = Maps.newHashMap();
@@ -214,6 +126,8 @@ public class ShellCommand {
     /**
      * Determines if the string literal value of the token is a main command.
      *
+     * TODO Maybe remove this.
+     *
      * @param t token to check
      * @return true if the token is a command else false
      */
@@ -242,6 +156,8 @@ public class ShellCommand {
 
     /**
      * Determines if the string literal value of the token is a sub command.
+     *
+     * TODO Maybe remove this.
      *
      * @param t token to check
      * @return true if the token is a sub command else false
@@ -278,4 +194,92 @@ public class ShellCommand {
                       .toString();
     }
 
+    /**
+     * Marker interface for shell command types.
+     */
+    public interface Type {
+
+    }
+
+    /**
+     * Enumerates the available commands.
+     */
+    public enum MainType implements Type {
+
+        /** Help command. */
+        HELP("help"),
+        /** Reset command. */
+        RESET("reset"),
+        /** Exit command. */
+        EXIT("exit"),
+        /** Node command. */
+        NODE("node"),
+        /** Message command. */
+        MESSAGE("message");
+
+        /**
+         * Literal command string used in shell.
+         */
+        private final String name;
+
+        /**
+         * Initialize name.
+         *
+         * @param name literal shell command string
+         */
+        private MainType(final String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+    }
+
+    /**
+     * Enumerates the optional subcommands.
+     */
+    public enum SubType implements Type {
+        /** No sub command. */
+        NONE(""),
+        /** Add sub command for node command. */
+        ADD("add"),
+        /** Del sub command for node command. */
+        DEL("del"),
+        /** Connect sub command for node command. */
+        CONNECT("connect"),
+        /** Disconnect sub command for node command. */
+        DISCONNECT("disconnect"),
+        /** List sub command for node command. */
+        LIST("list"),
+        /** Info sub command for node command. */
+        INFO("info"),
+        /** Listen sub command for node command. */
+        LISTEN("listen"),
+        /** Unlisten sub command for node command. */
+        UNLISTEN("unlisten");
+
+        /**
+         * Literal command string used in shell.
+         */
+        private final String name;
+
+        /**
+         * Initialize name.
+         *
+         * @param name literal shell command string
+         */
+        private SubType(final String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+    }
+    
 }

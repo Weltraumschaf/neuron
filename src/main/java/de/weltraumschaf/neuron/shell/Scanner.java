@@ -60,6 +60,8 @@ class Scanner {
                 tokens.add(scanAlphaNum(characterStream));
             } else if (CharacterHelper.isNum(currentChar)) {
                 tokens.add(scanNumber(characterStream));
+            } else if (CharacterHelper.isQuote(currentChar)) {
+                tokens.add(scanString(characterStream));
             }
         }
     }
@@ -84,7 +86,13 @@ class Scanner {
             value.append(currentChar);
         }
 
-        return Token.newLiteralToken(value.toString());
+        final String tokenString = value.toString();
+
+        if (Token.isKeyword(tokenString)) {
+            return Token.newKeywordToken(tokenString);
+        } else {
+            return Token.newLiteralToken(tokenString);
+        }
     }
 
     /**
@@ -115,6 +123,35 @@ class Scanner {
         }
 
         return Token.newNumberToken(Integer.valueOf(value.toString()));
+    }
+
+    private Token scanString(final CharacterStream characterStream) throws SyntaxException {
+        final StringBuilder value = new StringBuilder();
+        final char startQuote = characterStream.current();
+        boolean terminated = false;
+
+        while (characterStream.hasNext()) {
+            final char currentChar = characterStream.next();
+
+            if (currentChar == startQuote) {
+                terminated = true;
+
+                if (characterStream.hasNext()) {
+                    // Skip closing quote, if there are more characters.
+                    characterStream.next();
+                }
+
+                break;
+            }
+
+            value.append(currentChar);
+        }
+
+        if (! terminated) {
+            throw new SyntaxException(String.format("Unterminated string '%s'!", value.toString()));
+        }
+
+        return Token.newStringToken(value.toString());
     }
 
 }

@@ -13,11 +13,11 @@ package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.neuron.shell.ShellCommand.MainType;
 import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
-import org.junit.Ignore;
-import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 /**
@@ -59,7 +59,7 @@ public class ParserTest {
     @Test
     public void parse_exceptionIfFirstLiteralIsNotACommand() throws SyntaxException {
         thrown.expect(SyntaxException.class);
-        thrown.expectMessage("Unrecognized command 'foobar'!");
+        thrown.expectMessage("Command expected as first input!");
         sut.parse("foobar");
     }
 

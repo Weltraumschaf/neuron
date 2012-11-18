@@ -11,10 +11,13 @@
  */
 package de.weltraumschaf.neuron.shell;
 
+import com.google.common.collect.Lists;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -22,7 +25,9 @@ import org.junit.Test;
  */
 public class ScannerTest {
 
-
+    // CHECKSTYLE:OFF
+    @Rule public ExpectedException thrown = ExpectedException.none();
+    // CHECKSTYLE:ON
     private final Scanner sut = new Scanner();
 
     @Test(expected = IllegalArgumentException.class)
@@ -37,22 +42,90 @@ public class ScannerTest {
     }
 
     @Test
-    public void scan_lineWithSingleString() throws SyntaxException {
+    public void scan_keywords() throws SyntaxException {
+        final StringBuilder input = new StringBuilder();
+        final List<ShellCommand.Type> types = Lists.newArrayList();
+
+        for (final ShellCommand.MainType t : ShellCommand.MainType.values()) {
+            input.append(t).append(' ');
+            types.add(t);
+        }
+
+        for (final ShellCommand.SubType t : ShellCommand.SubType.values()) {
+            if (t == ShellCommand.SubType.NONE) {
+                continue;
+            }
+            input.append(t).append(' ');
+            types.add(t);
+        }
+
+        final List<Token> tokens = sut.scan(input.toString());
+        int tokenId = 0;
+        for (Token<String> token : tokens) {
+            assertThat(token.getType(), is(TokenType.KEYWORD));
+            assertThat(token.getValue(), is(types.get(tokenId).toString()));
+            ++tokenId;
+        }
+    }
+
+    @Test
+    public void scan_lineWithSingleKeyword() throws SyntaxException {
         List<Token> tokens = sut.scan("help");
         assertThat(tokens.size(), is(1));
         Token<String> token = tokens.get(0);
-        assertThat(token.getType(), is(TokenType.LITERAL));
+        assertThat(token.getType(), is(TokenType.KEYWORD));
         assertThat(token.getValue(), is("help"));
 
         tokens = sut.scan("exit");
         assertThat(tokens.size(), is(1));
         token = tokens.get(0);
-        assertThat(token.getType(), is(TokenType.LITERAL));
+        assertThat(token.getType(), is(TokenType.KEYWORD));
         assertThat(token.getValue(), is("exit"));
     }
 
     @Test
+    public void scan_lineWithSingleString() throws SyntaxException {
+        List<Token> tokens = sut.scan("'foo'\n");
+
+        assertThat(tokens.size(), is(1));
+        Token<String> token = tokens.get(0);
+        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getValue(), is("foo"));
+
+        tokens = sut.scan("\"bar\"");
+        assertThat(tokens.size(), is(1));
+        token = tokens.get(0);
+        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getValue(), is("bar"));
+    }
+
+    @Test
+    public void scan_throwExceptionIfStringisUnterminated() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Unterminated string 'foo'!");
+        sut.scan("'foo");
+    }
+
+    @Test
     public void scan_lineWithMultipleStrings() throws SyntaxException {
+        final List<Token> tokens = sut.scan("'foo' 'bar' 'baz'\n");
+
+        assertThat(tokens.size(), is(3));
+        Token<String> token = tokens.get(0);
+        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getValue(), is("foo"));
+
+        token = tokens.get(1);
+        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getValue(), is("bar"));
+
+        token = tokens.get(2);
+        assertThat(token.getType(), is(TokenType.STRING));
+        assertThat(token.getValue(), is("baz"));
+    }
+
+    @Test
+    public void scan_lineWithMultipleLiterals() throws SyntaxException {
         final List<Token> tokens = sut.scan("foo bar baz1");
 
         assertThat(tokens.size(), is(3));
@@ -81,7 +154,7 @@ public class ScannerTest {
     }
 
     @Test
-    public void scan_lineWithMultipleNumber() throws SyntaxException {
+    public void scan_lineWithMultipleNumbers() throws SyntaxException {
         final List<Token> tokens = sut.scan("1234 5678 90");
         assertThat(tokens.size(), is(3));
 
@@ -99,7 +172,7 @@ public class ScannerTest {
     }
 
     @Test
-    public void scan_lineWithStringsAndNumbers() throws SyntaxException {
+    public void scan_lineWithLiteralAndNumbers() throws SyntaxException {
         Token<Integer> intToken;
         Token<String> strToken;
         List<Token> tokens = sut.scan("foo 1234 5678 bar");
@@ -135,8 +208,10 @@ public class ScannerTest {
 
     }
 
-    @Test(expected = SyntaxException.class)
+    @Test
     public void scan_lineWithMaliciousNumber() throws SyntaxException {
+        thrown.expect(SyntaxException.class);
+        thrown.expectMessage("Bad character 'f' in number starting with '1234'!");
         sut.scan("1234foo");
     }
 

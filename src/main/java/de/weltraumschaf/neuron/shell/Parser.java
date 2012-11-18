@@ -67,12 +67,8 @@ class Parser {
         final List<Token> tokens = scanner.scan(input);
         final Token commandtoken = tokens.get(0);
 
-        if (TokenType.LITERAL != commandtoken.getType()) {
+        if (TokenType.KEYWORD != commandtoken.getType()) {
             throw new SyntaxException("Command expected as first input!");
-        }
-
-        if (! ShellCommand.isCommand(commandtoken)) {
-            throw new SyntaxException(String.format("Unrecognized command '%s'!", commandtoken.getValue()));
         }
 
         final MainType command = ShellCommand.determineCommand(commandtoken);
@@ -82,7 +78,12 @@ class Parser {
         if (tokens.size() > 1) {
             final Token secondToken = tokens.get(1);
 
-            if (secondToken.getType() == TokenType.LITERAL && ShellCommand.isSubCommand(secondToken)) {
+            if (secondToken.getType() == TokenType.KEYWORD) {
+                if (! ShellCommand.isSubCommand(secondToken)) {
+                    throw new SyntaxException(
+                            String.format("Command '%s' followed by bad keyword '%s' as sub command!",
+                                          commandtoken.getValue(), secondToken.getValue()));
+                }
                 ++argumentBegin;
                 subCommand = ShellCommand.determineSubCommand(secondToken);
             }
