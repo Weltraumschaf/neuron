@@ -99,7 +99,7 @@ class Scanner {
      * Recognize numeric integer tokens until next white space character.
      *
      * @param characterStream input line to scan
-     * @return Return integer type token
+     * @return integer type token
      * @throws SyntaxException if, non numeric character occurred
      */
     private Token scanNumber(final CharacterStream characterStream) throws SyntaxException {
@@ -125,6 +125,15 @@ class Scanner {
         return Token.newNumberToken(Integer.valueOf(value.toString()));
     }
 
+    /**
+     * Scan string tokens.
+     *
+     * String tokens are everything encapsulated in single or double quotes.
+     *
+     * @param characterStream input line to scan
+     * @return integer type token
+     * @throws SyntaxException if, string is not terminated by quote character
+     */
     private Token scanString(final CharacterStream characterStream) throws SyntaxException {
         final StringBuilder value = new StringBuilder();
         final char startQuote = characterStream.current();

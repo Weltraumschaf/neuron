@@ -48,6 +48,7 @@ public class Event {
      *
      * @param type type of event
      * @param description description of event
+     * @param source of the event
      */
     public Event(final Type type, final String description, final Observable source) {
         super();
@@ -74,6 +75,11 @@ public class Event {
         return description;
     }
 
+    /**
+     * Get the source of the event.
+     *
+     * @return observable which have emitted the event
+     */
     public Observable getSource() {
         return source;
     }

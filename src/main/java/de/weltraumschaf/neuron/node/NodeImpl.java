@@ -132,11 +132,21 @@ class NodeImpl extends DefaultObservable implements Node {
         notifyObservers(new Event(type, description, this));
     }
 
+    /**
+     * Handle message which {@link Message#to "to address"} is equal to {@link #id}.
+     *
+     * @param msg received message
+     */
     private void receive(final Message msg) {
         emmitEvent(Event.Type.MESSAGING, "Receive message: " + msg);
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /**
+     * Handle message which {@link Message#to "to address"} is NOT equal to {@link #id}.
+     *
+     * @param msg forwarded message
+     */
     private void forward(final Message msg) {
         emmitEvent(Event.Type.MESSAGING, "Forward message: " + msg);
         throw new UnsupportedOperationException("Not yet implemented");
