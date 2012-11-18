@@ -11,7 +11,6 @@
  */
 package de.weltraumschaf.neuron.node;
 
-import de.weltraumschaf.neuron.Message;
 import de.weltraumschaf.neuron.event.Observable;
 import de.weltraumschaf.neuron.event.Observer;
 import java.util.List;
@@ -86,17 +85,10 @@ public interface Node extends Observable {
     List<Node> getNeighbors();
 
     /**
-     * Method to register an event handler.
+     * Get the message box with all received messages.
      *
-     * @param o event handler
+     * @return a message box object.
      */
-    void addObserver(Observer o);
-
-    /**
-     * Method to unregister an event handler.
-     *
-     * @param o event handler
-     */
-    void deleteObserver(Observer o);
+    MessageBox getInbox();
 
 }

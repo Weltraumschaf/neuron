@@ -48,7 +48,9 @@ public class NodeInfoTest {
         sut.execute();
         verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 0%n"
                 + "Neighbors:%n"
-                + "  Has no neighbors!%n", inspectedNode.getId()));
+                + "  Has no neighbors!%n%n"
+                + "Received messages:%n"
+                + "  Has no messages received!%n", inspectedNode.getId()));
     }
 
     @Test
@@ -62,7 +64,9 @@ public class NodeInfoTest {
         sut.execute();
         verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 1%n"
                 + "Neighbors:%n"
-                + "  %s%n", inspectedNode.getId(), neighborNode));
+                + "  %s%n%n"
+                + "Received messages:%n"
+                + "  Has no messages received!%n", inspectedNode.getId(), neighborNode));
     }
 
     @Test
@@ -80,7 +84,10 @@ public class NodeInfoTest {
         sut.execute();
         verify(io, times(1)).println(String.format("Node ID: %d Neigbors: 3%n"
                 + "Neighbors:%n"
-                + "  %s%n  %s%n  %s%n", inspectedNode.getId(), neighborNode1, neighborNode2, neighborNode3));
+                + "  %s%n  %s%n  %s%n%n"
+                + "Received messages:%n"
+                + "  Has no messages received!%n",
+                inspectedNode.getId(), neighborNode1, neighborNode2, neighborNode3));
     }
 
 }

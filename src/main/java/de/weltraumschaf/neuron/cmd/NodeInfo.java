@@ -12,6 +12,8 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.node.Message;
+import de.weltraumschaf.neuron.node.MessageBox;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
@@ -43,19 +45,39 @@ class NodeInfo extends BaseCommand {
             final Node inspectedNode = getEnv().getNode(nodeId.getValue());
             final StringBuilder info = new StringBuilder();
             info.append(String.format("%s%n", inspectedNode));
-            info.append(String.format("Neighbors:%n"));
-
-            if (inspectedNode.hasNeighbors()) {
-                for (final Node neighbor : inspectedNode.getNeighbors()) {
-                    info.append(String.format("  %s%n", neighbor));
-                }
-            } else {
-                info.append(String.format("  Has no neighbors!%n"));
-            }
-
+            infosAboutNeighbors(info, inspectedNode);
+            info.append(String.format("%n"));
+            infosAboutReceivedMessages(info, inspectedNode);
             getIo().println(info.toString());
         } else {
             getIo().println(String.format("Node with id %d does not exist!", nodeId.getValue()));
+        }
+    }
+
+    private void infosAboutNeighbors(final StringBuilder info, final Node inspectedNode) {
+        info.append(String.format("Neighbors:%n"));
+
+        if (inspectedNode.hasNeighbors()) {
+            for (final Node neighbor : inspectedNode.getNeighbors()) {
+                info.append(String.format("  %s%n", neighbor));
+            }
+        } else {
+            info.append(String.format("  Has no neighbors!%n"));
+        }
+    }
+
+    private void infosAboutReceivedMessages(final StringBuilder info, final Node inspectedNode) {
+        info.append(String.format("Received messages:%n"));
+        final MessageBox inbox = inspectedNode.getInbox();
+
+        if (inbox.isEmpty()) {
+            info.append(String.format("  Has no messages received!%n"));
+        } else {
+            int i = 1;
+            for (final Message msg : inbox.getMessages()) {
+                info.append(String.format("  %d. %s%n", i, msg));
+                ++i;
+            }
         }
     }
 

@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package de.weltraumschaf.neuron;
+package de.weltraumschaf.neuron.node;
 
 import com.google.common.base.Objects;
 
@@ -81,11 +81,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                      .add("from", getFrom())
-                      .add("to", getTo())
-                      .add("msg", getMsg())
-                      .toString();
+        return String.format("%d -> %d: '%s'", getFrom(), getTo(), getMsg());
     }
 
 }

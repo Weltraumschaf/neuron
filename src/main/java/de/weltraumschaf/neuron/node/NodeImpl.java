@@ -11,12 +11,11 @@
  */
 package de.weltraumschaf.neuron.node;
 
-import de.weltraumschaf.neuron.event.Event;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import de.weltraumschaf.neuron.Message;
 import de.weltraumschaf.neuron.event.DefaultObservable;
+import de.weltraumschaf.neuron.event.Event;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +37,11 @@ class NodeImpl extends DefaultObservable implements Node {
     private final int id;
 
     /**
+     * Collect all received messages.
+     */
+    private final MessageBox inbox = new MessageBox();
+
+    /**
      * Default constructor.
      *
      * @param id system wide unique identity
@@ -49,6 +53,10 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void connect(final Node n) {
+        if (null == n) {
+            throw new NullPointerException("Argument is null!");
+        }
+
         if (hasNeighbor(n.getId())) {
             throw new IllegalArgumentException(String.format("Already connected to node with address %d!", n.getId()));
         }
@@ -59,6 +67,10 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void disconnect(final Node n) {
+        if (null == n) {
+            throw new NullPointerException("Argument is null!");
+        }
+
         if (!hasNeighbor(n.getId())) {
             throw new IllegalArgumentException(String.format("Not connected to node with address %d!", n.getId()));
         }
@@ -74,6 +86,10 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void send(final Message msg) {
+        if (null == msg) {
+            throw new NullPointerException("Argument is null!");
+        }
+
         if (msg.getTo() == getId()) {
             receive(msg);
         } else {
@@ -139,7 +155,7 @@ class NodeImpl extends DefaultObservable implements Node {
      */
     private void receive(final Message msg) {
         emmitEvent(Event.Type.MESSAGING, "Receive message: " + msg);
-        throw new UnsupportedOperationException("Not yet implemented");
+        inbox.store(msg);
     }
 
     /**
@@ -150,6 +166,11 @@ class NodeImpl extends DefaultObservable implements Node {
     private void forward(final Message msg) {
         emmitEvent(Event.Type.MESSAGING, "Forward message: " + msg);
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
+    public MessageBox getInbox() {
+        return inbox;
     }
 
 }

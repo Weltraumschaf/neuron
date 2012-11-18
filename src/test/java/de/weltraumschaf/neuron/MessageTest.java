@@ -11,6 +11,7 @@
  */
 package de.weltraumschaf.neuron;
 
+import de.weltraumschaf.neuron.node.Message;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -24,6 +25,6 @@ public class MessageTest {
     @Test
     public void testTOString() {
         final Message sut = new Message("foo bar", 23, 42);
-        assertThat(sut.toString(), is("Message{from=23, to=42, msg=foo bar}"));
+        assertThat(sut.toString(), is("23 -> 42: 'foo bar'"));
     }
 }
