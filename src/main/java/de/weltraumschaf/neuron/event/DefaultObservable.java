@@ -24,19 +24,19 @@ import java.util.Set;
  * An observable object can have one or more observers. An observer may be any object that
  * implements interface {@link Observer}. After an observable instance changes, an  application
  * calling the {@link Observable#notifyObservers} method causes all of its observers to be notified
- * of the change by a call to their {@link Observer#update} method.
+ * of the change by a call to their {@link Observer#update(de.weltraumschaf.neuron.event.Event)} method.
  *
  * The order in which notifications will be delivered is unspecified. The default implementation
- * provided in the {@link DefaultObservable} class will notify {@link Observers} in the order in
+ * provided in the {@link DefaultObservable} class will notify {@link Observer observers} in the order in
  * which they registered interest, but subclasses may change this order, use no guaranteed order,
  * deliver notifications on separate threads, or may guarantee that their subclass follows this order,
  * as they choose.
  *
  * Note that this notification mechanism is has nothing to do with threads and is completely separate
- * from the {@link Object#wait() and {@link Object#notify()} mechanism of class {@link Object}.
+ * from the {@link java.lang.Object#wait()} and {@link java.lang.Object#notify()} mechanism of class {@link Object}.
  *
  * When an observable object is newly created, its set of observers is empty. Two observers are
- * considered the same if and only if the {@link Object#equals()} method returns true for them.
+ * considered the same if and only if the {@link java.lang.Object#equals(java.lang.Object)} method returns true for them.
  *
  * This is a copy of java.util.Observable with customizations.
  *
@@ -81,11 +81,32 @@ public class DefaultObservable implements Observable {
         }
     }
 
+    /**
+     * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers
+     * and then call the {@link #clearChanged()} method to indicate that this object has no longer changed.
+     *
+     * Each observer has its {@link Observer#update(de.weltraumschaf.neuron.event.Event)} method called with two
+     * arguments: this observable object and <code>null</code>. In other words, this method is equivalent to:
+     * {@link Observable#notifyObservers(de.weltraumschaf.neuron.event.Event) "notifyObservers(null)"}.
+     *
+     * @see DefaultObservable#clearChanged()
+     * @see Observable#hasChanged()
+     * @see Observer#update(de.weltraumschaf.neuron.event.Event)
+     */
     @Override
     public void notifyObservers() {
         notifyObservers(null);
     }
 
+    /**
+     * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers
+     * and then call the {@link #clearChanged()} method to indicate that this object has no longer changed.
+     *
+     * @param event observed event
+     * @see DefaultObservable#clearChanged()
+     * @see Observable#hasChanged()
+     * @see Observer#update(de.weltraumschaf.neuron.event.Event)
+     */
     @Override
     public void notifyObservers(final Event event) {
         /*
@@ -126,6 +147,15 @@ public class DefaultObservable implements Observable {
         }
     }
 
+    /**
+     * Tests if this object has changed.
+     *
+     * @return  <code>true</code> if and only if the {@link DefaultObservable#setChanged()} method has been called more recently than
+     * the {@link Observable#countObservers()} method on this object; <code>false</code> otherwise.
+     *
+     * @see DefaultObservable#clearChanged()
+     * @see DefaultObservable#setChanged()
+     */
     @Override
     public boolean hasChanged() {
         synchronized (this) {
@@ -157,7 +187,7 @@ public class DefaultObservable implements Observable {
      * This method is called automatically by the {@link #notifyObservers()} methods.
      *
      * @see Observable#notifyObservers()
-     * @see Observable#notifyObservers(java.lang.Object)
+     * @see Observable#notifyObservers(Event event)
      */
     protected void clearChanged() {
         synchronized (this) {

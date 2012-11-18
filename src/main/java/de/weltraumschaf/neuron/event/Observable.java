@@ -53,38 +53,23 @@ public interface Observable {
     /**
      * Tests if this object has changed.
      *
-     * @return  <code>true</code> if and only if the {@link #setChanged()} method has been called more recently than
-     * the {@link #clearChanged()} method on this object; <code>false</code> otherwise.
-     * @see Observable#clearChanged()
-     * @see Observable#setChanged()
+     * @return true if object has chaged, else false
      */
     boolean hasChanged();
 
     /**
-     * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers
-     * and then call the {@link #clearChanged()} method to indicate that this object has no longer changed.
-     *
-     * Each observer has its {@link Observer#update()} method called with two arguments: this observable object and
-     * <code>null</code>. In other words, this method is equivalent to: {@link #notifyObservers(null)}.
-     *
-     * @see Observable#clearChanged()
-     * @see Observable#hasChanged()
-     * @see Observer#update(Observable, Event)
+     * If this object has changed, then notify all of its observers.
      */
     void notifyObservers();
 
     /**
-     * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers
-     * and then call the {@link #clearChanged()} method to indicate that this object has no longer changed.
+     * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers.
      *
-     * Each observer has its {@link Observer#update()} method called with two arguments: this observable object and the
-     * <code>arg</code> argument.
+     * Each observer has its {@link Observer#update(de.weltraumschaf.neuron.event.Event)} method called with one
+     * event arguments.
      *
-     * @param arg event object
-     * @see Observable#clearChanged()
-     * @see Observable#hasChanged()
-     * @see Observer#update(DefaultObservable, Event)
+     * @param event observed event
      */
-    void notifyObservers(Event arg);
+    void notifyObservers(Event event);
 
 }
