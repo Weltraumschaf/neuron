@@ -15,19 +15,28 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent
- * an object that the application wants to have observed. <p> An observable object can have one or more observers. An
- * observer may be any object that implements interface <tt>Observer</tt>. After an observable instance changes, an
- * application calling the
- * <code>DefaultObservable</code>'s
- * <code>notifyObservers</code> method causes all of its observers to be notified of the change by a call to their
- * <code>update</code> method. <p> The order in which notifications will be delivered is unspecified. The default
- * implementation provided in the DefaultObservable class will notify Observers in the order in which they registered interest,
- * but subclasses may change this order, use no guaranteed order, deliver notifications on separate threads, or may
- * guarantee that their subclass follows this order, as they choose. <p> Note that this notification mechanism is has
- * nothing to do with threads and is completely separate from the <tt>wait</tt> and <tt>notify</tt> mechanism of class
- * <tt>Object</tt>. <p> When an observable object is newly created, its set of observers is empty. Two observers are
- * considered the same if and only if the <tt>equals</tt> method returns true for them.
+ * This class represents an observable object.
+ *
+ * It can be subclassed to represent an object that the application wants to have observed.
+ *
+ * An observable object can have one or more observers. An observer may be any object that
+ * implements interface {@link Observer}. After an observable instance changes, an  application
+ * calling the {@link Observable#notifyObservers} method causes all of its observers to be notified
+ * of the change by a call to their {@link Observer#update} method.
+ *
+ * The order in which notifications will be delivered is unspecified. The default implementation
+ * provided in the {@link DefaultObservable} class will notify {@link Observers} in the order in
+ * which they registered interest, but subclasses may change this order, use no guaranteed order,
+ * deliver notifications on separate threads, or may guarantee that their subclass follows this order,
+ * as they choose.
+ *
+ * Note that this notification mechanism is has nothing to do with threads and is completely separate
+ * from the {@link Object#wait() and {@link Object#notify()} mechanism of class {@link Object}.
+ *
+ * When an observable object is newly created, its set of observers is empty. Two observers are
+ * considered the same if and only if the {@link Object#equals()} method returns true for them.
+ *
+ * This is a copy of java.util.Observable with customizations.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -50,16 +59,6 @@ public class DefaultObservable implements Observable {
         super();
     }
 
-    /**
-     * Adds an observer to the set of observers for this object, provided that it is not the same as some observer
-     * already in the set. The order in which notifications will be delivered to multiple observers is not specified.
-     * See the class comment.
-     *
-     * @param o an observer to be added.
-     * CHECKSTYLE:OFF
-     * @throws NullPointerException if the parameter o is null.
-     * CHECKSTYLE:ON
-     */
     @Override
     public void addObserver(final Observer o) {
         if (o == null) {
@@ -73,12 +72,6 @@ public class DefaultObservable implements Observable {
         }
     }
 
-    /**
-     * Deletes an observer from the set of observers of this object. Passing
-     * <CODE>null</CODE> to this method will have no effect.
-     *
-     * @param o the observer to be deleted.
-     */
     @Override
     public void deleteObserver(final Observer o) {
         synchronized (obs) {
@@ -86,39 +79,15 @@ public class DefaultObservable implements Observable {
         }
     }
 
-    /**
-     * If this object has changed, as indicated by the
-     * <code>hasChanged</code> method, then notify all of its observers and then call the
-     * <code>clearChanged</code> method to indicate that this object has no longer changed. <p> Each observer has its
-     * <code>update</code> method called with two arguments: this observable object and
-     * <code>null</code>. In other words, this method is equivalent to: <blockquote><tt>
-     * notifyObservers(null)</tt></blockquote>
-     *
-     * @see DefaultObservable#clearChanged()
-     * @see DefaultObservable#hasChanged()
-     * @see Observer#update(DefaultObservable, java.lang.Object)
-     */
     @Override
     public void notifyObservers() {
         notifyObservers(null);
     }
 
-    /**
-     * If this object has changed, as indicated by the
-     * <code>hasChanged</code> method, then notify all of its observers and then call the
-     * <code>clearChanged</code> method to indicate that this object has no longer changed. <p> Each observer has its
-     * <code>update</code> method called with two arguments: this observable object and the
-     * <code>arg</code> argument.
-     *
-     * @param arg any object.
-     * @see DefaultObservable#clearChanged()
-     * @see DefaultObservable#hasChanged()
-     * @see Observer#update(DefaultObservable, java.lang.Object)
-     */
     @Override
     public void notifyObservers(final Object arg) {
         /*
-         * a temporary array buffer, used as a snapshot of the state of
+         * A temporary buffer, used as a snapshot of the state of
          * current Observers.
          */
         List<Observer> localCopy;
@@ -127,7 +96,7 @@ public class DefaultObservable implements Observable {
             /* We don't want the Observer doing callbacks into
              * arbitrary code while holding its own Monitor.
              * The code where we extract each DefaultObservable from
-             * the Vector and store the state of the Observer
+             * the List and store the state of the Observer
              * needs synchronization, but notifying observers
              * does not (should not).  The worst result of any
              * potential race-condition here is that:
@@ -136,7 +105,7 @@ public class DefaultObservable implements Observable {
              * 2) a recently unregistered Observer will be
              *   wrongly notified when it doesn't care
              */
-            if (!changed) {
+            if (! changed) {
                 return;
             }
             localCopy = Lists.newArrayList(obs);
@@ -148,9 +117,6 @@ public class DefaultObservable implements Observable {
         }
     }
 
-    /**
-     * Clears the observer list so that this object no longer has any observers.
-     */
     @Override
     public void deleteObservers() {
         synchronized (obs) {
@@ -158,8 +124,22 @@ public class DefaultObservable implements Observable {
         }
     }
 
+    @Override
+    public boolean hasChanged() {
+        synchronized (this) {
+            return changed;
+        }
+    }
+
+    @Override
+    public int countObservers() {
+        synchronized (obs) {
+            return obs.size();
+        }
+    }
+
     /**
-     * Marks this <tt>DefaultObservable</tt> object as having been changed; the <tt>hasChanged</tt>
+     * Marks this <tt>DefaultObservable</tt> object as having been changed; the {@link #hasChanged()}
      * method will now return <tt>true</tt>.
      */
     protected void setChanged() {
@@ -170,42 +150,16 @@ public class DefaultObservable implements Observable {
 
     /**
      * Indicates that this object has no longer changed, or that it has already notified all of its observers of its
-     * most recent change, so that the <tt>hasChanged</tt> method will now return <tt>false</tt>. This method is called
-     * automatically by the  <code>notifyObservers</code> methods.
+     * most recent change, so that the {@link #hasChanged()} method will now return <tt>false</tt>.
      *
-     * @see DefaultObservable#notifyObservers()
-     * @see DefaultObservable#notifyObservers(java.lang.Object)
+     * This method is called automatically by the {@link #notifyObservers()} methods.
+     *
+     * @see Observable#notifyObservers()
+     * @see Observable#notifyObservers(java.lang.Object)
      */
     protected void clearChanged() {
         synchronized (this) {
             changed = false;
-        }
-    }
-
-    /**
-     * Tests if this object has changed.
-     *
-     * @return  <code>true</code> if and only if the <code>setChanged</code> method has been called more recently than
-     * the <code>clearChanged</code> method on this object; <code>false</code> otherwise.
-     * @see DefaultObservable#clearChanged()
-     * @see DefaultObservable#setChanged()
-     */
-    @Override
-    public boolean hasChanged() {
-        synchronized (this) {
-            return changed;
-        }
-    }
-
-    /**
-     * Returns the number of observers of this <tt>DefaultObservable</tt> object.
-     *
-     * @return the number of observers of this object.
-     */
-    @Override
-    public int countObservers() {
-        synchronized (obs) {
-            return obs.size();
         }
     }
 
