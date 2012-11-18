@@ -1,7 +1,11 @@
 package de.weltraumschaf.neuron;
 
+import de.weltraumschaf.commons.IOStreams;
 import de.weltraumschaf.commons.InvokableAdapter;
 import de.weltraumschaf.neuron.shell.InteractiveShell;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The main neuron application.
@@ -30,12 +34,15 @@ public final class App extends InvokableAdapter {
      */
     public static void main(final String[] args) {
         final App app = new App(args);
+        boolean debug = false;
 
         try {
-            InvokableAdapter.main(app);
-            app.exit(0);
-        } catch (Exception ex) {
-            app.getIoStreams().errorln("Exception: " + ex.getMessage());
+            if (args.length == 1 && "-d".equals(args[0])) {
+                debug = true;
+            }
+            InvokableAdapter.main(app, IOStreams.newDefault(), debug);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
             app.exit(-1);
         }
     }
