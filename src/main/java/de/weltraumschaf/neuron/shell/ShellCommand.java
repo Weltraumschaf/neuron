@@ -39,7 +39,9 @@ public class ShellCommand {
         /** Exit command. */
         EXIT("exit"),
         /** Node command. */
-        NODE("node");
+        NODE("node"),
+        /** Message command. */
+        MESSAGE("message");
 
         /**
          * Literal command string used in shell.

@@ -38,18 +38,18 @@ public class HelpTest {
         final String expectedHelpMessage = String.format(
                 "This is the Neuron Interactive shell version n/a.%n%n"
                 + "Available commands:%n%n"
-                + "  help                           Show all available commands.%n"
-                + "  reset                          Reset the whole environment.%n"
-                + "  exit                           Exit the interactive shell.%n%n"
-                + "  node add [AMOUNT]              Creates one new node or AMOUNT nodes.%n"
-                + "  node del ID                    Disconnect and deletes the node with ID.%n"
-                + "  node connect ID NEIGHBOR_ID    Connect two nodes.%n"
-                + "  node disconnect ID NEIGHBOR_ID    Connect two nodes.%n"
-                + "  node list                      List all nodes.%n"
-                + "  node info ID                   Print info of a node.%n"
-                + "  node listen ID|all             Listening for events of specified node.%n"
-                + "  node unlisten ID|all           Stop listening for events of specified node.%n%n"
-                + "  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n");
+                + "  help                             Show all available commands.%n"
+                + "  reset                            Reset the whole environment.%n"
+                + "  exit                             Exit the interactive shell.%n%n"
+                + "  node add [AMOUNT]                Creates one new node or AMOUNT nodes.%n"
+                + "  node del ID                      Disconnect and deletes the node with ID.%n"
+                + "  node connect ID NEIGHBOR_ID      Connect two nodes.%n"
+                + "  node disconnect ID NEIGHBOR_ID   Connect two nodes.%n"
+                + "  node list                        List all nodes.%n"
+                + "  node info ID                     Print info of a node.%n"
+                + "  node listen ID|all               Listening for events of specified node.%n"
+                + "  node unlisten ID|all             Stop listening for events of specified node.%n%n"
+                + "  message FROM_ID TO_ID 'MESSAGE'  Send a message from one node to other.%n");
         verify(io, times(1)).println(expectedHelpMessage);
     }
 
