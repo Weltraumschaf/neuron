@@ -69,7 +69,7 @@ public interface Observable {
      *
      * @see Observable#clearChanged()
      * @see Observable#hasChanged()
-     * @see Observer#update(Observable, java.lang.Object)
+     * @see Observer#update(Observable, Event)
      */
     void notifyObservers();
 
@@ -80,11 +80,11 @@ public interface Observable {
      * Each observer has its {@link Observer#update()} method called with two arguments: this observable object and the
      * <code>arg</code> argument.
      *
-     * @param arg any object
+     * @param arg event object
      * @see Observable#clearChanged()
      * @see Observable#hasChanged()
-     * @see Observer#update(DefaultObservable, java.lang.Object)
+     * @see Observer#update(DefaultObservable, Event)
      */
-    void notifyObservers(Object arg);
+    void notifyObservers(Event arg);
 
 }

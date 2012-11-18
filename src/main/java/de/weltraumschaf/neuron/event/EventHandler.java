@@ -50,9 +50,8 @@ public class EventHandler implements Observer {
     }
 
     @Override
-    public void update(final Observable o, final Object arg) {
-        final Event event = (Event) arg;
-        final Node source = (Node) o;
+    public void update(final Event event) {
+        final Node source = (Node) event.getSource();
 
         if (shouldPrint(source, event)) {
             io.println(String .format("Event from %d: %s", source.getId(), event.toString()));

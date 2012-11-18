@@ -39,15 +39,21 @@ public class Event {
     private final String description;
 
     /**
+     * Source of the event.
+     */
+    private final Observable source;
+
+    /**
      * Dedicated constructor.
      *
      * @param type type of event
      * @param description description of event
      */
-    public Event(final Type type, final String description) {
+    public Event(final Type type, final String description, final Observable source) {
         super();
         this.type = type;
         this.description = description;
+        this.source = source;
     }
 
     /**
@@ -68,9 +74,13 @@ public class Event {
         return description;
     }
 
+    public Observable getSource() {
+        return source;
+    }
+
     @Override
     public String toString() {
-        return String.format("[%s] %s", getType(), getDescription());
+        return String.format("[%s] %s (from %s)", getType(), getDescription(), getSource());
     }
 
 }

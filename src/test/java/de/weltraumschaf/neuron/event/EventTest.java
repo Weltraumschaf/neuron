@@ -23,8 +23,8 @@ public class EventTest {
 
     @Test
     public void testToString() {
-        final Event sut = new Event(Event.Type.MESSAGING, "foo");
-        assertThat(sut.toString(), is("[MESSAGING] foo"));
+        final Event sut = new Event(Event.Type.MESSAGING, "foo", null);
+        assertThat(sut.toString(), is("[MESSAGING] foo (from null)"));
     }
 
 }

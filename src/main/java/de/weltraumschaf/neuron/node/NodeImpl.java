@@ -74,7 +74,11 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void send(final Message msg) {
-        emmitEvent(Event.Type.MESSAGING, "Send message");
+        if (msg.getTo() == getId()) {
+            receive(msg);
+        } else {
+            forward(msg);
+        }
     }
 
     @Override
@@ -125,7 +129,17 @@ class NodeImpl extends DefaultObservable implements Node {
      */
     private void emmitEvent(Event.Type type, String description) {
         setChanged();
-        notifyObservers(new Event(type, description));
+        notifyObservers(new Event(type, description, this));
+    }
+
+    private void receive(final Message msg) {
+        emmitEvent(Event.Type.MESSAGING, "Receive message: " + msg);
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void forward(final Message msg) {
+        emmitEvent(Event.Type.MESSAGING, "Forward message: " + msg);
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }

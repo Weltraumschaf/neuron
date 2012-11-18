@@ -87,7 +87,7 @@ public class DefaultObservable implements Observable {
     }
 
     @Override
-    public void notifyObservers(final Object arg) {
+    public void notifyObservers(final Event event) {
         /*
          * A temporary buffer, used as a snapshot of the state of
          * current Observers.
@@ -115,7 +115,7 @@ public class DefaultObservable implements Observable {
         }
 
         for (final Observer observer : localCopy) {
-            observer.update(this, arg);
+            observer.update(event);
         }
     }
 

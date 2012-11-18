@@ -27,9 +27,8 @@ public interface Observer {
      * An application calls an {@link Observable#notifyObservers()} method to have all the object's
      * observers notified of the change.
      *
-     * @param   o     the observable object
-     * @param   arg   an argument passed to the{@link Observable#notifyObservers()} method.
+     * @param   arg   an event passed to the{@link Observable#notifyObservers()} method.
      */
-    void update(Observable o, Object arg);
+    void update(Event arg);
 
 }
