@@ -19,7 +19,6 @@ import de.weltraumschaf.neuron.node.NodeFactory;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -94,4 +93,5 @@ public class NodeListenTest {
         final Command sut = new NodeListen(env, io, args);
         sut.execute();
     }
+
 }
