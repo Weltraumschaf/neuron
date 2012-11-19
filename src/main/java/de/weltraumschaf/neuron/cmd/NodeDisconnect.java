@@ -52,10 +52,10 @@ class NodeDisconnect extends BaseCommand {
 
         final Node source = getEnv().getNode(sourceNodeId.getValue());
         final Node destination = getEnv().getNode(destinationNodeId.getValue());
-        source.disconnect(destination);
-        getIo().println(String.format("Disconected nodes: %d -! %d.",
+        getIo().println(String.format("Disconect nodes: %d -! %d.",
                                       sourceNodeId.getValue(),
                                       destinationNodeId.getValue()));
+        source.disconnect(destination);
     }
 
 }

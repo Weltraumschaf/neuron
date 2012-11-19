@@ -93,7 +93,7 @@ public class NodeDisconnectTest {
         final NodeDisconnect sut = new NodeDisconnect(env, io, args);
         sut.execute();
         verify(source, times(1)).disconnect(destination);
-        verify(io, times(1)).println(String.format("Disconected nodes: %d -! %d.",
+        verify(io, times(1)).println(String.format("Disconect nodes: %d -! %d.",
                                                    source.getId(),
                                                    destination.getId()));
     }

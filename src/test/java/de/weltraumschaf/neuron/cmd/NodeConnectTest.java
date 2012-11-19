@@ -78,7 +78,7 @@ public class NodeConnectTest {
         final NodeConnect sut = new NodeConnect(env, io, args);
         sut.execute();
         verify(source, times(1)).connect(destination);
-        verify(io, times(1)).println(String.format("Conected nodes: %d -> %d.",
+        verify(io, times(1)).println(String.format("Conect nodes: %d -> %d.",
                                                    source.getId(),
                                                    destination.getId()));
     }
