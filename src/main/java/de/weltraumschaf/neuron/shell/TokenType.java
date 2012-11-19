@@ -16,7 +16,7 @@ package de.weltraumschaf.neuron.shell;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-enum TokenType {
+public enum TokenType {
 
     /**
      * A command or subcommand literal.

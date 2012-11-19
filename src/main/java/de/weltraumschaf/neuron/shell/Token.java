@@ -109,7 +109,7 @@ public final class Token<T> {
      *
      * @return type enum
      */
-    TokenType getType() {
+    public TokenType getType() {
         return type;
     }
 

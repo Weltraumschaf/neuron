@@ -15,6 +15,7 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
+import de.weltraumschaf.neuron.shell.TokenType;
 import java.util.List;
 
 /**
@@ -37,13 +38,43 @@ class NodeListen extends BaseCommand {
 
     @Override
     public void execute() {
-        final Token<Integer> t = getArguments().get(0);
-        final int id = t.getValue();
+        if (getArguments().get(0).getType() == TokenType.NUMBER) {
+            final Token<Integer> t = getArguments().get(0);
+            listneToSingleNode(t.getValue());
+        } else if (getArguments().get(0).getType() == TokenType.LITERAL) {
+            final Token<String> t = getArguments().get(0);
+            if ("all".equals(t.getValue())) {
+                listenToAllNodes();
+            } else {
+                throw new IllegalArgumentException(String.format("Unrecognizable argument '%s'!",
+                                                                 t.getValue()));
+            }
+        } else {
+            throw new IllegalArgumentException(String.format("Unrecognizable argument '%s'!",
+                                                             getArguments().get(0).getValue()));
+        }
+    }
 
+    /**
+     * Add environments event handler to all nodes.
+     */
+    private void listenToAllNodes() {
+        getIo().println("Listening for events emmitted by all nodes.");
+        for (final Node n : getEnv().getNodes()) {
+            n.addObserver(getEnv().getHandler());
+        }
+    }
+
+    /**
+     * Add environments event handler to a specific node, if it exists.
+     *
+     * @param id the node id
+     */
+    private void listneToSingleNode(final int id) {
         if (getEnv().hasNode(id)) {
+            getIo().println(String.format("Listening for events emmitted by node '%d'.", id));
             final Node n = getEnv().getNode(id);
             n.addObserver(getEnv().getHandler());
-            getIo().println(String.format("Listening for events emmitted by node '%d'.", id));
         } else {
             getIo().println(String.format("There is no node with id '%d'!", id));
         }
