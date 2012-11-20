@@ -18,11 +18,11 @@ import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
- * Sub factory for node commands.
+ * Sub factory for dump commands.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-final class NodeCommandFactory {
+final class DumpCommandFactory {
 
     /**
      * Shell environment.
@@ -40,14 +40,14 @@ final class NodeCommandFactory {
      * @param env shell environment used by commands
      * @param io shell I/O used by commands
      */
-    NodeCommandFactory(final Environment env, final IO io) {
+    DumpCommandFactory(final Environment env, final IO io) {
         super();
         this.env = env;
         this.io = io;
     }
 
     /**
-     * Helper to create sub commands for node command.
+     * Helper to create sub commands for dump command.
      *
      * @param subCommand used to determine appropriate command
      * @param arguments command line arguments
@@ -56,28 +56,13 @@ final class NodeCommandFactory {
      * @throws IllegalArgumentException if, can't create command of bad sub command type
      * // CHECKSTYLE:ON
      */
-    Command newNodeCommand(final ShellCommand.SubType subCommand, final List<Token> arguments) {
+    Command newDumpCommand(final ShellCommand.SubType subCommand, final List<Token> arguments) {
         switch (subCommand) {
-            case ADD:
-                return new NodeAdd(env, io, arguments);
-            case CONNECT:
-                return new NodeConnect(env, io, arguments);
-            case DISCONNECT:
-                return new NodeDisconnect(env, io, arguments);
-            case DEL:
-                return new NodeDel(env, io, arguments);
-            case INFO:
-                return new NodeInfo(env, io, arguments);
-            case LIST:
-                return new NodeList(env, io, arguments);
-            case LISTEN:
-                return new NodeListen(env, io, arguments);
-            case UNLISTEN:
-                return new NodeUnlisten(env, io, arguments);
+            case DOT:
+                return new DumpDot(env, io, arguments);
             default:
                 throw new IllegalArgumentException(
-                            String.format("Main command type 'node' does not support sub type '%s'!", subCommand));
+                            String.format("Main command type 'dump' does not support sub type '%s'!", subCommand));
         }
     }
-
 }

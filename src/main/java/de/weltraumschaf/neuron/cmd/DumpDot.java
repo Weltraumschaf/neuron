@@ -12,16 +12,17 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.DotGenerator;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
- * Executes `exit` command.
+ * Executes `dump dot FILE` command.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-class Exit extends BaseCommand {
+public class DumpDot extends BaseCommand {
 
     /**
      * Dedicated constructor.
@@ -30,14 +31,12 @@ class Exit extends BaseCommand {
      * @param io shell I/O
      * @param arguments command arguments
      */
-    public Exit(final Environment env, final IO io, final List<Token> arguments) {
+    public DumpDot(final Environment env, final IO io, final List<Token> arguments) {
         super(env, io, arguments);
     }
 
     @Override
     public void execute() {
-        getIo().println("Bye bye & HAND!");
+        getIo().println(new DotGenerator(getEnv()).toString());
     }
-
-
 }

@@ -49,7 +49,8 @@ public class HelpTest {
                 + "  node info ID                     Print info of a node.%n"
                 + "  node listen ID|all               Listening for events of specified node.%n"
                 + "  node unlisten ID|all             Stop listening for events of specified node.%n%n"
-                + "  message FROM_ID TO_ID 'MESSAGE'  Send a message from one node to other.%n");
+                + "  message FROM_ID TO_ID 'MESSAGE'  Send a message from one node to other.%n%n"
+                + "  dump dot FILE                    Dump the nodes into a graphviz file.%n");
         verify(io, times(1)).println(expectedHelpMessage);
     }
 
