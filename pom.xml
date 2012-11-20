@@ -16,7 +16,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-<!--    <parent>
+    <!--    <parent>
         <groupId>de.weltraumschaf</groupId>
         <artifactId>weltraumschaf</artifactId>
         <version>1.0.0</version>
@@ -119,6 +119,11 @@
             <artifactId>commons</artifactId>
             <version>0.2.6-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
         </dependency>
     </dependencies>
 
@@ -594,16 +599,16 @@
                     <execution>
                         <phase>install </phase>
                         <configuration>
-                        <target>
-                            <copy file="${project.build.directory}/${finalName}.jar" tofile="${binDir}/${finalName}.jar"/>
-                        </target>
-                    </configuration>
-                    <goals>
-                        <goal>run</goal>
-                    </goals>
+                            <target>
+                                <copy file="${project.build.directory}/${finalName}.jar" tofile="${binDir}/${finalName}.jar"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                     </execution>
                 </executions>
-      </plugin>
+            </plugin>
         </plugins>
 
         <resources>

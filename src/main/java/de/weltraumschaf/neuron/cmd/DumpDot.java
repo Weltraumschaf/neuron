@@ -15,7 +15,10 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.DotGenerator;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Executes `dump dot FILE` command.
@@ -37,6 +40,16 @@ public class DumpDot extends BaseCommand {
 
     @Override
     public void execute() {
-        getIo().println(new DotGenerator(getEnv()).toString());
+        final Token<String> fileArg = getArguments().get(0);
+        // FIXME Absolute paths are stored in CWD.
+        final File file = new File(fileArg.getValue());
+
+        try {
+            FileUtils.writeStringToFile(file, new DotGenerator(getEnv()).toString());
+            getIo().println(String.format("Dumped nodes to dot file in '%s'.", file.getAbsoluteFile()));
+        } catch (IOException ex) {
+            getIo().println(String.format("Can't write dot file '%s'! Reason: %s.",
+                                          file.getAbsoluteFile(), ex.getMessage()));
+        }
     }
 }
