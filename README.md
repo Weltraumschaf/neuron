@@ -30,5 +30,7 @@ In the shell you can get all available commands with the `help` command.
 ## TODO
 
 - Possibility to add costs/latency to nodes.
+- Maybe use [JUNG2][2] to visualize nodes.
 
 [1]: http://maven.apache.org/
+[2]: http://stackoverflow.com/questions/3854719/what-is-a-maven-repository-url-for-jung2-java-graph-framework
