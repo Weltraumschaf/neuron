@@ -13,8 +13,8 @@ package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
-import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.event.EventHandler;
+import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.ShellCommand;
 import de.weltraumschaf.neuron.shell.Token;
 import java.util.Collections;

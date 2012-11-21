@@ -217,7 +217,9 @@ public class ShellCommand {
         /** Message command. */
         MESSAGE("message"),
         /** Dump command. */
-        DUMP("dump");
+        DUMP("dump"),
+        /** Sample command. */
+        SAMPLE("sample");
 
         /**
          * Literal command string used in shell.
@@ -263,7 +265,9 @@ public class ShellCommand {
         /** Unlisten sub command for node command. */
         UNLISTEN("unlisten"),
         /** Dot subcommand for dump command */
-        DOT("dot");
+        DOT("dot"),
+        /** Tree subcommand for dump command */
+        TREE("tree");
 
         /**
          * Literal command string used in shell.

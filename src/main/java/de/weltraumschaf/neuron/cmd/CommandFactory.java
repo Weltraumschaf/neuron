@@ -49,6 +49,11 @@ public final class CommandFactory {
     private final DumpCommandFactory dumpCommandFactory;
 
     /**
+     * Sub factory for sample commands.
+     */
+    private final SampleCommandFactory sampleCommandFactory;
+
+    /**
      * Dedicated constructor.
      *
      * @param env shell environment used by commands
@@ -62,6 +67,7 @@ public final class CommandFactory {
         this.version = version;
         nodeCommandFactory = new NodeCommandFactory(this.env, this.io);
         dumpCommandFactory = new DumpCommandFactory(this.env, this.io);
+        sampleCommandFactory = new SampleCommandFactory(this.env, this.io);
     }
 
     /**
@@ -93,6 +99,9 @@ public final class CommandFactory {
                 break;
             case DUMP:
                 cmd = dumpCommandFactory.newDumpCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
+                break;
+            case SAMPLE:
+                cmd = sampleCommandFactory.newSampleCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
                 break;
             default:
                 throw new IllegalArgumentException(String.format("Unsupported main command type '%s'!",
