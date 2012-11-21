@@ -45,7 +45,10 @@ class Help extends BaseCommand implements UseVersion {
 
         + "  message FROM_ID TO_ID 'MESSAGE'  Send a message from one node to other.%n%n"
 
-        + "  dump dot FILE                    Dump the nodes into a graphviz file.%n";
+        + "  dump dot FILE                    Dump the nodes into a graphviz file.%n%n"
+
+        + "  sample tree [DEPTH] [CHILDREN]   Generates a tree of nodes. If CHILDREN is omitted a binary tree is%n"
+        + "                                   generated. If DEPTH is omitted a random number (1..7) is used.%n%n";
     /**
      * Program version info.
      */
