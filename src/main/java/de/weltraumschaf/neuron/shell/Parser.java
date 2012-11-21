@@ -132,6 +132,13 @@ class Parser {
                 break;
             case MESSAGE:
                 verifyMessageCommand(cmd);
+                break;
+            case SAMPLE:
+                verifySampleCommand(cmd);
+                break;
+            case DUMP:
+                verifyDumpCommand(cmd);
+                break;
             default:
                 // Nothing to do here.
         }
@@ -225,6 +232,34 @@ class Parser {
             throw new SyntaxException(String.format("Third argument of command '%s' must be a string!",
                                                     cmd.getCommand()));
         }
+    }
+
+    /**
+     * Verify commands of main command type {@link MainType#SAMPLE}.
+     *
+     * Consistency checks are:
+     * - correct sub commands
+     * - correct number and type of arguments
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, wrong number or type of arguments
+     */
+    private void verifySampleCommand(final ShellCommand cmd) throws SyntaxException {
+        // TODO implement method
+    }
+
+    /**
+     * Verify commands of main command type {@link MainType#Dump}.
+     *
+     * Consistency checks are:
+     * - correct sub commands
+     * - correct number and type of arguments
+     *
+     * @param cmd command to verify
+     * @throws SyntaxException if, wrong number or type of arguments
+     */
+    private void verifyDumpCommand(final ShellCommand cmd) throws SyntaxException {
+        // TODO implement method
     }
 
 }
