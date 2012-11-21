@@ -150,8 +150,9 @@ public class DefaultObservable implements Observable {
     /**
      * Tests if this object has changed.
      *
-     * @return  <code>true</code> if and only if the {@link DefaultObservable#setChanged()} method has been called more recently than
-     * the {@link Observable#countObservers()} method on this object; <code>false</code> otherwise.
+     * @return  <code>true</code> if and only if the {@link DefaultObservable#setChanged()} method
+     * has been called more recently than the {@link Observable#countObservers()} method on this
+     * object; <code>false</code> otherwise.
      *
      * @see DefaultObservable#clearChanged()
      * @see DefaultObservable#setChanged()

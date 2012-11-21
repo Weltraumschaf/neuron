@@ -264,9 +264,9 @@ public class ShellCommand {
         LISTEN("listen"),
         /** Unlisten sub command for node command. */
         UNLISTEN("unlisten"),
-        /** Dot subcommand for dump command */
+        /** Dot subcommand for dump command. */
         DOT("dot"),
-        /** Tree subcommand for dump command */
+        /** Tree subcommand for dump command. */
         TREE("tree");
 
         /**

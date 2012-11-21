@@ -54,6 +54,12 @@ class NodeInfo extends BaseCommand {
         }
     }
 
+    /**
+     * Append summary about neighbors to info buffer.
+     *
+     * @param info buffers info string
+     * @param inspectedNode node to get information from
+     */
     private void infosAboutNeighbors(final StringBuilder info, final Node inspectedNode) {
         info.append(String.format("Neighbors:%n"));
 
@@ -66,6 +72,12 @@ class NodeInfo extends BaseCommand {
         }
     }
 
+    /**
+     * Append summary about received messages to info buffer.
+     *
+     * @param info buffers info string
+     * @param inspectedNode node to get information from
+     */
     private void infosAboutReceivedMessages(final StringBuilder info, final Node inspectedNode) {
         info.append(String.format("Received messages:%n"));
         final MessageBox inbox = inspectedNode.getInbox();

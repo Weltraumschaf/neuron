@@ -180,6 +180,12 @@ class NodeImpl extends DefaultObservable implements Node {
         return inbox;
     }
 
+    /**
+     * Get the neighbor with given id.
+     *
+     * @param neighborsId id of the neighbor
+     * @return neighbor node
+     */
     private Node getNeighbor(final int neighborsId) {
         return neighbours.get(Integer.valueOf(neighborsId));
     }

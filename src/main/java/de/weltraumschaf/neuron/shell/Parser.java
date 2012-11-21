@@ -40,6 +40,10 @@ import java.util.List;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class Parser {
+
+    /**
+     * Required number of arguments for message command.
+     */
     private static final int MESSAGE_ARGS_COUNT = 3;
 
     /**

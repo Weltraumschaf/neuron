@@ -14,16 +14,15 @@ package de.weltraumschaf.neuron;
 import de.weltraumschaf.neuron.event.Observer;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Test;
 import static org.mockito.Mockito.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.junit.Ignore;
 
 /**
  *
- * @author sxs
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class DotGeneratorTest {
 

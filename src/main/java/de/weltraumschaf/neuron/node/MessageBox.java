@@ -31,7 +31,7 @@ public class MessageBox {
     /**
      * Stores a message.
      *
-     * @param msg
+     * @param msg message to store
      */
     void store(final Message msg) {
         messages.add(msg);
