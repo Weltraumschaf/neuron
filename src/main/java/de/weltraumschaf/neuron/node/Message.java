@@ -11,8 +11,6 @@
  */
 package de.weltraumschaf.neuron.node;
 
-import com.google.common.base.Objects;
-
 /**
  * Used to send messages from one node to another identified bey their ids.
  *

@@ -12,7 +12,6 @@
 package de.weltraumschaf.neuron.node;
 
 import de.weltraumschaf.neuron.event.Observable;
-import de.weltraumschaf.neuron.event.Observer;
 import java.util.List;
 
 /**
