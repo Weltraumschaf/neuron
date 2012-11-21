@@ -28,6 +28,11 @@ import org.apache.commons.io.FileUtils;
 public class DumpDot extends BaseCommand {
 
     /**
+     * Dot language generator.
+     */
+    private final DotGenerator dotGenerator = new DotGenerator(getEnv());
+
+    /**
      * Dedicated constructor.
      *
      * @param env shell environment
@@ -40,16 +45,23 @@ public class DumpDot extends BaseCommand {
 
     @Override
     public void execute() {
-        final Token<String> fileArg = getArguments().get(0);
-        // FIXME Absolute paths are stored in CWD.
-        final File file = new File(fileArg.getValue());
+
+        if (getArguments().size() == 1) {
+            final Token<String> fileArg = getArguments().get(0);
+            // FIXME Use basename w/o file extension as name.
+            dotGenerator.setName(fileArg.getValue());
+        }
+
+        // FIXME allways stores in CWD
+        final File file = new File(dotGenerator.getFileName());
 
         try {
-            FileUtils.writeStringToFile(file, new DotGenerator(getEnv()).toString());
+            FileUtils.writeStringToFile(file, dotGenerator.toString());
             getIo().println(String.format("Dumped nodes to dot file in '%s'.", file.getAbsoluteFile()));
         } catch (IOException ex) {
             getIo().println(String.format("Can't write dot file '%s'! Reason: %s.",
                                           file.getAbsoluteFile(), ex.getMessage()));
         }
     }
+
 }

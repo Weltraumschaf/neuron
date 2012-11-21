@@ -39,6 +39,16 @@ public class DotGenerator {
     private static final String NAME = "neuron";
 
     /**
+     * Default file extension for dot files.
+     */
+    private static final String FILE_EXTENSION = ".dot";
+
+    /**
+     * Graph name.
+     */
+    private String name = NAME;;
+
+    /**
      * Environment to obtain graphed nodes from.
      */
     private final Environment env;
@@ -82,7 +92,34 @@ public class DotGenerator {
      */
     @Override
     public String toString() {
-        return String.format("graph %s {%n%s}", NAME, generateUnidirectedGraph());
+        return String.format("graph %s {%n%s}", getName(), generateUnidirectedGraph());
+    }
+
+    /**
+     * Get graph name.
+     *
+     * @return string used in dot output.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set graph name.
+     *
+     * @param name name to be used in dot output
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * Filename is {@link #getName()} with {@link #FILE_EXTENSION}.
+     *
+     * @return the file name string
+     */
+    public String getFileName() {
+        return getName() + FILE_EXTENSION;
     }
 
 }
