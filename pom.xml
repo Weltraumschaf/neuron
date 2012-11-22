@@ -23,7 +23,7 @@
 
     <groupId>de.weltraumschaf</groupId>
     <artifactId>neuron</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Neuron</name>
@@ -72,7 +72,7 @@
         <connection>scm:git:git://github.com/Weltraumschaf/neuron.git</connection>
         <developerConnection>scm:git:git@github.com:Weltraumschaf/neuron.git</developerConnection>
         <url>https://github.com/Weltraumschaf/neuron.git</url>
-      <tag>0.1.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
