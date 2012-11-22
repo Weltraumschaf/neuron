@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Help.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">Help.java</span></div><h1>Help.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Help.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">Help.java</span></div><h1>Help.java</h1><pre class="source lang-java linenums">/*
  *  LICENSE
  *
  * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
@@ -30,20 +30,25 @@ class Help extends BaseCommand implements UseVersion {
     private static final String HELP =
           &quot;This is the Neuron Interactive shell version %s.%n%n&quot;
         + &quot;Available commands:%n%n&quot;
-        + &quot;  help                           Show all available commands.%n&quot;
-        + &quot;  reset                          Reset the whole environment.%n&quot;
-        + &quot;  exit                           Exit the interactive shell.%n%n&quot;
+        + &quot;  help                             Show all available commands.%n&quot;
+        + &quot;  reset                            Reset the whole environment.%n&quot;
+        + &quot;  exit                             Exit the interactive shell.%n%n&quot;
 
-        + &quot;  node add [AMOUNT]              Creates one new node or AMOUNT nodes.%n&quot;
-        + &quot;  node del ID                    Disconnect and deletes the node with ID.%n&quot;
-        + &quot;  node connect ID NEIGHBOR_ID    Connect two nodes.%n&quot;
-        + &quot;  node disconnect ID NEIGHBOR_ID    Connect two nodes.%n&quot;
-        + &quot;  node list                      List all nodes.%n&quot;
-        + &quot;  node info ID                   Print info of a node.%n&quot;
-        + &quot;  node listen ID|all             Listening for events of specified node.%n&quot;
-        + &quot;  node unlisten ID|all           Stop listening for events of specified node.%n%n&quot;
+        + &quot;  node add [AMOUNT]                Creates one new node or AMOUNT nodes.%n&quot;
+        + &quot;  node del ID                      Disconnect and deletes the node with ID.%n&quot;
+        + &quot;  node connect ID NEIGHBOR_ID      Connect two nodes.%n&quot;
+        + &quot;  node disconnect ID NEIGHBOR_ID   Connect two nodes.%n&quot;
+        + &quot;  node list                        List all nodes.%n&quot;
+        + &quot;  node info ID                     Print info of a node.%n&quot;
+        + &quot;  node listen ID|all               Listening for events of specified node.%n&quot;
+        + &quot;  node unlisten ID|all             Stop listening for events of specified node.%n%n&quot;
 
-        + &quot;  message FROM_ID TO_ID MESSAGE  Send a message from one node to other.%n&quot;;
+        + &quot;  message FROM_ID TO_ID 'MESSAGE'  Send a message from one node to other.%n%n&quot;
+
+        + &quot;  dump dot FILE                    Dump the nodes into a graphviz file.%n%n&quot;
+
+        + &quot;  sample tree [DEPTH] [CHILDREN]   Generates a tree of nodes. If CHILDREN is omitted a binary tree is%n&quot;
+        + &quot;                                   generated. If DEPTH is omitted a random number (1..7) is used.%n%n&quot;;
     /**
      * Program version info.
      */
@@ -57,22 +62,22 @@ class Help extends BaseCommand implements UseVersion {
      * @param arguments command arguments
      */
     public Help(final Environment env, final IO io, final List&lt;Token&gt; arguments) {
-<span class="fc" id="L60">        super(env, io, arguments);</span>
-<span class="fc" id="L61">    }</span>
-
-    @Override
-    public void execute() {
-<span class="fc" id="L65">        getIo().println(String.format(HELP, version.getVersion()));</span>
+<span class="fc" id="L65">        super(env, io, arguments);</span>
 <span class="fc" id="L66">    }</span>
 
     @Override
-    public void setVersion(final Version v) {
-<span class="fc" id="L70">        version = v;</span>
+    public void execute() {
+<span class="fc" id="L70">        getIo().println(String.format(HELP, version.getVersion()));</span>
 <span class="fc" id="L71">    }</span>
 
     @Override
+    public void setVersion(final Version v) {
+<span class="fc" id="L75">        version = v;</span>
+<span class="fc" id="L76">    }</span>
+
+    @Override
     public Version getVersion() {
-<span class="fc" id="L75">        return version;</span>
+<span class="fc" id="L80">        return version;</span>
     }
 
 }

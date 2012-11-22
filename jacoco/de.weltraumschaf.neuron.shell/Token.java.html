@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Token.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">Token.java</span></div><h1>Token.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Token.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">Token.java</span></div><h1>Token.java</h1><pre class="source lang-java linenums">/*
  *  LICENSE
  *
  * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
@@ -12,6 +12,8 @@
 package de.weltraumschaf.neuron.shell;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
+import java.util.Set;
 
 /**
  * Represent a token scanned from interactive shell input.
@@ -20,6 +22,26 @@ import com.google.common.base.Objects;
  * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
  */
 public final class Token&lt;T&gt; {
+
+    /**
+     * Holds all keyword strings.
+     */
+<span class="fc" id="L29">    private static final Set&lt;String&gt; KEYWORDS = Sets.newHashSet();</span>
+
+    static {
+        // Initialize keywords with command strings.
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (final ShellCommand.MainType t : ShellCommand.MainType.values()) {</span>
+<span class="fc" id="L34">            KEYWORDS.add(t.toString());</span>
+        }
+        // Initialize keywords with sub command strings.
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (final ShellCommand.SubType t : ShellCommand.SubType.values()) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (t == ShellCommand.SubType.NONE) {</span>
+                // Has an empty string literal, so ignore.
+<span class="fc" id="L40">                continue;</span>
+            }
+<span class="fc" id="L42">            KEYWORDS.add(t.toString());</span>
+        }
+<span class="fc" id="L44">    }</span>
 
     /**
      * Type of token.
@@ -37,10 +59,20 @@ public final class Token&lt;T&gt; {
      * @param type Token type.
      * @param value Token value.
      */
-<span class="fc" id="L40">    private Token(final TokenType type, final T value) {</span>
-<span class="fc" id="L41">        this.type = type;</span>
-<span class="fc" id="L42">        this.value = value;</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L62">    private Token(final TokenType type, final T value) {</span>
+<span class="fc" id="L63">        this.type = type;</span>
+<span class="fc" id="L64">        this.value = value;</span>
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Creates a command keyword token.
+     *
+     * @param value token value
+     * @return new instance
+     */
+    public static Token&lt;String&gt; newKeywordToken(final String value) {
+<span class="fc" id="L74">        return new Token&lt;String&gt;(TokenType.KEYWORD, value);</span>
+    }
 
     /**
      * Creates a string token.
@@ -48,18 +80,28 @@ public final class Token&lt;T&gt; {
      * @param value token value
      * @return new instance
      */
-    public static Token&lt;String&gt; newToken(final String value) {
-<span class="fc" id="L52">        return new Token&lt;String&gt;(TokenType.LITERAL, value);</span>
+    public static Token&lt;String&gt; newStringToken(final String value) {
+<span class="fc" id="L84">        return new Token&lt;String&gt;(TokenType.STRING, value);</span>
     }
 
     /**
-     * Creates a integer token.
+     * Creates a literal token.
      *
      * @param value token value
      * @return new instance
      */
-    public static Token&lt;Integer&gt; newToken(final Integer value) {
-<span class="fc" id="L62">        return new Token&lt;Integer&gt;(TokenType.INTEGER, value);</span>
+    public static Token&lt;String&gt; newLiteralToken(final String value) {
+<span class="fc" id="L94">        return new Token&lt;String&gt;(TokenType.LITERAL, value);</span>
+    }
+
+    /**
+     * Creates a number token.
+     *
+     * @param value token value
+     * @return new instance
+     */
+    public static Token&lt;Integer&gt; newNumberToken(final Integer value) {
+<span class="fc" id="L104">        return new Token&lt;Integer&gt;(TokenType.NUMBER, value);</span>
     }
 
     /**
@@ -67,8 +109,8 @@ public final class Token&lt;T&gt; {
      *
      * @return type enum
      */
-    TokenType getType() {
-<span class="fc" id="L71">        return type;</span>
+    public TokenType getType() {
+<span class="fc" id="L113">        return type;</span>
     }
 
     /**
@@ -77,15 +119,25 @@ public final class Token&lt;T&gt; {
      * @return token value.
      */
     public T getValue() {
-<span class="fc" id="L80">        return value;</span>
+<span class="fc" id="L122">        return value;</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L85">        return Objects.toStringHelper(this)</span>
+<span class="fc" id="L127">        return Objects.toStringHelper(this)</span>
                       .add(&quot;type&quot;, type)
                       .add(&quot;value&quot;, value)
                       .toString();
+    }
+
+    /**
+     * Determines if a string is a reserved keyword.
+     *
+     * @param value string to check
+     * @return true if the string is a reserved keyword, else false
+     */
+    public static boolean isKeyword(final String value) {
+<span class="fc" id="L140">        return KEYWORDS.contains(value);</span>
     }
 
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeCommandFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">NodeCommandFactory.java</span></div><h1>NodeCommandFactory.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron.cmd;
+
+import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.ShellCommand;
+import de.weltraumschaf.neuron.shell.Token;
+import java.util.List;
+
+/**
+ * Sub factory for node commands.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+final class NodeCommandFactory {
+
+    /**
+     * Shell environment.
+     */
+    private final Environment env;
+
+    /**
+     * Shell I/O.
+     */
+    private final IO io;
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param env shell environment used by commands
+     * @param io shell I/O used by commands
+     */
+    NodeCommandFactory(final Environment env, final IO io) {
+<span class="fc" id="L44">        super();</span>
+<span class="fc" id="L45">        this.env = env;</span>
+<span class="fc" id="L46">        this.io = io;</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Helper to create sub commands for node command.
+     *
+     * @param subCommand used to determine appropriate command
+     * @param arguments command line arguments
+     * @return command object
+     * // CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if, can't create command of bad sub command type
+     * // CHECKSTYLE:ON
+     */
+    Command newNodeCommand(final ShellCommand.SubType subCommand, final List&lt;Token&gt; arguments) {
+<span class="pc bpc" id="L60" title="1 of 9 branches missed.">        switch (subCommand) {</span>
+            case ADD:
+<span class="fc" id="L62">                return new NodeAdd(env, io, arguments);</span>
+            case CONNECT:
+<span class="fc" id="L64">                return new NodeConnect(env, io, arguments);</span>
+            case DISCONNECT:
+<span class="fc" id="L66">                return new NodeDisconnect(env, io, arguments);</span>
+            case DEL:
+<span class="fc" id="L68">                return new NodeDel(env, io, arguments);</span>
+            case INFO:
+<span class="fc" id="L70">                return new NodeInfo(env, io, arguments);</span>
+            case LIST:
+<span class="fc" id="L72">                return new NodeList(env, io, arguments);</span>
+            case LISTEN:
+<span class="fc" id="L74">                return new NodeListen(env, io, arguments);</span>
+            case UNLISTEN:
+<span class="fc" id="L76">                return new NodeUnlisten(env, io, arguments);</span>
+            default:
+<span class="nc" id="L78">                throw new IllegalArgumentException(</span>
+                            String.format(&quot;Main command type 'node' does not support sub type '%s'!&quot;, subCommand));
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

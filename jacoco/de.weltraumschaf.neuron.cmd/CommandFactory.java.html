@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CommandFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">CommandFactory.java</span></div><h1>CommandFactory.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CommandFactory.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">CommandFactory.java</span></div><h1>CommandFactory.java</h1><pre class="source lang-java linenums">/*
  *  LICENSE
  *
  * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
@@ -15,14 +15,11 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.ShellCommand;
-import de.weltraumschaf.neuron.shell.ShellCommand.SubType;
-import de.weltraumschaf.neuron.shell.Token;
-import java.util.List;
 
 /**
  * Factory to create command objects depending on the parsed {@link ShellCommand}.
  *
- * @author @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
  */
 public final class CommandFactory {
 
@@ -42,6 +39,21 @@ public final class CommandFactory {
     private final Version version;
 
     /**
+     * Sub factory for node commands.
+     */
+    private final NodeCommandFactory nodeCommandFactory;
+
+    /**
+     * Sub factory for dump commands.
+     */
+    private final DumpCommandFactory dumpCommandFactory;
+
+    /**
+     * Sub factory for sample commands.
+     */
+    private final SampleCommandFactory sampleCommandFactory;
+
+    /**
      * Dedicated constructor.
      *
      * @param env shell environment used by commands
@@ -49,11 +61,14 @@ public final class CommandFactory {
      * @param version version info used by some commands
      */
     public CommandFactory(final Environment env, final IO io, final Version version) {
-<span class="fc" id="L52">        super();</span>
-<span class="fc" id="L53">        this.env = env;</span>
-<span class="fc" id="L54">        this.io = io;</span>
-<span class="fc" id="L55">        this.version = version;</span>
-<span class="fc" id="L56">    }</span>
+<span class="fc" id="L64">        super();</span>
+<span class="fc" id="L65">        this.env = env;</span>
+<span class="fc" id="L66">        this.io = io;</span>
+<span class="fc" id="L67">        this.version = version;</span>
+<span class="fc" id="L68">        nodeCommandFactory = new NodeCommandFactory(this.env, this.io);</span>
+<span class="fc" id="L69">        dumpCommandFactory = new DumpCommandFactory(this.env, this.io);</span>
+<span class="fc" id="L70">        sampleCommandFactory = new SampleCommandFactory(this.env, this.io);</span>
+<span class="fc" id="L71">    }</span>
 
     /**
      * Create command instances according to the parsed shell command.
@@ -66,63 +81,39 @@ public final class CommandFactory {
      */
     public Command newCommand(final ShellCommand shellCmd) {
         Command cmd;
-<span class="pc bpc" id="L69" title="1 of 5 branches missed.">        switch (shellCmd.getCommand()) {</span>
+<span class="pc bpc" id="L84" title="4 of 8 branches missed.">        switch (shellCmd.getCommand()) {</span>
             case EXIT:
-<span class="fc" id="L71">                cmd = new Exit(env, io, shellCmd.getArguments());</span>
-<span class="fc" id="L72">                break;</span>
+<span class="fc" id="L86">                cmd = new Exit(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L87">                break;</span>
             case HELP:
-<span class="fc" id="L74">                cmd = new Help(env, io, shellCmd.getArguments());</span>
-<span class="fc" id="L75">                break;</span>
+<span class="fc" id="L89">                cmd = new Help(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L90">                break;</span>
             case NODE:
-<span class="fc" id="L77">                cmd = newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
-<span class="fc" id="L78">                break;</span>
+<span class="fc" id="L92">                cmd = nodeCommandFactory.newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
+<span class="fc" id="L93">                break;</span>
             case RESET:
-<span class="fc" id="L80">                cmd = new Reset(env, io, shellCmd.getArguments());</span>
-<span class="fc" id="L81">                break;</span>
+<span class="fc" id="L95">                cmd = new Reset(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L96">                break;</span>
+            case MESSAGE:
+<span class="nc" id="L98">                cmd = new SendMessage(env, io, shellCmd.getArguments());</span>
+<span class="nc" id="L99">                break;</span>
+            case DUMP:
+<span class="nc" id="L101">                cmd = dumpCommandFactory.newDumpCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
+<span class="nc" id="L102">                break;</span>
+            case SAMPLE:
+<span class="nc" id="L104">                cmd = sampleCommandFactory.newSampleCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
+<span class="nc" id="L105">                break;</span>
             default:
-<span class="nc" id="L83">                throw new IllegalArgumentException(String.format(&quot;Unsupported main command type '%s'!&quot;,</span>
+<span class="nc" id="L107">                throw new IllegalArgumentException(String.format(&quot;Unsupported main command type '%s'!&quot;,</span>
                                                                  shellCmd.getCommand()));
         }
 
-<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (cmd instanceof UseVersion) {</span>
-<span class="fc" id="L88">            ((UseVersion) cmd).setVersion(version);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (cmd instanceof UseVersion) {</span>
+<span class="fc" id="L112">            ((UseVersion) cmd).setVersion(version);</span>
         }
 
-<span class="fc" id="L91">        return cmd;</span>
+<span class="fc" id="L115">        return cmd;</span>
     }
 
-    /**
-     * Helper to create sub commands for node command.
-     *
-     * @param subCommand used to determine appropriate command
-     * @param arguments command line arguments
-     * @return command object
-     * // CHECKSTYLE:OFF
-     * @throws IllegalArgumentException if, can't create command of bad sub command type
-     * // CHECKSTYLE:ON
-     */
-    private Command newNodeCommand(final SubType subCommand, final List&lt;Token&gt; arguments) {
-<span class="pc bpc" id="L105" title="1 of 9 branches missed.">        switch (subCommand) {</span>
-            case ADD:
-<span class="fc" id="L107">                return new NodeAdd(env, io, arguments);</span>
-            case CONNECT:
-<span class="fc" id="L109">                return new NodeConnect(env, io, arguments);</span>
-            case DISCONNECT:
-<span class="fc" id="L111">                return new NodeDisconnect(env, io, arguments);</span>
-            case DEL:
-<span class="fc" id="L113">                return new NodeDel(env, io, arguments);</span>
-            case INFO:
-<span class="fc" id="L115">                return new NodeInfo(env, io, arguments);</span>
-            case LIST:
-<span class="fc" id="L117">                return new NodeList(env, io, arguments);</span>
-            case LISTEN:
-<span class="fc" id="L119">                return new NodeListen(env, io, arguments);</span>
-            case UNLISTEN:
-<span class="fc" id="L121">                return new NodeUnlisten(env, io, arguments);</span>
-            default:
-<span class="nc" id="L123">                throw new IllegalArgumentException(</span>
-                            String.format(&quot;Main command type 'node' does not support sub type '%s'!&quot;, subCommand));
-        }
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

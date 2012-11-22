@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CharacterHelper.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">CharacterHelper.java</span></div><h1>CharacterHelper.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CharacterHelper.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">CharacterHelper.java</span></div><h1>CharacterHelper.java</h1><pre class="source lang-java linenums">/*
  *  LICENSE
  *
  * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
@@ -29,10 +29,10 @@ final class CharacterHelper {
      *
      * Throws IllegalArgumentException if end is less than start.
      *
-     * @param character Character to check.
-     * @param start Including range.
-     * @param end Including range.
-     * @return Return true if character is in range, unless false.
+     * @param character character to check
+     * @param start including range
+     * @param end including range
+     * @return true if character is in range, unless false
      */
     static boolean isCharInRange(final char character, final char start, final char end) {
 <span class="fc bfc" id="L38" title="All 2 branches covered.">        if (end &lt; start) {</span>
@@ -45,8 +45,8 @@ final class CharacterHelper {
     /**
      * Checks whether a character is a letter [a-zA-Z].
      *
-     * @param character A single character.
-     * @return Return true if character is a letter, unless false.
+     * @param character a single character
+     * @return true if character is a letter, unless false
      */
     static boolean isAlpha(final char character) {
 <span class="fc bfc" id="L52" title="All 4 branches covered.">        return isCharInRange(character, 'a', 'z') || isCharInRange(character, 'A', 'Z');</span>
@@ -55,9 +55,9 @@ final class CharacterHelper {
     /**
      * Checks whether a character is a number [0-9].
      *
-     * @param character A single character.
+     * @param character a single character
      *
-     * @return Return true if character is a number, unless false.
+     * @return true if character is a number, unless false
      */
     static boolean isNum(final char character) {
 <span class="fc" id="L63">        return isCharInRange(character, '0', '9');</span>
@@ -66,9 +66,9 @@ final class CharacterHelper {
     /**
      * Checks whether a character is a number or alpha [0-9a-zA-Z].
      *
-     * @param character A single character.
+     * @param character a single character
      *
-     * @return Return true if character is a letter or number, unless false.
+     * @return true if character is a letter or number, unless false
      */
     static boolean isAlphaNum(final char character) {
 <span class="fc bfc" id="L74" title="All 4 branches covered.">        return isAlpha(character) || isNum(character);</span>
@@ -79,11 +79,23 @@ final class CharacterHelper {
      *
      * White spaces are \t, \n, \r, and ' '.
      *
-     * @param character A single character.
-     * @return Return true if character is a whitespace character, unless false.
+     * @param character a single character
+     * @return true if character is a whitespace character, unless false
      */
     static boolean isWhiteSpace(final char character) {
 <span class="fc bfc" id="L86" title="All 8 branches covered.">        return ' ' == character || '\t' == character || '\n' == character || '\r' == character;</span>
+    }
+
+    /**
+     * Checks whether a character is a quote character.
+     *
+     * Quotes are ' and &quot;.
+     *
+     * @param character a single character
+     * @return true if character is a whitespace character, unless false
+     */
+    static boolean isQuote(final char character) {
+<span class="fc bfc" id="L98" title="All 4 branches covered.">        return '\'' == character || '&quot;' == character;</span>
     }
 
 }

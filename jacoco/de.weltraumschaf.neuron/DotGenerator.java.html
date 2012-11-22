@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DotGenerator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron</a> &gt; <span class="el_source">DotGenerator.java</span></div><h1>DotGenerator.java</h1><pre class="source lang-java linenums">/*
+ *  LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ */
+package de.weltraumschaf.neuron;
+
+import com.google.common.collect.Sets;
+import de.weltraumschaf.neuron.node.Node;
+import de.weltraumschaf.neuron.shell.Environment;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+/**
+ * Simple implementation to generate unidirected graphs in &lt;a href=&quot;http://en.wikipedia.org/wiki/DOT_language&quot;&gt;Dot
+ * Language&lt;/a&gt; from the nodes living in an {@link Environment}.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+public class DotGenerator {
+
+    /**
+     * Format for graph with its neighbor.
+     */
+    private static final String ONE_NODES_FORMAT = &quot;  %d;%n&quot;;
+
+    /**
+     * Format for a single node w/o any neighbor.
+     */
+    private static final String TWO_NODES_FORMAT = &quot;  %d -&gt; %d;%n&quot;;
+
+    /**
+     * Name of graph.
+     */
+    private static final String NAME = &quot;neuron&quot;;
+
+    /**
+     * Default file extension for dot files.
+     */
+    private static final String FILE_EXTENSION = &quot;.dot&quot;;
+
+    /**
+     * Graph name.
+     */
+<span class="fc" id="L52">    private String name = NAME;;</span>
+
+    /**
+     * Environment to obtain graphed nodes from.
+     */
+    private final Environment env;
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param env used to get the graphed nodes
+     */
+    public DotGenerator(final Environment env) {
+<span class="fc" id="L65">        super();</span>
+<span class="fc" id="L66">        this.env = env;</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Iterates over the nodes from {@link #env} and generates the vertexes.
+     *
+     * @return returns empty string if {@link #env} has no nodes
+     */
+    private String generateUnidirectedGraph() {
+<span class="fc" id="L75">        final StringBuilder buffer = new StringBuilder();</span>
+<span class="fc" id="L76">        final List&lt;Node&gt; nodes = env.getNodes();</span>
+<span class="fc" id="L77">        final Set&lt;Node&gt; singleNodes = Sets.newTreeSet(); // sorted by id</span>
+<span class="fc" id="L78">        final Set&lt;Node&gt; alreadySeen = Sets.newHashSet();</span>
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (final Node n : nodes) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            if (n.hasNeighbors()) {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">                for (final Node neighbor : n.getNeighbors()) {</span>
+<span class="fc" id="L83">                    buffer.append(String.format(TWO_NODES_FORMAT, n.getId(), neighbor.getId()));</span>
+<span class="fc" id="L84">                    alreadySeen.add(neighbor);</span>
+
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                    if (singleNodes.contains(neighbor)) {</span>
+<span class="fc" id="L87">                        singleNodes.remove(neighbor);</span>
+                    }
+                }
+            } else {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">                if (alreadySeen.contains(n)) {</span>
+<span class="fc" id="L92">                    continue;</span>
+                }
+
+<span class="fc" id="L95">                singleNodes.add(n);</span>
+            }
+        }
+
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        for (final Node n : singleNodes) {</span>
+<span class="fc" id="L100">            buffer.append(String.format(ONE_NODES_FORMAT, n.getId()));</span>
+        }
+
+<span class="fc" id="L103">        return buffer.toString();</span>
+    }
+
+    /**
+     * Returns the Dot Language string.
+     *
+     * @return string recalculated on every invocation
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L113">        return String.format(&quot;digraph %s {%n%s}&quot;, getName(), generateUnidirectedGraph());</span>
+    }
+
+    /**
+     * Get graph name.
+     *
+     * @return string used in dot output.
+     */
+    public String getName() {
+<span class="fc" id="L122">        return name;</span>
+    }
+
+    /**
+     * Set graph name.
+     *
+     * @param name name to be used in dot output
+     */
+    public void setName(final String name) {
+<span class="nc" id="L131">        this.name = name;</span>
+<span class="nc" id="L132">    }</span>
+
+    /**
+     * Filename is {@link #getName()} with {@link #FILE_EXTENSION}.
+     *
+     * @return the file name string
+     */
+    public String getFileName() {
+<span class="nc" id="L140">        return getName() + FILE_EXTENSION;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

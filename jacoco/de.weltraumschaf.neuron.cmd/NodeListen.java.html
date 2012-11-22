@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeListen.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">NodeListen.java</span></div><h1>NodeListen.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NodeListen.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.cmd</a> &gt; <span class="el_source">NodeListen.java</span></div><h1>NodeListen.java</h1><pre class="source lang-java linenums">/*
  *  LICENSE
  *
  * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
@@ -15,12 +15,13 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import de.weltraumschaf.neuron.shell.Token;
+import de.weltraumschaf.neuron.shell.TokenType;
 import java.util.List;
 
 /**
  * Executes `node unlisten ID`.
  *
- * @author &quot;Sven Strittmatter&quot; &lt;weltraumschaf@googlemail.com&gt;
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
  */
 class NodeListen extends BaseCommand {
 
@@ -32,22 +33,52 @@ class NodeListen extends BaseCommand {
      * @param arguments command arguments
      */
     public NodeListen(final Environment env, final IO io, final List&lt;Token&gt; arguments) {
-<span class="fc" id="L35">        super(env, io, arguments);</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L36">        super(env, io, arguments);</span>
+<span class="fc" id="L37">    }</span>
 
     @Override
     public void execute() {
-<span class="nc" id="L40">        final Token&lt;Integer&gt; t = getArguments().get(0);</span>
-<span class="nc" id="L41">        final int id = t.getValue();</span>
-
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (getEnv().hasNode(id)) {</span>
-<span class="nc" id="L44">            final Node n = getEnv().getNode(id);</span>
-<span class="nc" id="L45">            n.addObserver(getEnv().getHandler());</span>
-<span class="nc" id="L46">            getIo().println(String.format(&quot;Listening for events emmitted by node %d.&quot;, id));</span>
-<span class="nc" id="L47">        } else {</span>
-<span class="nc" id="L48">            getIo().println(String.format(&quot;There is no node with id %d!&quot;, id));</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (getArguments().get(0).getType() == TokenType.NUMBER) {</span>
+<span class="fc" id="L42">            final Token&lt;Integer&gt; t = getArguments().get(0);</span>
+<span class="fc" id="L43">            listneToSingleNode(t.getValue());</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        } else if (getArguments().get(0).getType() == TokenType.LITERAL) {</span>
+<span class="fc" id="L45">            final Token&lt;String&gt; t = getArguments().get(0);</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (&quot;all&quot;.equals(t.getValue())) {</span>
+<span class="fc" id="L47">                listenToAllNodes();</span>
+            } else {
+<span class="fc" id="L49">                throw new IllegalArgumentException(String.format(&quot;Unrecognizable argument '%s'!&quot;,</span>
+                                                                 t.getValue()));
+            }
+<span class="fc" id="L52">        } else {</span>
+<span class="fc" id="L53">            throw new IllegalArgumentException(String.format(&quot;Unrecognizable argument '%s'!&quot;,</span>
+                                                             getArguments().get(0).getValue()));
         }
-<span class="nc" id="L50">    }</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Add environments event handler to all nodes.
+     */
+    private void listenToAllNodes() {
+<span class="fc" id="L62">        getIo().println(&quot;Listening for events emmitted by all nodes.&quot;);</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        for (final Node n : getEnv().getNodes()) {</span>
+<span class="fc" id="L64">            n.addObserver(getEnv().getHandler());</span>
+        }
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Add environments event handler to a specific node, if it exists.
+     *
+     * @param id the node id
+     */
+    private void listneToSingleNode(final int id) {
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (getEnv().hasNode(id)) {</span>
+<span class="fc" id="L75">            getIo().println(String.format(&quot;Listening for events emmitted by node '%d'.&quot;, id));</span>
+<span class="fc" id="L76">            final Node n = getEnv().getNode(id);</span>
+<span class="fc" id="L77">            n.addObserver(getEnv().getHandler());</span>
+<span class="fc" id="L78">        } else {</span>
+<span class="fc" id="L79">            getIo().println(String.format(&quot;There is no node with id '%d'!&quot;, id));</span>
+        }
+<span class="fc" id="L81">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

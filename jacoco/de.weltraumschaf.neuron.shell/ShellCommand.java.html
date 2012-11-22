@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ShellCommand.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">ShellCommand.java</span></div><h1>ShellCommand.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ShellCommand.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">ShellCommand.java</span></div><h1>ShellCommand.java</h1><pre class="source lang-java linenums">/*
  *  LICENSE
  *
  * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
@@ -28,105 +28,26 @@ import java.util.Map;
 public class ShellCommand {
 
     /**
-     * Enumerates the available commands.
-     */
-<span class="pc" id="L33">    public enum MainType {</span>
-
-        /** Help command. */
-<span class="fc" id="L36">        HELP(&quot;help&quot;),</span>
-        /** Reset command. */
-<span class="fc" id="L38">        RESET(&quot;reset&quot;),</span>
-        /** Exit command. */
-<span class="fc" id="L40">        EXIT(&quot;exit&quot;),</span>
-        /** Node command. */
-<span class="fc" id="L42">        NODE(&quot;node&quot;);</span>
-
-        /**
-         * Literal command string used in shell.
-         */
-        private final String name;
-
-        /**
-         * Initialize name.
-         *
-         * @param name literal shell command string
-         */
-<span class="fc" id="L54">        private MainType(final String name) {</span>
-<span class="fc" id="L55">            this.name = name;</span>
-<span class="fc" id="L56">        }</span>
-
-        @Override
-        public String toString() {
-<span class="fc" id="L60">            return name;</span>
-        }
-
-    }
-
-    /**
-     * Enumerates the optional subcommands.
-     */
-<span class="pc" id="L68">    public enum SubType {</span>
-        /** No sub command. */
-<span class="fc" id="L70">        NONE(&quot;&quot;),</span>
-        /** Add sub command for node command. */
-<span class="fc" id="L72">        ADD(&quot;add&quot;),</span>
-        /** Del sub command for node command. */
-<span class="fc" id="L74">        DEL(&quot;del&quot;),</span>
-        /** Connect sub command for node command. */
-<span class="fc" id="L76">        CONNECT(&quot;connect&quot;),</span>
-        /** Disconnect sub command for node command. */
-<span class="fc" id="L78">        DISCONNECT(&quot;disconnect&quot;),</span>
-        /** List sub command for node command. */
-<span class="fc" id="L80">        LIST(&quot;list&quot;),</span>
-        /** Info sub command for node command. */
-<span class="fc" id="L82">        INFO(&quot;info&quot;),</span>
-        /** Listen sub command for node command. */
-<span class="fc" id="L84">        LISTEN(&quot;listen&quot;),</span>
-        /** Unlisten sub command for node command. */
-<span class="fc" id="L86">        UNLISTEN(&quot;unlisten&quot;);</span>
-
-        /**
-         * Literal command string used in shell.
-         */
-        private final String name;
-
-        /**
-         * Initialize name.
-         *
-         * @param name literal shell command string
-         */
-<span class="fc" id="L98">        private SubType(final String name) {</span>
-<span class="fc" id="L99">            this.name = name;</span>
-<span class="fc" id="L100">        }</span>
-
-        @Override
-        public String toString() {
-<span class="fc" id="L104">            return name;</span>
-        }
-
-    }
-
-    /**
      * Map the literal command string to corresponding type enum.
      */
-<span class="fc" id="L112">    private static final Map&lt;String, MainType&gt; COMMANDS = Maps.newHashMap();</span>
+<span class="fc" id="L33">    private static final Map&lt;String, MainType&gt; COMMANDS = Maps.newHashMap();</span>
 
     /**
      * Map the literal sub command string to corresponding type enum.
      */
-<span class="fc" id="L117">    private static final Map&lt;String, SubType&gt; SUB_COMMANDS = Maps.newHashMap();</span>
+<span class="fc" id="L38">    private static final Map&lt;String, SubType&gt; SUB_COMMANDS = Maps.newHashMap();</span>
 
     static {
-<span class="fc bfc" id="L120" title="All 2 branches covered.">        for (final MainType t : MainType.values()) {</span>
-<span class="fc" id="L121">            COMMANDS.put(t.toString(), t);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (final MainType t : MainType.values()) {</span>
+<span class="fc" id="L42">            COMMANDS.put(t.toString(), t);</span>
         }
-<span class="fc bfc" id="L123" title="All 2 branches covered.">        for (final SubType t : SubType.values()) {</span>
-<span class="fc bfc" id="L124" title="All 2 branches covered.">            if (t == SubType.NONE) {</span>
-<span class="fc" id="L125">                continue; // Ignore to do not recognize empty strings in #isSubCommand().</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (final SubType t : SubType.values()) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            if (t == SubType.NONE) {</span>
+<span class="fc" id="L46">                continue; // Ignore to do not recognize empty strings in #isSubCommand().</span>
             }
-<span class="fc" id="L127">            SUB_COMMANDS.put(t.toString(), t);</span>
+<span class="fc" id="L48">            SUB_COMMANDS.put(t.toString(), t);</span>
         }
-<span class="fc" id="L129">    }</span>
+<span class="fc" id="L50">    }</span>
 
     /**
      * Obligatory main command.
@@ -154,8 +75,8 @@ public class ShellCommand {
      * @param arguments command arguments, may be an empty list
      */
     public ShellCommand(final MainType command, final List&lt;Token&gt; arguments) {
-<span class="fc" id="L157">        this(command, SubType.NONE, arguments);</span>
-<span class="fc" id="L158">    }</span>
+<span class="fc" id="L78">        this(command, SubType.NONE, arguments);</span>
+<span class="fc" id="L79">    }</span>
 
     /**
      * Dedicated constructor.
@@ -165,11 +86,11 @@ public class ShellCommand {
      * @param arguments command arguments, may be an empty list
      */
     public ShellCommand(final MainType command, final SubType subCommand, final List&lt;Token&gt; arguments) {
-<span class="fc" id="L168">        super();</span>
-<span class="fc" id="L169">        this.command    = command;</span>
-<span class="fc" id="L170">        this.subCommand = subCommand;</span>
-<span class="fc" id="L171">        this.arguments  = Lists.newArrayList(arguments); // Defense copy</span>
-<span class="fc" id="L172">    }</span>
+<span class="fc" id="L89">        super();</span>
+<span class="fc" id="L90">        this.command    = command;</span>
+<span class="fc" id="L91">        this.subCommand = subCommand;</span>
+<span class="fc" id="L92">        this.arguments  = Lists.newArrayList(arguments); // Defense copy</span>
+<span class="fc" id="L93">    }</span>
 
     /**
      * Get command main type.
@@ -177,7 +98,7 @@ public class ShellCommand {
      * @return main type of command
      */
     public MainType getCommand() {
-<span class="fc" id="L180">        return command;</span>
+<span class="fc" id="L101">        return command;</span>
     }
 
     /**
@@ -188,7 +109,7 @@ public class ShellCommand {
      * @return sub type of command
      */
     public SubType getSubCommand() {
-<span class="fc" id="L191">        return subCommand;</span>
+<span class="fc" id="L112">        return subCommand;</span>
     }
 
     /**
@@ -199,17 +120,19 @@ public class ShellCommand {
      * @return Returns a defense copy.
      */
     public List&lt;Token&gt; getArguments() {
-<span class="fc" id="L202">        return Lists.newArrayList(arguments); // Defense copy</span>
+<span class="fc" id="L123">        return Lists.newArrayList(arguments); // Defense copy</span>
     }
 
     /**
      * Determines if the string literal value of the token is a main command.
      *
+     * TODO Maybe remove this.
+     *
      * @param t token to check
      * @return true if the token is a command else false
      */
     static boolean isCommand(final Token&lt;String&gt; t) {
-<span class="fc" id="L212">        return COMMANDS.containsKey(t.getValue());</span>
+<span class="fc" id="L135">        return COMMANDS.containsKey(t.getValue());</span>
     }
 
     /**
@@ -225,20 +148,22 @@ public class ShellCommand {
      * // CHECKSTYLE:ON
      */
     static MainType determineCommand(final Token&lt;String&gt; t) {
-<span class="fc bfc" id="L228" title="All 2 branches covered.">        if (! isCommand(t)) {</span>
-<span class="fc" id="L229">            throw new IllegalArgumentException(String.format(&quot;'%s' is not a command!&quot;, t.getValue()));</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (! isCommand(t)) {</span>
+<span class="fc" id="L152">            throw new IllegalArgumentException(String.format(&quot;'%s' is not a command!&quot;, t.getValue()));</span>
         }
-<span class="fc" id="L231">        return COMMANDS.get(t.getValue());</span>
+<span class="fc" id="L154">        return COMMANDS.get(t.getValue());</span>
     }
 
     /**
      * Determines if the string literal value of the token is a sub command.
      *
+     * TODO Maybe remove this.
+     *
      * @param t token to check
      * @return true if the token is a sub command else false
      */
     static boolean isSubCommand(final Token&lt;String&gt; t) {
-<span class="fc" id="L241">        return SUB_COMMANDS.containsKey(t.getValue());</span>
+<span class="fc" id="L166">        return SUB_COMMANDS.containsKey(t.getValue());</span>
     }
 
     /**
@@ -254,19 +179,115 @@ public class ShellCommand {
      * // CHECKSTYLE:ON
      */
     static SubType determineSubCommand(final Token&lt;String&gt; t) {
-<span class="fc bfc" id="L257" title="All 2 branches covered.">        if (! isSubCommand(t)) {</span>
-<span class="fc" id="L258">            throw new IllegalArgumentException(String.format(&quot;'%s' is not a sub command!&quot;, t.getValue()));</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        if (! isSubCommand(t)) {</span>
+<span class="fc" id="L183">            throw new IllegalArgumentException(String.format(&quot;'%s' is not a sub command!&quot;, t.getValue()));</span>
         }
-<span class="fc" id="L260">        return SUB_COMMANDS.get(t.getValue());</span>
+<span class="fc" id="L185">        return SUB_COMMANDS.get(t.getValue());</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L265">        return Objects.toStringHelper(this)</span>
+<span class="fc" id="L190">        return Objects.toStringHelper(this)</span>
                       .add(&quot;mainCommand&quot;, command)
                       .add(&quot;subCommand&quot;, subCommand)
                       .add(&quot;arguments&quot;, arguments)
                       .toString();
+    }
+
+    /**
+     * Marker interface for shell command types.
+     */
+    public interface Type {
+
+    }
+
+    /**
+     * Enumerates the available commands.
+     */
+<span class="pc" id="L207">    public enum MainType implements Type {</span>
+
+        /** Help command. */
+<span class="fc" id="L210">        HELP(&quot;help&quot;),</span>
+        /** Reset command. */
+<span class="fc" id="L212">        RESET(&quot;reset&quot;),</span>
+        /** Exit command. */
+<span class="fc" id="L214">        EXIT(&quot;exit&quot;),</span>
+        /** Node command. */
+<span class="fc" id="L216">        NODE(&quot;node&quot;),</span>
+        /** Message command. */
+<span class="fc" id="L218">        MESSAGE(&quot;message&quot;),</span>
+        /** Dump command. */
+<span class="fc" id="L220">        DUMP(&quot;dump&quot;),</span>
+        /** Sample command. */
+<span class="fc" id="L222">        SAMPLE(&quot;sample&quot;);</span>
+
+        /**
+         * Literal command string used in shell.
+         */
+        private final String name;
+
+        /**
+         * Initialize name.
+         *
+         * @param name literal shell command string
+         */
+<span class="fc" id="L234">        private MainType(final String name) {</span>
+<span class="fc" id="L235">            this.name = name;</span>
+<span class="fc" id="L236">        }</span>
+
+        @Override
+        public String toString() {
+<span class="fc" id="L240">            return name;</span>
+        }
+
+    }
+
+    /**
+     * Enumerates the optional subcommands.
+     */
+<span class="pc" id="L248">    public enum SubType implements Type {</span>
+        /** No sub command. */
+<span class="fc" id="L250">        NONE(&quot;&quot;),</span>
+        /** Add sub command for node command. */
+<span class="fc" id="L252">        ADD(&quot;add&quot;),</span>
+        /** Del sub command for node command. */
+<span class="fc" id="L254">        DEL(&quot;del&quot;),</span>
+        /** Connect sub command for node command. */
+<span class="fc" id="L256">        CONNECT(&quot;connect&quot;),</span>
+        /** Disconnect sub command for node command. */
+<span class="fc" id="L258">        DISCONNECT(&quot;disconnect&quot;),</span>
+        /** List sub command for node command. */
+<span class="fc" id="L260">        LIST(&quot;list&quot;),</span>
+        /** Info sub command for node command. */
+<span class="fc" id="L262">        INFO(&quot;info&quot;),</span>
+        /** Listen sub command for node command. */
+<span class="fc" id="L264">        LISTEN(&quot;listen&quot;),</span>
+        /** Unlisten sub command for node command. */
+<span class="fc" id="L266">        UNLISTEN(&quot;unlisten&quot;),</span>
+        /** Dot subcommand for dump command. */
+<span class="fc" id="L268">        DOT(&quot;dot&quot;),</span>
+        /** Tree subcommand for dump command. */
+<span class="fc" id="L270">        TREE(&quot;tree&quot;);</span>
+
+        /**
+         * Literal command string used in shell.
+         */
+        private final String name;
+
+        /**
+         * Initialize name.
+         *
+         * @param name literal shell command string
+         */
+<span class="fc" id="L282">        private SubType(final String name) {</span>
+<span class="fc" id="L283">            this.name = name;</span>
+<span class="fc" id="L284">        }</span>
+
+        @Override
+        public String toString() {
+<span class="fc" id="L288">            return name;</span>
+        }
+
     }
 
 }
