@@ -92,7 +92,7 @@ public class DotGeneratorTest {
     }
 
     @Test
-    public void digraphWithMultipleNode(){
+    public void digraphWithMultipleNode() {
         final List<Token> args = Lists.newArrayList();
         args.add(Token.newNumberToken(5));
         args.add(Token.newNumberToken(2));

@@ -16,7 +16,6 @@ import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Simple implementation to generate unidirected graphs in <a href="http://en.wikipedia.org/wiki/DOT_language">Dot
