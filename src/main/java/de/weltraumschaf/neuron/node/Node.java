@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public interface Node extends Observable {
+public interface Node extends Observable, Comparable {
 
     /**
      * Connects this node to an other node.

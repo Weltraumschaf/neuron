@@ -190,4 +190,19 @@ class NodeImpl extends DefaultObservable implements Node {
         return neighbours.get(Integer.valueOf(neighborsId));
     }
 
+    @Override
+    public int compareTo(final Object o) {
+        final Node other = (Node) o;
+
+        if (id < other.getId()) {
+            return -1;
+        }
+
+        if (id > other.getId()) {
+            return 1;
+        }
+
+        return 0;
+    }
+
 }

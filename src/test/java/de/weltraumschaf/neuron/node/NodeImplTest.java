@@ -177,4 +177,19 @@ public class NodeImplTest {
         sut.send(new Message("foo", 1, 2));
 //        verify(handler, times(1)).update(any(), any());
     }
+
+    @Test
+    public void compareTo() {
+        final Node sut1 = new NodeImpl(23);
+        final Node sut2 = new NodeImpl(23);
+        final Node sut3 = new NodeImpl(42);
+
+        assertThat(sut1.compareTo(sut1), is(0));
+        assertThat(sut1.compareTo(sut2), is(0));
+        assertThat(sut2.compareTo(sut1), is(0));
+        assertThat(sut2.compareTo(sut2), is(0));
+
+        assertThat(sut3.compareTo(sut1), is(1));
+        assertThat(sut1.compareTo(sut3), is(-1));
+    }
 }

@@ -11,9 +11,12 @@
  */
 package de.weltraumschaf.neuron;
 
+import com.google.common.collect.Sets;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Simple implementation to generate unidirected graphs in <a href="http://en.wikipedia.org/wiki/DOT_language">Dot
@@ -26,12 +29,12 @@ public class DotGenerator {
     /**
      * Format for graph with its neighbor.
      */
-    private static final String ONE_NODES_FORMAT = "  %d%n";
+    private static final String ONE_NODES_FORMAT = "  %d;%n";
 
     /**
      * Format for a single node w/o any neighbor.
      */
-    private static final String TWO_NODES_FORMAT = "  %d -- %d%n";
+    private static final String TWO_NODES_FORMAT = "  %d -> %d;%n";
 
     /**
      * Name of graph.
@@ -71,15 +74,30 @@ public class DotGenerator {
     private String generateUnidirectedGraph() {
         final StringBuilder buffer = new StringBuilder();
         final List<Node> nodes = env.getNodes();
+        final Set<Node> singleNodes = Sets.newTreeSet(); // sorted by id
+        final Set<Node> alreadySeen = Sets.newHashSet();
 
         for (final Node n : nodes) {
             if (n.hasNeighbors()) {
-                for (final Node neihbor : n.getNeighbors()) {
-                    buffer.append(String.format(TWO_NODES_FORMAT, n.getId(), neihbor.getId()));
+                for (final Node neighbor : n.getNeighbors()) {
+                    buffer.append(String.format(TWO_NODES_FORMAT, n.getId(), neighbor.getId()));
+                    alreadySeen.add(neighbor);
+
+                    if (singleNodes.contains(neighbor)) {
+                        singleNodes.remove(neighbor);
+                    }
                 }
             } else {
-                buffer.append(String.format(ONE_NODES_FORMAT, n.getId()));
+                if (alreadySeen.contains(n)) {
+                    continue;
+                }
+
+                singleNodes.add(n);
             }
+        }
+
+        for (final Node n : singleNodes) {
+            buffer.append(String.format(ONE_NODES_FORMAT, n.getId()));
         }
 
         return buffer.toString();
@@ -92,7 +110,7 @@ public class DotGenerator {
      */
     @Override
     public String toString() {
-        return String.format("graph %s {%n%s}", getName(), generateUnidirectedGraph());
+        return String.format("digraph %s {%n%s}", getName(), generateUnidirectedGraph());
     }
 
     /**
