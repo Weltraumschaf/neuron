@@ -11,8 +11,8 @@
  */
 package de.weltraumschaf.neuron.node;
 
-import com.google.common.collect.Sets;
-import java.util.Set;
+import com.google.common.collect.Lists;
+import java.util.List;
 
 /**
  * Container for {@link Node nodes} to hold received {@link Message messages}.
@@ -26,7 +26,7 @@ public class MessageBox {
     /**
      * Set of received messages.
      */
-    private final Set<Message> messages = Sets.newHashSet();
+    private final List<Message> messages = Lists.newArrayList();
 
     /**
      * Stores a message.
@@ -51,8 +51,8 @@ public class MessageBox {
      *
      * @return a defense copy
      */
-    public Set<Message> getMessages() {
-        return Sets.newHashSet(messages); // defense copy.
+    public List<Message> getMessages() {
+        return Lists.newArrayList(messages); // defense copy.
     }
 
 }

@@ -90,6 +90,10 @@ class NodeImpl extends DefaultObservable implements Node {
             throw new NullPointerException("Argument is null!");
         }
 
+        if (msg.isDelivered()) {
+            return;
+        }
+
         if (msg.getTo() == getId()) {
             receive(msg);
         } else {
@@ -156,6 +160,7 @@ class NodeImpl extends DefaultObservable implements Node {
     private void receive(final Message msg) {
         emmitEvent(Event.Type.MESSAGING, "Receive message: " + msg);
         inbox.store(msg);
+        msg.setDelivered();
     }
 
     /**

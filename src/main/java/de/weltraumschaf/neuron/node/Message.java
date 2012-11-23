@@ -36,6 +36,11 @@ public class Message {
     private final int to;
 
     /**
+     * Indicates if the message was delivered to it's receiver.
+     */
+    private boolean delivered;
+
+    /**
      * Dedicated constructor.
      *
      * @param msg the message string
@@ -75,6 +80,22 @@ public class Message {
      */
     public int getTo() {
         return to;
+    }
+
+    /**
+     * Mark the message as delivered to it's receiver.
+     */
+    public void setDelivered() {
+        delivered = true;
+    }
+
+    /**
+     * Whether the message was delivered to it's receiver or not.
+     *
+     * @return return true if delivered, else false
+     */
+    public boolean isDelivered() {
+        return delivered;
     }
 
     @Override
