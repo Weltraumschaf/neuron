@@ -189,13 +189,15 @@ public class NodeImplTest {
         assertThat(sut.getNeighbor(1), is(n));
     }
 
-    @Test @Ignore
-    public void sendMessage() {
-        final EventHandler handler = spy(new EventHandler(mock(IO.class)));
+    @Test
+    public void sendMessageToSelf() {
         final Node sut = new NodeImpl(23);
-        sut.addObserver(handler);
-        sut.send(new Message("foo", 1, 2));
-//        verify(handler, times(1)).update(any(), any());
+        final Message message = new Message("foo", 23, 23);
+        sut.send(message);
+        assertThat(message.isDelivered(), is(true));
+        final List<Message> messages = sut.getInbox().getMessages();
+        assertThat(messages.size(), is(1));
+        assertThat(messages.get(0), is(message));
     }
 
     @Test
