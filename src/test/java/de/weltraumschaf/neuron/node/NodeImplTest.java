@@ -64,6 +64,18 @@ public class NodeImplTest {
         assertThat(sut3.equals(sut2), is(false));
     }
 
+    @Test(expected = NullPointerException.class)
+    public void connectNull() {
+        final Node sut = new NodeImpl(0);
+        sut.connect(null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void disconnectNull() {
+        final Node sut = new NodeImpl(0);
+        sut.disconnect(null);
+    }
+
     @Test
     public void conectAndDisconect() {
         final Node sut = new NodeImpl(0);
