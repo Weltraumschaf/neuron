@@ -162,7 +162,7 @@ public class NodeImplTest {
     @Test
     public void hasNeighbor() {
         final Node sut = new NodeImpl(23);
-        final NodeImpl n = new NodeImpl(1);
+        final Node n = new NodeImpl(1);
         assertThat(sut.hasNeighbor(n), is(false));
         sut.connect(n);
         assertThat(sut.hasNeighbor(n), is(true));
@@ -179,6 +179,14 @@ public class NodeImplTest {
         assertThat(neighbors.size(), is(2));
         assertThat(neighbors.contains(n1), is(true));
         assertThat(neighbors.contains(n2), is(true));
+    }
+
+    @Test
+    public void getNeighbor() {
+        final NodeImpl sut = new NodeImpl(23);
+        final Node n = new NodeImpl(1);
+        sut.connect(n);
+        assertThat(sut.getNeighbor(1), is(n));
     }
 
     @Test @Ignore

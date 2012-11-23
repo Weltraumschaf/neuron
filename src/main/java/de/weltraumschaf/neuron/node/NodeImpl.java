@@ -191,7 +191,7 @@ class NodeImpl extends DefaultObservable implements Node {
      * @param neighborsId id of the neighbor
      * @return neighbor node
      */
-    private Node getNeighbor(final int neighborsId) {
+    Node getNeighbor(final int neighborsId) {
         return neighbours.get(Integer.valueOf(neighborsId));
     }
 
