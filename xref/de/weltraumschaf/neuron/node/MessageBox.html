@@ -21,8 +21,8 @@
 <a class="jxr_linenumber" name="11" href="#11">11</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">package</strong> de.weltraumschaf.neuron.node;
 <a class="jxr_linenumber" name="13" href="#13">13</a>  
-<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> com.google.common.collect.Sets;
-<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> java.util.Set;
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> com.google.common.collect.Lists;
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="16" href="#16">16</a>  
 <a class="jxr_linenumber" name="17" href="#17">17</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="18" href="#18">18</a>  <em class="jxr_javadoccomment"> * Container for {@link Node nodes} to hold received {@link Message messages}.</em>
@@ -36,7 +36,7 @@
 <a class="jxr_linenumber" name="26" href="#26">26</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="27" href="#27">27</a>  <em class="jxr_javadoccomment">     * Set of received messages.</em>
 <a class="jxr_linenumber" name="28" href="#28">28</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="29" href="#29">29</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Set&lt;Message&gt; messages = Sets.newHashSet();
+<a class="jxr_linenumber" name="29" href="#29">29</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> List&lt;Message&gt; messages = Lists.newArrayList();
 <a class="jxr_linenumber" name="30" href="#30">30</a>  
 <a class="jxr_linenumber" name="31" href="#31">31</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="32" href="#32">32</a>  <em class="jxr_javadoccomment">     * Stores a message.</em>
@@ -61,8 +61,8 @@
 <a class="jxr_linenumber" name="51" href="#51">51</a>  <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="52" href="#52">52</a>  <em class="jxr_javadoccomment">     * @return a defense copy</em>
 <a class="jxr_linenumber" name="53" href="#53">53</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="54" href="#54">54</a>      <strong class="jxr_keyword">public</strong> Set&lt;Message&gt; getMessages() {
-<a class="jxr_linenumber" name="55" href="#55">55</a>          <strong class="jxr_keyword">return</strong> Sets.newHashSet(messages); <em class="jxr_comment">// defense copy.</em>
+<a class="jxr_linenumber" name="54" href="#54">54</a>      <strong class="jxr_keyword">public</strong> List&lt;Message&gt; getMessages() {
+<a class="jxr_linenumber" name="55" href="#55">55</a>          <strong class="jxr_keyword">return</strong> Lists.newArrayList(messages); <em class="jxr_comment">// defense copy.</em>
 <a class="jxr_linenumber" name="56" href="#56">56</a>      }
 <a class="jxr_linenumber" name="57" href="#57">57</a>  
 <a class="jxr_linenumber" name="58" href="#58">58</a>  }

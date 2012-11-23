@@ -8,9 +8,9 @@
     <language>en-us</language>
     <copyright>&#169;2012 Weltraumschaf</copyright>
     <item>
-      <title>File: 48,
-             Errors: 0,
-             Warnings: 1,
+      <title>File: 49,
+             Errors: 1,
+             Warnings: 0,
              Infos: 0
       </title>
             <link>http://weltraumschaf.github.com/neuron//checkstyle.html</link>
@@ -43,35 +43,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.DumpCommandFactory.java">de/weltraumschaf/neuron/cmd/DumpCommandFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.Event.java">de/weltraumschaf/neuron/event/Event.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeAdd.java">de/weltraumschaf/neuron/cmd/NodeAdd.java</a>
                 </td>
                 <td>
                   0
@@ -113,20 +85,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.InteractiveShell.java">de/weltraumschaf/neuron/shell/InteractiveShell.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.package-info.java">de/weltraumschaf/neuron/shell/package-info.java</a>
                 </td>
                 <td>
@@ -141,35 +99,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeListen.java">de/weltraumschaf/neuron/cmd/NodeListen.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeUnlisten.java">de/weltraumschaf/neuron/cmd/NodeUnlisten.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.TokenType.java">de/weltraumschaf/neuron/shell/TokenType.java</a>
                 </td>
                 <td>
                   0
@@ -211,20 +141,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.DotGenerator.java">de/weltraumschaf/neuron/DotGenerator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.package-info.java">de/weltraumschaf/neuron/node/package-info.java</a>
                 </td>
                 <td>
@@ -239,7 +155,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.CharacterStream.java">de/weltraumschaf/neuron/shell/CharacterStream.java</a>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeConnect.java">de/weltraumschaf/neuron/cmd/NodeConnect.java</a>
                 </td>
                 <td>
                   0
@@ -267,7 +183,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeConnect.java">de/weltraumschaf/neuron/cmd/NodeConnect.java</a>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.CharacterStream.java">de/weltraumschaf/neuron/shell/CharacterStream.java</a>
                 </td>
                 <td>
                   0
@@ -309,7 +225,273 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.Reset.java">de/weltraumschaf/neuron/cmd/Reset.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.ShellCommand.java">de/weltraumschaf/neuron/shell/ShellCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.DefaultObservable.java">de/weltraumschaf/neuron/event/DefaultObservable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.MessageBox.java">de/weltraumschaf/neuron/node/MessageBox.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.EventHandler.java">de/weltraumschaf/neuron/event/EventHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.SampleBiTree.java">de/weltraumschaf/neuron/cmd/SampleBiTree.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.SampleTree.java">de/weltraumschaf/neuron/cmd/SampleTree.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeInfo.java">de/weltraumschaf/neuron/cmd/NodeInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.BaseCommand.java">de/weltraumschaf/neuron/cmd/BaseCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.Node.java">de/weltraumschaf/neuron/node/Node.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.NodeFactory.java">de/weltraumschaf/neuron/node/NodeFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeDel.java">de/weltraumschaf/neuron/cmd/NodeDel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.NodeImpl.java">de/weltraumschaf/neuron/node/NodeImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.Observable.java">de/weltraumschaf/neuron/event/Observable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.DumpCommandFactory.java">de/weltraumschaf/neuron/cmd/DumpCommandFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeAdd.java">de/weltraumschaf/neuron/cmd/NodeAdd.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.InteractiveShell.java">de/weltraumschaf/neuron/shell/InteractiveShell.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeListen.java">de/weltraumschaf/neuron/cmd/NodeListen.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.TokenType.java">de/weltraumschaf/neuron/shell/TokenType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.DotGenerator.java">de/weltraumschaf/neuron/DotGenerator.java</a>
                 </td>
                 <td>
                   0
@@ -324,20 +506,6 @@
                           <tr>
                 <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.package-info.java">de/weltraumschaf/neuron/event/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.Reset.java">de/weltraumschaf/neuron/cmd/Reset.java</a>
                 </td>
                 <td>
                   0
@@ -379,48 +547,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.MessageBox.java">de/weltraumschaf/neuron/node/MessageBox.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.DefaultObservable.java">de/weltraumschaf/neuron/event/DefaultObservable.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.EventHandler.java">de/weltraumschaf/neuron/event/EventHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeCommandFactory.java">de/weltraumschaf/neuron/cmd/NodeCommandFactory.java</a>
                 </td>
                 <td>
@@ -449,7 +575,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.SyntaxException.java">de/weltraumschaf/neuron/shell/SyntaxException.java</a>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeList.java">de/weltraumschaf/neuron/cmd/NodeList.java</a>
                 </td>
                 <td>
                   0
@@ -477,21 +603,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeList.java">de/weltraumschaf/neuron/cmd/NodeList.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.SampleTree.java">de/weltraumschaf/neuron/cmd/SampleTree.java</a>
+                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.shell.SyntaxException.java">de/weltraumschaf/neuron/shell/SyntaxException.java</a>
                 </td>
                 <td>
                   0
@@ -575,76 +687,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeInfo.java">de/weltraumschaf/neuron/cmd/NodeInfo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.BaseCommand.java">de/weltraumschaf/neuron/cmd/BaseCommand.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.NodeFactory.java">de/weltraumschaf/neuron/node/NodeFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.Node.java">de/weltraumschaf/neuron/node/Node.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.NodeDel.java">de/weltraumschaf/neuron/cmd/NodeDel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.cmd.SampleCommandFactory.java">de/weltraumschaf/neuron/cmd/SampleCommandFactory.java</a>
                 </td>
                 <td>
@@ -659,35 +701,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.NodeImpl.java">de/weltraumschaf/neuron/node/NodeImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.node.Message.java">de/weltraumschaf/neuron/node/Message.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/neuron//checkstyle.html#de.weltraumschaf.neuron.event.Observable.java">de/weltraumschaf/neuron/event/Observable.java</a>
                 </td>
                 <td>
                   0
