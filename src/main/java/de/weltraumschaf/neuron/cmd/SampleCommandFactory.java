@@ -60,6 +60,8 @@ final class SampleCommandFactory {
         switch (subCommand) {
             case TREE:
                 return new SampleTree(env, io, arguments);
+            case BITREE:
+                return new SampleBiTree(env, io, arguments);
             default:
                 throw new IllegalArgumentException(
                             String.format("Main command type 'dump' does not support sub type '%s'!", subCommand));

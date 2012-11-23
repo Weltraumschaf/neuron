@@ -267,7 +267,8 @@ public class ShellCommand {
         /** Dot subcommand for dump command. */
         DOT("dot"),
         /** Tree subcommand for dump command. */
-        TREE("tree");
+        TREE("tree"),
+        BITREE("bitree");
 
         /**
          * Literal command string used in shell.

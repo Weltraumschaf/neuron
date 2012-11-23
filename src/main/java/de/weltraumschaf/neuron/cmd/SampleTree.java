@@ -53,6 +53,26 @@ public class SampleTree extends BaseCommand {
 
     @Override
     public void execute() {
+        createTree();
+    }
+
+    /**
+     * Default for this command.
+     *
+     * Calls {@link  #createTree(boolean)} with <code>false</code>.
+     */
+    private void createTree() {
+        createTree(false);
+    }
+
+    /**
+     * Main command action.
+     *
+     * Gathers arguments, creates tree and prints output.
+     *
+     * @param bidirectional whether to connect the nodes bidirectional
+     */
+    protected void createTree(final boolean bidirectional) {
         int depth = 0;
         int childrenCount = DEFUALT_CHILDREN_COUNT;
 
@@ -68,7 +88,7 @@ public class SampleTree extends BaseCommand {
             childrenCount = arg2.getValue();
         }
 
-        createTree(depth, childrenCount);
+        createTree(depth, childrenCount, bidirectional);
         getIo().println(String.format("Generated tree with depth '%d' and children count '%d'.", depth, childrenCount));
     }
 
@@ -76,10 +96,11 @@ public class SampleTree extends BaseCommand {
      * Creates tree recursive.
      *
      * @param depth tree depth
-     * @param childrenCount child count ofeach node
+     * @param childrenCount child count of each node
+     * @param bidirectional whether to connect the nodes bidirectional
      * @return return a sub tree
      */
-    private Node createTree(final int depth, final int childrenCount) {
+    private Node createTree(final int depth, final int childrenCount, final boolean bidirectional) {
         if (1 == depth) {
             return getEnv().add();
         }
@@ -87,7 +108,12 @@ public class SampleTree extends BaseCommand {
         final Node n = getEnv().add();
 
         for (int i = 0; i < childrenCount; ++i) {
-            n.connect(createTree(depth - 1, childrenCount));
+            final Node tree = createTree(depth - 1, childrenCount, bidirectional);
+            n.connect(tree);
+
+            if (bidirectional) {
+                tree.connect(n);
+            }
         }
 
         return n;
