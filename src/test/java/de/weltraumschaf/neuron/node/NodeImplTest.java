@@ -201,6 +201,59 @@ public class NodeImplTest {
     }
 
     @Test
+    public void sendMessageToNeighbor() {
+        final Node sut = new NodeImpl(23);
+        final Node neighbor = new NodeImpl(42);
+        sut.connect(neighbor);
+        final Message message = new Message("foo", 23, 42);
+        sut.send(message);
+        assertThat(message.isDelivered(), is(true));
+        assertThat(sut.getInbox().getMessages().size(), is(0));
+        final List<Message> messages = neighbor.getInbox().getMessages();
+        assertThat(messages.size(), is(1));
+        assertThat(messages.get(0), is(message));
+    }
+
+    @Test
+    public void sendMessageOverSomeNodes() {
+        final Node n1 = new NodeImpl(1);
+        final Node n2 = new NodeImpl(2);
+        final Node n3 = new NodeImpl(3);
+        final Node n4 = new NodeImpl(4);
+        n1.connect(n2);
+        n2.connect(n3);
+        n3.connect(n4);
+        final Message message = new Message("foo", 1, 4);
+        n1.send(message);
+        assertThat(message.isDelivered(), is(true));
+        assertThat(n1.getInbox().getMessages().size(), is(0));
+        assertThat(n2.getInbox().getMessages().size(), is(0));
+        assertThat(n3.getInbox().getMessages().size(), is(0));
+        final List<Message> messages = n4.getInbox().getMessages();
+        assertThat(messages.size(), is(1));
+        assertThat(messages.get(0), is(message));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void sendNullMessage() {
+        final Node sut = new NodeImpl(23);
+        sut.send(null);
+    }
+
+    @Test
+    public void sendAlreadyDeliveredMessage() {
+        final Node n1 = new NodeImpl(1);
+        final Node n2 = new NodeImpl(2);
+        n1.connect(n2);
+        final Message message = new Message("foo", 1, 2);
+        message.setDelivered();
+        assertThat(message.isDelivered(), is(true));
+        n1.send(message);
+        assertThat(n1.getInbox().getMessages().size(), is(0));
+        assertThat(n2.getInbox().getMessages().size(), is(0));
+    }
+
+    @Test
     public void compareTo() {
         final Node sut1 = new NodeImpl(23);
         final Node sut2 = new NodeImpl(23);
