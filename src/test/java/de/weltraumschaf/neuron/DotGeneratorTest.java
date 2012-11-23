@@ -131,4 +131,17 @@ public class DotGeneratorTest {
                 + "  28 -> 30;%n"
                 + "}")));
     }
+
+    @Test
+    public void twoNodesConnctedToEachOther() {
+        final Node n1 = env.add();
+        final Node n2 = env.add();
+        n1.connect(n2);
+        n2.connect(n1);
+        assertThat(sut.toString(), is(String.format(
+                  "digraph neuron {%n"
+                + "  %d -> %d;%n"
+                + "  %d -> %d;%n"
+                + "}", n1.getId(), n2.getId(), n2.getId(), n1.getId())));
+    }
 }
