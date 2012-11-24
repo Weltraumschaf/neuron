@@ -11,11 +11,11 @@
  */
 package de.weltraumschaf.neuron.shell;
 
-import de.weltraumschaf.neuron.event.EventHandler;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.neuron.cmd.Command;
 import de.weltraumschaf.neuron.cmd.CommandFactory;
+import de.weltraumschaf.neuron.event.EventHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
