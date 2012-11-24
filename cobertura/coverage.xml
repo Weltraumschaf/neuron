@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.8132295719844358" branch-rate="0.7935943060498221" lines-covered="627" lines-valid="771" branches-covered="223" branches-valid="281" complexity="2.080808080808081" version="1.9.4.1" timestamp="1353702643351">
+<coverage line-rate="0.8132295719844358" branch-rate="0.7935943060498221" lines-covered="627" lines-valid="771" branches-covered="223" branches-valid="281" complexity="2.080808080808081" version="1.9.4.1" timestamp="1353757195371">
 	<sources>
 		<source>--source</source>
 		<source>/Users/sxs/src/java/neuron/src/main/java</source>
