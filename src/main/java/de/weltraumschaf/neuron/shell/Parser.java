@@ -253,7 +253,7 @@ class Parser {
     }
 
     /**
-     * Verify commands of main command type {@link MainType#Dump}.
+     * Verify commands of main command type {@link ShellCommand.MainType#Dump}.
      *
      * Consistency checks are:
      * - correct sub commands
