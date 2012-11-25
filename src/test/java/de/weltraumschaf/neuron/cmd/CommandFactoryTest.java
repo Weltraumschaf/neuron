@@ -13,6 +13,8 @@ package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.commons.shell.NeuronMainType;
+import de.weltraumschaf.commons.shell.NeuronSubType;
 import de.weltraumschaf.commons.shell.ShellCommand;
 import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.event.EventHandler;
@@ -36,17 +38,17 @@ public class CommandFactoryTest {
     private final List<Token> args = Collections.emptyList();
     private final CommandFactory sut = new CommandFactory(env, io, version);
 
-    private ShellCommand createShellCommand(ShellCommand.MainType m) {
+    private ShellCommand createShellCommand(NeuronMainType m) {
         return new ShellCommand(m, args);
     }
 
-    private ShellCommand createShellCommand(ShellCommand.MainType m, ShellCommand.SubType s) {
+    private ShellCommand createShellCommand(NeuronMainType m, NeuronSubType s) {
         return new ShellCommand(m, s, args);
     }
 
     @Test
     public void newCommand_exit() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.EXIT);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.EXIT);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof Exit), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -56,7 +58,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_help() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.HELP);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.HELP);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof Help), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -68,7 +70,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeAdd() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.ADD);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.ADD);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeAdd), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -78,7 +80,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeConnect() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.CONNECT);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.CONNECT);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeConnect), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -88,7 +90,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeDisconnect() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.DISCONNECT);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.DISCONNECT);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeDisconnect), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -98,7 +100,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeDel() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.DEL);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.DEL);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeDel), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -108,7 +110,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeInfo() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.INFO);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.INFO);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeInfo), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -118,7 +120,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeList() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.LIST);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.LIST);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeList), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -128,7 +130,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeListen() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.LISTEN);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.LISTEN);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeListen), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -138,7 +140,7 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_nodeUnlisten() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.NODE, ShellCommand.SubType.UNLISTEN);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.NODE, NeuronSubType.UNLISTEN);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof NodeUnlisten), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
@@ -148,11 +150,12 @@ public class CommandFactoryTest {
 
     @Test
     public void newCommand_reset() {
-        final ShellCommand shellCmd = createShellCommand(ShellCommand.MainType.RESET);
+        final ShellCommand shellCmd = createShellCommand(NeuronMainType.RESET);
         final Command cmd = sut.newCommand(shellCmd);
         assertThat((cmd instanceof Reset), is(true));
         assertThat(((BaseCommand) cmd).getIo(), is(io));
         assertThat(((BaseCommand) cmd).getEnv(), is(env));
         assertThat(((BaseCommand) cmd).getArguments(), is(args));
     }
+
 }

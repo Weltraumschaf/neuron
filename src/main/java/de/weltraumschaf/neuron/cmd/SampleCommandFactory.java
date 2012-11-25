@@ -12,7 +12,7 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
-import de.weltraumschaf.commons.shell.ShellCommand;
+import de.weltraumschaf.commons.shell.NeuronSubType;
 import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.shell.Environment;
 import java.util.List;
@@ -56,7 +56,7 @@ final class SampleCommandFactory {
      * @throws IllegalArgumentException if, can't create command of bad sub command type
      * // CHECKSTYLE:ON
      */
-    Command newSampleCommand(final ShellCommand.SubType subCommand, final List<Token> arguments) {
+    Command newSampleCommand(final NeuronSubType subCommand, final List<Token> arguments) {
         switch (subCommand) {
             case TREE:
                 return new SampleTree(env, io, arguments);

@@ -13,6 +13,7 @@ package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.commons.shell.NeuronMainType;
 import de.weltraumschaf.commons.shell.Parser;
 import de.weltraumschaf.commons.shell.Parsers;
 import de.weltraumschaf.commons.shell.ShellCommand;
@@ -104,7 +105,7 @@ public class InteractiveShell {
         final Command cmd = factory.newCommand(shellCmd);
         cmd.execute();
 
-        if (shellCmd.getCommand() == ShellCommand.MainType.EXIT) {
+        if (shellCmd.getCommand() == NeuronMainType.EXIT) {
             exit();
         }
     }

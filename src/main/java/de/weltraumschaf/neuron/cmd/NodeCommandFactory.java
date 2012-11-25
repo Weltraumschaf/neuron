@@ -12,7 +12,7 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
-import de.weltraumschaf.commons.shell.ShellCommand;
+import de.weltraumschaf.commons.shell.NeuronSubType;
 import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.shell.Environment;
 import java.util.List;
@@ -56,7 +56,7 @@ final class NodeCommandFactory {
      * @throws IllegalArgumentException if, can't create command of bad sub command type
      * // CHECKSTYLE:ON
      */
-    Command newNodeCommand(final ShellCommand.SubType subCommand, final List<Token> arguments) {
+    Command newNodeCommand(final NeuronSubType subCommand, final List<Token> arguments) {
         switch (subCommand) {
             case ADD:
                 return new NodeAdd(env, io, arguments);
