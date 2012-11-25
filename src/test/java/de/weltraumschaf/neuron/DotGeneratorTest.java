@@ -13,11 +13,11 @@ package de.weltraumschaf.neuron;
 
 import com.google.common.collect.Lists;
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.cmd.SampleTree;
 import de.weltraumschaf.neuron.event.Observer;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;

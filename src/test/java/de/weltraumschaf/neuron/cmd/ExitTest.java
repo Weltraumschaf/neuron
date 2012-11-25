@@ -12,8 +12,8 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.Token;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;

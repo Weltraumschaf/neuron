@@ -13,11 +13,11 @@ package de.weltraumschaf.neuron.cmd;
 
 import com.google.common.collect.Lists;
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.event.EventHandler;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.node.NodeFactory;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 import org.junit.Rule;
 import org.junit.Test;

@@ -117,7 +117,7 @@
         <dependency>
             <groupId>de.weltraumschaf</groupId>
             <artifactId>commons</artifactId>
-            <version>0.2.6</version>
+            <version>0.2.7-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

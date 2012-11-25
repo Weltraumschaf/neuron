@@ -13,6 +13,10 @@ package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.commons.shell.Parser;
+import de.weltraumschaf.commons.shell.Parsers;
+import de.weltraumschaf.commons.shell.ShellCommand;
+import de.weltraumschaf.commons.shell.SyntaxException;
 import de.weltraumschaf.neuron.cmd.Command;
 import de.weltraumschaf.neuron.cmd.CommandFactory;
 import de.weltraumschaf.neuron.event.EventHandler;
@@ -35,7 +39,7 @@ public class InteractiveShell {
     /**
      * Shell user input parser.
      */
-    private final Parser parser = new Parser(new Scanner());
+    private final Parser parser = Parsers.newParser();
 
     /**
      * Factory to create commands.
