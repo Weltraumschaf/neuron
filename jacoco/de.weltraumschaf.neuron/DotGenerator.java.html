@@ -16,7 +16,6 @@ import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Simple implementation to generate unidirected graphs in &lt;a href=&quot;http://en.wikipedia.org/wiki/DOT_language&quot;&gt;Dot
@@ -49,7 +48,7 @@ public class DotGenerator {
     /**
      * Graph name.
      */
-<span class="fc" id="L52">    private String name = NAME;;</span>
+<span class="fc" id="L51">    private String name = NAME;;</span>
 
     /**
      * Environment to obtain graphed nodes from.
@@ -62,9 +61,9 @@ public class DotGenerator {
      * @param env used to get the graphed nodes
      */
     public DotGenerator(final Environment env) {
-<span class="fc" id="L65">        super();</span>
-<span class="fc" id="L66">        this.env = env;</span>
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L64">        super();</span>
+<span class="fc" id="L65">        this.env = env;</span>
+<span class="fc" id="L66">    }</span>
 
     /**
      * Iterates over the nodes from {@link #env} and generates the vertexes.
@@ -72,35 +71,35 @@ public class DotGenerator {
      * @return returns empty string if {@link #env} has no nodes
      */
     private String generateUnidirectedGraph() {
-<span class="fc" id="L75">        final StringBuilder buffer = new StringBuilder();</span>
-<span class="fc" id="L76">        final List&lt;Node&gt; nodes = env.getNodes();</span>
-<span class="fc" id="L77">        final Set&lt;Node&gt; singleNodes = Sets.newTreeSet(); // sorted by id</span>
-<span class="fc" id="L78">        final Set&lt;Node&gt; alreadySeen = Sets.newHashSet();</span>
+<span class="fc" id="L74">        final StringBuilder buffer = new StringBuilder();</span>
+<span class="fc" id="L75">        final List&lt;Node&gt; nodes = env.getNodes();</span>
+<span class="fc" id="L76">        final Set&lt;Node&gt; singleNodes = Sets.newTreeSet(); // sorted by id</span>
+<span class="fc" id="L77">        final Set&lt;Node&gt; alreadySeen = Sets.newHashSet();</span>
 
-<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (final Node n : nodes) {</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">            if (n.hasNeighbors()) {</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">                for (final Node neighbor : n.getNeighbors()) {</span>
-<span class="fc" id="L83">                    buffer.append(String.format(TWO_NODES_FORMAT, n.getId(), neighbor.getId()));</span>
-<span class="fc" id="L84">                    alreadySeen.add(neighbor);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (final Node n : nodes) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if (n.hasNeighbors()) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                for (final Node neighbor : n.getNeighbors()) {</span>
+<span class="fc" id="L82">                    buffer.append(String.format(TWO_NODES_FORMAT, n.getId(), neighbor.getId()));</span>
+<span class="fc" id="L83">                    alreadySeen.add(neighbor);</span>
 
-<span class="fc bfc" id="L86" title="All 2 branches covered.">                    if (singleNodes.contains(neighbor)) {</span>
-<span class="fc" id="L87">                        singleNodes.remove(neighbor);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                    if (singleNodes.contains(neighbor)) {</span>
+<span class="fc" id="L86">                        singleNodes.remove(neighbor);</span>
                     }
                 }
             } else {
-<span class="fc bfc" id="L91" title="All 2 branches covered.">                if (alreadySeen.contains(n)) {</span>
-<span class="fc" id="L92">                    continue;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">                if (alreadySeen.contains(n)) {</span>
+<span class="fc" id="L91">                    continue;</span>
                 }
 
-<span class="fc" id="L95">                singleNodes.add(n);</span>
+<span class="fc" id="L94">                singleNodes.add(n);</span>
             }
         }
 
-<span class="fc bfc" id="L99" title="All 2 branches covered.">        for (final Node n : singleNodes) {</span>
-<span class="fc" id="L100">            buffer.append(String.format(ONE_NODES_FORMAT, n.getId()));</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for (final Node n : singleNodes) {</span>
+<span class="fc" id="L99">            buffer.append(String.format(ONE_NODES_FORMAT, n.getId()));</span>
         }
 
-<span class="fc" id="L103">        return buffer.toString();</span>
+<span class="fc" id="L102">        return buffer.toString();</span>
     }
 
     /**
@@ -110,7 +109,7 @@ public class DotGenerator {
      */
     @Override
     public String toString() {
-<span class="fc" id="L113">        return String.format(&quot;digraph %s {%n%s}&quot;, getName(), generateUnidirectedGraph());</span>
+<span class="fc" id="L112">        return String.format(&quot;digraph %s {%n%s}&quot;, getName(), generateUnidirectedGraph());</span>
     }
 
     /**
@@ -119,7 +118,7 @@ public class DotGenerator {
      * @return string used in dot output.
      */
     public String getName() {
-<span class="fc" id="L122">        return name;</span>
+<span class="fc" id="L121">        return name;</span>
     }
 
     /**
@@ -128,8 +127,8 @@ public class DotGenerator {
      * @param name name to be used in dot output
      */
     public void setName(final String name) {
-<span class="nc" id="L131">        this.name = name;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L130">        this.name = name;</span>
+<span class="nc" id="L131">    }</span>
 
     /**
      * Filename is {@link #getName()} with {@link #FILE_EXTENSION}.
@@ -137,7 +136,7 @@ public class DotGenerator {
      * @return the file name string
      */
     public String getFileName() {
-<span class="nc" id="L140">        return getName() + FILE_EXTENSION;</span>
+<span class="nc" id="L139">        return getName() + FILE_EXTENSION;</span>
     }
 
 }

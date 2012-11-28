@@ -53,8 +53,8 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void connect(final Node n) {
-<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (null == n) {</span>
-<span class="nc" id="L57">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (null == n) {</span>
+<span class="fc" id="L57">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
         }
 
 <span class="fc bfc" id="L60" title="All 2 branches covered.">        if (hasNeighbor(n.getId())) {</span>
@@ -67,8 +67,8 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void disconnect(final Node n) {
-<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (null == n) {</span>
-<span class="nc" id="L71">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (null == n) {</span>
+<span class="fc" id="L71">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
         }
 
 <span class="fc bfc" id="L74" title="All 2 branches covered.">        if (!hasNeighbor(n.getId())) {</span>
@@ -86,55 +86,59 @@ class NodeImpl extends DefaultObservable implements Node {
 
     @Override
     public void send(final Message msg) {
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (null == msg) {</span>
-<span class="nc" id="L90">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (null == msg) {</span>
+<span class="fc" id="L90">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
         }
 
-<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (msg.getTo() == getId()) {</span>
-<span class="nc" id="L94">            receive(msg);</span>
-        } else {
-<span class="nc" id="L96">            forward(msg);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (msg.isDelivered()) {</span>
+<span class="fc" id="L94">            return;</span>
         }
-<span class="nc" id="L98">    }</span>
+
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (msg.getTo() == getId()) {</span>
+<span class="fc" id="L98">            receive(msg);</span>
+        } else {
+<span class="fc" id="L100">            forward(msg);</span>
+        }
+<span class="fc" id="L102">    }</span>
 
     @Override
     public int hashCode() {
-<span class="fc" id="L102">        return Objects.hashCode(id);</span>
+<span class="fc" id="L106">        return Objects.hashCode(id);</span>
     }
 
     @Override
     public boolean equals(final Object obj) {
-<span class="fc bfc" id="L107" title="All 2 branches covered.">        if (! (obj instanceof Node)) {</span>
-<span class="fc" id="L108">            return false;</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (! (obj instanceof Node)) {</span>
+<span class="fc" id="L112">            return false;</span>
         }
 
-<span class="fc" id="L111">        final Node other = (Node) obj;</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">        return id == other.getId();</span>
+<span class="fc" id="L115">        final Node other = (Node) obj;</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        return id == other.getId();</span>
     }
 
     @Override
     public boolean hasNeighbor(final Node neighbor) {
-<span class="fc" id="L117">        return hasNeighbor(neighbor.getId());</span>
+<span class="fc" id="L121">        return hasNeighbor(neighbor.getId());</span>
     }
 
     @Override
     public boolean hasNeighbor(final int neighborsId) {
-<span class="fc" id="L122">        return neighbours.containsKey(Integer.valueOf(neighborsId));</span>
+<span class="fc" id="L126">        return neighbours.containsKey(Integer.valueOf(neighborsId));</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L127">        return String.format(&quot;Node ID: %d Neigbors: %d&quot;, id, neighbours.size());</span>
+<span class="fc" id="L131">        return String.format(&quot;Node ID: %d Neigbors: %d&quot;, id, neighbours.size());</span>
     }
 
     @Override
     public boolean hasNeighbors() {
-<span class="fc bfc" id="L132" title="All 2 branches covered.">        return ! neighbours.isEmpty();</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        return ! neighbours.isEmpty();</span>
     }
 
     @Override
     public List&lt;Node&gt; getNeighbors() {
-<span class="fc" id="L137">        return Lists.newArrayList(neighbours.values());</span>
+<span class="fc" id="L141">        return Lists.newArrayList(neighbours.values());</span>
     }
 
     /**
@@ -144,9 +148,9 @@ class NodeImpl extends DefaultObservable implements Node {
      * @param description event description
      */
     private void emmitEvent(Event.Type type, String description) {
-<span class="fc" id="L147">        setChanged();</span>
-<span class="fc" id="L148">        notifyObservers(new Event(type, description, this));</span>
-<span class="fc" id="L149">    }</span>
+<span class="fc" id="L151">        setChanged();</span>
+<span class="fc" id="L152">        notifyObservers(new Event(type, description, this));</span>
+<span class="fc" id="L153">    }</span>
 
     /**
      * Handle message which {@link Message#to &quot;to address&quot;} is equal to {@link #id}.
@@ -154,9 +158,10 @@ class NodeImpl extends DefaultObservable implements Node {
      * @param msg received message
      */
     private void receive(final Message msg) {
-<span class="nc" id="L157">        emmitEvent(Event.Type.MESSAGING, &quot;Receive message: &quot; + msg);</span>
-<span class="nc" id="L158">        inbox.store(msg);</span>
-<span class="nc" id="L159">    }</span>
+<span class="fc" id="L161">        emmitEvent(Event.Type.MESSAGING, &quot;Receive message: &quot; + msg);</span>
+<span class="fc" id="L162">        inbox.store(msg);</span>
+<span class="fc" id="L163">        msg.setDelivered();</span>
+<span class="fc" id="L164">    }</span>
 
     /**
      * Handle message which {@link Message#to &quot;to address&quot;} is NOT equal to {@link #id}.
@@ -164,20 +169,20 @@ class NodeImpl extends DefaultObservable implements Node {
      * @param msg forwarded message
      */
     private void forward(final Message msg) {
-<span class="nc" id="L167">        emmitEvent(Event.Type.MESSAGING, &quot;Forward message: &quot; + msg);</span>
+<span class="fc" id="L172">        emmitEvent(Event.Type.MESSAGING, &quot;Forward message: &quot; + msg);</span>
 
-<span class="nc bnc" id="L169" title="All 2 branches missed.">        if (hasNeighbor(msg.getTo())) {</span>
-<span class="nc" id="L170">            getNeighbor(msg.getTo()).send(msg);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        if (hasNeighbor(msg.getTo())) {</span>
+<span class="fc" id="L175">            getNeighbor(msg.getTo()).send(msg);</span>
         } else {
-<span class="nc bnc" id="L172" title="All 2 branches missed.">            for (final Node neighbor : getNeighbors()) {</span>
-<span class="nc" id="L173">                neighbor.send(msg);</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">            for (final Node neighbor : getNeighbors()) {</span>
+<span class="fc" id="L178">                neighbor.send(msg);</span>
             }
         }
-<span class="nc" id="L176">    }</span>
+<span class="fc" id="L181">    }</span>
 
     @Override
     public MessageBox getInbox() {
-<span class="fc" id="L180">        return inbox;</span>
+<span class="fc" id="L185">        return inbox;</span>
     }
 
     /**
@@ -186,23 +191,23 @@ class NodeImpl extends DefaultObservable implements Node {
      * @param neighborsId id of the neighbor
      * @return neighbor node
      */
-    private Node getNeighbor(final int neighborsId) {
-<span class="nc" id="L190">        return neighbours.get(Integer.valueOf(neighborsId));</span>
+    Node getNeighbor(final int neighborsId) {
+<span class="fc" id="L195">        return neighbours.get(Integer.valueOf(neighborsId));</span>
     }
 
     @Override
     public int compareTo(final Object o) {
-<span class="fc" id="L195">        final Node other = (Node) o;</span>
+<span class="fc" id="L200">        final Node other = (Node) o;</span>
 
-<span class="fc bfc" id="L197" title="All 2 branches covered.">        if (id &lt; other.getId()) {</span>
-<span class="fc" id="L198">            return -1;</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">        if (id &lt; other.getId()) {</span>
+<span class="fc" id="L203">            return -1;</span>
         }
 
-<span class="fc bfc" id="L201" title="All 2 branches covered.">        if (id &gt; other.getId()) {</span>
-<span class="fc" id="L202">            return 1;</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        if (id &gt; other.getId()) {</span>
+<span class="fc" id="L207">            return 1;</span>
         }
 
-<span class="fc" id="L205">        return 0;</span>
+<span class="fc" id="L210">        return 0;</span>
     }
 
 }

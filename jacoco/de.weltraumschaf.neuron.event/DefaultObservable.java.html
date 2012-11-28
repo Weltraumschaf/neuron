@@ -51,35 +51,37 @@ public class DefaultObservable implements Observable {
 
     /**
      * List of observers.
+     *
+     * Use copy on write version.
      */
-<span class="fc" id="L55">    private final Set&lt;Observer&gt; obs = Sets.newHashSet();</span>
+<span class="fc" id="L57">    private final Set&lt;Observer&gt; obs = Sets.newHashSet();</span>
 
     /**
      * Construct an DefaultObservable with zero Observers.
      */
     public DefaultObservable() {
-<span class="fc" id="L61">        super();</span>
-<span class="fc" id="L62">    }</span>
+<span class="fc" id="L63">        super();</span>
+<span class="fc" id="L64">    }</span>
 
     @Override
     public void addObserver(final Observer o) {
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (o == null) {</span>
-<span class="nc" id="L67">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if (o == null) {</span>
+<span class="nc" id="L69">            throw new NullPointerException(&quot;Argument is null!&quot;);</span>
         }
 
-<span class="fc" id="L70">        synchronized (obs) {</span>
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">            if (!obs.contains(o)) {</span>
-<span class="fc" id="L72">                obs.add(o);</span>
+<span class="fc" id="L72">        synchronized (obs) {</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">            if (!obs.contains(o)) {</span>
+<span class="fc" id="L74">                obs.add(o);</span>
             }
-<span class="pc" id="L74">        }</span>
-<span class="fc" id="L75">    }</span>
+<span class="pc" id="L76">        }</span>
+<span class="fc" id="L77">    }</span>
 
     @Override
     public void deleteObserver(final Observer o) {
-<span class="fc" id="L79">        synchronized (obs) {</span>
-<span class="fc" id="L80">            obs.remove(o);</span>
-<span class="pc" id="L81">        }</span>
-<span class="fc" id="L82">    }</span>
+<span class="fc" id="L81">        synchronized (obs) {</span>
+<span class="fc" id="L82">            obs.remove(o);</span>
+<span class="pc" id="L83">        }</span>
+<span class="fc" id="L84">    }</span>
 
     /**
      * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers
@@ -95,8 +97,8 @@ public class DefaultObservable implements Observable {
      */
     @Override
     public void notifyObservers() {
-<span class="nc" id="L98">        notifyObservers(null);</span>
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L100">        notifyObservers(null);</span>
+<span class="nc" id="L101">    }</span>
 
     /**
      * If this object has changed, as indicated by the {@link #hasChanged()} method, then notify all of its observers
@@ -115,7 +117,7 @@ public class DefaultObservable implements Observable {
          */
         List&lt;Observer&gt; localCopy;
 
-<span class="fc" id="L118">        synchronized (this) {</span>
+<span class="fc" id="L120">        synchronized (this) {</span>
             /* We don't want the Observer doing callbacks into
              * arbitrary code while holding its own Monitor.
              * The code where we extract each DefaultObservable from
@@ -128,24 +130,24 @@ public class DefaultObservable implements Observable {
              * 2) a recently unregistered Observer will be
              *   wrongly notified when it doesn't care
              */
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">            if (! changed) {</span>
-<span class="nc" id="L132">                return;</span>
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">            if (! changed) {</span>
+<span class="nc" id="L134">                return;</span>
             }
-<span class="fc" id="L134">            localCopy = Lists.newArrayList(obs);</span>
-<span class="fc" id="L135">            clearChanged();</span>
-<span class="pc" id="L136">        }</span>
+<span class="fc" id="L136">            localCopy = Lists.newArrayList(obs);</span>
+<span class="fc" id="L137">            clearChanged();</span>
+<span class="pc" id="L138">        }</span>
 
-<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        for (final Observer observer : localCopy) {</span>
-<span class="nc" id="L139">            observer.update(event);</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        for (final Observer observer : localCopy) {</span>
+<span class="nc" id="L141">            observer.update(event);</span>
         }
-<span class="fc" id="L141">    }</span>
+<span class="fc" id="L143">    }</span>
 
     @Override
     public void deleteObservers() {
-<span class="nc" id="L145">        synchronized (obs) {</span>
-<span class="nc" id="L146">            obs.clear();</span>
-<span class="nc" id="L147">        }</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L147">        synchronized (obs) {</span>
+<span class="nc" id="L148">            obs.clear();</span>
+<span class="nc" id="L149">        }</span>
+<span class="nc" id="L150">    }</span>
 
     /**
      * Tests if this object has changed.
@@ -159,16 +161,16 @@ public class DefaultObservable implements Observable {
      */
     @Override
     public boolean hasChanged() {
-<span class="nc" id="L162">        synchronized (this) {</span>
-<span class="nc" id="L163">            return changed;</span>
-<span class="nc" id="L164">        }</span>
+<span class="nc" id="L164">        synchronized (this) {</span>
+<span class="nc" id="L165">            return changed;</span>
+<span class="nc" id="L166">        }</span>
     }
 
     @Override
     public int countObservers() {
-<span class="nc" id="L169">        synchronized (obs) {</span>
-<span class="nc" id="L170">            return obs.size();</span>
-<span class="nc" id="L171">        }</span>
+<span class="nc" id="L171">        synchronized (obs) {</span>
+<span class="nc" id="L172">            return obs.size();</span>
+<span class="nc" id="L173">        }</span>
     }
 
     /**
@@ -176,10 +178,10 @@ public class DefaultObservable implements Observable {
      * method will now return &lt;tt&gt;true&lt;/tt&gt;.
      */
     protected void setChanged() {
-<span class="fc" id="L179">        synchronized (this) {</span>
-<span class="fc" id="L180">            changed = true;</span>
-<span class="pc" id="L181">        }</span>
-<span class="fc" id="L182">    }</span>
+<span class="fc" id="L181">        synchronized (this) {</span>
+<span class="fc" id="L182">            changed = true;</span>
+<span class="pc" id="L183">        }</span>
+<span class="fc" id="L184">    }</span>
 
     /**
      * Indicates that this object has no longer changed, or that it has already notified all of its observers of its
@@ -191,10 +193,10 @@ public class DefaultObservable implements Observable {
      * @see Observable#notifyObservers(Event event)
      */
     protected void clearChanged() {
-<span class="fc" id="L194">        synchronized (this) {</span>
-<span class="fc" id="L195">            changed = false;</span>
-<span class="pc" id="L196">        }</span>
-<span class="fc" id="L197">    }</span>
+<span class="fc" id="L196">        synchronized (this) {</span>
+<span class="fc" id="L197">            changed = false;</span>
+<span class="pc" id="L198">        }</span>
+<span class="fc" id="L199">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

@@ -22,9 +22,9 @@
 <a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">package</strong> de.weltraumschaf.neuron.cmd;
 <a class="jxr_linenumber" name="13" href="#13">13</a>  
 <a class="jxr_linenumber" name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.commons.IO;
-<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.neuron.shell.Environment;
-<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.neuron.shell.ShellCommand;
-<a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.neuron.shell.Token;
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.neuron.shell.NeuronSubType;
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.commons.shell.Token;
+<a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> de.weltraumschaf.neuron.shell.Environment;
 <a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="19" href="#19">19</a>  
 <a class="jxr_linenumber" name="20" href="#20">20</a>  <em class="jxr_javadoccomment">/**</em>
@@ -66,7 +66,7 @@
 <a class="jxr_linenumber" name="56" href="#56">56</a>  <em class="jxr_javadoccomment">     * @throws IllegalArgumentException if, can't create command of bad sub command type</em>
 <a class="jxr_linenumber" name="57" href="#57">57</a>  <em class="jxr_javadoccomment">     * // CHECKSTYLE:ON</em>
 <a class="jxr_linenumber" name="58" href="#58">58</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="59" href="#59">59</a>      <a href="../../../../de/weltraumschaf/neuron/cmd/Command.html">Command</a> newNodeCommand(<strong class="jxr_keyword">final</strong> ShellCommand.SubType subCommand, <strong class="jxr_keyword">final</strong> List&lt;Token&gt; arguments) {
+<a class="jxr_linenumber" name="59" href="#59">59</a>      <a href="../../../../de/weltraumschaf/neuron/cmd/Command.html">Command</a> newNodeCommand(<strong class="jxr_keyword">final</strong> <a href="../../../../de/weltraumschaf/neuron/shell/NeuronSubType.html">NeuronSubType</a> subCommand, <strong class="jxr_keyword">final</strong> List&lt;Token&gt; arguments) {
 <a class="jxr_linenumber" name="60" href="#60">60</a>          <strong class="jxr_keyword">switch</strong> (subCommand) {
 <a class="jxr_linenumber" name="61" href="#61">61</a>              <strong class="jxr_keyword">case</strong> ADD:
 <a class="jxr_linenumber" name="62" href="#62">62</a>                  <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../de/weltraumschaf/neuron/cmd/NodeAdd.html">NodeAdd</a>(env, io, arguments);

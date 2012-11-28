@@ -12,10 +12,10 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.commons.shell.Token;
+import de.weltraumschaf.commons.shell.TokenType;
 import de.weltraumschaf.neuron.node.Node;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.Token;
-import de.weltraumschaf.neuron.shell.TokenType;
 import java.util.List;
 
 /**

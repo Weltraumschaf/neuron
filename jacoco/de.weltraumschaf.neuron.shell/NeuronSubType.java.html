@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NeuronSubType.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Neuron</a> &gt; <a href="index.html" class="el_package">de.weltraumschaf.neuron.shell</a> &gt; <span class="el_source">NeuronSubType.java</span></div><h1>NeuronSubType.java</h1><pre class="source lang-java linenums">/*
+ * LICENSE
+ *
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 43):
+ * &quot;Sven Strittmatter&quot; &lt;weltraumschaf(at)googlemail(dot)com&gt; wrote this file.
+ * As long as you retain this notice you can do whatever you want with
+ * this stuff. If we meet some day, and you think this stuff is worth it,
+ * you can buy me a non alcohol-free beer in return.
+ *
+ * Copyright (C) 2012 &quot;Sven Strittmatter&quot; &lt;weltraumschaf(at)googlemail(dot)com&gt;
+ */
+package de.weltraumschaf.neuron.shell;
+
+import de.weltraumschaf.commons.shell.SubCommandType;
+
+/**
+ * Enumerates the optional subcommands.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+<span class="pc" id="L21">public enum NeuronSubType implements SubCommandType {</span>
+
+    /**
+     * No sub command.
+     */
+<span class="fc" id="L26">    NONE(&quot;&quot;),</span>
+    /**
+     * Add sub command for node command.
+     */
+<span class="fc" id="L30">    ADD(&quot;add&quot;),</span>
+    /**
+     * Del sub command for node command.
+     */
+<span class="fc" id="L34">    DEL(&quot;del&quot;),</span>
+    /**
+     * Connect sub command for node command.
+     */
+<span class="fc" id="L38">    CONNECT(&quot;connect&quot;),</span>
+    /**
+     * Disconnect sub command for node command.
+     */
+<span class="fc" id="L42">    DISCONNECT(&quot;disconnect&quot;),</span>
+    /**
+     * List sub command for node command.
+     */
+<span class="fc" id="L46">    LIST(&quot;list&quot;),</span>
+    /**
+     * Info sub command for node command.
+     */
+<span class="fc" id="L50">    INFO(&quot;info&quot;),</span>
+    /**
+     * Listen sub command for node command.
+     */
+<span class="fc" id="L54">    LISTEN(&quot;listen&quot;),</span>
+    /**
+     * Unlisten sub command for node command.
+     */
+<span class="fc" id="L58">    UNLISTEN(&quot;unlisten&quot;),</span>
+    /**
+     * Dot subcommand for dump command.
+     */
+<span class="fc" id="L62">    DOT(&quot;dot&quot;),</span>
+    /**
+     * Tree subcommand for dump command.
+     */
+<span class="fc" id="L66">    TREE(&quot;tree&quot;),</span>
+    /**
+     * Bidirectional tree subcommand for dump command.
+     */
+<span class="fc" id="L70">    BITREE(&quot;bitree&quot;);</span>
+    /**
+     * Literal command string used in shell.
+     */
+    private final String name;
+
+    /**
+     * Initialize name.
+     *
+     * @param name literal shell command string
+     */
+<span class="fc" id="L81">    private NeuronSubType(final String name) {</span>
+<span class="fc" id="L82">        this.name = name;</span>
+<span class="fc" id="L83">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L87">        return name;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

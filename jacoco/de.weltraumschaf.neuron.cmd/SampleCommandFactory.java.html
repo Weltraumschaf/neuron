@@ -12,9 +12,9 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.NeuronSubType;
+import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.ShellCommand;
-import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
@@ -56,12 +56,14 @@ final class SampleCommandFactory {
      * @throws IllegalArgumentException if, can't create command of bad sub command type
      * // CHECKSTYLE:ON
      */
-    Command newSampleCommand(final ShellCommand.SubType subCommand, final List&lt;Token&gt; arguments) {
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        switch (subCommand) {</span>
+    Command newSampleCommand(final NeuronSubType subCommand, final List&lt;Token&gt; arguments) {
+<span class="nc bnc" id="L60" title="All 3 branches missed.">        switch (subCommand) {</span>
             case TREE:
 <span class="nc" id="L62">                return new SampleTree(env, io, arguments);</span>
+            case BITREE:
+<span class="nc" id="L64">                return new SampleBiTree(env, io, arguments);</span>
             default:
-<span class="nc" id="L64">                throw new IllegalArgumentException(</span>
+<span class="nc" id="L66">                throw new IllegalArgumentException(</span>
                             String.format(&quot;Main command type 'dump' does not support sub type '%s'!&quot;, subCommand));
         }
     }

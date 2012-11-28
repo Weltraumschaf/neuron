@@ -11,11 +11,15 @@
  */
 package de.weltraumschaf.neuron.shell;
 
-import de.weltraumschaf.neuron.event.EventHandler;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.commons.shell.Parser;
+import de.weltraumschaf.commons.shell.Parsers;
+import de.weltraumschaf.commons.shell.ShellCommand;
+import de.weltraumschaf.commons.shell.SyntaxException;
 import de.weltraumschaf.neuron.cmd.Command;
 import de.weltraumschaf.neuron.cmd.CommandFactory;
+import de.weltraumschaf.neuron.event.EventHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,7 +39,7 @@ public class InteractiveShell {
     /**
      * Shell user input parser.
      */
-<span class="nc" id="L38">    private final Parser parser = new Parser(new Scanner());</span>
+<span class="nc" id="L42">    private final Parser parser = Parsers.newParser(new NeuronCommandVerifier(), new NeuronLiteralCommandMap());</span>
 
     /**
      * Factory to create commands.
@@ -45,7 +49,7 @@ public class InteractiveShell {
     /**
      * Indicates if the REPL loop is running.
      */
-<span class="nc" id="L48">    private boolean run = true;</span>
+<span class="nc" id="L52">    private boolean run = true;</span>
 
     /**
      * Default constructor.
@@ -54,12 +58,12 @@ public class InteractiveShell {
      * @throws IOException if, version properties could not be loaded for {@link Version}
      */
     public InteractiveShell(final IO io) throws IOException {
-<span class="nc" id="L57">        super();</span>
-<span class="nc" id="L58">        this.io = io;</span>
-<span class="nc" id="L59">        final Version version = new Version(&quot;/de/weltraumschaf/neuron/version.properties&quot;);</span>
-<span class="nc" id="L60">        version.load();</span>
-<span class="nc" id="L61">        factory = new CommandFactory(new Environment(new EventHandler(this.io)), this.io, version);</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L61">        super();</span>
+<span class="nc" id="L62">        this.io = io;</span>
+<span class="nc" id="L63">        final Version version = new Version(&quot;/de/weltraumschaf/neuron/version.properties&quot;);</span>
+<span class="nc" id="L64">        version.load();</span>
+<span class="nc" id="L65">        factory = new CommandFactory(new Environment(new EventHandler(this.io)), this.io, version);</span>
+<span class="nc" id="L66">    }</span>
 
     /**
      * Start the REPL.
@@ -67,29 +71,29 @@ public class InteractiveShell {
      * @throws IOException if I/O error occurs
      */
     public void start() throws IOException {
-<span class="nc" id="L70">        final BufferedReader input = new BufferedReader(new InputStreamReader(io.getStdin()));</span>
-<span class="nc" id="L71">        io.println(String.format(&quot;Welcome to Neuro Interactive Shell!%n&quot;));</span>
+<span class="nc" id="L74">        final BufferedReader input = new BufferedReader(new InputStreamReader(io.getStdin()));</span>
+<span class="nc" id="L75">        io.println(String.format(&quot;Welcome to Neuro Interactive Shell!%n&quot;));</span>
 
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        while (run) {</span>
-<span class="nc" id="L74">            io.print(&quot;&gt; &quot;);</span>
-<span class="nc" id="L75">            final String inputLine = input.readLine();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        while (run) {</span>
+<span class="nc" id="L78">            io.print(&quot;&gt; &quot;);</span>
+<span class="nc" id="L79">            final String inputLine = input.readLine();</span>
             try {
-<span class="nc" id="L77">                final ShellCommand cmd = parser.parse(inputLine);</span>
-<span class="nc" id="L78">                execute(cmd);</span>
-<span class="nc" id="L79">            } catch (SyntaxException ex) {</span>
-<span class="nc" id="L80">                io.println(&quot;Error: &quot; + ex.getMessage());</span>
-<span class="nc" id="L81">            }</span>
-<span class="nc" id="L82">        }</span>
+<span class="nc" id="L81">                final ShellCommand cmd = parser.parse(inputLine);</span>
+<span class="nc" id="L82">                execute(cmd);</span>
+<span class="nc" id="L83">            } catch (SyntaxException ex) {</span>
+<span class="nc" id="L84">                io.println(&quot;Error: &quot; + ex.getMessage());</span>
+<span class="nc" id="L85">            }</span>
+<span class="nc" id="L86">        }</span>
 
-<span class="nc" id="L84">        input.close();</span>
-<span class="nc" id="L85">    }</span>
+<span class="nc" id="L88">        input.close();</span>
+<span class="nc" id="L89">    }</span>
 
     /**
      * Stops the REPL.
      */
     public void exit() {
-<span class="nc" id="L91">        run = false;</span>
-<span class="nc" id="L92">    }</span>
+<span class="nc" id="L95">        run = false;</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Executes a parsed command.
@@ -97,13 +101,13 @@ public class InteractiveShell {
      * @param shellCmd command to execute
      */
     private void execute(final ShellCommand shellCmd) {
-<span class="nc" id="L100">        final Command cmd = factory.newCommand(shellCmd);</span>
-<span class="nc" id="L101">        cmd.execute();</span>
+<span class="nc" id="L104">        final Command cmd = factory.newCommand(shellCmd);</span>
+<span class="nc" id="L105">        cmd.execute();</span>
 
-<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (shellCmd.getCommand() == ShellCommand.MainType.EXIT) {</span>
-<span class="nc" id="L104">            exit();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (shellCmd.getCommand() == NeuronMainType.EXIT) {</span>
+<span class="nc" id="L108">            exit();</span>
         }
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L110">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span></div></body></html>

@@ -12,9 +12,9 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.NeuronSubType;
+import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.ShellCommand;
-import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
@@ -56,7 +56,7 @@ final class NodeCommandFactory {
      * @throws IllegalArgumentException if, can't create command of bad sub command type
      * // CHECKSTYLE:ON
      */
-    Command newNodeCommand(final ShellCommand.SubType subCommand, final List&lt;Token&gt; arguments) {
+    Command newNodeCommand(final NeuronSubType subCommand, final List&lt;Token&gt; arguments) {
 <span class="pc bpc" id="L60" title="1 of 9 branches missed.">        switch (subCommand) {</span>
             case ADD:
 <span class="fc" id="L62">                return new NodeAdd(env, io, arguments);</span>

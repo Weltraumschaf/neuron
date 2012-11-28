@@ -36,6 +36,11 @@ public class Message {
     private final int to;
 
     /**
+     * Indicates if the message was delivered to it's receiver.
+     */
+    private boolean delivered;
+
+    /**
      * Dedicated constructor.
      *
      * @param msg the message string
@@ -43,11 +48,11 @@ public class Message {
      * @param to receivers id
      */
     public Message(final String msg, final int from, final int to) {
-<span class="fc" id="L46">        super();</span>
-<span class="fc" id="L47">        this.msg  = msg;</span>
-<span class="fc" id="L48">        this.from = from;</span>
-<span class="fc" id="L49">        this.to   = to;</span>
-<span class="fc" id="L50">    }</span>
+<span class="fc" id="L51">        super();</span>
+<span class="fc" id="L52">        this.msg  = msg;</span>
+<span class="fc" id="L53">        this.from = from;</span>
+<span class="fc" id="L54">        this.to   = to;</span>
+<span class="fc" id="L55">    }</span>
 
     /**
      * Getter for message text.
@@ -55,7 +60,7 @@ public class Message {
      * @return message string
      */
     public String getMsg() {
-<span class="fc" id="L58">        return msg;</span>
+<span class="fc" id="L63">        return msg;</span>
     }
 
     /**
@@ -64,7 +69,7 @@ public class Message {
      * @return positive integer id
      */
     public int getFrom() {
-<span class="fc" id="L67">        return from;</span>
+<span class="fc" id="L72">        return from;</span>
     }
 
 
@@ -74,12 +79,28 @@ public class Message {
      * @return positive integer id
      */
     public int getTo() {
-<span class="fc" id="L77">        return to;</span>
+<span class="fc" id="L82">        return to;</span>
+    }
+
+    /**
+     * Mark the message as delivered to it's receiver.
+     */
+    public void setDelivered() {
+<span class="fc" id="L89">        delivered = true;</span>
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * Whether the message was delivered to it's receiver or not.
+     *
+     * @return return true if delivered, else false
+     */
+    public boolean isDelivered() {
+<span class="fc" id="L98">        return delivered;</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L82">        return String.format(&quot;%d -&gt; %d: '%s'&quot;, getFrom(), getTo(), getMsg());</span>
+<span class="fc" id="L103">        return String.format(&quot;%d -&gt; %d: '%s'&quot;, getFrom(), getTo(), getMsg());</span>
     }
 
 }

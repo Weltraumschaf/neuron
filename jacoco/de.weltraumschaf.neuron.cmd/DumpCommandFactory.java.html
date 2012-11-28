@@ -12,9 +12,9 @@
 package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
+import de.weltraumschaf.neuron.shell.NeuronSubType;
+import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.ShellCommand;
-import de.weltraumschaf.neuron.shell.Token;
 import java.util.List;
 
 /**
@@ -56,7 +56,7 @@ final class DumpCommandFactory {
      * @throws IllegalArgumentException if, can't create command of bad sub command type
      * // CHECKSTYLE:ON
      */
-    Command newDumpCommand(final ShellCommand.SubType subCommand, final List&lt;Token&gt; arguments) {
+    Command newDumpCommand(final NeuronSubType subCommand, final List&lt;Token&gt; arguments) {
 <span class="nc bnc" id="L60" title="All 2 branches missed.">        switch (subCommand) {</span>
             case DOT:
 <span class="nc" id="L62">                return new DumpDot(env, io, arguments);</span>

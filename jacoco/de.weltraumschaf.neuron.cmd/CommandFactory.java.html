@@ -13,8 +13,10 @@ package de.weltraumschaf.neuron.cmd;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
+import de.weltraumschaf.commons.shell.ShellCommand;
 import de.weltraumschaf.neuron.shell.Environment;
-import de.weltraumschaf.neuron.shell.ShellCommand;
+import de.weltraumschaf.neuron.shell.NeuronMainType;
+import de.weltraumschaf.neuron.shell.NeuronSubType;
 
 /**
  * Factory to create command objects depending on the parsed {@link ShellCommand}.
@@ -61,14 +63,14 @@ public final class CommandFactory {
      * @param version version info used by some commands
      */
     public CommandFactory(final Environment env, final IO io, final Version version) {
-<span class="fc" id="L64">        super();</span>
-<span class="fc" id="L65">        this.env = env;</span>
-<span class="fc" id="L66">        this.io = io;</span>
-<span class="fc" id="L67">        this.version = version;</span>
-<span class="fc" id="L68">        nodeCommandFactory = new NodeCommandFactory(this.env, this.io);</span>
-<span class="fc" id="L69">        dumpCommandFactory = new DumpCommandFactory(this.env, this.io);</span>
-<span class="fc" id="L70">        sampleCommandFactory = new SampleCommandFactory(this.env, this.io);</span>
-<span class="fc" id="L71">    }</span>
+<span class="fc" id="L66">        super();</span>
+<span class="fc" id="L67">        this.env = env;</span>
+<span class="fc" id="L68">        this.io = io;</span>
+<span class="fc" id="L69">        this.version = version;</span>
+<span class="fc" id="L70">        nodeCommandFactory = new NodeCommandFactory(this.env, this.io);</span>
+<span class="fc" id="L71">        dumpCommandFactory = new DumpCommandFactory(this.env, this.io);</span>
+<span class="fc" id="L72">        sampleCommandFactory = new SampleCommandFactory(this.env, this.io);</span>
+<span class="fc" id="L73">    }</span>
 
     /**
      * Create command instances according to the parsed shell command.
@@ -81,38 +83,41 @@ public final class CommandFactory {
      */
     public Command newCommand(final ShellCommand shellCmd) {
         Command cmd;
-<span class="pc bpc" id="L84" title="4 of 8 branches missed.">        switch (shellCmd.getCommand()) {</span>
+<span class="pc bpc" id="L86" title="4 of 8 branches missed.">        switch ((NeuronMainType) shellCmd.getCommand()) {</span>
             case EXIT:
-<span class="fc" id="L86">                cmd = new Exit(env, io, shellCmd.getArguments());</span>
-<span class="fc" id="L87">                break;</span>
+<span class="fc" id="L88">                cmd = new Exit(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L89">                break;</span>
             case HELP:
-<span class="fc" id="L89">                cmd = new Help(env, io, shellCmd.getArguments());</span>
-<span class="fc" id="L90">                break;</span>
+<span class="fc" id="L91">                cmd = new Help(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L92">                break;</span>
             case NODE:
-<span class="fc" id="L92">                cmd = nodeCommandFactory.newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
-<span class="fc" id="L93">                break;</span>
-            case RESET:
-<span class="fc" id="L95">                cmd = new Reset(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L94">                cmd = nodeCommandFactory.newNodeCommand((NeuronSubType) shellCmd.getSubCommand(),</span>
+                                                        shellCmd.getArguments());
 <span class="fc" id="L96">                break;</span>
+            case RESET:
+<span class="fc" id="L98">                cmd = new Reset(env, io, shellCmd.getArguments());</span>
+<span class="fc" id="L99">                break;</span>
             case MESSAGE:
-<span class="nc" id="L98">                cmd = new SendMessage(env, io, shellCmd.getArguments());</span>
-<span class="nc" id="L99">                break;</span>
-            case DUMP:
-<span class="nc" id="L101">                cmd = dumpCommandFactory.newDumpCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
+<span class="nc" id="L101">                cmd = new SendMessage(env, io, shellCmd.getArguments());</span>
 <span class="nc" id="L102">                break;</span>
+            case DUMP:
+<span class="nc" id="L104">                cmd = dumpCommandFactory.newDumpCommand((NeuronSubType) shellCmd.getSubCommand(),</span>
+                                                        shellCmd.getArguments());
+<span class="nc" id="L106">                break;</span>
             case SAMPLE:
-<span class="nc" id="L104">                cmd = sampleCommandFactory.newSampleCommand(shellCmd.getSubCommand(), shellCmd.getArguments());</span>
-<span class="nc" id="L105">                break;</span>
+<span class="nc" id="L108">                cmd = sampleCommandFactory.newSampleCommand((NeuronSubType) shellCmd.getSubCommand(),</span>
+                                                            shellCmd.getArguments());
+<span class="nc" id="L110">                break;</span>
             default:
-<span class="nc" id="L107">                throw new IllegalArgumentException(String.format(&quot;Unsupported main command type '%s'!&quot;,</span>
+<span class="nc" id="L112">                throw new IllegalArgumentException(String.format(&quot;Unsupported main command type '%s'!&quot;,</span>
                                                                  shellCmd.getCommand()));
         }
 
-<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (cmd instanceof UseVersion) {</span>
-<span class="fc" id="L112">            ((UseVersion) cmd).setVersion(version);</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        if (cmd instanceof UseVersion) {</span>
+<span class="fc" id="L117">            ((UseVersion) cmd).setVersion(version);</span>
         }
 
-<span class="fc" id="L115">        return cmd;</span>
+<span class="fc" id="L120">        return cmd;</span>
     }
 
 }

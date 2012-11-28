@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.8132295719844358" branch-rate="0.7935943060498221" lines-covered="627" lines-valid="771" branches-covered="223" branches-valid="281" complexity="2.080808080808081" version="1.9.4.1" timestamp="1353757195371">
+<coverage line-rate="0.7800963081861958" branch-rate="0.7320574162679426" lines-covered="486" lines-valid="623" branches-covered="153" branches-valid="209" complexity="2.0875" version="1.9.4.1" timestamp="1354140443299">
 	<sources>
 		<source>--source</source>
 		<source>/Users/sxs/src/java/neuron/src/main/java</source>
@@ -249,96 +249,96 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/neuron/shell/Environment;Lde/weltraumschaf/commons/IO;Lde/weltraumschaf/commons/Version;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="64" hits="11" branch="false"/>
-								<line number="65" hits="11" branch="false"/>
 								<line number="66" hits="11" branch="false"/>
 								<line number="67" hits="11" branch="false"/>
 								<line number="68" hits="11" branch="false"/>
 								<line number="69" hits="11" branch="false"/>
 								<line number="70" hits="11" branch="false"/>
 								<line number="71" hits="11" branch="false"/>
+								<line number="72" hits="11" branch="false"/>
+								<line number="73" hits="11" branch="false"/>
 							</lines>
 						</method>
-						<method name="newCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.631578947368421" branch-rate="0.6">
+						<method name="newCommand" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.631578947368421" branch-rate="0.6">
 							<lines>
-								<line number="84" hits="11" branch="true" condition-coverage="50% (4/8)">
+								<line number="86" hits="11" branch="true" condition-coverage="50% (4/8)">
 									<conditions>
 										<condition number="0" type="switch" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="86" hits="1" branch="false"/>
-								<line number="87" hits="1" branch="false"/>
+								<line number="88" hits="1" branch="false"/>
 								<line number="89" hits="1" branch="false"/>
-								<line number="90" hits="1" branch="false"/>
-								<line number="92" hits="8" branch="false"/>
-								<line number="93" hits="8" branch="false"/>
-								<line number="95" hits="1" branch="false"/>
-								<line number="96" hits="1" branch="false"/>
-								<line number="98" hits="0" branch="false"/>
-								<line number="99" hits="0" branch="false"/>
+								<line number="91" hits="1" branch="false"/>
+								<line number="92" hits="1" branch="false"/>
+								<line number="94" hits="8" branch="false"/>
+								<line number="96" hits="8" branch="false"/>
+								<line number="98" hits="1" branch="false"/>
+								<line number="99" hits="1" branch="false"/>
 								<line number="101" hits="0" branch="false"/>
 								<line number="102" hits="0" branch="false"/>
 								<line number="104" hits="0" branch="false"/>
-								<line number="105" hits="0" branch="false"/>
-								<line number="107" hits="0" branch="false"/>
-								<line number="111" hits="11" branch="true" condition-coverage="100% (2/2)">
+								<line number="106" hits="0" branch="false"/>
+								<line number="108" hits="0" branch="false"/>
+								<line number="110" hits="0" branch="false"/>
+								<line number="112" hits="0" branch="false"/>
+								<line number="116" hits="11" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="112" hits="1" branch="false"/>
-								<line number="115" hits="11" branch="false"/>
+								<line number="117" hits="1" branch="false"/>
+								<line number="120" hits="11" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="64" hits="11" branch="false"/>
-						<line number="65" hits="11" branch="false"/>
 						<line number="66" hits="11" branch="false"/>
 						<line number="67" hits="11" branch="false"/>
 						<line number="68" hits="11" branch="false"/>
 						<line number="69" hits="11" branch="false"/>
 						<line number="70" hits="11" branch="false"/>
 						<line number="71" hits="11" branch="false"/>
-						<line number="84" hits="11" branch="true" condition-coverage="50% (4/8)">
+						<line number="72" hits="11" branch="false"/>
+						<line number="73" hits="11" branch="false"/>
+						<line number="86" hits="11" branch="true" condition-coverage="50% (4/8)">
 							<conditions>
 								<condition number="0" type="switch" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="86" hits="1" branch="false"/>
-						<line number="87" hits="1" branch="false"/>
+						<line number="88" hits="1" branch="false"/>
 						<line number="89" hits="1" branch="false"/>
-						<line number="90" hits="1" branch="false"/>
-						<line number="92" hits="8" branch="false"/>
-						<line number="93" hits="8" branch="false"/>
-						<line number="95" hits="1" branch="false"/>
-						<line number="96" hits="1" branch="false"/>
-						<line number="98" hits="0" branch="false"/>
-						<line number="99" hits="0" branch="false"/>
+						<line number="91" hits="1" branch="false"/>
+						<line number="92" hits="1" branch="false"/>
+						<line number="94" hits="8" branch="false"/>
+						<line number="96" hits="8" branch="false"/>
+						<line number="98" hits="1" branch="false"/>
+						<line number="99" hits="1" branch="false"/>
 						<line number="101" hits="0" branch="false"/>
 						<line number="102" hits="0" branch="false"/>
 						<line number="104" hits="0" branch="false"/>
-						<line number="105" hits="0" branch="false"/>
-						<line number="107" hits="0" branch="false"/>
-						<line number="111" hits="11" branch="true" condition-coverage="100% (2/2)">
+						<line number="106" hits="0" branch="false"/>
+						<line number="108" hits="0" branch="false"/>
+						<line number="110" hits="0" branch="false"/>
+						<line number="112" hits="0" branch="false"/>
+						<line number="116" hits="11" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="112" hits="1" branch="false"/>
-						<line number="115" hits="11" branch="false"/>
+						<line number="117" hits="1" branch="false"/>
+						<line number="120" hits="11" branch="false"/>
 					</lines>
 				</class>
 				<class name="de.weltraumschaf.neuron.cmd.CommandFactory$1" filename="de/weltraumschaf/neuron/cmd/CommandFactory.java" line-rate="1.0" branch-rate="1.0" complexity="5.5">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="84" hits="1" branch="false"/>
+								<line number="86" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="84" hits="1" branch="false"/>
+						<line number="86" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="de.weltraumschaf.neuron.cmd.DumpCommandFactory" filename="de/weltraumschaf/neuron/cmd/DumpCommandFactory.java" line-rate="0.5714285714285714" branch-rate="0.0" complexity="2.5">
@@ -351,7 +351,7 @@
 								<line number="47" hits="11" branch="false"/>
 							</lines>
 						</method>
-						<method name="newDumpCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;Ljava/util/List;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.0" branch-rate="0.0">
+						<method name="newDumpCommand" signature="(Lde/weltraumschaf/neuron/shell/NeuronSubType;Ljava/util/List;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.0" branch-rate="0.0">
 							<lines>
 								<line number="60" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
@@ -573,7 +573,7 @@
 								<line number="47" hits="11" branch="false"/>
 							</lines>
 						</method>
-						<method name="newNodeCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;Ljava/util/List;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.9" branch-rate="0.8888888888888888">
+						<method name="newNodeCommand" signature="(Lde/weltraumschaf/neuron/shell/NeuronSubType;Ljava/util/List;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.9" branch-rate="0.8888888888888888">
 							<lines>
 								<line number="60" hits="8" branch="true" condition-coverage="88% (8/9)">
 									<conditions>
@@ -1245,7 +1245,7 @@
 								<line number="47" hits="11" branch="false"/>
 							</lines>
 						</method>
-						<method name="newSampleCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;Ljava/util/List;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.0" branch-rate="0.0">
+						<method name="newSampleCommand" signature="(Lde/weltraumschaf/neuron/shell/NeuronSubType;Ljava/util/List;)Lde/weltraumschaf/neuron/cmd/Command;" line-rate="0.0" branch-rate="0.0">
 							<lines>
 								<line number="60" hits="0" branch="true" condition-coverage="0% (0/3)">
 									<conditions>
@@ -1485,164 +1485,164 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="55" hits="138" branch="false"/>
-								<line number="61" hits="138" branch="false"/>
-								<line number="62" hits="138" branch="false"/>
+								<line number="57" hits="138" branch="false"/>
+								<line number="63" hits="138" branch="false"/>
+								<line number="64" hits="138" branch="false"/>
 							</lines>
 						</method>
 						<method name="addObserver" signature="(Lde/weltraumschaf/neuron/event/Observer;)V" line-rate="0.8571428571428571" branch-rate="0.5">
 							<lines>
-								<line number="66" hits="4" branch="true" condition-coverage="50% (1/2)">
+								<line number="68" hits="4" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="67" hits="0" branch="false"/>
-								<line number="70" hits="4" branch="false"/>
-								<line number="71" hits="4" branch="true" condition-coverage="50% (1/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="50%"/>
-									</conditions>
-								</line>
+								<line number="69" hits="0" branch="false"/>
 								<line number="72" hits="4" branch="false"/>
+								<line number="73" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
 								<line number="74" hits="4" branch="false"/>
-								<line number="75" hits="4" branch="false"/>
+								<line number="76" hits="4" branch="false"/>
+								<line number="77" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="clearChanged" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="194" hits="68" branch="false"/>
-								<line number="195" hits="68" branch="false"/>
 								<line number="196" hits="68" branch="false"/>
 								<line number="197" hits="68" branch="false"/>
+								<line number="198" hits="68" branch="false"/>
+								<line number="199" hits="68" branch="false"/>
 							</lines>
 						</method>
 						<method name="countObservers" signature="()I" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="169" hits="0" branch="false"/>
-								<line number="170" hits="0" branch="false"/>
 								<line number="171" hits="0" branch="false"/>
+								<line number="172" hits="0" branch="false"/>
+								<line number="173" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="deleteObserver" signature="(Lde/weltraumschaf/neuron/event/Observer;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="79" hits="4" branch="false"/>
-								<line number="80" hits="4" branch="false"/>
 								<line number="81" hits="4" branch="false"/>
 								<line number="82" hits="4" branch="false"/>
+								<line number="83" hits="4" branch="false"/>
+								<line number="84" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="deleteObservers" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="145" hits="0" branch="false"/>
-								<line number="146" hits="0" branch="false"/>
 								<line number="147" hits="0" branch="false"/>
 								<line number="148" hits="0" branch="false"/>
+								<line number="149" hits="0" branch="false"/>
+								<line number="150" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="hasChanged" signature="()Z" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="162" hits="0" branch="false"/>
-								<line number="163" hits="0" branch="false"/>
 								<line number="164" hits="0" branch="false"/>
+								<line number="165" hits="0" branch="false"/>
+								<line number="166" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="notifyObservers" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="98" hits="0" branch="false"/>
-								<line number="99" hits="0" branch="false"/>
+								<line number="100" hits="0" branch="false"/>
+								<line number="101" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="notifyObservers" signature="(Lde/weltraumschaf/neuron/event/Event;)V" line-rate="0.7777777777777778" branch-rate="0.5">
 							<lines>
-								<line number="118" hits="68" branch="false"/>
-								<line number="131" hits="68" branch="true" condition-coverage="50% (1/2)">
+								<line number="120" hits="68" branch="false"/>
+								<line number="133" hits="68" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="132" hits="0" branch="false"/>
-								<line number="134" hits="68" branch="false"/>
-								<line number="135" hits="68" branch="false"/>
+								<line number="134" hits="0" branch="false"/>
 								<line number="136" hits="68" branch="false"/>
-								<line number="138" hits="68" branch="true" condition-coverage="50% (1/2)">
+								<line number="137" hits="68" branch="false"/>
+								<line number="138" hits="68" branch="false"/>
+								<line number="140" hits="68" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="139" hits="0" branch="false"/>
-								<line number="141" hits="68" branch="false"/>
+								<line number="141" hits="0" branch="false"/>
+								<line number="143" hits="68" branch="false"/>
 							</lines>
 						</method>
 						<method name="setChanged" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="179" hits="68" branch="false"/>
-								<line number="180" hits="68" branch="false"/>
 								<line number="181" hits="68" branch="false"/>
 								<line number="182" hits="68" branch="false"/>
+								<line number="183" hits="68" branch="false"/>
+								<line number="184" hits="68" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="55" hits="138" branch="false"/>
-						<line number="61" hits="138" branch="false"/>
-						<line number="62" hits="138" branch="false"/>
-						<line number="66" hits="4" branch="true" condition-coverage="50% (1/2)">
+						<line number="57" hits="138" branch="false"/>
+						<line number="63" hits="138" branch="false"/>
+						<line number="64" hits="138" branch="false"/>
+						<line number="68" hits="4" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="67" hits="0" branch="false"/>
-						<line number="70" hits="4" branch="false"/>
-						<line number="71" hits="4" branch="true" condition-coverage="50% (1/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="50%"/>
-							</conditions>
-						</line>
+						<line number="69" hits="0" branch="false"/>
 						<line number="72" hits="4" branch="false"/>
+						<line number="73" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
 						<line number="74" hits="4" branch="false"/>
-						<line number="75" hits="4" branch="false"/>
-						<line number="79" hits="4" branch="false"/>
-						<line number="80" hits="4" branch="false"/>
+						<line number="76" hits="4" branch="false"/>
+						<line number="77" hits="4" branch="false"/>
 						<line number="81" hits="4" branch="false"/>
 						<line number="82" hits="4" branch="false"/>
-						<line number="98" hits="0" branch="false"/>
-						<line number="99" hits="0" branch="false"/>
-						<line number="118" hits="68" branch="false"/>
-						<line number="131" hits="68" branch="true" condition-coverage="50% (1/2)">
+						<line number="83" hits="4" branch="false"/>
+						<line number="84" hits="4" branch="false"/>
+						<line number="100" hits="0" branch="false"/>
+						<line number="101" hits="0" branch="false"/>
+						<line number="120" hits="68" branch="false"/>
+						<line number="133" hits="68" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="132" hits="0" branch="false"/>
-						<line number="134" hits="68" branch="false"/>
-						<line number="135" hits="68" branch="false"/>
+						<line number="134" hits="0" branch="false"/>
 						<line number="136" hits="68" branch="false"/>
-						<line number="138" hits="68" branch="true" condition-coverage="50% (1/2)">
+						<line number="137" hits="68" branch="false"/>
+						<line number="138" hits="68" branch="false"/>
+						<line number="140" hits="68" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="139" hits="0" branch="false"/>
-						<line number="141" hits="68" branch="false"/>
-						<line number="145" hits="0" branch="false"/>
-						<line number="146" hits="0" branch="false"/>
+						<line number="141" hits="0" branch="false"/>
+						<line number="143" hits="68" branch="false"/>
 						<line number="147" hits="0" branch="false"/>
 						<line number="148" hits="0" branch="false"/>
-						<line number="162" hits="0" branch="false"/>
-						<line number="163" hits="0" branch="false"/>
+						<line number="149" hits="0" branch="false"/>
+						<line number="150" hits="0" branch="false"/>
 						<line number="164" hits="0" branch="false"/>
-						<line number="169" hits="0" branch="false"/>
-						<line number="170" hits="0" branch="false"/>
+						<line number="165" hits="0" branch="false"/>
+						<line number="166" hits="0" branch="false"/>
 						<line number="171" hits="0" branch="false"/>
-						<line number="179" hits="68" branch="false"/>
-						<line number="180" hits="68" branch="false"/>
+						<line number="172" hits="0" branch="false"/>
+						<line number="173" hits="0" branch="false"/>
 						<line number="181" hits="68" branch="false"/>
 						<line number="182" hits="68" branch="false"/>
-						<line number="194" hits="68" branch="false"/>
-						<line number="195" hits="68" branch="false"/>
+						<line number="183" hits="68" branch="false"/>
+						<line number="184" hits="68" branch="false"/>
 						<line number="196" hits="68" branch="false"/>
 						<line number="197" hits="68" branch="false"/>
+						<line number="198" hits="68" branch="false"/>
+						<line number="199" hits="68" branch="false"/>
 					</lines>
 				</class>
 				<class name="de.weltraumschaf.neuron.event.Event" filename="de/weltraumschaf/neuron/event/Event.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -2257,194 +2257,8 @@
 				</class>
 			</classes>
 		</package>
-		<package name="de.weltraumschaf.neuron.shell" line-rate="0.8125" branch-rate="0.8015267175572519" complexity="2.4153846153846152">
+		<package name="de.weltraumschaf.neuron.shell" line-rate="0.6642857142857143" branch-rate="0.5932203389830508" complexity="2.925925925925926">
 			<classes>
-				<class name="de.weltraumschaf.neuron.shell.CharacterHelper" filename="de/weltraumschaf/neuron/shell/CharacterHelper.java" line-rate="0.8" branch-rate="1.0" complexity="2.2857142857142856">
-					<methods>
-						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="24" hits="0" branch="false"/>
-								<line number="25" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="isAlpha" signature="(C)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="52" hits="253" branch="true" condition-coverage="100% (4/4)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-										<condition number="1" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="isAlphaNum" signature="(C)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="74" hits="66" branch="true" condition-coverage="100% (4/4)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-										<condition number="1" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="isCharInRange" signature="(CCC)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="38" hits="580" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="39" hits="1" branch="false"/>
-								<line number="42" hits="579" branch="true" condition-coverage="100% (4/4)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-										<condition number="1" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="isNum" signature="(C)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="63" hits="200" branch="false"/>
-							</lines>
-						</method>
-						<method name="isQuote" signature="(C)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="98" hits="74" branch="true" condition-coverage="100% (4/4)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-										<condition number="1" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="isWhiteSpace" signature="(C)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="86" hits="507" branch="true" condition-coverage="100% (8/8)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-										<condition number="1" type="jump" coverage="100%"/>
-										<condition number="2" type="jump" coverage="100%"/>
-										<condition number="3" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="24" hits="0" branch="false"/>
-						<line number="25" hits="0" branch="false"/>
-						<line number="38" hits="580" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="39" hits="1" branch="false"/>
-						<line number="42" hits="579" branch="true" condition-coverage="100% (4/4)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="52" hits="253" branch="true" condition-coverage="100% (4/4)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="63" hits="200" branch="false"/>
-						<line number="74" hits="66" branch="true" condition-coverage="100% (4/4)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="86" hits="507" branch="true" condition-coverage="100% (8/8)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-								<condition number="2" type="jump" coverage="100%"/>
-								<condition number="3" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="98" hits="74" branch="true" condition-coverage="100% (4/4)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.CharacterStream" filename="de/weltraumschaf/neuron/shell/CharacterStream.java" line-rate="1.0" branch-rate="1.0" complexity="1.75">
-					<methods>
-						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="29" hits="46" branch="false"/>
-								<line number="36" hits="46" branch="false"/>
-								<line number="37" hits="46" branch="false"/>
-								<line number="38" hits="46" branch="false"/>
-							</lines>
-						</method>
-						<method name="current" signature="()C" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="74" hits="739" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="75" hits="1" branch="false"/>
-								<line number="78" hits="739" branch="false"/>
-							</lines>
-						</method>
-						<method name="hasNext" signature="()Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="63" hits="1284" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-							</lines>
-						</method>
-						<method name="next" signature="()C" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="49" hits="602" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="50" hits="1" branch="false"/>
-								<line number="53" hits="601" branch="false"/>
-								<line number="54" hits="601" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="29" hits="46" branch="false"/>
-						<line number="36" hits="46" branch="false"/>
-						<line number="37" hits="46" branch="false"/>
-						<line number="38" hits="46" branch="false"/>
-						<line number="49" hits="602" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="50" hits="1" branch="false"/>
-						<line number="53" hits="601" branch="false"/>
-						<line number="54" hits="601" branch="false"/>
-						<line number="63" hits="1284" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="74" hits="739" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="75" hits="1" branch="false"/>
-						<line number="78" hits="739" branch="false"/>
-					</lines>
-				</class>
 				<class name="de.weltraumschaf.neuron.shell.Environment" filename="de/weltraumschaf/neuron/shell/Environment.java" line-rate="1.0" branch-rate="1.0" complexity="1.7272727272727273">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/neuron/event/Observer;)V" line-rate="1.0" branch-rate="1.0">
@@ -2597,1072 +2411,498 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/commons/IO;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="0" branch="false"/>
-								<line number="48" hits="0" branch="false"/>
-								<line number="57" hits="0" branch="false"/>
-								<line number="58" hits="0" branch="false"/>
-								<line number="59" hits="0" branch="false"/>
-								<line number="60" hits="0" branch="false"/>
+								<line number="42" hits="0" branch="false"/>
+								<line number="52" hits="0" branch="false"/>
 								<line number="61" hits="0" branch="false"/>
 								<line number="62" hits="0" branch="false"/>
+								<line number="63" hits="0" branch="false"/>
+								<line number="64" hits="0" branch="false"/>
+								<line number="65" hits="0" branch="false"/>
+								<line number="66" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="execute" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)V" line-rate="0.0" branch-rate="0.0">
+						<method name="execute" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)V" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="100" hits="0" branch="false"/>
-								<line number="101" hits="0" branch="false"/>
-								<line number="103" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="104" hits="0" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="107" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="104" hits="0" branch="false"/>
-								<line number="106" hits="0" branch="false"/>
+								<line number="108" hits="0" branch="false"/>
+								<line number="110" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="exit" signature="()V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="91" hits="0" branch="false"/>
-								<line number="92" hits="0" branch="false"/>
+								<line number="95" hits="0" branch="false"/>
+								<line number="96" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="start" signature="()V" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="70" hits="0" branch="false"/>
-								<line number="71" hits="0" branch="false"/>
-								<line number="73" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="74" hits="0" branch="false"/>
+								<line number="75" hits="0" branch="false"/>
+								<line number="77" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="74" hits="0" branch="false"/>
-								<line number="75" hits="0" branch="false"/>
-								<line number="77" hits="0" branch="false"/>
 								<line number="78" hits="0" branch="false"/>
 								<line number="79" hits="0" branch="false"/>
-								<line number="80" hits="0" branch="false"/>
 								<line number="81" hits="0" branch="false"/>
 								<line number="82" hits="0" branch="false"/>
+								<line number="83" hits="0" branch="false"/>
 								<line number="84" hits="0" branch="false"/>
 								<line number="85" hits="0" branch="false"/>
+								<line number="86" hits="0" branch="false"/>
+								<line number="88" hits="0" branch="false"/>
+								<line number="89" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="38" hits="0" branch="false"/>
-						<line number="48" hits="0" branch="false"/>
-						<line number="57" hits="0" branch="false"/>
-						<line number="58" hits="0" branch="false"/>
-						<line number="59" hits="0" branch="false"/>
-						<line number="60" hits="0" branch="false"/>
+						<line number="42" hits="0" branch="false"/>
+						<line number="52" hits="0" branch="false"/>
 						<line number="61" hits="0" branch="false"/>
 						<line number="62" hits="0" branch="false"/>
-						<line number="70" hits="0" branch="false"/>
-						<line number="71" hits="0" branch="false"/>
-						<line number="73" hits="0" branch="true" condition-coverage="0% (0/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="0%"/>
-							</conditions>
-						</line>
+						<line number="63" hits="0" branch="false"/>
+						<line number="64" hits="0" branch="false"/>
+						<line number="65" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
 						<line number="74" hits="0" branch="false"/>
 						<line number="75" hits="0" branch="false"/>
-						<line number="77" hits="0" branch="false"/>
-						<line number="78" hits="0" branch="false"/>
-						<line number="79" hits="0" branch="false"/>
-						<line number="80" hits="0" branch="false"/>
-						<line number="81" hits="0" branch="false"/>
-						<line number="82" hits="0" branch="false"/>
-						<line number="84" hits="0" branch="false"/>
-						<line number="85" hits="0" branch="false"/>
-						<line number="91" hits="0" branch="false"/>
-						<line number="92" hits="0" branch="false"/>
-						<line number="100" hits="0" branch="false"/>
-						<line number="101" hits="0" branch="false"/>
-						<line number="103" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="77" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
+						<line number="78" hits="0" branch="false"/>
+						<line number="79" hits="0" branch="false"/>
+						<line number="81" hits="0" branch="false"/>
+						<line number="82" hits="0" branch="false"/>
+						<line number="83" hits="0" branch="false"/>
+						<line number="84" hits="0" branch="false"/>
+						<line number="85" hits="0" branch="false"/>
+						<line number="86" hits="0" branch="false"/>
+						<line number="88" hits="0" branch="false"/>
+						<line number="89" hits="0" branch="false"/>
+						<line number="95" hits="0" branch="false"/>
+						<line number="96" hits="0" branch="false"/>
 						<line number="104" hits="0" branch="false"/>
-						<line number="106" hits="0" branch="false"/>
+						<line number="105" hits="0" branch="false"/>
+						<line number="107" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="108" hits="0" branch="false"/>
+						<line number="110" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="de.weltraumschaf.neuron.shell.Parser" filename="de/weltraumschaf/neuron/shell/Parser.java" line-rate="0.6825396825396826" branch-rate="0.5714285714285714" complexity="7.428571428571429">
+				<class name="de.weltraumschaf.neuron.shell.NeuronCommandVerifier" filename="de/weltraumschaf/neuron/shell/NeuronCommandVerifier.java" line-rate="0.5476190476190477" branch-rate="0.48717948717948717" complexity="8.6">
 					<methods>
-						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/neuron/shell/Scanner;)V" line-rate="1.0" branch-rate="1.0">
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="60" hits="27" branch="false"/>
-								<line number="61" hits="27" branch="false"/>
-								<line number="62" hits="27" branch="false"/>
+								<line number="26" hits="27" branch="false"/>
+								<line number="70" hits="27" branch="false"/>
 							</lines>
 						</method>
-						<method name="parse" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/ShellCommand;" line-rate="0.95" branch-rate="0.9">
+						<method name="verifyCommand" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)V" line-rate="0.5714285714285714" branch-rate="0.5833333333333334">
 							<lines>
-								<line number="72" hits="31" branch="false"/>
-								<line number="73" hits="31" branch="false"/>
-								<line number="75" hits="31" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="76" hits="2" branch="false"/>
-								<line number="79" hits="29" branch="false"/>
-								<line number="80" hits="29" branch="false"/>
-								<line number="81" hits="29" branch="false"/>
-								<line number="83" hits="29" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="84" hits="25" branch="false"/>
-								<line number="86" hits="25" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="87" hits="22" branch="true" condition-coverage="50% (1/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="50%"/>
-									</conditions>
-								</line>
-								<line number="88" hits="0" branch="false"/>
-								<line number="92" hits="22" branch="false"/>
-								<line number="93" hits="22" branch="false"/>
-								<line number="99" hits="29" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="100" hits="16" branch="false"/>
-								<line number="102" hits="13" branch="false"/>
-								<line number="105" hits="29" branch="false"/>
-								<line number="106" hits="29" branch="false"/>
-								<line number="107" hits="6" branch="false"/>
-							</lines>
-						</method>
-						<method name="verifyCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)V" line-rate="0.5714285714285714" branch-rate="0.5833333333333334">
-							<lines>
-								<line number="121" hits="29" branch="true" condition-coverage="37% (3/8)">
+								<line number="45" hits="29" branch="true" condition-coverage="37% (3/8)">
 									<conditions>
 										<condition number="0" type="switch" coverage="37%"/>
 									</conditions>
 								</line>
-								<line number="125" hits="9" branch="true" condition-coverage="100% (2/2)">
+								<line number="49" hits="9" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="126" hits="3" branch="false"/>
-								<line number="129" hits="6" branch="true" condition-coverage="100% (2/2)">
+								<line number="50" hits="3" branch="false"/>
+								<line number="53" hits="6" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="130" hits="3" branch="false"/>
-								<line number="135" hits="20" branch="false"/>
-								<line number="136" hits="3" branch="false"/>
-								<line number="138" hits="0" branch="false"/>
-								<line number="139" hits="0" branch="false"/>
-								<line number="141" hits="0" branch="false"/>
-								<line number="142" hits="0" branch="false"/>
-								<line number="144" hits="0" branch="false"/>
-								<line number="145" hits="0" branch="false"/>
-								<line number="149" hits="6" branch="false"/>
+								<line number="54" hits="3" branch="false"/>
+								<line number="59" hits="20" branch="false"/>
+								<line number="60" hits="3" branch="false"/>
+								<line number="62" hits="0" branch="false"/>
+								<line number="63" hits="0" branch="false"/>
+								<line number="65" hits="0" branch="false"/>
+								<line number="66" hits="0" branch="false"/>
+								<line number="68" hits="0" branch="false"/>
+								<line number="69" hits="0" branch="false"/>
+								<line number="73" hits="6" branch="false"/>
 							</lines>
 						</method>
-						<method name="verifyDumpCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)V" line-rate="0.0" branch-rate="1.0">
+						<method name="verifyDumpCommand" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="267" hits="0" branch="false"/>
+								<line number="191" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="verifyMessageCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)V" line-rate="0.0" branch-rate="0.0">
+						<method name="verifyMessageCommand" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)V" line-rate="0.0" branch-rate="0.0">
 							<lines>
-								<line number="219" hits="0" branch="false"/>
-								<line number="221" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="143" hits="0" branch="false"/>
+								<line number="145" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="222" hits="0" branch="false"/>
-								<line number="225" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="146" hits="0" branch="false"/>
+								<line number="149" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="226" hits="0" branch="false"/>
-								<line number="230" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="150" hits="0" branch="false"/>
+								<line number="154" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="231" hits="0" branch="false"/>
-								<line number="235" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="155" hits="0" branch="false"/>
+								<line number="159" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="236" hits="0" branch="false"/>
-								<line number="239" hits="0" branch="false"/>
+								<line number="160" hits="0" branch="false"/>
+								<line number="163" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="verifyNodeCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)V" line-rate="0.9285714285714286" branch-rate="0.631578947368421">
+						<method name="verifyNodeCommand" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)V" line-rate="0.9285714285714286" branch-rate="0.631578947368421">
 							<lines>
-								<line number="161" hits="20" branch="false"/>
-								<line number="163" hits="20" branch="true" condition-coverage="100% (2/2)">
+								<line number="85" hits="20" branch="false"/>
+								<line number="87" hits="20" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="164" hits="1" branch="false"/>
-								<line number="167" hits="19" branch="true" condition-coverage="44% (4/9)">
+								<line number="88" hits="1" branch="false"/>
+								<line number="91" hits="19" branch="true" condition-coverage="44% (4/9)">
 									<conditions>
 										<condition number="0" type="switch" coverage="44%"/>
 									</conditions>
 								</line>
-								<line number="169" hits="1" branch="true" condition-coverage="50% (1/2)">
+								<line number="93" hits="1" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="170" hits="1" branch="false"/>
-								<line number="176" hits="2" branch="true" condition-coverage="100% (2/2)">
+								<line number="94" hits="1" branch="false"/>
+								<line number="100" hits="2" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="177" hits="1" branch="false"/>
-								<line number="186" hits="10" branch="true" condition-coverage="100% (2/2)">
+								<line number="101" hits="1" branch="false"/>
+								<line number="110" hits="10" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="187" hits="8" branch="false"/>
-								<line number="194" hits="6" branch="true" condition-coverage="50% (1/2)">
+								<line number="111" hits="8" branch="false"/>
+								<line number="118" hits="6" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="195" hits="6" branch="false"/>
-								<line number="201" hits="0" branch="false"/>
-								<line number="207" hits="3" branch="false"/>
+								<line number="119" hits="6" branch="false"/>
+								<line number="125" hits="0" branch="false"/>
+								<line number="131" hits="3" branch="false"/>
 							</lines>
 						</method>
-						<method name="verifySampleCommand" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand;)V" line-rate="0.0" branch-rate="1.0">
+						<method name="verifySampleCommand" signature="(Lde/weltraumschaf/commons/shell/ShellCommand;)V" line-rate="0.0" branch-rate="1.0">
 							<lines>
-								<line number="253" hits="0" branch="false"/>
+								<line number="177" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="60" hits="27" branch="false"/>
-						<line number="61" hits="27" branch="false"/>
-						<line number="62" hits="27" branch="false"/>
-						<line number="72" hits="31" branch="false"/>
-						<line number="73" hits="31" branch="false"/>
-						<line number="75" hits="31" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="76" hits="2" branch="false"/>
-						<line number="79" hits="29" branch="false"/>
-						<line number="80" hits="29" branch="false"/>
-						<line number="81" hits="29" branch="false"/>
-						<line number="83" hits="29" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="84" hits="25" branch="false"/>
-						<line number="86" hits="25" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="87" hits="22" branch="true" condition-coverage="50% (1/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="50%"/>
-							</conditions>
-						</line>
-						<line number="88" hits="0" branch="false"/>
-						<line number="92" hits="22" branch="false"/>
-						<line number="93" hits="22" branch="false"/>
-						<line number="99" hits="29" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="100" hits="16" branch="false"/>
-						<line number="102" hits="13" branch="false"/>
-						<line number="105" hits="29" branch="false"/>
-						<line number="106" hits="29" branch="false"/>
-						<line number="107" hits="6" branch="false"/>
-						<line number="121" hits="29" branch="true" condition-coverage="37% (3/8)">
+						<line number="26" hits="27" branch="false"/>
+						<line number="45" hits="29" branch="true" condition-coverage="37% (3/8)">
 							<conditions>
 								<condition number="0" type="switch" coverage="37%"/>
 							</conditions>
 						</line>
-						<line number="125" hits="9" branch="true" condition-coverage="100% (2/2)">
+						<line number="49" hits="9" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="126" hits="3" branch="false"/>
-						<line number="129" hits="6" branch="true" condition-coverage="100% (2/2)">
+						<line number="50" hits="3" branch="false"/>
+						<line number="53" hits="6" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="130" hits="3" branch="false"/>
-						<line number="135" hits="20" branch="false"/>
-						<line number="136" hits="3" branch="false"/>
-						<line number="138" hits="0" branch="false"/>
-						<line number="139" hits="0" branch="false"/>
-						<line number="141" hits="0" branch="false"/>
-						<line number="142" hits="0" branch="false"/>
-						<line number="144" hits="0" branch="false"/>
-						<line number="145" hits="0" branch="false"/>
-						<line number="149" hits="6" branch="false"/>
-						<line number="161" hits="20" branch="false"/>
-						<line number="163" hits="20" branch="true" condition-coverage="100% (2/2)">
+						<line number="54" hits="3" branch="false"/>
+						<line number="59" hits="20" branch="false"/>
+						<line number="60" hits="3" branch="false"/>
+						<line number="62" hits="0" branch="false"/>
+						<line number="63" hits="0" branch="false"/>
+						<line number="65" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="false"/>
+						<line number="69" hits="0" branch="false"/>
+						<line number="70" hits="27" branch="false"/>
+						<line number="73" hits="6" branch="false"/>
+						<line number="85" hits="20" branch="false"/>
+						<line number="87" hits="20" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="164" hits="1" branch="false"/>
-						<line number="167" hits="19" branch="true" condition-coverage="44% (4/9)">
+						<line number="88" hits="1" branch="false"/>
+						<line number="91" hits="19" branch="true" condition-coverage="44% (4/9)">
 							<conditions>
 								<condition number="0" type="switch" coverage="44%"/>
 							</conditions>
 						</line>
-						<line number="169" hits="1" branch="true" condition-coverage="50% (1/2)">
+						<line number="93" hits="1" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="170" hits="1" branch="false"/>
-						<line number="176" hits="2" branch="true" condition-coverage="100% (2/2)">
+						<line number="94" hits="1" branch="false"/>
+						<line number="100" hits="2" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="177" hits="1" branch="false"/>
-						<line number="186" hits="10" branch="true" condition-coverage="100% (2/2)">
+						<line number="101" hits="1" branch="false"/>
+						<line number="110" hits="10" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="187" hits="8" branch="false"/>
-						<line number="194" hits="6" branch="true" condition-coverage="50% (1/2)">
+						<line number="111" hits="8" branch="false"/>
+						<line number="118" hits="6" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="195" hits="6" branch="false"/>
-						<line number="201" hits="0" branch="false"/>
-						<line number="207" hits="3" branch="false"/>
-						<line number="219" hits="0" branch="false"/>
-						<line number="221" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="119" hits="6" branch="false"/>
+						<line number="125" hits="0" branch="false"/>
+						<line number="131" hits="3" branch="false"/>
+						<line number="143" hits="0" branch="false"/>
+						<line number="145" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="222" hits="0" branch="false"/>
-						<line number="225" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="146" hits="0" branch="false"/>
+						<line number="149" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="226" hits="0" branch="false"/>
-						<line number="230" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="150" hits="0" branch="false"/>
+						<line number="154" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="231" hits="0" branch="false"/>
-						<line number="235" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="155" hits="0" branch="false"/>
+						<line number="159" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="236" hits="0" branch="false"/>
-						<line number="239" hits="0" branch="false"/>
-						<line number="253" hits="0" branch="false"/>
-						<line number="267" hits="0" branch="false"/>
+						<line number="160" hits="0" branch="false"/>
+						<line number="163" hits="0" branch="false"/>
+						<line number="177" hits="0" branch="false"/>
+						<line number="191" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="de.weltraumschaf.neuron.shell.Parser$1" filename="de/weltraumschaf/neuron/shell/Parser.java" line-rate="1.0" branch-rate="1.0" complexity="7.428571428571429">
+				<class name="de.weltraumschaf.neuron.shell.NeuronCommandVerifier$1" filename="de/weltraumschaf/neuron/shell/NeuronCommandVerifier.java" line-rate="1.0" branch-rate="1.0" complexity="8.6">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="121" hits="1" branch="false"/>
-								<line number="167" hits="1" branch="false"/>
+								<line number="45" hits="1" branch="false"/>
+								<line number="91" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="121" hits="1" branch="false"/>
-						<line number="167" hits="1" branch="false"/>
+						<line number="45" hits="1" branch="false"/>
+						<line number="91" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="de.weltraumschaf.neuron.shell.Scanner" filename="de/weltraumschaf/neuron/shell/Scanner.java" line-rate="1.0" branch-rate="0.96875" complexity="5.0">
+				<class name="de.weltraumschaf.neuron.shell.NeuronLiteralCommandMap" filename="de/weltraumschaf/neuron/shell/NeuronLiteralCommandMap.java" line-rate="1.0" branch-rate="1.0" complexity="2.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="22" hits="39" branch="false"/>
+								<line number="31" hits="29" branch="false"/>
+								<line number="32" hits="29" branch="false"/>
 							</lines>
 						</method>
-						<method name="scan" signature="(Ljava/lang/String;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
+						<method name="initCommandMap" signature="(Ljava/util/Map;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="35" hits="46" branch="true" condition-coverage="100% (2/2)">
+								<line number="36" hits="232" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="36" hits="1" branch="false"/>
-								<line number="39" hits="45" branch="false"/>
-								<line number="41" hits="45" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="42" hits="44" branch="false"/>
-								<line number="45" hits="43" branch="false"/>
+								<line number="37" hits="203" branch="false"/>
+								<line number="39" hits="29" branch="false"/>
 							</lines>
 						</method>
-						<method name="scan" signature="(Ljava/util/List;Lde/weltraumschaf/neuron/shell/CharacterStream;)V" line-rate="1.0" branch-rate="0.875">
+						<method name="initSubCommandMap" signature="(Ljava/util/Map;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="56" hits="163" branch="true" condition-coverage="100% (2/2)">
+								<line number="43" hits="377" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="57" hits="121" branch="false"/>
-								<line number="59" hits="121" branch="true" condition-coverage="100% (2/2)">
+								<line number="44" hits="348" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="60" hits="79" branch="false"/>
-								<line number="61" hits="42" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="62" hits="36" branch="false"/>
-								<line number="63" hits="6" branch="true" condition-coverage="50% (1/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="50%"/>
-									</conditions>
-								</line>
-								<line number="64" hits="6" branch="false"/>
-								<line number="66" hits="119" branch="false"/>
-								<line number="67" hits="42" branch="false"/>
-							</lines>
-						</method>
-						<method name="scanAlphaNum" signature="(Lde/weltraumschaf/neuron/shell/CharacterStream;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="76" hits="79" branch="false"/>
-								<line number="77" hits="79" branch="false"/>
-								<line number="79" hits="366" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="80" hits="348" branch="false"/>
-								<line number="82" hits="348" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="83" hits="61" branch="false"/>
-								<line number="86" hits="287" branch="false"/>
-								<line number="87" hits="287" branch="false"/>
-								<line number="89" hits="79" branch="false"/>
-								<line number="91" hits="79" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="92" hits="71" branch="false"/>
-								<line number="94" hits="8" branch="false"/>
-							</lines>
-						</method>
-						<method name="scanNumber" signature="(Lde/weltraumschaf/neuron/shell/CharacterStream;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="106" hits="36" branch="false"/>
-								<line number="108" hits="36" branch="false"/>
-								<line number="110" hits="113" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="111" hits="93" branch="false"/>
-								<line number="113" hits="93" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="114" hits="15" branch="false"/>
-								<line number="117" hits="78" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="118" hits="1" branch="false"/>
-								<line number="122" hits="77" branch="false"/>
-								<line number="123" hits="77" branch="false"/>
-								<line number="125" hits="35" branch="false"/>
-							</lines>
-						</method>
-						<method name="scanString" signature="(Lde/weltraumschaf/neuron/shell/CharacterStream;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="138" hits="6" branch="false"/>
-								<line number="139" hits="6" branch="false"/>
-								<line number="140" hits="6" branch="false"/>
-								<line number="142" hits="24" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="143" hits="23" branch="false"/>
-								<line number="145" hits="23" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="146" hits="5" branch="false"/>
-								<line number="148" hits="5" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="150" hits="4" branch="false"/>
-								<line number="156" hits="18" branch="false"/>
-								<line number="157" hits="18" branch="false"/>
-								<line number="159" hits="6" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="160" hits="1" branch="false"/>
-								<line number="163" hits="5" branch="false"/>
+								<line number="45" hits="29" branch="false"/>
+								<line number="47" hits="319" branch="false"/>
+								<line number="49" hits="29" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="22" hits="39" branch="false"/>
-						<line number="35" hits="46" branch="true" condition-coverage="100% (2/2)">
+						<line number="31" hits="29" branch="false"/>
+						<line number="32" hits="29" branch="false"/>
+						<line number="36" hits="232" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="36" hits="1" branch="false"/>
-						<line number="39" hits="45" branch="false"/>
-						<line number="41" hits="45" branch="true" condition-coverage="100% (2/2)">
+						<line number="37" hits="203" branch="false"/>
+						<line number="39" hits="29" branch="false"/>
+						<line number="43" hits="377" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="42" hits="44" branch="false"/>
-						<line number="45" hits="43" branch="false"/>
-						<line number="56" hits="163" branch="true" condition-coverage="100% (2/2)">
+						<line number="44" hits="348" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="57" hits="121" branch="false"/>
-						<line number="59" hits="121" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="60" hits="79" branch="false"/>
-						<line number="61" hits="42" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="62" hits="36" branch="false"/>
-						<line number="63" hits="6" branch="true" condition-coverage="50% (1/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="50%"/>
-							</conditions>
-						</line>
-						<line number="64" hits="6" branch="false"/>
-						<line number="66" hits="119" branch="false"/>
-						<line number="67" hits="42" branch="false"/>
-						<line number="76" hits="79" branch="false"/>
-						<line number="77" hits="79" branch="false"/>
-						<line number="79" hits="366" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="80" hits="348" branch="false"/>
-						<line number="82" hits="348" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="83" hits="61" branch="false"/>
-						<line number="86" hits="287" branch="false"/>
-						<line number="87" hits="287" branch="false"/>
-						<line number="89" hits="79" branch="false"/>
-						<line number="91" hits="79" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="92" hits="71" branch="false"/>
-						<line number="94" hits="8" branch="false"/>
-						<line number="106" hits="36" branch="false"/>
-						<line number="108" hits="36" branch="false"/>
-						<line number="110" hits="113" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="111" hits="93" branch="false"/>
-						<line number="113" hits="93" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="114" hits="15" branch="false"/>
-						<line number="117" hits="78" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="118" hits="1" branch="false"/>
-						<line number="122" hits="77" branch="false"/>
-						<line number="123" hits="77" branch="false"/>
-						<line number="125" hits="35" branch="false"/>
-						<line number="138" hits="6" branch="false"/>
-						<line number="139" hits="6" branch="false"/>
-						<line number="140" hits="6" branch="false"/>
-						<line number="142" hits="24" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="143" hits="23" branch="false"/>
-						<line number="145" hits="23" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="146" hits="5" branch="false"/>
-						<line number="148" hits="5" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="150" hits="4" branch="false"/>
-						<line number="156" hits="18" branch="false"/>
-						<line number="157" hits="18" branch="false"/>
-						<line number="159" hits="6" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="160" hits="1" branch="false"/>
-						<line number="163" hits="5" branch="false"/>
+						<line number="45" hits="29" branch="false"/>
+						<line number="47" hits="319" branch="false"/>
+						<line number="49" hits="29" branch="false"/>
 					</lines>
 				</class>
-				<class name="de.weltraumschaf.neuron.shell.ShellCommand" filename="de/weltraumschaf/neuron/shell/ShellCommand.java" line-rate="1.0" branch-rate="1.0" complexity="1.2857142857142858">
+				<class name="de.weltraumschaf.neuron.shell.NeuronMainType" filename="de/weltraumschaf/neuron/shell/NeuronMainType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="1" branch="false"/>
+								<line number="21" hits="32" branch="false"/>
+								<line number="26" hits="1" branch="false"/>
+								<line number="30" hits="1" branch="false"/>
+								<line number="34" hits="1" branch="false"/>
 								<line number="38" hits="1" branch="false"/>
-								<line number="41" hits="8" branch="false"/>
-								<line number="42" hits="7" branch="false"/>
-								<line number="44" hits="13" branch="false"/>
-								<line number="45" hits="12" branch="false"/>
+								<line number="42" hits="1" branch="false"/>
 								<line number="46" hits="1" branch="false"/>
-								<line number="48" hits="11" branch="false"/>
 								<line number="50" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand$MainType;Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="89" hits="44" branch="false"/>
-								<line number="90" hits="44" branch="false"/>
-								<line number="91" hits="44" branch="false"/>
-								<line number="92" hits="44" branch="false"/>
-								<line number="93" hits="44" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/neuron/shell/ShellCommand$MainType;Ljava/util/List;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="78" hits="5" branch="false"/>
-								<line number="79" hits="5" branch="false"/>
-							</lines>
-						</method>
-						<method name="determineCommand" signature="(Lde/weltraumschaf/neuron/shell/Token;)Lde/weltraumschaf/neuron/shell/ShellCommand$MainType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="151" hits="34" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="152" hits="1" branch="false"/>
-								<line number="154" hits="33" branch="false"/>
-							</lines>
-						</method>
-						<method name="determineSubCommand" signature="(Lde/weltraumschaf/neuron/shell/Token;)Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="182" hits="28" branch="true" condition-coverage="100% (2/2)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="183" hits="1" branch="false"/>
-								<line number="185" hits="27" branch="false"/>
-							</lines>
-						</method>
-						<method name="getArguments" signature="()Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="123" hits="48" branch="false"/>
-							</lines>
-						</method>
-						<method name="getCommand" signature="()Lde/weltraumschaf/neuron/shell/ShellCommand$MainType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="101" hits="71" branch="false"/>
-							</lines>
-						</method>
-						<method name="getSubCommand" signature="()Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="112" hits="83" branch="false"/>
-							</lines>
-						</method>
-						<method name="isCommand" signature="(Lde/weltraumschaf/neuron/shell/Token;)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="135" hits="40" branch="false"/>
-							</lines>
-						</method>
-						<method name="isSubCommand" signature="(Lde/weltraumschaf/neuron/shell/Token;)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="166" hits="55" branch="false"/>
-							</lines>
-						</method>
-						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="190" hits="2" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="33" hits="1" branch="false"/>
-						<line number="38" hits="1" branch="false"/>
-						<line number="41" hits="8" branch="false"/>
-						<line number="42" hits="7" branch="false"/>
-						<line number="44" hits="13" branch="false"/>
-						<line number="45" hits="12" branch="false"/>
-						<line number="46" hits="1" branch="false"/>
-						<line number="48" hits="11" branch="false"/>
-						<line number="50" hits="1" branch="false"/>
-						<line number="78" hits="5" branch="false"/>
-						<line number="79" hits="5" branch="false"/>
-						<line number="89" hits="44" branch="false"/>
-						<line number="90" hits="44" branch="false"/>
-						<line number="91" hits="44" branch="false"/>
-						<line number="92" hits="44" branch="false"/>
-						<line number="93" hits="44" branch="false"/>
-						<line number="101" hits="71" branch="false"/>
-						<line number="112" hits="83" branch="false"/>
-						<line number="123" hits="48" branch="false"/>
-						<line number="135" hits="40" branch="false"/>
-						<line number="151" hits="34" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="152" hits="1" branch="false"/>
-						<line number="154" hits="33" branch="false"/>
-						<line number="166" hits="55" branch="false"/>
-						<line number="182" hits="28" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="183" hits="1" branch="false"/>
-						<line number="185" hits="27" branch="false"/>
-						<line number="190" hits="2" branch="false"/>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.ShellCommand$MainType" filename="de/weltraumschaf/neuron/shell/ShellCommand.java" line-rate="1.0" branch-rate="1.0" complexity="1.2857142857142858">
-					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="207" hits="6" branch="false"/>
-								<line number="210" hits="1" branch="false"/>
-								<line number="212" hits="1" branch="false"/>
-								<line number="214" hits="1" branch="false"/>
-								<line number="216" hits="1" branch="false"/>
-								<line number="218" hits="1" branch="false"/>
-								<line number="220" hits="1" branch="false"/>
-								<line number="222" hits="1" branch="false"/>
-							</lines>
-						</method>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;ILjava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="234" hits="7" branch="false"/>
-								<line number="235" hits="7" branch="false"/>
-								<line number="236" hits="7" branch="false"/>
+								<line number="62" hits="7" branch="false"/>
+								<line number="63" hits="7" branch="false"/>
+								<line number="64" hits="7" branch="false"/>
 							</lines>
 						</method>
 						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="240" hits="53" branch="false"/>
+								<line number="68" hits="233" branch="false"/>
 							</lines>
 						</method>
-						<method name="valueOf" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/ShellCommand$MainType;" line-rate="1.0" branch-rate="1.0">
+						<method name="valueOf" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/NeuronMainType;" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
-						<method name="values" signature="()[Lde/weltraumschaf/neuron/shell/ShellCommand$MainType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="207" hits="6" branch="false"/>
-						<line number="210" hits="1" branch="false"/>
-						<line number="212" hits="1" branch="false"/>
-						<line number="214" hits="1" branch="false"/>
-						<line number="216" hits="1" branch="false"/>
-						<line number="218" hits="1" branch="false"/>
-						<line number="220" hits="1" branch="false"/>
-						<line number="222" hits="1" branch="false"/>
-						<line number="234" hits="7" branch="false"/>
-						<line number="235" hits="7" branch="false"/>
-						<line number="236" hits="7" branch="false"/>
-						<line number="240" hits="53" branch="false"/>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.ShellCommand$SubType" filename="de/weltraumschaf/neuron/shell/ShellCommand.java" line-rate="1.0" branch-rate="1.0" complexity="1.2857142857142858">
-					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="248" hits="6" branch="false"/>
-								<line number="250" hits="1" branch="false"/>
-								<line number="252" hits="1" branch="false"/>
-								<line number="254" hits="1" branch="false"/>
-								<line number="256" hits="1" branch="false"/>
-								<line number="258" hits="1" branch="false"/>
-								<line number="260" hits="1" branch="false"/>
-								<line number="262" hits="1" branch="false"/>
-								<line number="264" hits="1" branch="false"/>
-								<line number="266" hits="1" branch="false"/>
-								<line number="268" hits="1" branch="false"/>
-								<line number="270" hits="1" branch="false"/>
-								<line number="271" hits="1" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Ljava/lang/String;ILjava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="283" hits="12" branch="false"/>
-								<line number="284" hits="12" branch="false"/>
-								<line number="285" hits="12" branch="false"/>
-							</lines>
-						</method>
-						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="289" hits="65" branch="false"/>
-							</lines>
-						</method>
-						<method name="valueOf" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="values" signature="()[Lde/weltraumschaf/neuron/shell/ShellCommand$SubType;" line-rate="1.0" branch-rate="1.0">
+						<method name="values" signature="()[Lde/weltraumschaf/neuron/shell/NeuronMainType;" line-rate="1.0" branch-rate="1.0">
 							<lines>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="248" hits="6" branch="false"/>
-						<line number="250" hits="1" branch="false"/>
-						<line number="252" hits="1" branch="false"/>
-						<line number="254" hits="1" branch="false"/>
-						<line number="256" hits="1" branch="false"/>
-						<line number="258" hits="1" branch="false"/>
-						<line number="260" hits="1" branch="false"/>
-						<line number="262" hits="1" branch="false"/>
-						<line number="264" hits="1" branch="false"/>
-						<line number="266" hits="1" branch="false"/>
-						<line number="268" hits="1" branch="false"/>
-						<line number="270" hits="1" branch="false"/>
-						<line number="271" hits="1" branch="false"/>
-						<line number="283" hits="12" branch="false"/>
-						<line number="284" hits="12" branch="false"/>
-						<line number="285" hits="12" branch="false"/>
-						<line number="289" hits="65" branch="false"/>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.ShellCommand$Type" filename="de/weltraumschaf/neuron/shell/ShellCommand.java" line-rate="1.0" branch-rate="1.0" complexity="1.2857142857142858">
-					<methods>
-					</methods>
-					<lines>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.SyntaxException" filename="de/weltraumschaf/neuron/shell/SyntaxException.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
-					<methods>
-						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="30" hits="0" branch="false"/>
-								<line number="31" hits="0" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="39" hits="27" branch="false"/>
-								<line number="40" hits="27" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="58" hits="27" branch="false"/>
-								<line number="59" hits="27" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Ljava/lang/Throwable;)V" line-rate="0.0" branch-rate="1.0">
-							<lines>
-								<line number="48" hits="0" branch="false"/>
-								<line number="49" hits="0" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="30" hits="0" branch="false"/>
-						<line number="31" hits="0" branch="false"/>
-						<line number="39" hits="27" branch="false"/>
-						<line number="40" hits="27" branch="false"/>
-						<line number="48" hits="0" branch="false"/>
-						<line number="49" hits="0" branch="false"/>
-						<line number="58" hits="27" branch="false"/>
-						<line number="59" hits="27" branch="false"/>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.Token" filename="de/weltraumschaf/neuron/shell/Token.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
-					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="29" hits="1" branch="false"/>
-								<line number="33" hits="8" branch="false"/>
-								<line number="34" hits="7" branch="false"/>
-								<line number="37" hits="13" branch="false"/>
-								<line number="38" hits="12" branch="false"/>
-								<line number="40" hits="1" branch="false"/>
-								<line number="42" hits="11" branch="false"/>
-								<line number="44" hits="1" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Lde/weltraumschaf/neuron/shell/TokenType;Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="62" hits="184" branch="false"/>
-								<line number="63" hits="184" branch="false"/>
-								<line number="64" hits="184" branch="false"/>
-								<line number="65" hits="184" branch="false"/>
-							</lines>
-						</method>
-						<method name="getType" signature="()Lde/weltraumschaf/neuron/shell/TokenType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="113" hits="115" branch="false"/>
-							</lines>
-						</method>
-						<method name="getValue" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="122" hits="256" branch="false"/>
-							</lines>
-						</method>
-						<method name="isKeyword" signature="(Ljava/lang/String;)Z" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="140" hits="79" branch="false"/>
-							</lines>
-						</method>
-						<method name="newKeywordToken" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="74" hits="72" branch="false"/>
-							</lines>
-						</method>
-						<method name="newLiteralToken" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="94" hits="36" branch="false"/>
-							</lines>
-						</method>
-						<method name="newNumberToken" signature="(Ljava/lang/Integer;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="104" hits="68" branch="false"/>
-							</lines>
-						</method>
-						<method name="newStringToken" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/Token;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="84" hits="8" branch="false"/>
-							</lines>
-						</method>
-						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="127" hits="9" branch="false"/>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="29" hits="1" branch="false"/>
-						<line number="33" hits="8" branch="false"/>
-						<line number="34" hits="7" branch="false"/>
-						<line number="37" hits="13" branch="false"/>
-						<line number="38" hits="12" branch="false"/>
-						<line number="40" hits="1" branch="false"/>
-						<line number="42" hits="11" branch="false"/>
-						<line number="44" hits="1" branch="false"/>
-						<line number="62" hits="184" branch="false"/>
-						<line number="63" hits="184" branch="false"/>
-						<line number="64" hits="184" branch="false"/>
-						<line number="65" hits="184" branch="false"/>
-						<line number="74" hits="72" branch="false"/>
-						<line number="84" hits="8" branch="false"/>
-						<line number="94" hits="36" branch="false"/>
-						<line number="104" hits="68" branch="false"/>
-						<line number="113" hits="115" branch="false"/>
-						<line number="122" hits="256" branch="false"/>
-						<line number="127" hits="9" branch="false"/>
-						<line number="140" hits="79" branch="false"/>
-					</lines>
-				</class>
-				<class name="de.weltraumschaf.neuron.shell.TokenType" filename="de/weltraumschaf/neuron/shell/TokenType.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
-					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="19" hits="5" branch="false"/>
-								<line number="24" hits="1" branch="false"/>
-								<line number="30" hits="1" branch="false"/>
-								<line number="36" hits="1" branch="false"/>
-								<line number="42" hits="1" branch="false"/>
-							</lines>
-						</method>
-						<method name="&lt;init&gt;" signature="(Ljava/lang/String;I)V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="valueOf" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/TokenType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-						<method name="values" signature="()[Lde/weltraumschaf/neuron/shell/TokenType;" line-rate="1.0" branch-rate="1.0">
-							<lines>
-							</lines>
-						</method>
-					</methods>
-					<lines>
-						<line number="19" hits="5" branch="false"/>
-						<line number="24" hits="1" branch="false"/>
+						<line number="21" hits="32" branch="false"/>
+						<line number="26" hits="1" branch="false"/>
 						<line number="30" hits="1" branch="false"/>
-						<line number="36" hits="1" branch="false"/>
+						<line number="34" hits="1" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
 						<line number="42" hits="1" branch="false"/>
+						<line number="46" hits="1" branch="false"/>
+						<line number="50" hits="1" branch="false"/>
+						<line number="62" hits="7" branch="false"/>
+						<line number="63" hits="7" branch="false"/>
+						<line number="64" hits="7" branch="false"/>
+						<line number="68" hits="233" branch="false"/>
+					</lines>
+				</class>
+				<class name="de.weltraumschaf.neuron.shell.NeuronSubType" filename="de/weltraumschaf/neuron/shell/NeuronSubType.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="21" hits="32" branch="false"/>
+								<line number="26" hits="1" branch="false"/>
+								<line number="30" hits="1" branch="false"/>
+								<line number="34" hits="1" branch="false"/>
+								<line number="38" hits="1" branch="false"/>
+								<line number="42" hits="1" branch="false"/>
+								<line number="46" hits="1" branch="false"/>
+								<line number="50" hits="1" branch="false"/>
+								<line number="54" hits="1" branch="false"/>
+								<line number="58" hits="1" branch="false"/>
+								<line number="62" hits="1" branch="false"/>
+								<line number="66" hits="1" branch="false"/>
+								<line number="70" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;ILjava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="81" hits="12" branch="false"/>
+								<line number="82" hits="12" branch="false"/>
+								<line number="83" hits="12" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="87" hits="698" branch="false"/>
+							</lines>
+						</method>
+						<method name="valueOf" signature="(Ljava/lang/String;)Lde/weltraumschaf/neuron/shell/NeuronSubType;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="values" signature="()[Lde/weltraumschaf/neuron/shell/NeuronSubType;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="32" branch="false"/>
+						<line number="26" hits="1" branch="false"/>
+						<line number="30" hits="1" branch="false"/>
+						<line number="34" hits="1" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
+						<line number="42" hits="1" branch="false"/>
+						<line number="46" hits="1" branch="false"/>
+						<line number="50" hits="1" branch="false"/>
+						<line number="54" hits="1" branch="false"/>
+						<line number="58" hits="1" branch="false"/>
+						<line number="62" hits="1" branch="false"/>
+						<line number="66" hits="1" branch="false"/>
+						<line number="70" hits="1" branch="false"/>
+						<line number="81" hits="12" branch="false"/>
+						<line number="82" hits="12" branch="false"/>
+						<line number="83" hits="12" branch="false"/>
+						<line number="87" hits="698" branch="false"/>
 					</lines>
 				</class>
 			</classes>
