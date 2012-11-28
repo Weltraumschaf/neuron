@@ -13,7 +13,6 @@ package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
-import de.weltraumschaf.commons.shell.NeuronMainType;
 import de.weltraumschaf.commons.shell.Parser;
 import de.weltraumschaf.commons.shell.Parsers;
 import de.weltraumschaf.commons.shell.ShellCommand;
@@ -40,7 +39,7 @@ public class InteractiveShell {
     /**
      * Shell user input parser.
      */
-    private final Parser parser = Parsers.newParser();
+    private final Parser parser = Parsers.newParser(new NeuronCommandVerifier(), new NeuronLiteralCommandMap());
 
     /**
      * Factory to create commands.

@@ -11,14 +11,10 @@
  */
 package de.weltraumschaf.neuron.node;
 
-import de.weltraumschaf.commons.IO;
-import de.weltraumschaf.neuron.event.EventHandler;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 /**
  *

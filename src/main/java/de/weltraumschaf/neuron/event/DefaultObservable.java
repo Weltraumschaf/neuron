@@ -51,6 +51,8 @@ public class DefaultObservable implements Observable {
 
     /**
      * List of observers.
+     *
+     * Use copy on write version.
      */
     private final Set<Observer> obs = Sets.newHashSet();
 

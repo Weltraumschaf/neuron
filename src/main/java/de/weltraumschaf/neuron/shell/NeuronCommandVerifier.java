@@ -12,7 +12,6 @@
 package de.weltraumschaf.neuron.shell;
 
 import de.weltraumschaf.commons.shell.CommandVerifier;
-import de.weltraumschaf.commons.shell.NeuronSubType;
 import de.weltraumschaf.commons.shell.ShellCommand;
 import de.weltraumschaf.commons.shell.SyntaxException;
 import de.weltraumschaf.commons.shell.Token;
@@ -22,12 +21,9 @@ import java.util.List;
 /**
  * Verifies the commands.
  *
- * TODO Move back into neuron project.
- *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class NeuronCommandVerifier implements CommandVerifier {
-
 
     /**
      * Required number of arguments for message command.
@@ -46,7 +42,7 @@ public class NeuronCommandVerifier implements CommandVerifier {
      */
     @Override
     public void verifyCommand(final ShellCommand cmd) throws SyntaxException {
-        switch (cmd.getCommand()) {
+        switch ((NeuronMainType) cmd.getCommand()) {
             case EXIT:
             case HELP:
             case RESET:
@@ -92,7 +88,7 @@ public class NeuronCommandVerifier implements CommandVerifier {
             throw new SyntaxException(String.format("Command '%s' must have sub command!", cmd.getCommand()));
         }
 
-        switch (cmd.getSubCommand()) {
+        switch ((NeuronSubType) cmd.getSubCommand()) {
             case LIST:
                 if (argumentCount != 0) {
                     throw new SyntaxException(String.format("Command '%s %s' support no arguments!",

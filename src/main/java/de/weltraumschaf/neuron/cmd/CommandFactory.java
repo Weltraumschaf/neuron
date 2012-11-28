@@ -15,6 +15,8 @@ import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.commons.shell.ShellCommand;
 import de.weltraumschaf.neuron.shell.Environment;
+import de.weltraumschaf.neuron.shell.NeuronMainType;
+import de.weltraumschaf.neuron.shell.NeuronSubType;
 
 /**
  * Factory to create command objects depending on the parsed {@link ShellCommand}.
@@ -81,7 +83,7 @@ public final class CommandFactory {
      */
     public Command newCommand(final ShellCommand shellCmd) {
         Command cmd;
-        switch (shellCmd.getCommand()) {
+        switch ((NeuronMainType) shellCmd.getCommand()) {
             case EXIT:
                 cmd = new Exit(env, io, shellCmd.getArguments());
                 break;
@@ -89,7 +91,8 @@ public final class CommandFactory {
                 cmd = new Help(env, io, shellCmd.getArguments());
                 break;
             case NODE:
-                cmd = nodeCommandFactory.newNodeCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
+                cmd = nodeCommandFactory.newNodeCommand((NeuronSubType) shellCmd.getSubCommand(),
+                                                        shellCmd.getArguments());
                 break;
             case RESET:
                 cmd = new Reset(env, io, shellCmd.getArguments());
@@ -98,10 +101,12 @@ public final class CommandFactory {
                 cmd = new SendMessage(env, io, shellCmd.getArguments());
                 break;
             case DUMP:
-                cmd = dumpCommandFactory.newDumpCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
+                cmd = dumpCommandFactory.newDumpCommand((NeuronSubType) shellCmd.getSubCommand(),
+                                                        shellCmd.getArguments());
                 break;
             case SAMPLE:
-                cmd = sampleCommandFactory.newSampleCommand(shellCmd.getSubCommand(), shellCmd.getArguments());
+                cmd = sampleCommandFactory.newSampleCommand((NeuronSubType) shellCmd.getSubCommand(),
+                                                            shellCmd.getArguments());
                 break;
             default:
                 throw new IllegalArgumentException(String.format("Unsupported main command type '%s'!",
