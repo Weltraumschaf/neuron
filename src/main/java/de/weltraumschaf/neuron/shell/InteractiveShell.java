@@ -11,19 +11,24 @@
  */
 package de.weltraumschaf.neuron.shell;
 
+import com.google.common.collect.Lists;
 import de.weltraumschaf.commons.IO;
 import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.commons.shell.Parser;
 import de.weltraumschaf.commons.shell.Parsers;
 import de.weltraumschaf.commons.shell.ShellCommand;
+import de.weltraumschaf.commons.shell.SubCommandType;
 import de.weltraumschaf.commons.shell.SyntaxException;
 import de.weltraumschaf.neuron.cmd.Command;
 import de.weltraumschaf.neuron.cmd.CommandFactory;
 import de.weltraumschaf.neuron.event.EventHandler;
 import java.io.IOException;
+import java.util.List;
 import jline.console.ConsoleReader;
+import jline.console.completer.AggregateCompleter;
+import jline.console.completer.ArgumentCompleter;
 import jline.console.completer.Completer;
-import jline.console.completer.EnumCompleter;
+import jline.console.completer.StringsCompleter;
 
 /**
  * Implements a simple REPL shell.
@@ -31,6 +36,7 @@ import jline.console.completer.EnumCompleter;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class InteractiveShell {
+    private static final String PROMPT = "> ";
 
     /**
      * ShellCommand line I/O.
@@ -55,7 +61,8 @@ public class InteractiveShell {
     /**
      * Default constructor.
      *
-     * @param io injection point for I/o
+     * @param io injection point for I/O
+     * @param version version of application
      * @throws IOException if, version properties could not be loaded for {@link Version}
      */
     public InteractiveShell(final IO io, final Version version) throws IOException {
@@ -73,7 +80,7 @@ public class InteractiveShell {
         io.println(String.format("Welcome to Neuro Interactive Shell!%n"));
         final ConsoleReader reader = new ConsoleReader(io.getStdin(), io.getStdout());
         reader.addCompleter(createCompletionHints());
-        reader.setPrompt("> ");
+        reader.setPrompt(PROMPT);
 
         String inputLine;
         while ((inputLine = reader.readLine()) != null) {
@@ -111,8 +118,34 @@ public class InteractiveShell {
         }
     }
 
+    /**
+     * Creates command tab tab completion hints.
+     *
+     * @return an aggregated completer
+     */
     private Completer createCompletionHints() {
-        return new EnumCompleter(NeuronMainType.class);
+        final List<Completer> completers = Lists.newArrayList();
+        final List<String> commandsWithoutSubCommand = Lists.newArrayList();
+
+        for (final NeuronMainType t : NeuronMainType.values()) {
+            final List<NeuronSubType> subCommandTypes = t.subCommands();
+
+            if (subCommandTypes.isEmpty()) {
+                commandsWithoutSubCommand.add(t.toString());
+            } else {
+                final List<String> subCommands = Lists.newArrayList();
+                for (final SubCommandType s : subCommandTypes) {
+                    subCommands.add(s.toString());
+                }
+                completers.add(new ArgumentCompleter(
+                    new StringsCompleter(t.toString()),
+                    new StringsCompleter(subCommands)
+                ));
+            }
+        }
+
+        completers.add(new StringsCompleter(commandsWithoutSubCommand));
+        return new AggregateCompleter(completers);
     }
 
 }

@@ -11,7 +11,10 @@
  */
 package de.weltraumschaf.neuron.shell;
 
+import com.google.common.collect.Lists;
 import de.weltraumschaf.commons.shell.MainCommandType;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Enumerates the available commands.
@@ -66,6 +69,41 @@ public enum NeuronMainType implements MainCommandType {
     @Override
     public String toString() {
         return literal;
+    }
+
+    /**
+     * Returns the list of available sub commands.
+     *
+     * If a command does not support sub commands an empty list is returned.
+     *
+     * @return list of subtypes
+     */
+    List<NeuronSubType> subCommands() {
+        List<NeuronSubType> subCommands;
+
+        switch (this) {
+            case NODE:
+                subCommands = Lists.newArrayList(
+                    NeuronSubType.ADD,
+                    NeuronSubType.DEL,
+                    NeuronSubType.CONNECT,
+                    NeuronSubType.DISCONNECT,
+                    NeuronSubType.LIST,
+                    NeuronSubType.INFO,
+                    NeuronSubType.LISTEN,
+                    NeuronSubType.UNLISTEN);
+                break;
+            case DUMP:
+                subCommands = Lists.newArrayList(NeuronSubType.DOT);
+                break;
+            case SAMPLE:
+                subCommands = Lists.newArrayList(NeuronSubType.TREE);
+                break;
+            default:
+                subCommands = Collections.emptyList();
+        }
+
+        return subCommands;
     }
 
 }
