@@ -19,7 +19,6 @@ import de.weltraumschaf.commons.shell.Token;
 import de.weltraumschaf.commons.shell.TokenType;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -65,14 +64,6 @@ public class ParserTest {
         thrown.expect(SyntaxException.class);
         thrown.expectMessage("Command expected as first input!");
         sut.parse("foobar");
-    }
-
-    @Test @Ignore("Not used yet!")
-    public void parse_comandWithOneArgument() {
-    }
-
-    @Test @Ignore("Not used yet!")
-    public void parse_comandWithTwoArgument() {
     }
 
     @Test
