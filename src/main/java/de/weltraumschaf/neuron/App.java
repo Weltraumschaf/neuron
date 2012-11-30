@@ -2,6 +2,7 @@ package de.weltraumschaf.neuron;
 
 import de.weltraumschaf.commons.IOStreams;
 import de.weltraumschaf.commons.InvokableAdapter;
+import de.weltraumschaf.commons.Version;
 import de.weltraumschaf.neuron.shell.InteractiveShell;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
@@ -54,7 +55,9 @@ public final class App extends InvokableAdapter {
      */
     @Override
     public void execute() throws Exception {
-        final InteractiveShell shell = new InteractiveShell(getIoStreams());
+        final Version version = new Version("/de/weltraumschaf/neuron/version.properties");
+        version.load();
+        final InteractiveShell shell = new InteractiveShell(getIoStreams(), version);
         shell.start();
     }
 

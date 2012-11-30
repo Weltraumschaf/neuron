@@ -20,9 +20,10 @@ import de.weltraumschaf.commons.shell.SyntaxException;
 import de.weltraumschaf.neuron.cmd.Command;
 import de.weltraumschaf.neuron.cmd.CommandFactory;
 import de.weltraumschaf.neuron.event.EventHandler;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import jline.console.ConsoleReader;
+import jline.console.completer.Completer;
+import jline.console.completer.EnumCompleter;
 
 /**
  * Implements a simple REPL shell.
@@ -49,7 +50,7 @@ public class InteractiveShell {
     /**
      * Indicates if the REPL loop is running.
      */
-    private boolean run = true;
+    private boolean stop;
 
     /**
      * Default constructor.
@@ -57,11 +58,9 @@ public class InteractiveShell {
      * @param io injection point for I/o
      * @throws IOException if, version properties could not be loaded for {@link Version}
      */
-    public InteractiveShell(final IO io) throws IOException {
+    public InteractiveShell(final IO io, final Version version) throws IOException {
         super();
         this.io = io;
-        final Version version = new Version("/de/weltraumschaf/neuron/version.properties");
-        version.load();
         factory = new CommandFactory(new Environment(new EventHandler(this.io)), this.io, version);
     }
 
@@ -71,28 +70,31 @@ public class InteractiveShell {
      * @throws IOException if I/O error occurs
      */
     public void start() throws IOException {
-        final BufferedReader input = new BufferedReader(new InputStreamReader(io.getStdin()));
         io.println(String.format("Welcome to Neuro Interactive Shell!%n"));
+        final ConsoleReader reader = new ConsoleReader(io.getStdin(), io.getStdout());
+        reader.addCompleter(createCompletionHints());
+        reader.setPrompt("> ");
 
-        while (run) {
-            io.print("> ");
-            final String inputLine = input.readLine();
+        String inputLine;
+        while ((inputLine = reader.readLine()) != null) {
             try {
                 final ShellCommand cmd = parser.parse(inputLine);
                 execute(cmd);
             } catch (SyntaxException ex) {
                 io.println("Error: " + ex.getMessage());
             }
-        }
 
-        input.close();
+            if (stop) {
+                break;
+            }
+        }
     }
 
     /**
      * Stops the REPL.
      */
     public void exit() {
-        run = false;
+        stop = true;
     }
 
     /**
@@ -107,6 +109,10 @@ public class InteractiveShell {
         if (shellCmd.getCommand() == NeuronMainType.EXIT) {
             exit();
         }
+    }
+
+    private Completer createCompletionHints() {
+        return new EnumCompleter(NeuronMainType.class);
     }
 
 }
