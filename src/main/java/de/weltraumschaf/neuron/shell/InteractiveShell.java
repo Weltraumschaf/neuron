@@ -36,7 +36,11 @@ import jline.console.completer.StringsCompleter;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class InteractiveShell {
-    private static final String PROMPT = "> ";
+
+    /**
+     * String used as shell prompt.
+     */
+    private static final String PROMPT = "neuron> ";
 
     /**
      * ShellCommand line I/O.
