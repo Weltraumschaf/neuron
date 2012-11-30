@@ -69,7 +69,7 @@ public enum NeuronSubType implements SubCommandType {
      */
     BITREE("bitree");
     /**
-     * Literal command string used in shell.
+     * Literal sub command string used in shell.
      */
     private final String name;
 
